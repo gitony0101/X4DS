@@ -2,7 +2,6 @@
 
 Python & Julia port of codes in the following excellent R books (including exercises):
 
-- [R for Data Science](https://r4ds.had.co.nz/) (R4DS)
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
 
