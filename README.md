@@ -7,8 +7,10 @@ Python & Julia port of codes in the following excellent R books (including exerc
 
 |                               |             | Python Stack                 | Julia Stack                         |
 | ----------------------------- | ----------- | ---------------------------- | ----------------------------------- |
-| Pre-Processing                | Native      | <li> NumPy <li> Pandas       | <li> StatsKit  <li> ModelingToolKit |
-|                               | Enhanced    | <li> PyJanitor               | <li> Query                          |
+| Pre-Processing                | Basic       | <li> NumPy <li> Pandas       | <li> StatsKit  <li> ModelingToolKit |
+| ^                             | Enhanced    | <li> PyJanitor               | <li> Query                          |
 | Visualization                 | Native      | <li> Matplotlib <li> Seaborn | <li> Plots <li> StatsPlots          |
-|                               | Interactive | <li> Altair                  | <li> VegaLite <li> DataVoyager      |
-| Probablistic <br> Programming |             | <li> PyMC3 <li> Bambi        | <li> Turing                         |
+| ^                             | Interactive | <li> Altair                  | <li> VegaLite <li> DataVoyager      |
+| Machine <br>Learning          | Basic       | <li> Scikit-Learn <li> UMAP  | <li> MJL                            |
+| ^                             | Auxiliary   | <li> Yellowbrick <li> PHATE  | <li>  Distances                     |
+| Probablistic <br> Programming | Basic       | <li> PyMC3 <li> Bambi        | <li> Turing                         |
