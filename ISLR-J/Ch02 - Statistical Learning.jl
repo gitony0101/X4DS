@@ -7,7 +7,7 @@ using InteractiveUtils
 # ╔═╡ 2e4eb43a-9325-414a-ac27-afe8f3757aa6
 begin
 	using StatsKit
-	using Plots
+	using CairoMakie
 	using Gadfly
 end
 
