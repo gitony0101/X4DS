@@ -8,7 +8,7 @@ using InteractiveUtils
 begin
 	using StatsKit
 	using Plots
-	using StatsPlots
+	using Gadfly
 end
 
 # ╔═╡ 65c0ef6f-d0bd-4778-8dfe-4166b5b50608
@@ -24,23 +24,37 @@ md"""### FIGURE 2.1."""
 advertising_df = CSV.File("../data-islr/Advertising.csv") |> DataFrame;
 
 # ╔═╡ 6df71a28-1c2c-4797-b697-203c1b176bbc
-first(advertising, 5)
-
-# ╔═╡ ca13c617-8c72-43dc-9e35-3f439470300e
-begin
-	sales = advertising_df.sales
-	tv = advertising_df.TV
-	radio = advertising_df.radio
-	newspaper = advertising_df.newspaper
-end
+first(advertising_df, 5)
 
 # ╔═╡ 4228af87-a2a3-45fd-8ae0-2c3316fcdb06
 begin
-	p1 = scatter(tv, sales, xlabel="TV", ylabel="Sales")
-	p2 = scatter(radio, sales, xlabel="Radio")
-	p3 = scatter(newspaper, sales, xlabel="Newspaper")
+	set_default_plot_size(18cm, 9cm)
+	p1 = Gadfly.plot(
+		advertising_df, x="TV", y="sales", 
+		layer(Geom.point, color=[colorant"blue"]), 
+		layer(
+			Stat.smooth(method=:lm, levels=[0.95]), 
+			Geom.line, Geom.ribbon, color=[colorant"red"]),
+		Guide.xlabel("TV"), Guide.ylabel("Sales")
+	)
+	p2 = Gadfly.plot(
+		advertising_df, x="radio", y="sales", 
+		layer(Geom.point, color=[colorant"blue"]), 
+		layer(
+			Stat.smooth(method=:lm, levels=[0.95]), 
+			Geom.line, Geom.ribbon, color=[colorant"red"]),
+		Guide.xlabel("Radio"), Guide.ylabel("Sales")
+	)
+	p3 = Gadfly.plot(
+		advertising_df, x="newspaper", y="sales",
+		layer(Geom.point, color=[colorant"blue"]), 
+		layer(
+			Stat.smooth(method=:lm, levels=[0.95]), 
+			Geom.line, Geom.ribbon, color=[colorant"red"]),
+		Guide.xlabel("Newspaper"), Guide.ylabel("Sales")
+	)
 	
-	plot(p1, p2, p3, layout=(1, 3), legend=false, markercolor="red")
+	hstack(p1, p2, p3)
 end
 
 # ╔═╡ b7cb5976-2b1b-4579-9a4f-5e5d2a2bae50
@@ -52,14 +66,19 @@ income_df = CSV.File("../data-islr/Income1.csv") |> DataFrame;
 # ╔═╡ 91d0a047-9359-4453-a6bf-7845749b4975
 first(income_df, 5)
 
-# ╔═╡ 2d2e4ddb-dbfe-4d17-9530-e4182786b2e4
+# ╔═╡ 5c93ee1c-33e8-4f32-9895-46e7503b7f62
 begin
-	edu = income_df.Education
-	income = income_df.Income
+	set_default_plot_size(12cm, 9cm)
+	Gadfly.plot(
+			income_df, x="Education", y="Income", 
+			layer(Geom.point, color=[colorant"blue"]), 
+			layer(
+				Stat.smooth(method=:lm, levels=[0.95]), 
+				Geom.line, Geom.ribbon, color=[colorant"red"]),
+			Guide.xlabel("Years of Education"), Guide.ylabel("Income")
+			
+		)
 end
-
-# ╔═╡ e78035ba-e405-45d1-87ab-282736aef8f9
-scatter(edu, income, legend=false, xlabel="Years of Education", ylabel="Income", markercolor="red")
 
 # ╔═╡ Cell order:
 # ╠═65c0ef6f-d0bd-4778-8dfe-4166b5b50608
@@ -68,10 +87,8 @@ scatter(edu, income, legend=false, xlabel="Years of Education", ylabel="Income",
 # ╠═5c82da9b-9a3d-47d1-91a8-621134a39038
 # ╠═fe33477a-87f3-4465-bff9-531e3bd55c4d
 # ╠═6df71a28-1c2c-4797-b697-203c1b176bbc
-# ╠═ca13c617-8c72-43dc-9e35-3f439470300e
 # ╠═4228af87-a2a3-45fd-8ae0-2c3316fcdb06
 # ╠═b7cb5976-2b1b-4579-9a4f-5e5d2a2bae50
 # ╠═fb0f8735-395c-4bf2-834c-85579632dbc9
 # ╠═91d0a047-9359-4453-a6bf-7845749b4975
-# ╠═2d2e4ddb-dbfe-4d17-9530-e4182786b2e4
-# ╠═e78035ba-e405-45d1-87ab-282736aef8f9
+# ╠═5c93ee1c-33e8-4f32-9895-46e7503b7f62
