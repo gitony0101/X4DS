@@ -1,13 +1,14 @@
 ### A Pluto.jl notebook ###
-# v0.14.1
+# v0.14.2
 
 using Markdown
 using InteractiveUtils
 
 # ╔═╡ 2e4eb43a-9325-414a-ac27-afe8f3757aa6
 begin
+	using LinearAlgebra
 	using StatsKit
-	using CairoMakie
+	using AlgebraOfGraphics, CairoMakie
 	using Gadfly
 end
 
@@ -21,16 +22,16 @@ md"""## 2.1 What Is Statistical Learning ?"""
 md"""### FIGURE 2.1."""
 
 # ╔═╡ fe33477a-87f3-4465-bff9-531e3bd55c4d
-advertising_df = CSV.File("../data-islr/Advertising.csv") |> DataFrame;
+adv_df = CSV.File("../data-islr/Advertising.csv") |> DataFrame;
 
 # ╔═╡ 6df71a28-1c2c-4797-b697-203c1b176bbc
-first(advertising_df, 5)
+first(adv_df, 5)
 
 # ╔═╡ 4228af87-a2a3-45fd-8ae0-2c3316fcdb06
 begin
 	set_default_plot_size(18cm, 9cm)
 	p1 = Gadfly.plot(
-		advertising_df, x="TV", y="sales", 
+		adv_df, x="TV", y="sales", 
 		layer(Geom.point, color=[colorant"blue"]), 
 		layer(
 			Stat.smooth(method=:lm, levels=[0.95]), 
@@ -38,7 +39,7 @@ begin
 		Guide.xlabel("TV"), Guide.ylabel("Sales")
 	)
 	p2 = Gadfly.plot(
-		advertising_df, x="radio", y="sales", 
+		adv_df, x="radio", y="sales", 
 		layer(Geom.point, color=[colorant"blue"]), 
 		layer(
 			Stat.smooth(method=:lm, levels=[0.95]), 
@@ -46,7 +47,7 @@ begin
 		Guide.xlabel("Radio"), Guide.ylabel("Sales")
 	)
 	p3 = Gadfly.plot(
-		advertising_df, x="newspaper", y="sales",
+		adv_df, x="newspaper", y="sales",
 		layer(Geom.point, color=[colorant"blue"]), 
 		layer(
 			Stat.smooth(method=:lm, levels=[0.95]), 
@@ -68,17 +69,29 @@ first(income_df, 5)
 
 # ╔═╡ 5c93ee1c-33e8-4f32-9895-46e7503b7f62
 begin
-	set_default_plot_size(12cm, 9cm)
-	Gadfly.plot(
+	set_default_plot_size(18cm, 9cm)
+	xmin = minimum(income_df.Education)-1
+	xmax = maximum(income_df.Education)+1
+	g1 = Gadfly.plot(
+			income_df, x="Education", y="Income", 
+			layer(Geom.point, color=[colorant"blue"]),
+			Guide.xlabel("Years of Education"), Guide.ylabel("Income"),
+			Guide.xticks(ticks=xmin:2:xmax)
+		)
+	g2 = Gadfly.plot(
 			income_df, x="Education", y="Income", 
 			layer(Geom.point, color=[colorant"blue"]), 
 			layer(
-				Stat.smooth(method=:lm, levels=[0.95]), 
-				Geom.line, Geom.ribbon, color=[colorant"red"]),
-			Guide.xlabel("Years of Education"), Guide.ylabel("Income")
-			
+				Stat.smooth(method=:loess, levels=[0.95]), 
+				Geom.line, color=[colorant"red"]),
+			Guide.xlabel("Years of Education"), Guide.ylabel("Income"),
+			Guide.xticks(ticks=xmin:2:xmax)
 		)
+	hstack(g1, g2)
 end
+
+# ╔═╡ b01c5b23-8d22-42d0-8917-7a9f0ba80760
+
 
 # ╔═╡ Cell order:
 # ╠═65c0ef6f-d0bd-4778-8dfe-4166b5b50608
@@ -92,3 +105,4 @@ end
 # ╠═fb0f8735-395c-4bf2-834c-85579632dbc9
 # ╠═91d0a047-9359-4453-a6bf-7845749b4975
 # ╠═5c93ee1c-33e8-4f32-9895-46e7503b7f62
+# ╠═b01c5b23-8d22-42d0-8917-7a9f0ba80760
