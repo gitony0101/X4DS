@@ -11,6 +11,6 @@ Python & Julia port of codes in the following excellent R books (including exerc
 | ^                            | Enhanced  | <li> PyJanitor               | <li> Query                         |
 | Visualization                | Native    | <li> Matplotlib <li> Seaborn | <li> MakiE <li> Gadfly             |
 | ^                            | Auxiliary | <li> Yellowbrick <li> PHATE  | <li> Makie                         |
-| Machine<br>Learning          | Basic     | <li> Scikit-Learn            | <li> MJL                           |
-| ^                            | Auxiliary | <li> UMAP                    | <li> Distance                      |
+| Machine<br>Learning          | Basic     | <li> Scikit-Learn            | <li> MLJ                           |
+| ^                            | Auxiliary | <li> UMAP                    | <li> Clustering                    |
 | Probablistic<br> Programming | Basic     | <li> PyMC3 <li> Bambi        | <li> Turing                        |
