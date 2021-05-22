@@ -4,8 +4,8 @@ using InteractiveUtils
 # ╔═╡ ddd9f9f0-9814-11eb-1a01-b7b80b2fb959
 begin
     using LinearAlgebra
-    using AlgebraOfGraphics, CairoMakie
-    using CSV
+    using Plots
+    using DataFrames, CSV
 end
 
 # ╠═be4a5053-39ea-4d1b-8286-b32c0748c472
