@@ -21,12 +21,12 @@ md"
 ### FIGURE 2.1.
 "
 
-adv_df = CSV.File("../data-islr/Advertising.csv") |> DataFrame;
+adv_df = CSV.File("./data-islr/Advertising.csv") |> DataFrame;
 first(adv_df, 5)
 
 
 
-income_df = CSV.File("../data-islr/Income1.csv") |> DataFrame;
+income_df = CSV.File("./data-islr/Income1.csv") |> DataFrame;
 first(income_df, 5)
 
 # ╔═╡ Cell order:
