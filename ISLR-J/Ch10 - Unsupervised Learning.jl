@@ -5,8 +5,7 @@ using Markdown
 
 # ╔═╡ 7c908ac2-b4b4-4f3e-8ba6-31245e8d3716
 begin
-    using LinearAlgebra
-    using Plots
+    using AlgebraOfGraphics
     using DataFrames, CSV
 end
 

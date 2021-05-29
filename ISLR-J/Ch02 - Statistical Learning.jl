@@ -3,8 +3,7 @@ using InteractiveUtils
 
 # ╔═╡ ddd9f9f0-9814-11eb-1a01-b7b80b2fb959
 begin
-    using LinearAlgebra
-    using Plots
+    using AlgebraOfGraphics
     using DataFrames, CSV
 end
 
