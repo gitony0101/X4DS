@@ -1,9 +1,11 @@
 # X4DS
 
-Python & Julia port of codes in the following excellent R books (including exercises):
+**Python** & **Julia** port of codes in the following excellent R books (including exercises):
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
+
+> **Tidyverse** port also will be included.
 
 <table border="solid">
   <thead>
