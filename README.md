@@ -7,18 +7,6 @@
 
 > **Tidyverse** port also will be included.
 
-<style>
-  table {
-    border-collapse: collapse;
-  }
-  tr {
-    text-align: center;
-  }
-  td {
-    text-align: center;
-  }
-</style>
-
 <table border="1">
   <thead>
     <tr>
@@ -93,3 +81,18 @@
 
 - https://github.com/a-martyn/ISL-python
 - https://github.com/tndoan/ISLR.jl
+
+<details>
+  <summary>style</summary>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    tr {
+      text-align: center;
+    }
+    td {
+      text-align: center;
+    }
+  </style>
+</details>
