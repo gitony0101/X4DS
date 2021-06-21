@@ -9,6 +9,16 @@
 					"label": ""
 				}
 			]
+		},
+		{
+			"path": "../../../Library/Application Support/Code/User/settings.json",
+			"bookmarks": [
+				{
+					"line": 517,
+					"column": 3,
+					"label": ""
+				}
+			]
 		}
 	]
 }
