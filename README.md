@@ -7,34 +7,47 @@
 
 > **Tidyverse** port also will be included.
 
-<table border="solid">
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  tr {
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
+</style>
+
+<table border="1">
   <thead>
-    <tr align="center">
-      <td colspan="2">Language</td>
-      <th>Python Stack</td>
-      <th>Julia Stack</td>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Python Stack</td>
+      <td>Julia Stack</td>
     </tr>
   </thead>
   <tbody>
-    <tr align="center">
+    <tr>
       <td colspan="2">Language Version</td>
       <td>v3.9</td>
       <td>v1.6</td>
     </tr>
     <tr>
-      <td rowspan="2" align="center">Data <br />Processing</td>
-      <td align="center">Basic</td>
+      <td rowspan="2">Data <br />Processing</td>
+      <td>Basic</td>
       <td><li>Pandas</li></td>
       <td><li>StatsKit</li></td>
     </tr>
     <tr>
-      <td align="center">Enhanced</td>
+      <td>Enhanced</td>
       <td><li>PyJanitor</li></td>
       <td><li>DataFramesMeta</li></td>
     </tr>
     <tr>
-      <td rowspan="2" align="center">Visualization</td>
-      <td align="center">Basic</td>
+      <td rowspan="2">Visualization</td>
+      <td>Basic</td>
       <td>
         <li>Matplotlib</li>
         <li>Seaborn</li>
@@ -45,13 +58,13 @@
       </td>
     </tr>
     <tr>
-      <td align="center">Enhanced</td>
+      <td>Enhanced</td>
       <td><li>Yellowbrick</li></td>
       <td></td>
     </tr>
     <tr>
-      <td align="center">Machine<br />Learning</td>
-      <td align="center">Basic</td>
+      <td>Machine<br />Learning</td>
+      <td>Basic</td>
       <td>
         <li>Scikit-Learn</li>
         <li>MLXtend</li>
@@ -62,11 +75,11 @@
       </td>
     </tr>
     <tr>
-      <td align="center">
+      <td>
         Probablistic<br />
         Programming
       </td>
-      <td align="center">Basic</td>
+      <td>Basic</td>
       <td>
         <li>PyMC3</li>
         <li>Bambi</li>
