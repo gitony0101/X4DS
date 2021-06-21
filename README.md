@@ -87,14 +87,6 @@
   <style>
     table {
       border-collapse: collapse;
-    }
-    tr {
-      text-align: center;
-    }
-    td {
-      text-align: center;
-    }
-    th {
       text-align: center;
     }
   </style>
