@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from scipy.stats import sem
 
-orders = pd.read_csv('data/user_orders_hourofday.csv')
+orders = pd.read_csv('../data/user_orders_hourofday.csv')
 orders_mean = orders.groupby('order_hour_of_day').quantity.mean()
 orders_se = orders.groupby('order_hour_of_day').quantity.apply(sem).mul(1.96)
 

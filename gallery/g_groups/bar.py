@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import patches
 
-mpg = pd.read_csv('data/mpg.csv')
+mpg = pd.read_csv('../data/mpg.csv')
 mpg_group = mpg[['cty', 'manufacturer'
                  ]].groupby('manufacturer').apply(lambda x: x.mean())
 mpg_group.sort_values('cty', inplace=True)

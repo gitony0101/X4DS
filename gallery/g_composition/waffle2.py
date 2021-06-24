@@ -2,7 +2,7 @@ from pywaffle import Waffle
 import pandas as pd
 import matplotlib.pyplot as plt
 
-mpg = pd.read_csv('data/mpg.csv')
+mpg = pd.read_csv('../data/mpg.csv')
 
 mpg_class = mpg.groupby('class').size().reset_index(name='counts_class')
 n_categories = mpg_class.shape[0]

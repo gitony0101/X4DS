@@ -1,4 +1,5 @@
 import yellowbrick.features as ybf
+import matplotlib.pyplot as plt
 
 _, ax = plt.subplots(figsize=(6, 6))
 

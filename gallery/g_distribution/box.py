@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-mpg = pd.read_csv('data/mpg.csv')
+mpg = pd.read_csv('../data/mpg.csv')
 
 
 def add_n_obs(df, group_col, y):

@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-mpg = pd.read_csv('data/mpg.csv')
+mpg = pd.read_csv('../data/mpg.csv')
 mpg['_class'] = mpg['class']
 
 _, ax = plt.subplots(figsize=(12, 8), dpi=80)

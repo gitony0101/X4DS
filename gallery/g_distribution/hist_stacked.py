@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-mpg = pd.read_csv('data/mpg.csv')
+mpg = pd.read_csv('../data/mpg.csv')
 mpg['_class'] = mpg['class']
 x_var, group_var = 'displ', 'class'
 mpg_agg = mpg[[x_var, group_var]].groupby(group_var)
