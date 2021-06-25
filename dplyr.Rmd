@@ -1,5 +1,0 @@
-# dplyr
-
-```{r}
-library(dplyr)
-```
