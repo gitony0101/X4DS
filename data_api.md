@@ -15,7 +15,7 @@
 
 - numpy.random
   - `rand()`：均匀分布
-  - `randn()`：标准正态分布
+  - `randn()`：标准
   - `randint()`：随机生成整数
   - `normal()`
   - `binomial()`
