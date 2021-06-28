@@ -36,42 +36,37 @@ from sklearn.base import *
 from sklearn.pipeline import Pipeline
 
 import warnings
-warnings.filterwarnings("ignore")
-
 
 # ## Classfication Pipeline
 
+
 # +
 def tweak_titanic(df):
-    df = df.drop(
-        columns=[
-            "Name",
-            "Ticket",
-            "Cabin",
-        ]
-    ).pipe(pd.get_dummies, drop_first=True)
+    df = df.drop(columns=[
+        "Name",
+        "Ticket",
+        "Cabin",
+    ]).pipe(pd.get_dummies, drop_first=True)
     return df
 
+
 class TitanicTransformer(BaseEstimator, TransformerMixin):
-    
     def transform(self, X):
         X = tweak_titanic(X)
         X = X.drop(columns="Survived")
         return X
-    
+
     def fit(self, X, y):
         return self
 
-pipe = Pipeline(
-    [
-        ("titan", TitanicTransformer()),
-        ("impute", IterativeImputer()),
-        ("std", StandardScaler()),
-        ("rf", RandomForestClassifier()),
-    ]
-)
-# -
 
+pipe = Pipeline([
+    ("titan", TitanicTransformer()),
+    ("impute", IterativeImputer()),
+    ("std", StandardScaler()),
+    ("rf", RandomForestClassifier()),
+])
+# -
 
 df = pd.read_csv('../data/titanic_train.csv')
 df.head()
@@ -85,7 +80,6 @@ X_train2, X_test2, y_train2, y_test2 = train_test_split(
 pipe.fit(X_train2, y_train2)
 pipe.score(X_test2, y_test2)
 
-
 params = {
     "rf__max_features": [0.4, "auto"],
     "rf__n_estimators": [15, 200],
@@ -93,15 +87,12 @@ params = {
 grid = GridSearchCV(pipe, cv=3, param_grid=params)
 grid.fit(df, df.Survived)
 
-
 grid.best_params_
 pipe.set_params(**grid.best_params_)
 pipe.fit(X_train2, y_train2)
 pipe.score(X_test2, y_test2)
 
-
 roc_auc_score(y_test2, pipe.predict(X_test2))
-
 
 # ## Regression Pipeline
 
@@ -126,41 +117,32 @@ bos_sX_train, bos_sX_test, bos_sy_train, bos_sy_test = train_test_split(
 )
 # -
 
-reg_pipe = Pipeline(
-    [
-        ("std", StandardScaler()),
-        ("lr", LinearRegression()),
-    ]
-)
+reg_pipe = Pipeline([
+    ("std", StandardScaler()),
+    ("lr", LinearRegression()),
+])
 reg_pipe.fit(bos_X_train, bos_y_train)
 reg_pipe.score(bos_X_test, bos_y_test)
-
 
 reg_pipe.named_steps["lr"].intercept_
 reg_pipe.named_steps["lr"].coef_
 
-
 mean_squared_error(bos_y_test, reg_pipe.predict(bos_X_test))
-
 
 # ## PCA Pipeline
 
 # +
 from sklearn.decomposition import PCA
 
-pca_pipe = Pipeline(
-    [
-        ("titan", TitanicTransformer()),
-        ("impute", IterativeImputer()),
-        ("std", StandardScaler()),
-        ("pca", PCA()),
-    ]
-)
+pca_pipe = Pipeline([
+    ("titan", TitanicTransformer()),
+    ("impute", IterativeImputer()),
+    ("std", StandardScaler()),
+    ("pca", PCA()),
+])
 
 X_pca = pca_pipe.fit_transform(df, df.Survived)
 # -
 
-
 pca_pipe.named_steps["pca"].explained_variance_ratio_
 pca_pipe.named_steps["pca"].components_[0]
-

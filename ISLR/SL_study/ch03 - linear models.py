@@ -32,7 +32,6 @@ from sklearn.ensemble import *
 from sklearn.metrics import *
 
 import warnings
-warnings.filterwarnings("ignore")
 
 # +
 b = load_boston()
@@ -40,33 +39,29 @@ bos_X = pd.DataFrame(b.data, columns=b.feature_names)
 bos_y = b.target
 
 bos_X_train, bos_X_test, bos_y_train, bos_y_test = train_test_split(
-    bos_X, bos_y,
-    test_size=0.3, random_state=42
-)
+    bos_X, bos_y, test_size=0.3, random_state=42)
 
 bos_sX = StandardScaler().fit_transform(bos_X)
 bos_sX_train, bos_sX_test, bos_sy_train, bos_sy_test = train_test_split(
-    bos_sX, bos_y,
-    test_size=0.3, random_state=42,
+    bos_sX,
+    bos_y,
+    test_size=0.3,
+    random_state=42,
 )
 # -
 
 # ## Baseline Model
 
-
 from sklearn.dummy import DummyRegressor
-
 
 dr = DummyRegressor()
 dr.fit(bos_X_train, bos_y_train)
 dr.score(bos_X_test, bos_y_test)
 
-
 lr = LinearRegression()
 lr.fit(bos_X_train, bos_y_train)
 lr.score(bos_X_test, bos_y_test)
 lr.coef_
-
 
 lr2 = LinearRegression()
 lr2.fit(bos_sX_train, bos_sy_train)
@@ -74,11 +69,9 @@ lr2.score(bos_sX_test, bos_sy_test)
 lr2.intercept_
 lr2.coef_
 
-
 fi_viz = ybf.FeatureImportances(lr2, labels=bos_X.columns)
 fi_viz.fit(bos_sX, bos_y)
 fi_viz.poof()
-
 
 iris = load_iris()
 iX = iris.data
@@ -87,9 +80,7 @@ lr2 = LinearRegression()
 lr2.fit(iX, iy)
 list(zip(iris.feature_names, lr2.coef_))
 
-
 # ## Metrics
-
 
 rfr = RandomForestRegressor(random_state=42, n_estimators=100)
 rfr.fit(bos_X_train, bos_y_train)
@@ -100,15 +91,11 @@ r2_score(bos_y_test, bos_y_test_pred)
 
 explained_variance_score(bos_y_test, bos_y_test_pred)
 
-
 mean_absolute_error(bos_y_test, bos_y_test_pred)
-
 
 mean_squared_error(bos_y_test, bos_y_test_pred)
 
-
 mean_squared_log_error(bos_y_test, bos_y_test_pred)
-
 
 # ## Residuals Plot
 
@@ -139,7 +126,8 @@ for name, num in zip(labels, hb):
 # +
 resids = bos_y_test - rfr.predict(bos_X_test)
 
-pd.Series(resids, name="residuals").plot.hist(bins=20, title="Residual Histogram")
+pd.Series(resids, name="residuals").plot.hist(bins=20,
+                                              title="Residual Histogram")
 
 # +
 from scipy import stats
@@ -156,9 +144,3 @@ pev = ybr.PredictionError(rfr)
 pev.fit(bos_X_train, bos_y_train)
 pev.score(bos_X_test, bos_y_test)
 pev.poof()
-
-
-
-
-
-
