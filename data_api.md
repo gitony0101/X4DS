@@ -37,6 +37,7 @@
   - `take()`, `put()`
 
 - inquery
+
   - `where(cond, xarr, yarr)`: x if condition else y
   - `searchsorted()`
   - `isnan()`
@@ -62,6 +63,7 @@
   - `swapaxes()`
 
 - reshaping
+
   - `concatenate()`
   - `hstack()`, `vstack()`, `dstack()`
   - `row_stack()`, `column_stack()`
@@ -91,6 +93,7 @@
   - `setdiff1d()`, `setxor()`
 
 - numpy.linalg
+
   - `inv()`, `pinv()`
   - `qr()`, `svd()`
   - `eig()`， eigvals()`
@@ -171,6 +174,7 @@
   - `rename()`
 
 - strings
+
   - `series.str.func()`
 
 ### 2.4. 重塑
@@ -197,6 +201,7 @@
   - `melt()`
 
 - grouping
+
   - `groupby()`
     - `agg()`
   - `cut()`, `qcut()`
@@ -221,6 +226,7 @@
   - `ts.rollback()`
 
 - resampling
+
   - `ts.resample()`
     - `ohlc()`
     - `expanding()`
@@ -231,6 +237,7 @@
 ### 2.6. 分类数据
 
 - categorial data
+
   - `Categorical()`
   - `get_dummies()`
 
