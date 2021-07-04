@@ -5,6 +5,7 @@
 ### 1.1. 生成、类型
 
 - generation
+
   - `zeros()`, `zeros_like()`
   - `ones()`, `ones_like()`
   - `full()`, `full_like()`
@@ -14,6 +15,7 @@
   - `repeat()`, `tile()`
 
 - numpy.random
+
   - `rand()`：均匀分布
   - `randn()`：标准
   - `randint()`：随机生成整数
@@ -31,22 +33,26 @@
 ### 1.2. 查询、索引
 
 - indeces
+
   - `take()`, `put()`
 
 - inquery
+
   - `where(cond, xarr, yarr)`: x if condition else y
   - `searchsorted()`
   - `isnan()`
   - `isfinite()`, `isinf()`
 
-### 1.3. 排序、转换
+### 1.3. 排序、变换
 
 - rank
+
   - `sort()`
   - `argsort()`
   - `lexsort()`
 
 - ndarray
+
   - `dtype`
   - `shape`
   - `ndim`
@@ -57,6 +63,7 @@
   - `swapaxes()`
 
 - reshaping
+
   - `concatenate()`
   - `hstack()`, `vstack()`, `dstack()`
   - `row_stack()`, `column_stack()`
@@ -67,6 +74,7 @@
 ### 1.4. 计算
 
 - computation
+
   - `dot()`：内积，矩阵乘法
   - `power()`
   - `add()`, `substract()`, `multiply()`, `divide()`, `mod()`
@@ -78,12 +86,14 @@
   - `maximum()`, `fmax()`, `minimum()`, `fmin()`
 
 - set operation
+
   - `unique()`
   - `interset1d()`, `union1d()`
   - `in1d()`
   - `setdiff1d()`, `setxor()`
 
 - numpy.linalg
+
   - `inv()`, `pinv()`
   - `qr()`, `svd()`
   - `eig()`， eigvals()`
@@ -111,6 +121,7 @@
 ### 2.2. 查询、索引
 
 - Index
+
   - `Index()`
   - `append()`, `drop()`
   - `insert()`, `delete()`
@@ -121,6 +132,7 @@
   - `reset_index()`
 
 - selection, column
+
   - `df[cond]`
   - `df[[*col_name]]`
   - `df.loc[col_name]`, `df.loc[:, col_name]`
@@ -132,15 +144,18 @@
 ### 2.3. 排序、归纳、清洗
 
 - rank
+
   - `sort_index()`
   - `sort_values()`
 
 - summary
+
   - `describe()`
   - `unique()`
   - `value_counts()`
 
 - problem values
+
   - `dropna()`
   - `fillna()`
   - `isnull()`, `notnull()`
@@ -148,37 +163,45 @@
   - `drop_duplicates()`
 
 - numerical modification
+
   - `df.apply(func)`
   - `series.replace()`
   - `series.map(func)`
   - `drop()`
 
 - colums
+
   - `rename()`
 
 - strings
+
   - `series.str.func()`
 
 ### 2.4. 重塑
 
 - df operation
+
   - `df.add()`, `df.sub()`, `df.mul()`, `df.div()`
   - `df.floordiv()`, `df.pow()`
 
 - hierarchical indexing
+
   - `stack()`, `unstack()`
   - `swaplevel()`
 
 - connectioin
+
   - `concat()`
   - `join()`
   - `merge()`
 
 - rotate
+
   - `pivot()`
   - `melt()`
 
 - grouping
+
   - `groupby()`
     - `agg()`
   - `cut()`, `qcut()`
@@ -188,6 +211,7 @@
 ### 2.5. 时间序列
 
 - data-time
+
   - `date_range()`
   - `Period()`
   - `PeriodIndex()`
@@ -196,11 +220,13 @@
   - `ts..to_timestamp()`
 
 - move
+
   - `ts.shift()`
   - `ts.rollforward()`
   - `ts.rollback()`
 
 - resampling
+
   - `ts.resample()`
     - `ohlc()`
     - `expanding()`
@@ -211,6 +237,7 @@
 ### 2.6. 分类数据
 
 - categorial data
+
   - `Categorical()`
   - `get_dummies()`
 
