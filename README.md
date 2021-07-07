@@ -81,7 +81,7 @@
 
 ### basics
 
-- use `zip()` and `enumerate()` rather than `range(len())`
+- prefer `zip()` and `enumerate()` rather than `range(len())`
 
 ```python
 xs = range(3)
