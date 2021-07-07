@@ -81,25 +81,23 @@
 
 ### basics
 
-- prefer `zip()` and `enumerate()` rather than `range(len())`
+- use `enumerate()` rather than `range(len())`
 
 ```python
 xs = range(3)
-ys = ['r', 'g', 'b']
 
 # good
-for x, y in zip(xs, ys):
-  print(x * y)
+for ind, x in enumerate(xs):
+  print(f'{ind}: {x}')
 
 # bad
 for i in range(len(xs)):
-  for j in range(len(ys)):
-    print(x * y)
+  print(f'{i}: {xs[i]}')
 ```
 
 ### matplotlib
 
-- prefer `Axes` object rather than `Figure` object
+- use `Axes` object rather than `Figure` object
 
 ```python
 # good
