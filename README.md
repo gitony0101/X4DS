@@ -77,6 +77,54 @@
   </tbody>
 </table>
 
+## Code Styles
+
+### basics
+
+- use `zip()` and `enumerate()` rather than `range(len())`
+
+```python
+xs = range(3)
+ys = ['r', 'g', 'b']
+
+# good
+for x, y in zip(xs, ys):
+  print(x * y)
+
+# bad
+for i in range(len(xs)):
+  for j in range(len(ys)):
+    print(x * y)
+```
+
+### matplotlib
+
+- prefer `Axes` object rather than `Figure` object
+
+```python
+# good
+_, axes = plt.subplots(1, 2, constrained_layout=True)
+axes[0].plot(x1, y1)
+axes[1].hist(x2, y2)
+
+# bad
+plt.subplot(121)
+plt.plot(x1, y1)
+plt.subplot(122)
+plt.hist(x2, y2)
+```
+
+- use `set()` method rather than `set_*()` method
+
+```python
+# good
+ax.set(xlabel='x', ylabel='y')
+
+# bad
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+```
+
 ## References
 
 - https://github.com/a-martyn/ISL-python
