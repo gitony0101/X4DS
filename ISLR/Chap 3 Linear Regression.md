@@ -4,7 +4,7 @@ Chap 3 Linear Regression.md
 
 ## Simple linear regression
 
-It is a very straightforward simple linear regression approach for predicting a quantitative response Y on the basis of a single predictor variable X. It assumes that there is approximately a linear relationship between X and Y . Mathematically, we can write this linear relationship as:
+It is a very straight forward simple linear regression approach for predicting a quantitative response Y on the basis of a single predictor variable X. It assumes that there is approximately a linear relationship between X and Y . Mathematically, we can write this linear relationship as:
 
 $$
 Y \approx \beta_0 + \beta_1X
@@ -17,7 +17,7 @@ You might read “≈” as “is approximately modeled as”. We will sometimes
 
 - Linear relationship between X & Y
 - Error terms are Normal ϵ~N(μ=0, σ^2)
-- Variance of errors, ϵ,  is same for all values of X (homoscedasticity)
+- Variance of errors, ϵ,  are same  for all values of X ： homoscedasticity
 
 ## Estimating the Coefficients
 
@@ -50,36 +50,16 @@ $$
 
 ### TSS
 
-
-
 ### MSE
 
 ### $R^2$
-
-
 $R^2 = \frac{TSS - RSS}{TSS} = 1 - \frac{RSS}{TSS} =1-\frac{\text { Unexplained Variation }}{\text { Total Variation }}$
-
-
-
-
 $R^2$ proportion of total variation accountedfor by the independent variables in themodel.
 
 - $ 0 \leq R^2 \leq 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
 ### P-value
-
-
-
-
-
-
-
-
-
-
-
-
 ### Assumptions that matter in multiple linear regression
 
 - Linear relationship between y and x1, y and x2, etc.
@@ -87,15 +67,9 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - Homoscedasticity: Var(ϵ)=σ^2  for all values of the independent variables (x1, x2 , …)
 - No or little multicollinearity (correlation between xi)
 
-
-
 ### Notice：R2  &  multiple regression & R2-adjusted in multiple regression
 
-
 R2  Adjusted： $R_{a d j}^{2}=1-\left[\frac{\left(1-R^{2}\right)(n-1)}{n-k-1}\right]$
-
-
-
 
 Another measure of fit, R2-adjusted
 
@@ -105,9 +79,7 @@ As you add terms R2 always improves but the model may get worse
 
 If R2 >> R2-adjusted, eliminate some of the X’s from the model
 
-
 ### Summary for checking out a regression model
-
 
 | Important Assumption                                     | What to check & do                                                                             |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -115,18 +87,6 @@ If R2 >> R2-adjusted, eliminate some of the X’s from the model
 | Prediction errors, ϵ, have Normal Distribution<br/><br/> | Look at Normal probability plot of residuals<br/><br/>Check for outliers                       |
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Stepwise regression
 
