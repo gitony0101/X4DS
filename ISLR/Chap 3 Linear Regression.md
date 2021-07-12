@@ -33,11 +33,34 @@ An example in R - we generate a our predictions base on f(x)+e
 
 , and also have a ‘guess’ at an f̂ (x). We calculate our yi, and then calculate the RSS.
 
-### RSS
+### RSS:Residual Sum of Squares
+
+
+$$
+\mathrm{RSS}=e_{1}^{2}+e_{2}^{2}+\cdots+e_{n}^{2}
+
+$$
+
+or equivalently as
+
+$$
+\operatorname{RSS}=\left(y_{1}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{\beta}_{0}-\hat{\beta}_{1} x_{n}\right)^{2}
+
+$$
+
+### TSS
+
+
 
 ### MSE
 
 ### $R^2$
+
+
+$R^2 = \frac{TSS - RSS}{TSS} = 1 - \frac{RSS}{TSS} =1-\frac{\text { Unexplained Variation }}{\text { Total Variation }}$
+
+
+
 
 $R^2$ proportion of total variation accountedfor by the independent variables in themodel.
 
@@ -64,6 +87,25 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - Homoscedasticity: Var(ϵ)=σ^2  for all values of the independent variables (x1, x2 , …)
 - No or little multicollinearity (correlation between xi)
 
+
+
+### Notice：R2  &  multiple regression & R2-adjusted in multiple regression
+
+
+R2  Adjusted： $R_{a d j}^{2}=1-\left[\frac{\left(1-R^{2}\right)(n-1)}{n-k-1}\right]$
+
+
+
+
+Another measure of fit, R2-adjusted
+
+Always less than R2 since it includes penalty for too many terms
+
+As you add terms R2 always improves but the model may get worse
+
+If R2 >> R2-adjusted, eliminate some of the X’s from the model
+
+
 ### Summary for checking out a regression model
 
 
@@ -76,15 +118,7 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 
 
 
-### Notice：R2  &  multiple regression & R2-adjusted in multiple
 
-Another measure of fit, R2-adjusted
-
-Always less than R2 since it includes penalty for too many terms
-
-As you add terms R2 always improves but the model may get worse
-
-If R2 >> R2-adjusted, eliminate some of the X’s from the model
 
 
 
