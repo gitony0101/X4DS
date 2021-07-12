@@ -8,7 +8,7 @@ $$
 Y ≈ β_0 + β_1X
 $$
 
-We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y onto X).
+We will sometimes describe (3.1) by saying that we are regressinsg Y on X (or Y onto X).
 
 ### 1.1. Important assumptions in simple linear regression
 
