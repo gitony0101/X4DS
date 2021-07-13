@@ -20,6 +20,7 @@ We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y o
 
 >From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
 
+
 #### 2.0.1 **RSS——Residual Sum of Squares**
 
 $$
@@ -37,7 +38,7 @@ $$
 
 The explained sum of squares (ESS) is the sum of the squares of the deviations of the predicted values from the mean value of a response variable.
 
-For example: $y_i = a + b_1x_{1i} + b_2x_{2i} + ... + ε_i$, where $y_i$ is the $i^{th}$ observation of the response variable, $x_{ji}$ is the i^{th} observation of the $j$ th explanatory variable, a and $b_j$ are coefficients, $i$ indexes the observations from  to n, and $ϵ_i$ is the $i^{th}$ value of the error term. In general, the greater the ESS, the better the estimated model performs.
+For example: $y_i = a + b_1x_{1i} + b_2x_{2i} + ... + ε_i$, where $y_i$ is the $i^{th}$ observation of the response variable, $x_{ji}$ is the$i^{th}$bservation of the $j$ th explanatory variable, a and $b_j$ are coefficients, $i$ indexes the observations from  to n, and $ϵ_i$ is the $i^{th}$ value of the error term. In general, the greater the ESS, the better the estimated model performs.
 
 We let $\hat{a}$ and $\hat{b}$ are the estimated coefficients, then$\hat{y_i} = \hat{a} + \hat{b_1}x_{1i} + \hat{b_2}x_{2i} + ........$is the $i^{th}$ predicted value of the response variable. The ESS:
 
@@ -69,13 +70,25 @@ $$
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
 
 
+### 2.0.4 Alternative definitions
+>different definitions:
+
+- SSR(Sum of Squares for **regression**) = ESS (explained sum of squares)
+
+- SSE（Sum of Squares for Error） = RSS (residual sum of squares)
+
+- SST(Sum of Squares for total) = TSS(total sum of squares)
+
+So we have:
+- **SSE+SSR=SST** 
+  
+  or equivalently:
+
+- **RSS+ESS=TSS**
 
 
 #### 2.0.4 **RSE——Residual Standard Error**
 
-
-
-[tss ess rss](https://www.dummies.com/education/math/business-statistics/test-the-estimated-regression-equation-using-the-coefficient-of-determination-r2/)
 
 
 ### 2.3. MSE
@@ -96,6 +109,25 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 
 ### 2.5. P-value
 
+
+#### 2.0.X notes for me
+
+表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
+相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
+由于R2<R,可以防止对相关系数所表示的相关做夸张的解释。
+确定系数：在Y的总平方和中，由X引起的平方和所占的比例，记为R2(R的平方)
+确定系数的大小决定了相关的密切程度。
+当R2越接近1时，表示相关的方程式参考价值越高；相反，越接近0时，表示参考价值越低。这是在一元回归分3析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
+在多元回归分析中，确定系数是通径系数的平方。
+表达式：R2=SSR/SST=1-SSE/SST
+其中：SST=SSR+SSE，SST (total sum of squares)为总平方和，SSR (regression sum of squares)为回归平方和，SSE (error sum of squares) 为残差平方和。
+注：（不同书命名不同）
+回归平方和：SSR(Sum of Squares for regression) = ESS (explained sum of squares)
+残差平方和：SSE（Sum of Squares for Error） = RSS (residual sum of squares)
+总离差平方和：SST(Sum of Squares for total) = TSS(total sum of squares)
+SSE+SSR=SST RSS+ESS=TSS
+意义：拟合优度越大，自变量对因变量的解释程度越高，自变量引起的变动占总变动的百分比高。观察点在回归直线附近越密集。
+取值范围：0-1.
 
 
 ## 2. Estimating the Coefficients
