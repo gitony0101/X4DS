@@ -1,4 +1,4 @@
-# 3 Linear Regression
+# Chaper 3 Linear Regression
 
 ## 1. Simple linear regression
 
@@ -8,7 +8,7 @@ $$
 Y ≈ β_0 + β_1X
 $$
 
-We will sometimes describe (3.1) by saying that we are regressinsg Y on X (or Y onto X).
+We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y onto X).
 
 ### 1.1. Important assumptions in simple linear regression
 
@@ -16,22 +16,9 @@ We will sometimes describe (3.1) by saying that we are regressinsg Y on X (or Y 
 - Error terms are Normal $ϵ ∼ N(μ=0, σ^2)$
 - Variance of errors, $ϵ$,  is same for all values of $X$ (homoscedasticity)
 
-## 2. Estimating the Coefficients
+### 2.0 Important definitions: RSS TSS RSE MSE, etc.
 
-The goal is to obtain coefficients such that the linear model fits
-the data well - *i.e.* as close as possible to the data points. The most common approach involves minimising the **least squares** criterion.
-
-We let
-
-$$
-e_i = y_i − ŷ_i
-$$
-
-which represents the ith **residual**. The **residual sum of squares** or **RSS** is the sum of the squares of each of these residuals.
-
-An example in R - we generate a our predictions base on $f(x)+e$, and also have a "guess" at an $\hat{f}(x)$. We calculate our $y_i$, and then calculate the RSS.
-
-### 2.1. RSS:Residual Sum of Squares
+#### 2.0.1 RSS:Residual Sum of Squares
 
 $$
 \mathrm{RSS}=e_{1}^{2}+e_{2}^{2}+⋯+e_{n}^{2}
@@ -40,10 +27,33 @@ $$
 or equivalently as
 
 $$
-\operatorname{RSS}=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
+\operatorname{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
 $$
 
-### 2.2. TSS
+#### 2.0.2 TSS
+
+In statistical data analysis the **total sum of squares (TSS or SST)** is a quantity that appears as part of a standard way of presenting results of such analyses.
+
+$$
+\mathop{TSS} = \sum_{i=1}^n(y_i-\bar{y})^2
+$$
+
+
+
+**The least squares approach** chooses $\hat\beta_0$ and $\hat\beta_1$ to minimize the RSS. Using some calculus, one can show that the minimizers are:
+
+$$
+\mathop{\hat{β}_{1}}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\\
+\mathop{\hat{β}_{0}}=\bar{y}-\hat{β}_{1}\bar{x}~~~~~~~(3.4)
+$$
+where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
+
+
+### 2.3 RSE：Residual Standard Error
+
+
+[tss ess rss](https://www.dummies.com/education/math/business-statistics/test-the-estimated-regression-equation-using-the-coefficient-of-determination-r2/)
+
 
 ### 2.3. MSE
 
@@ -62,6 +72,36 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $R^2$ is correlation between predicted andobserved outcomes
 
 ### 2.5. P-value
+
+
+
+## 2. Estimating the Coefficients
+
+The goal is to obtain coefficients such that the linear model fits
+the data well - *i.e.* as close as possible to the data points. The most common approach involves minimizing the **least squares** criterion.
+
+We let
+
+$$
+e_i = y_i − ŷ_i
+$$
+
+which represents the ith **residual**. The **residual sum of squares** or **RSS** is the sum of the squares of each of these residuals.
+
+An example in R - we generate a our predictions base on $f(x)+e$, and also have a "guess" at an $\hat{f}(x)$. We calculate our $y_i$, and then calculate the RSS.
+
+
+### 2.2 Assessing the Accuracy of the Coefficient Estimates and RSE
+
+We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a **mean-zero random error** term.
+\If f is to be approximated by a linear function, then we can write this relationship as
+$$
+Y= \beta_0 + \beta_1X + ϵ
+$$
+Here $β_0$ is the intercept term—that is, the expected value of $Y$ when $X = 0$, and $β_1$ is the slope—the average increase in $Y$ associated with a one-unit increase in $X$.
+
+
+
 
 ### 2.6. Assumptions that matter in multiple linear regression
 
