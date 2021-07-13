@@ -18,7 +18,9 @@ We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y o
 
 ### 2.0 Important definitions: RSS TSS RSE MSE, etc.
 
-#### 2.0.1 RSS:Residual Sum of Squares
+>From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
+
+#### 2.0.1 **RSS——Residual Sum of Squares**
 
 $$
 \mathrm{RSS}=e_{1}^{2}+e_{2}^{2}+⋯+e_{n}^{2}
@@ -30,15 +32,33 @@ $$
 \operatorname{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
 $$
 
-#### 2.0.2 TSS
 
-In statistical data analysis the **total sum of squares (TSS or SST)** is a quantity that appears as part of a standard way of presenting results of such analyses.
+#### 2.0.2 **ESS——Explained Sum of Squares**
+
+The explained sum of squares (ESS) is the sum of the squares of the deviations of the predicted values from the mean value of a response variable.
+
+For example: $y_i = a + b_1x_{1i} + b_2x_{2i} + ... + ε_i$, where $y_i$ is the $i^{th}$ observation of the response variable, $x_{ji}$ is the i^{th} observation of the $j$ th explanatory variable, a and $b_j$ are coefficients, $i$ indexes the observations from  to n, and $ϵ_i$ is the $i^{th}$ value of the error term. In general, the greater the ESS, the better the estimated model performs.
+
+We let $\hat{a}$ and $\hat{b}$ are the estimated coefficients, then$\hat{y_i} = \hat{a} + \hat{b_1}x_{1i} + \hat{b_2}x_{2i} + ........$is the $i^{th}$ predicted value of the response variable. The ESS:
+
+$$
+\mathop{ESS} = \sum_{i=1}^n(\hat{y_i} - \bar{y})^2
+$$
+where $\hat{y_i}$ the value estimated by the regression line.
+
+#### 2.0.3 **TSS——Total Sum of Squares**
+
+In statistical data analysis the total sum of squares (TSS or SST) is a quantity that appears as part of a standard way of presenting results of such analyses.
 
 $$
 \mathop{TSS} = \sum_{i=1}^n(y_i-\bar{y})^2
 $$
 
+**Notes:**In some cases : total sum of squares ( TSS ) = explained sum of squares (ESS)+ residual sum of squares (RSS):
 
+$$
+\mathop{TSS} = \mathop{ESS} + \mathop{RSS}
+$$
 
 **The least squares approach** chooses $\hat\beta_0$ and $\hat\beta_1$ to minimize the RSS. Using some calculus, one can show that the minimizers are:
 
@@ -49,7 +69,10 @@ $$
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
 
 
-### 2.3 RSE：Residual Standard Error
+
+
+#### 2.0.4 **RSE——Residual Standard Error**
+
 
 
 [tss ess rss](https://www.dummies.com/education/math/business-statistics/test-the-estimated-regression-equation-using-the-coefficient-of-determination-r2/)
