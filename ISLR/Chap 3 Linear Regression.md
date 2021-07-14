@@ -16,7 +16,7 @@ We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y o
 - Error terms are Normal $ϵ ∼ N(μ=0, σ^2)$
 - Variance of errors, $ϵ$,  is same for all values of $X$ (homoscedasticity)
 
-### 2.0 Important definitions: RSS TSS RSE MSE, etc.
+### 2.0 Important definitions: RSS ESS TSS, etc.
 
 >From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
 
@@ -70,7 +70,7 @@ $$
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
 
 
-### 2.0.4 Alternative definitions
+#### 2.0.4 Alternative definitions
 >different definitions:
 
 - SSR(Sum of Squares for **regression**) = ESS (explained sum of squares)
@@ -86,7 +86,7 @@ So we have:
 
 - **RSS+ESS=TSS**
 
-#### 2.0.4 Standard Error of $\hat{μ}$
+#### 2.0.5 **Standard Error** of $\hat{μ}$
 
 A natural question is as follows: how accurate is the sample mean $\hat{μ}$ as an estimate of $μ$? We have established that the average of $\hat{μ}'s$ over many data sets will be very close to $μ$, but that a single estimate $\hat{μ}$ may be a substantial underestimate or overestimate of $μ$.
 
@@ -107,7 +107,7 @@ $$
 \mathrm{SE}(\hat{β}_1)^2 = \frac{σ^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}
 $$
 
-#### 2.0.5 **RSE——Residual Standard Error**
+#### 2.0.6 **RSE——Residual Standard Error**
 
 Since every observation has an associated error term $ϵ$, having the knowledge of true $β_0$ and $β_1$ will still not allow one to perfectly predict $Y$. The residual standard error estimates the standard deviation of the error term.
 
@@ -116,7 +116,7 @@ $$
 $$
 
 
-#### 2.0.6 **MSE--Mean Squared Error**
+#### 2.0.7 **MSE--Mean Squared Error**
 
 (CH02 2.2.1) \
 In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its predictions actually match the observed data. \
@@ -130,7 +130,7 @@ where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observ
 \
 The MSE will be small if the predicted responses are very close to the true responses, and will be large if for some of the observations, the predicted and true responses differ substantially.
 
-#### 2.0.7 $R^2$
+#### 2.0.8 $R^2$
 
 $$
 R^2 = 
@@ -144,31 +144,29 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $0 ≤ R^2 ≤ 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
-### 2.0.8 P-value
+#### 2.0.9 P-value
 
-larger in absolute value, assuming β1= 0. We call this probability the p-value.
-p-value ial association between the prebetween the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
+    larger in absolute value, assuming β1= 0. We call this probability the p-value.
+    p-value ial association between the prebetween the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
 #### 2.0.X notes for me
 
-
-
-表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
-相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
-由于R2<R,可以防止对相关系数所表示的相关做夸张的解释。
-确定系数：在Y的总平方和中，由X引起的平方和所占的比例，记为R2(R的平方)
-确定系数的大小决定了相关的密切程度。
-当R2越接近1时，表示相关的方程式参考价值越高；相反，越接近0时，表示参考价值越低。这是在一元回归分3析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
-在多元回归分析中，确定系数是通径系数的平方。
-表达式：R2=SSR/SST=1-SSE/SST
-其中：SST=SSR+SSE，SST (total sum of squares)为总平方和，SSR (regression sum of squares)为回归平方和，SSE (error sum of squares) 为残差平方和。
-注：（不同书命名不同）
-回归平方和：SSR(Sum of Squares for regression) = ESS (explained sum of squares)
-残差平方和：SSE（Sum of Squares for Error） = RSS (residual sum of squares)
-总离差平方和：SST(Sum of Squares for total) = TSS(total sum of squares)
-SSE+SSR=SST RSS+ESS=TSS
-意义：拟合优度越大，自变量对因变量的解释程度越高，自变量引起的变动占总变动的百分比高。观察点在回归直线附近越密集。
-取值范围：0-1.
+    表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
+    相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
+    由于R2<R,可以防止对相关系数所表示的相关做夸张的解释。
+    确定系数：在Y的总平方和中，由X引起的平方和所占的比例，记为R2(R的平方)
+    确定系数的大小决定了相关的密切程度。
+    当R2越接近1时，表示相关的方程式参考价值越高；相反，越接近0时，表示参考价值越低。这是在一元回归分3析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
+    在多元回归分析中，确定系数是通径系数的平方。
+    表达式：R2=SSR/SST=1-SSE/SST
+    其中：SST=SSR+SSE，SST (total sum of squares)为总平方和，SSR (regression sum of squares)为回归平方和，SSE (error sum of squares) 为残差平方和。
+    注：（不同书命名不同）
+    回归平方和：SSR(Sum of Squares for regression) = ESS (explained sum of squares)
+    残差平方和：SSE（Sum of Squares for Error） = RSS (residual sum of squares)
+    总离差平方和：SST(Sum of Squares for total) = TSS(total sum of squares)
+    SSE+SSR=SST RSS+ESS=TSS
+    意义：拟合优度越大，自变量对因变量的解释程度越高，自变量引起的变动占总变动的百分比高。观察点在回归直线附近越密集。
+    取值范围：0-1.
 
 
 ## 2. Estimating the Coefficients
@@ -256,11 +254,11 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 > You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
 > Otherwise, remove the least significant variable
 
-## 4. When to stop:
+### 4. When to stop:
 
 - Stop when no variables can be ADDED or REMOVED
 
-## 5. Danger of Stepwise Regression
+### 5. Danger of Stepwise Regression
 
 - Subset of variables chosen not necessarily optimal
 - Not good if number of variables >> observations (have at least 10 obs per variable is a guideline)
