@@ -86,14 +86,51 @@ So we have:
 
 - **RSS+ESS=TSS**
 
+#### 2.0.4 Standard Error of $\hat{μ}$
 
-#### 2.0.4 **RSE——Residual Standard Error**
+A natural question is as follows: how accurate is the sample mean $\hat{μ}$ as an estimate of $μ$? We have established that the average of $\hat{μ}'s$ over many data sets will be very close to $μ$, but that a single estimate $\hat{μ}$ may be a substantial underestimate or overestimate of $μ$.
+
+How far off will that single estimate of $\hat{μ}$ be? In general, we answer this question by computing the standard error of $\hat{μ}$, written as $\mathop{SE(\hat{μ})}$. We have the well-known formula:
+$$
+\mathop{Var(\hat{μ})}=\mathop{SE(\hat{μ})}= \frac{σ^2}{n}
+$$
+where $σ$ is the standard deviation of each of the realizations $y_i$ of $Y$. Mathematically
 
 
+Standard Error for $\hat{β}_0$:
+$$
+\mathrm{SE}(\hat{β}_0)^2 = σ^2 \left [ \frac{1}{n} + \frac{\bar{x}^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2} \right ]
+$$
 
-### 2.3. MSE
+Standard Error for $\hat{β}_1$:
+$$
+\mathrm{SE}(\hat{β}_1)^2 = \frac{σ^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}
+$$
 
-### 2.4. $R^2$
+#### 2.0.5 **RSE——Residual Standard Error**
+
+Since every observation has an associated error term $ϵ$, having the knowledge of true $β_0$ and $β_1$ will still not allow one to perfectly predict $Y$. The residual standard error estimates the standard deviation of the error term.
+
+$$
+\mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
+$$
+
+
+#### 2.0.6 **MSE--Mean Squared Error**
+
+(CH02 2.2.1) \
+In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its predictions actually match the observed data. \
+That is, we need to quantify the extent to which the predicted response value for a given observation is close to the true response value for that observation. In the regression setting, the most commonly-used measure is the mean squared error (MSE), given by:
+
+$$
+\mathop{MSE}= \frac{1}{n}(y_i - \hat{f}(x_i))^2
+$$
+
+where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observation
+\
+The MSE will be small if the predicted responses are very close to the true responses, and will be large if for some of the observations, the predicted and true responses differ substantially.
+
+#### 2.0.7 $R^2$
 
 $$
 R^2 = 
@@ -107,10 +144,14 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $0 ≤ R^2 ≤ 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
-### 2.5. P-value
+### 2.0.8 P-value
 
+larger in absolute value, assuming β1= 0. We call this probability the p-value.
+p-value ial association between the prebetween the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
 #### 2.0.X notes for me
+
+
 
 表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
 相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
