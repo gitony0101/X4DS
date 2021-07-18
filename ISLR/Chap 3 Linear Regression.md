@@ -240,13 +240,26 @@ To test the null hypothesis, we need to determine whether $\hat{β_1}$,our estim
 
 > How far is far enough? 
 
-This of course depends on the accuracy of $\hat{β1}$—that is, it depends on $\mathopSE(ˆβ1). If SE(ˆβ1) is small, then even relatively small values ofˆβ1may provide strong evidence that β1?= 0, and hence that there is a relationship between X and Y . In contrast, if SE(ˆβ1) is large, thenˆβ1must be large in absolute value in order for us to reject the null hypothesis. In practice, we compute a t-statistic,
+This of course depends on the accuracy of $\hat{β1}$—that is, it depends on $\mathop{SE(\hat{β_1})}$.
+
+If  $\mathop{SE(\hat{β_1})}$ is small, then even relatively small values of $\hat{β_1}$ may provide strong evidence that $\hat{β_1} \not= 0$, and hence that there is a relationship between X and Y .
+
+ In contrast, if  $\mathop{SE(\hat{β_1})}$ is large, then $\hat{β_1}$ must be large in absolute value in order for us to reject the null hypothesis. 
+ 
+ In practice, we compute a $t-statistic$,given by
 
 
 $$
-t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}
+t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}~~~~~~~~(3.14)
 $$
 
+If there really is no relationship between X and Y , then we expect that (3.14) will have a t-distribution with n − 2 degrees of freedom.
+
+Consequently, it is a simple matter to compute the probability of observing any number equal to |t| or larger in absolute value, assuming $β_1= 0$. We call this probability the p-value.
+
+Hence, if we see a small p-value, Roughly speaking, we interpret the p-value as follows: a small p-value indicates that it is unlikely to observe such a substant dictor and the response due to chance, in the absence of any real association then we can infer that there is an association between the predictor and the response. We reject the null hypothesis—that is, we declare a relationship to exist between $X$ and $Y$ —if the p-value is small enough. 
+
+Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 
 ### 2.2 Assessing the Accuracy of the Coefficient Estimates and RSE
 
