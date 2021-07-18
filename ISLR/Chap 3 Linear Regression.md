@@ -107,6 +107,10 @@ $$
 \mathrm{SE}(\hat{β}_1)^2 = \frac{σ^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}
 $$
 
+For more applications,check the:
+$$Confidence~intervals~and~Hypothesis~test$$
+
+
 #### 2.0.5 **RSE——Residual Standard Error**
 
 Since every observation has an associated error term $ϵ$, having the knowledge of true $β_0$ and $β_1$ will still not allow one to perfectly predict $Y$. The residual standard error estimates the standard deviation of the error term.
@@ -144,10 +148,11 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $0 ≤ R^2 ≤ 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
-### 2.0.8 P-value
+### 2.0.8 P-value(Check $hypothesis~test$)
 
-larger in absolute value, assuming β1= 0. We call this probability the p-value.
-p-value ial association between the prebetween the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
+larger in absolute value, assuming $β_1$= 0. We call this probability the p-value.
+
+p-value is a  association between the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
 #### 2.0.X notes for me
 
@@ -187,11 +192,60 @@ An example in R - we generate a our predictions base on $f(x)+e$, and also have 
 
 ### 3.2.1 Computing Confidence Intervals
 
+Standard Erros $μ$ can be used to compute the **$Confidence\ Intervals$**:
 
+A 95 % confidence interval confidence interval is defined as a range of values such that with 95 % probability, the range will contain the true unknown value of the parameter.The range is defined in terms of lower and upper limits computed from the sample of data. For linear regression, the 95 % confidence interval for $β_1$ approximately takes the form:
+
+$$
+[\hat{β_1} - 2⋅\mathop{SE(\hat{β_1})}  , \hat{β_1} + 2⋅\mathop{SE(\hat{β_1})}  ]
+$$
+
+Accordingly,we have the 95% chance confidence interval for $β_0$:
+
+
+$$
+[\hat{β_0} - 2⋅\mathop{SE(\hat{β_0})}  , \hat{β_0} + 2⋅\mathop{SE(\hat{β_0})}  ]
+$$
 
 ### 3.2.2 Hypothesis Tests
 
+Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$. 
+Which is:
 
+$The~null~hypothesis~of$
+
+$$
+H_0: There~is~no~relationship~between~X~and~Y
+$$
+
+versus the $alternative~hypothesis$
+
+$$
+H_a: There~is~some~relationship~between~X~and~Y
+$$
+
+Mathematically,we can say this corresponds to testing:
+
+$$
+H_0: β_1 = 0
+$$
+versus: 
+$$
+H_a:β_1 \not ={0}
+$$
+
+Since if $β_1 = 0$then the model $Y ≈ β_0 + β_1X$ reduces to $Y = β_0+ ϵ$, and $X$ is not associated with $Y$ . 
+
+To test the null hypothesis, we need to determine whether $\hat{β_1}$,our estimate for $β_1$, is sufficiently far from zero that we can be confident that $β_1$ is non-zero. 
+
+> How far is far enough? 
+
+This of course depends on the accuracy of $\hat{β1}$—that is, it depends on $\mathopSE(ˆβ1). If SE(ˆβ1) is small, then even relatively small values ofˆβ1may provide strong evidence that β1?= 0, and hence that there is a relationship between X and Y . In contrast, if SE(ˆβ1) is large, thenˆβ1must be large in absolute value in order for us to reject the null hypothesis. In practice, we compute a t-statistic,
+
+
+$$
+t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}
+$$
 
 
 ### 2.2 Assessing the Accuracy of the Coefficient Estimates and RSE
