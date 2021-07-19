@@ -133,8 +133,10 @@ $$
 where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observation
 \
 The MSE will be small if the predicted responses are very close to the true responses, and will be large if for some of the observations, the predicted and true responses differ substantially.
+<!-- TOC -->
 
-#### 2.0.7 $R^2$
+
+#### 2.0.7 $R^2$ Statistic
 
 $$
 R^2 = 
@@ -174,7 +176,7 @@ SSE+SSR=SST RSS+ESS=TSS
 取值范围：0-1.
 
 
-## 3.2. Estimating the Coefficients
+## 2.2. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
 the data well - *i.e.* as close as possible to the data points. The most common approach involves minimizing the **least squares** criterion.
@@ -190,7 +192,23 @@ which represents the ith **residual**. The **residual sum of squares** or **RSS*
 An example in R - we generate a our predictions base on $f(x)+e$, and also have a "guess" at an $\hat{f}(x)$. We calculate our $y_i$, and then calculate the RSS.
 
 
-### 3.2.1 Computing Confidence Intervals
+
+### 2.2.3 Assessing the Accuracy of the Coefficient Estimates
+
+We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a mean-zero random error term. If $f$ is to be approximated by a linear function, then we can write this relationship as
+
+$$
+
+Y = β_0 +β_1X + ϵ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(3.5)
+
+$$
+
+Here $β_0$ is the intercept term—that is, the expected value of $Y$ when $X = 0$, and $β_1$ is the slope—the average increase in $Y$ associated with a one-unit increase in $X$. The error term is a catch-all for what we miss with this simple model: the true relationship is probably not linear, there may be other variables that cause variation in $Y$ , and there may be measurement error. We typically assume that the error term is independent of X.
+The model given by $(3.5)$ defines the population regression line, which population regression line is the best linear approximation to the true relationship between $X$ and $Y$
+
+
+
+### 2.2.3.1 Computing Confidence Intervals
 
 Standard Erros $μ$ can be used to compute the **$Confidence\ Intervals$**:
 
@@ -207,7 +225,7 @@ $$
 [\hat{β_0} - 2⋅\mathop{SE(\hat{β_0})}  , \hat{β_0} + 2⋅\mathop{SE(\hat{β_0})}  ]
 $$
 
-### 3.2.2 Hypothesis Tests
+### 2.2.3.2 Hypothesis Tests
 
 Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$. 
 Which is:
@@ -261,14 +279,18 @@ Hence, if we see a small p-value, Roughly speaking, we interpret the p-value as 
 
 Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 
-### 2.2 Assessing the Accuracy of the Coefficient Estimates and RSE
+### 2.2.4 Assessing the Accuracy of the Model-By RSE and $R^2$
 
-We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a **mean-zero random error** term.
-\If f is to be approximated by a linear function, then we can write this relationship as
+Onece the null hypothesis is rejected, which means there is some relationship between $X$ and $Y$.Thus we would like to quantify the extent to which the mode fits the data. Here in linear regression, the $residual~ standard~error(RSE)$ and the $R^2~statistic$ are two related quantities to assess the model.
+
+Recall the $RSE$:(残差标准误)
 $$
-Y= \beta_0 + \beta_1X + ϵ
+\mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
 $$
-Here $β_0$ is the intercept term—that is, the expected value of $Y$ when $X = 0$, and $β_1$ is the slope—the average increase in $Y$ associated with a one-unit increase in $X$.
+
+The RSE is considered a measure of the $lack~of~fit$ of the model $(3.5)$ to the data. If the predictions obtained using the model are very close to the true outcome values—that is, if $\hat{y_i} ≈ y_i,for~i = 1, . . . , n$—then $RSE$ will be small, and we can conclude that the model fits the data very well. On the other hand, if $\hat{y_i}$ is very far from $y_i$ for one or more observations, then the RSE may be quite large, indicating that the model doesn’t fit the data well.
+
+
 
 
 ### 2.6. Assumptions that matter in multiple linear regression
