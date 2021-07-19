@@ -290,6 +290,38 @@ $$
 
 The RSE is considered a measure of the $lack~of~fit$ of the model $(3.5)$ to the data. If the predictions obtained using the model are very close to the true outcome values—that is, if $\hat{y_i} ≈ y_i,for~i = 1, . . . , n$—then $RSE$ will be small, and we can conclude that the model fits the data very well. On the other hand, if $\hat{y_i}$ is very far from $y_i$ for one or more observations, then the RSE may be quite large, indicating that the model doesn’t fit the data well.
 
+ $R^2 Statistic$
+$$
+R^2 = 
+\frac{TSS - RSS}{TSS} = 
+1 - \frac{RSS}{TSS} =
+1-\frac{\text { Unexplained Variation }}{\text{ Total Variation }}
+$$
+
+Where the TSS is the total sum of the squares and the RSS is Residual sum of the squares.TSS measures the total variance in the response Y , and can be thought of as the amount of variability inherent in the response before the regression is performed. In contrast, RSS measures the amount of variability that is left unexplained after performing the regression. Hence, TSS − RSS measures the amount of variability in the response that is explained (or removed) by performing the regression,$R^2$ measures the **$proportion~of~variability~in~Y~that~ can~ be~ explained~ using~ X$**. 
+
+An $R^2$ statistic that is close to 1 indicates that a large proportion of the variability in the response has been explained by the regression. A number near 0 indicates that the regression did not explain much of the variability in the response;this might occur because the linear model is wrong, or the inherent error $σ^2$ is high, or both.
+
+
+$Correlation$
+
+The $R^2$ statistic is a measure of the linear relationship between $X$ and $Y$ .
+
+Recall that correlation, defined as:
+
+$$
+
+\mathop{\widehat{Cor(X,Y)}}=r= \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{√{\sum_{i=1}^n(x_i-\bar{x})^2}√{\sum_{i=1}^n(y_i-\bar{y})^2}}
+
+$$
+is also a measure of the linear relationship between $X$ and $Y$. 
+
+In simple linear regression, $R^2=r^2$.
+
+
+## Multiple Linear Regression
+
+### 
 
 
 
@@ -350,13 +382,18 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 > You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
 > Otherwise, remove the least significant variable
 
-## 4. When to stop:
+## 4. When to stop
 
 - Stop when no variables can be ADDED or REMOVED
 
-## 5. Danger of Stepwise Regression
+## 5. The danger of Stepwise Regression
 
 - Subset of variables chosen not necessarily optimal
-- Not good if number of variables >> observations (have at least 10 obs per variable is a guideline)
+- Not good if the number of variables >> observations (have at least 10 obs per variable is a guideline)
 - R2 generally improves with each step but don"t be fooled!!!!!
 - Consider ridge & lasso regression
+
+
+<!-- TOC depthFrom:2 orderedList:true -->
+
+<!-- /TOC -->
