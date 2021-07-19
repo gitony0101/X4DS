@@ -1,6 +1,6 @@
-# Chaper 3 Linear Regression
+# 1. Chaper 3 Linear Regression
 
-## 1. Simple linear regression
+## 1.1. Simple linear regression
 
 It is a very straightforward simple linear regression approach for predicting a quantitative response Y on the basis of a single predictor variable X. It assumes that there is approximately a linear relationship between $X$ and $Y$. Mathematically, we can write this linear relationship as:
 
@@ -10,18 +10,18 @@ $$
 
 We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y onto X).
 
-### 1.1. Important assumptions in simple linear regression
+### 1.1.1. Important assumptions in simple linear regression
 
 - Linear relationship between $X$ & $Y$
 - Error terms are Normal $ϵ ∼ N(μ=0, σ^2)$
 - Variance of errors, $ϵ$,  is same for all values of $X$ (homoscedasticity)
 
-### 2.0 Important definitions: RSS ESS TSS RSE MSE, etc.
+### 1.1.2. Important definitions: RSS ESS TSS RSE MSE, etc.
 
 >From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
 
 
-#### 2.0.1 **RSS——Residual Sum of Squares**
+#### 1.1.2.1. **RSS——Residual Sum of Squares**
 
 $$
 \mathrm{RSS}=e_{1}^{2}+e_{2}^{2}+⋯+e_{n}^{2}
@@ -34,7 +34,7 @@ $$
 $$
 
 
-#### 2.0.2 **ESS——Explained Sum of Squares**
+#### 1.1.2.2. **ESS——Explained Sum of Squares**
 
 The explained sum of squares (ESS) is the sum of the squares of the deviations of the predicted values from the mean value of a response variable.
 
@@ -47,7 +47,7 @@ $$
 $$
 where $\hat{y_i}$ the value estimated by the regression line.
 
-#### 2.0.3 **TSS——Total Sum of Squares**
+#### 1.1.2.3. **TSS——Total Sum of Squares**
 
 In statistical data analysis the total sum of squares (TSS or SST) is a quantity that appears as part of a standard way of presenting results of such analyses.
 
@@ -70,7 +70,7 @@ $$
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
 
 
-### 2.0.4 Alternative definitions
+### 1.1.2. Alternative definitions
 >different definitions:
 
 - SSR(Sum of Squares for **regression**) = ESS (explained sum of squares)
@@ -86,7 +86,7 @@ So we have:
 
 - **RSS+ESS=TSS**
 
-#### 2.0.4 Standard Error of $\hat{μ}$
+#### 1.1.2.1. Standard Error of $\hat{μ}$
 
 A natural question is as follows: how accurate is the sample mean $\hat{μ}$ as an estimate of $μ$? We have established that the average of $\hat{μ}'s$ over many data sets will be very close to $μ$, but that a single estimate $\hat{μ}$ may be a substantial underestimate or overestimate of $μ$.
 
@@ -111,7 +111,7 @@ For more applications,check the:
 $$Confidence~intervals~and~Hypothesis~test$$
 
 
-#### 2.0.5 **RSE——Residual Standard Error**
+#### 1.1.2.2. **RSE——Residual Standard Error**
 
 Since every observation has an associated error term $ϵ$, having the knowledge of true $β_0$ and $β_1$ will still not allow one to perfectly predict $Y$. The residual standard error estimates the standard deviation of the error term.
 
@@ -120,7 +120,7 @@ $$
 $$
 
 
-#### 2.0.6 **MSE--Mean Squared Error**
+#### 1.1.2.3. **MSE--Mean Squared Error**
 
 (CH02 2.2.1) \
 In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its predictions actually match the observed data. \
@@ -136,7 +136,7 @@ The MSE will be small if the predicted responses are very close to the true resp
 <!-- TOC -->
 
 
-#### 2.0.7 $R^2$ Statistic
+#### 1.1.2.4. $R^2$ Statistic
 
 $$
 R^2 = 
@@ -150,13 +150,13 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $0 ≤ R^2 ≤ 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
-### 2.0.8 P-value(Check $hypothesis~test$)
+### 1.1.2. P-value(Check $hypothesis~test$)
 
 larger in absolute value, assuming $β_1$= 0. We call this probability the p-value.
 
 p-value is a  association between the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
-#### 2.0.X notes for me
+#### 1.1.2.1. X notes for me
 
 表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
 相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
@@ -176,7 +176,7 @@ SSE+SSR=SST RSS+ESS=TSS
 取值范围：0-1.
 
 
-## 2.2. Estimating the Coefficients
+## 1.2. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
 the data well - *i.e.* as close as possible to the data points. The most common approach involves minimizing the **least squares** criterion.
@@ -193,7 +193,7 @@ An example in R - we generate a our predictions base on $f(x)+e$, and also have 
 
 
 
-### 2.2.3 Assessing the Accuracy of the Coefficient Estimates
+### 1.2.1. Assessing the Accuracy of the Coefficient Estimates
 
 We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a mean-zero random error term. If $f$ is to be approximated by a linear function, then we can write this relationship as
 
@@ -208,7 +208,7 @@ The model given by $(3.5)$ defines the population regression line, which populat
 
 
 
-### 2.2.3.1 Computing Confidence Intervals
+### 1.2.2. Computing Confidence Intervals
 
 Standard Erros $μ$ can be used to compute the **$Confidence\ Intervals$**:
 
@@ -225,7 +225,7 @@ $$
 [\hat{β_0} - 2⋅\mathop{SE(\hat{β_0})}  , \hat{β_0} + 2⋅\mathop{SE(\hat{β_0})}  ]
 $$
 
-### 2.2.3.2 Hypothesis Tests
+### 1.2.3. Hypothesis Tests
 
 Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$. 
 Which is:
@@ -279,7 +279,7 @@ Hence, if we see a small p-value, Roughly speaking, we interpret the p-value as 
 
 Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 
-### 2.2.4 Assessing the Accuracy of the Model-By RSE and $R^2$
+### 1.2.4. Assessing the Accuracy of the Model-By RSE and $R^2$
 
 Onece the null hypothesis is rejected, which means there is some relationship between $X$ and $Y$.Thus we would like to quantify the extent to which the mode fits the data. Here in linear regression, the $residual~ standard~error(RSE)$ and the $R^2~statistic$ are two related quantities to assess the model.
 
@@ -319,20 +319,71 @@ is also a measure of the linear relationship between $X$ and $Y$.
 In simple linear regression, $R^2=r^2$.
 
 
-## Multiple Linear Regression
+## 1.2. Multiple Linear Regression
 
-### 
+In general, suppose that we have $p$ distinct predictors. Then the multiple linear regression model takes the form:
+
+$$
+Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~~~~~~~~~~~~~~~~~~~~~~(3.19)
+$$
+
+where $X_j$ represents the jth predictor and $β_j$ quantifies the association between that variable and the response. We interpret $β_j$ as the average effect on Y of a one unit increase in $X_j$, holding all other predictors fixed.
+
+### 1.2.1. Estimating the Regression Coefficients
+
+
+The parameters are estimated using the same least squares approach that we saw in the context of simple linear regression. We choose $β_0, β_1, \cdots  , β_p$ to minimize the sum of squared residuals($RSS$):
+
+$$
+\mathop{RSS} = \sum_{i=1}^n(y_i-\hat{y_i})^2
+\\
+= \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_i1 - \hat{β_2}x_i2 - ⋯-\hat{β_p}x_ip )^2~~~~~~~~~~~~~~~~~~~~~~~~(3.22)
+
+$$
+
+The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
 
 
 
-### 2.6. Assumptions that matter in multiple linear regression
+### 1.2.2. Important Issues
+When we perform multiple linear regression, we usually are interested in answering a few important questions.
+
+#### 1.2.2.1. One: Is There a Relationship Between the Response and Predictors?
+
+In the multiple regression setting with p predictors, we need to ask whether all of the regression coefficients are zero, i.e. whether $β_1 = β_2 = · · · = β_p = 0$. As in the simple linear regression setting, we use a **hypothesis test** to answer this question. 
+
+We test the **null hypothesis**:
+$$
+H_0:β_1 = β_2 = · · · = β_p = 0 
+$$
+versus the alternative:
+$$
+H_a: at~least~one~β_j~is~non-zero.
+$$
+
+This hypothesis test is performed by computing the $F-statistic$,
+$$
+F = \frac{(\mathop{TSS-RSS})/p}{RSS/(n-p-1)},~~~~~~~~~~~~~~(3.23)
+$$
+
+where
+
+
+
+
+
+
+
+
+
+### 1.1.2. Assumptions that matter in multiple linear regression
 
 - Linear relationship between y and x1, y and x2, *etc.*
 - Prediction errors, $ϵ$, have Normal Distribution
 - Homoscedasticity: $Var(ϵ)=σ^2$  for all values of the independent variables $(x_1, x_2 , …)$
 - No or little multicollinearity (correlation between $x_i$)
 
-### 2.7. Notice：R2 & multiple regression & R2-adjusted in multiple regression
+### 1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression
 
 R2-Adjusted：
 
@@ -348,7 +399,7 @@ As you add terms R2 always improves but the model may get worse
 
 If R2 >> R2-adjusted, eliminate some of the X"s from the model
 
-### 2.8. Summary for checking out a regression model
+### 1.1.4. Summary for checking out a regression model
 
 | Important Assumption                                     | What to check & do                                                                             |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -357,20 +408,20 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
-## 3. Stepwise regression
+## 1.2. Stepwise regression
 
 - variables have importance measures
 - start with current model
 - try to ADD one variable and see if that helps – if yes, add in best one
 - try to REMOVE one variable, if some are not significant, remove the worst one
 
-### 3.1. Remember – high p-value means NOT significant (p>0.15)
+### 1.2.1. Remember – high p-value means NOT significant (p>0.15)
 
 - specify 2 importance thresholds:
 - p-to-add threshold (p≤ 0.15 to add)
 - p-to-remove threshold (p>0.15 to remove)
 
-### 3.2. Variables have an importance measure with threshold k
+### 1.2.2. Variables have an importance measure with threshold k
 
 - suppose current model is f(x_1, x_2)
 
@@ -382,18 +433,13 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 > You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
 > Otherwise, remove the least significant variable
 
-## 4. When to stop
+## 1.2. When to stop
 
 - Stop when no variables can be ADDED or REMOVED
 
-## 5. The danger of Stepwise Regression
+## 1.3. The danger of Stepwise Regression
 
 - Subset of variables chosen not necessarily optimal
 - Not good if the number of variables >> observations (have at least 10 obs per variable is a guideline)
 - R2 generally improves with each step but don"t be fooled!!!!!
 - Consider ridge & lasso regression
-
-
-<!-- TOC depthFrom:2 orderedList:true -->
-
-<!-- /TOC -->
