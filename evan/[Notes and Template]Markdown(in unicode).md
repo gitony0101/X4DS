@@ -1,7 +1,8 @@
 Markdown template (in unicode)
 
+plug:Auto Markdown TOC By AX1 livepdm.auto-markdown-toc-ax1
 
-## Rules:
+## 1. Rules:
 
 - latex in unicode
 - commands upper and lower case sensitive: $≣$
@@ -12,14 +13,14 @@ $$
 
 
 
-## greek symbol
+## 2. greek symbol
 $$
 \hatβ
 \\
 y^{ix}_{jy}
 $$
 
-## Equations
+## 3. Equations
 $$
 F(i)=\sum_{i=1}^m5i
 $$
@@ -31,7 +32,13 @@ a=g^k mod~ p
 $$
 
 
-## Math-Mode Fonts 2.2
+## codes
+
+```python
+
+```
+
+## 4. Math-Mode Fonts 2.2
 
 $$
 \mathrm{ABC abc}
@@ -43,7 +50,7 @@ $$
 \operatorname{abc}
 $$
 
-### \operatorname and \mathrm
+### 4.1. \operatorname and \mathrm
 \
 $\sin x + \sin(x+y) + a\sin z$
 
@@ -70,7 +77,7 @@ F(i)=\mathop{\sum y{(1)},y{(2)} , \cdots , y^{(m)}} \limits^{1 \cdots m}
 $$
 
 
-## blankspace
+## 5. blankspace
 
 - 1. \\
 
@@ -88,7 +95,7 @@ $$
 
 >$\mathit{Notes\ below\ by\ Xavier\ Yang:}$
 
-## 1. Simple linear regression
+## 6. Simple linear regression
 
 It is a very straightforward simple linear regression approach for predicting a quantitative response Y on the basis of a single predictor variable X. It assumes that there is approximately a linear relationship between $X$ and $Y$. Mathematically, we can write this linear relationship as:
 
@@ -98,13 +105,13 @@ $$
 
 We will sometimes describe (3.1) by saying that we are regressinsg Y on X (or Y onto X).
 
-### 1.1. Important assumptions in simple linear regression
+### 6.1. Important assumptions in simple linear regression
 
 - Linear relationship between $X$ & $Y$
 - Error terms are Normal $ϵ ∼ N(μ=0, σ^2)$
 - Variance of errors, $ϵ$,  is same for all values of $X$ (homoscedasticity)
 
-## 2. Estimating the Coefficients
+## 7. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
 the data well - *i.e.* as close as possible to the data points. The most common approach involves minimising the **least squares** criterion.
@@ -121,7 +128,7 @@ which represents the ith **residual**. The **residual sum of squares** or **RSS*
 
 An example in R - we generate a our predictions base on $f(x)+e$, and also have a "guess" at an $\hat{f}(x)$. We calculate our $y_i$, and then calculate the RSS.
 
-### 2.1. RSS:Residual Sum of Squares
+### 7.1. RSS:Residual Sum of Squares
 
 $$
 \mathrm{RSS}=e_{1}^{2}+e_{2}^{2}+⋯+e_{n}^{2}
@@ -133,11 +140,11 @@ $$
 \operatorname{RSS}=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
 $$
 
-### 2.2. TSS
+### 7.2. TSS
 
-### 2.3. MSE
+### 7.3. MSE
 
-### 2.4. $R^2$
+### 7.4. $R^2$
 
 $$
 R^2 = 
@@ -151,7 +158,7 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 - $0 ≤ R^2 ≤ 1$
 - $R^2$ is correlation between predicted andobserved outcomes
 
-### 2.5. P-value
+### 7.5. P-value
 
 
 
