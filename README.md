@@ -125,17 +125,17 @@ ax.set_ylabel('y')
 
 ## Fundamental Exercises
 
-[matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan.ipynb)
-[matplotlib-50](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl50.ipynb)
-[matplotlib-notes](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/matplotlib_notes.ipynb)
-[numpy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/numpy.ipynb)
-[pandas-read](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_read.ipynb)
-[pandas-stats](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_stats.ipynb)
+[matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl.ipynb)<br>
+[matplotlib-50](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl50.ipynb)<br>
+[matplotlib-notes](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/matplotlib_notes.ipynb)<br>
+[numpy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/numpy.ipynb)<br>
+[pandas-read](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_read.ipynb)<br>
+[pandas-stats](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_stats.ipynb)<br>
 
 ## ISLR
 
-[Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)
-[Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)
+[Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)<br>
+[Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)<br>
 
 ## References
 
