@@ -125,9 +125,9 @@ ax.set_ylabel('y')
 
 ## Fundamental Exercises
 
-[matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl.ipynb)<br>
+[matplotlib-basics](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl_basics.ipynb)<br>
 [matplotlib-50](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl50.ipynb)<br>
-[matplotlib-notes](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/matplotlib_notes.ipynb)<br>
+[matplotlib-seaborn](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/mpl50_seaborn.ipynb)<br>
 [numpy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/numpy.ipynb)<br>
 [pandas-read](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_read.ipynb)<br>
 [pandas-stats](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/evan/pandas_stats.ipynb)<br>
