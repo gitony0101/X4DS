@@ -136,7 +136,13 @@ ax.set_ylabel('y')
 
 [Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)<br>
 [Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)<br>
-[Chapter 04 - Classification](https://nbviewer.jupyter.org/github.com/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
+[Chapter 04 - Classification](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
+<br>
+[Ch05 - Resampling Methods.ipynb](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+<br>
+[Ch06 - Linear Model Selection and Regularization](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+<br>
+
 
 
 
