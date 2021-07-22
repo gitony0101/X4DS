@@ -151,9 +151,6 @@ ax.set_ylabel('y')
 [Chapter 10 -Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
 
 
-
-
-
 ## References
 
 - https://github.com/a-martyn/ISL-python
