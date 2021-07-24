@@ -403,7 +403,8 @@ Ideally, we would like to perform variable selection by trying out a lot of diff
 
 For instance, if $p = 2$, then we can consider four models:
 >(1) a model containing no variables, (2) a model containing $X_1$ only, (3) a model containing $X_2$ only, and (4) a model containing both $X_1$ and $X_2$.
- We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model:These include $Mallow’s~ C_p, Akaike~informaMallow’s Cp tion criterion (AIC), Bayesian information criterion (BIC), and adjusted Akaike information criterion Bayesian information criterion R2. These are discussed in more detail in Chapter 6. We can also deteradjusted R2 mine which model is best by plotting various model outputs, such as the residuals, in order to search for patterns.
+ We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model:
+ $Mallow’s~ C_p, Akaike~informaMallow’s Cp tion criterion (AIC), Bayesian information criterion (BIC), and adjusted Akaike information criterion Bayesian information criterion R2. These are discussed in more detail in Chapter 6. We can also deteradjusted R2 mine which model is best by plotting various mAodel outputs, such as the residuals, in order to search for patterns.
 
 
 
