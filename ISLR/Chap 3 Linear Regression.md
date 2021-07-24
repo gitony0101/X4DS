@@ -397,6 +397,15 @@ $$
 
 
 #### 3.2.2. Deciding on Important Variables
+The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable selection$.
+
+Ideally, we would like to perform variable selection by trying out a lot of different models, each containing a different subset of the predictors.
+
+For instance, if $p = 2$, then we can consider four models:
+>(1) a model containing no variables, (2) a model containing $X_1$ only, (3) a model containing $X_2$ only, and (4) a model containing both $X_1$ and $X_2$.
+ We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model:These include $Mallow’s~ C_p, Akaike~informaMallow’s Cp tion criterion (AIC), Bayesian information criterion (BIC), and adjusted Akaike information criterion Bayesian information criterion R2. These are discussed in more detail in Chapter 6. We can also deteradjusted R2 mine which model is best by plotting various model outputs, such as the residuals, in order to search for patterns.
+
+
 
 #### 3.2.3. Model Fit
 
