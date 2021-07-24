@@ -2,10 +2,11 @@
 
 ## 1. Simple linear regression
 
-It is a very straightforward simple linear regression approach for predicting a quantitative response Y on the basis of a single predictor variable X. It assumes that there is approximately a linear relationship between $X$ and $Y$. Mathematically, we can write this linear relationship as:
+Simple linear regression:predicting a quantitative response Y on the basis of a single predictor variable X.
+It assumes that there is approximately a linear relationship between $X$ and $Y$. Mathematically, we can write this linear relationship as:
 
 $$
-Y ≈ β_0 + β_1X
+Y ≈ β_0 + β_1X~~~~~~~(3.1)
 $$
 
 We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y onto X).
@@ -18,8 +19,7 @@ We will sometimes describe (3.1) by saying that we are regressing Y on X (or Y o
 
 ### 1.2. Important definitions: RSS ESS TSS RSE MSE, etc.
 
->From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
-
+> From the very beginning we need to acknowledge the important criterions which evalue the performance of linear regression.
 
 #### 1.2.1. **RSS——Residual Sum of Squares**
 
@@ -33,18 +33,18 @@ $$
 \operatorname{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
 $$
 
-
 #### 1.2.2. **ESS——Explained Sum of Squares**
 
 The explained sum of squares (ESS) is the sum of the squares of the deviations of the predicted values from the mean value of a response variable.
 
-For example: $y_i = a + b_1x_{1i} + b_2x_{2i} + ... + ε_i$, where $y_i$ is the $i^{th}$ observation of the response variable, $x_{ji}$ is the$i^{th}$bservation of the $j$ th explanatory variable, a and $b_j$ are coefficients, $i$ indexes the observations from  to n, and $ϵ_i$ is the $i^{th}$ value of the error term. In general, the greater the ESS, the better the estimated model performs.
+For example: $y_i = a + b_1x_{1i} + b_2x_{2i} + ... + ε_i$, where $y_i$ is the $i^{th}$ observation of the response variable, $x_{ji}$ is the$i^{th}$bservation of the $j$ th explanatory variable, a and $b_j$ are coefficients, $i$ indexes the observations from to n, and $ϵ_i$ is the $i^{th}$ value of the error term. In general, the greater the ESS, the better the estimated model performs.
 
 We let $\hat{a}$ and $\hat{b}$ are the estimated coefficients, then$\hat{y_i} = \hat{a} + \hat{b_1}x_{1i} + \hat{b_2}x_{2i} + ........$is the $i^{th}$ predicted value of the response variable. The ESS:
 
 $$
 \mathop{ESS} = \sum_{i=1}^n(\hat{y_i} - \bar{y})^2
 $$
+
 where $\hat{y_i}$ the value estimated by the regression line.
 
 #### 1.2.3. **TSS——Total Sum of Squares**
@@ -67,11 +67,12 @@ $$
 \mathop{\hat{β}_{1}}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\\
 \mathop{\hat{β}_{0}}=\bar{y}-\hat{β}_{1}\bar{x}~~~~~~~(3.4)
 $$
+
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
 
-
 ### 1.3. Alternative definitions
->different definitions:
+
+> different definitions:
 
 - SSR(Sum of Squares for **regression**) = ESS (explained sum of squares)
 
@@ -80,8 +81,9 @@ where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_
 - SST(Sum of Squares for total) = TSS(total sum of squares)
 
 So we have:
-- **SSE+SSR=SST** 
-  
+
+- **SSE+SSR=SST**
+
   or equivalently:
 
 - **RSS+ESS=TSS**
@@ -91,25 +93,27 @@ So we have:
 A natural question is as follows: how accurate is the sample mean $\hat{μ}$ as an estimate of $μ$? We have established that the average of $\hat{μ}'s$ over many data sets will be very close to $μ$, but that a single estimate $\hat{μ}$ may be a substantial underestimate or overestimate of $μ$.
 
 How far off will that single estimate of $\hat{μ}$ be? In general, we answer this question by computing the standard error of $\hat{μ}$, written as $\mathop{SE(\hat{μ})}$. We have the well-known formula:
+
 $$
 \mathop{Var(\hat{μ})}=\mathop{SE(\hat{μ})}= \frac{σ^2}{n}
 $$
+
 where $σ$ is the standard deviation of each of the realizations $y_i$ of $Y$. Mathematically
 
-
 Standard Error for $\hat{β}_0$:
+
 $$
 \mathrm{SE}(\hat{β}_0)^2 = σ^2 \left [ \frac{1}{n} + \frac{\bar{x}^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2} \right ]
 $$
 
 Standard Error for $\hat{β}_1$:
+
 $$
 \mathrm{SE}(\hat{β}_1)^2 = \frac{σ^2}{\displaystyle\sum_{i=1}^n (x_i - \bar{x})^2}
 $$
 
 For more applications,check the:
 $$Confidence~intervals~and~Hypothesis~test$$
-
 
 #### 1.3.2. **RSE——Residual Standard Error**
 
@@ -118,7 +122,6 @@ Since every observation has an associated error term $ϵ$, having the knowledge 
 $$
 \mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
 $$
-
 
 #### 1.3.3. **MSE--Mean Squared Error**
 
@@ -133,14 +136,14 @@ $$
 where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observation
 \
 The MSE will be small if the predicted responses are very close to the true responses, and will be large if for some of the observations, the predicted and true responses differ substantially.
-<!-- TOC -->
 
+<!-- TOC -->
 
 #### 1.3.4. $R^2$ Statistic
 
 $$
-R^2 = 
-\frac{TSS - RSS}{TSS} = 
+R^2 =
+\frac{TSS - RSS}{TSS} =
 1 - \frac{RSS}{TSS} =
 1-\frac{\text { Unexplained Variation }}{\text{ Total Variation }}
 $$
@@ -154,16 +157,16 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 
 larger in absolute value, assuming $β_1$= 0. We call this probability the p-value.
 
-p-value is a  association between the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
+p-value is a association between the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
 #### 1.4.1. X notes for me
 
-表征依变数Y的变异中有多少百分比,可由控制的自变数X来解释.
-相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0和1情况，
-由于R2<R,可以防止对相关系数所表示的相关做夸张的解释。
-确定系数：在Y的总平方和中，由X引起的平方和所占的比例，记为R2(R的平方)
+表征依变数 Y 的变异中有多少百分比,可由控制的自变数 X 来解释.
+相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0 和 1 情况，
+由于 R2<R,可以防止对相关系数所表示的相关做夸张的解释。
+确定系数：在 Y 的总平方和中，由 X 引起的平方和所占的比例，记为 R2(R 的平方)
 确定系数的大小决定了相关的密切程度。
-当R2越接近1时，表示相关的方程式参考价值越高；相反，越接近0时，表示参考价值越低。这是在一元回归分3析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
+当 R2 越接近 1 时，表示相关的方程式参考价值越高；相反，越接近 0 时，表示参考价值越低。这是在一元回归分 3 析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
 在多元回归分析中，确定系数是通径系数的平方。
 表达式：R2=SSR/SST=1-SSE/SST
 其中：SST=SSR+SSE，SST (total sum of squares)为总平方和，SSR (regression sum of squares)为回归平方和，SSE (error sum of squares) 为残差平方和。
@@ -175,11 +178,10 @@ SSE+SSR=SST RSS+ESS=TSS
 意义：拟合优度越大，自变量对因变量的解释程度越高，自变量引起的变动占总变动的百分比高。观察点在回归直线附近越密集。
 取值范围：0-1.
 
-
 ## 2. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
-the data well - *i.e.* as close as possible to the data points. The most common approach involves minimizing the **least squares** criterion.
+the data well - _i.e._ as close as possible to the data points. The most common approach involves minimizing the **least squares** criterion.
 
 We let
 
@@ -191,8 +193,6 @@ which represents the ith **residual**. The **residual sum of squares** or **RSS*
 
 An example in R - we generate a our predictions base on $f(x)+e$, and also have a "guess" at an $\hat{f}(x)$. We calculate our $y_i$, and then calculate the RSS.
 
-
-
 ### 2.1. Assessing the Accuracy of the Coefficient Estimates
 
 We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a mean-zero random error term. If $f$ is to be approximated by a linear function, then we can write this relationship as
@@ -201,12 +201,11 @@ $$
 
 Y = β_0 +β_1X + ϵ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(3.5)
 
+
 $$
 
 Here $β_0$ is the intercept term—that is, the expected value of $Y$ when $X = 0$, and $β_1$ is the slope—the average increase in $Y$ associated with a one-unit increase in $X$. The error term is a catch-all for what we miss with this simple model: the true relationship is probably not linear, there may be other variables that cause variation in $Y$ , and there may be measurement error. We typically assume that the error term is independent of X.
 The model given by $(3.5)$ defines the population regression line, which population regression line is the best linear approximation to the true relationship between $X$ and $Y$
-
-
 
 ### 2.2. Computing Confidence Intervals
 
@@ -220,14 +219,13 @@ $$
 
 Accordingly,we have the 95% chance confidence interval for $β_0$:
 
-
 $$
 [\hat{β_0} - 2⋅\mathop{SE(\hat{β_0})}  , \hat{β_0} + 2⋅\mathop{SE(\hat{β_0})}  ]
 $$
 
 ### 2.3. Hypothesis Tests
 
-Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$. 
+Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$.
 Which is:
 
 $The~null~hypothesis~of$
@@ -247,25 +245,26 @@ Mathematically,we can say this corresponds to testing:
 $$
 H_0: β_1 = 0
 $$
-versus: 
+
+versus:
+
 $$
 H_a:β_1 \not ={0}
 $$
 
-Since if $β_1 = 0$then the model $Y ≈ β_0 + β_1X$ reduces to $Y = β_0+ ϵ$, and $X$ is not associated with $Y$ . 
+Since if $β_1 = 0$then the model $Y ≈ β_0 + β_1X$ reduces to $Y = β_0+ ϵ$, and $X$ is not associated with $Y$ .
 
-To test the null hypothesis, we need to determine whether $\hat{β_1}$,our estimate for $β_1$, is sufficiently far from zero that we can be confident that $β_1$ is non-zero. 
+To test the null hypothesis, we need to determine whether $\hat{β_1}$,our estimate for $β_1$, is sufficiently far from zero that we can be confident that $β_1$ is non-zero.
 
-> How far is far enough? 
+> How far is far enough?
 
 This of course depends on the accuracy of $\hat{β1}$—that is, it depends on $\mathop{SE(\hat{β_1})}$.
 
-If  $\mathop{SE(\hat{β_1})}$ is small, then even relatively small values of $\hat{β_1}$ may provide strong evidence that $\hat{β_1} \not= 0$, and hence that there is a relationship between X and Y .
+If $\mathop{SE(\hat{β_1})}$ is small, then even relatively small values of $\hat{β_1}$ may provide strong evidence that $\hat{β_1} \not= 0$, and hence that there is a relationship between X and Y .
 
- In contrast, if  $\mathop{SE(\hat{β_1})}$ is large, then $\hat{β_1}$ must be large in absolute value in order for us to reject the null hypothesis. 
- 
- In practice, we compute a $t-statistic$,given by
+In contrast, if $\mathop{SE(\hat{β_1})}$ is large, then $\hat{β_1}$ must be large in absolute value in order for us to reject the null hypothesis.
 
+In practice, we compute a $t-statistic$,given by
 
 $$
 t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}~~~~~~~~(3.14)
@@ -275,7 +274,7 @@ If there really is no relationship between X and Y , then we expect that (3.14) 
 
 Consequently, it is a simple matter to compute the probability of observing any number equal to |t| or larger in absolute value, assuming $β_1= 0$. We call this probability the p-value.
 
-Hence, if we see a small p-value, Roughly speaking, we interpret the p-value as follows: a small p-value indicates that it is unlikely to observe such a substant dictor and the response due to chance, in the absence of any real association then we can infer that there is an association between the predictor and the response. We reject the null hypothesis—that is, we declare a relationship to exist between $X$ and $Y$ —if the p-value is small enough. 
+Hence, if we see a small p-value, Roughly speaking, we interpret the p-value as follows: a small p-value indicates that it is unlikely to observe such a substant dictor and the response due to chance, in the absence of any real association then we can infer that there is an association between the predictor and the response. We reject the null hypothesis—that is, we declare a relationship to exist between $X$ and $Y$ —if the p-value is small enough.
 
 Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 
@@ -284,24 +283,25 @@ Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 Onece the null hypothesis is rejected, which means there is some relationship between $X$ and $Y$.Thus we would like to quantify the extent to which the mode fits the data. Here in linear regression, the $residual~ standard~error(RSE)$ and the $R^2~statistic$ are two related quantities to assess the model.
 
 Recall the $RSE$:(残差标准误)
+
 $$
 \mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
 $$
 
 The RSE is considered a measure of the $lack~of~fit$ of the model $(3.5)$ to the data. If the predictions obtained using the model are very close to the true outcome values—that is, if $\hat{y_i} ≈ y_i,for~i = 1, . . . , n$—then $RSE$ will be small, and we can conclude that the model fits the data very well. On the other hand, if $\hat{y_i}$ is very far from $y_i$ for one or more observations, then the RSE may be quite large, indicating that the model doesn’t fit the data well.
 
- $R^2 Statistic$
+$R^2 Statistic$
+
 $$
-R^2 = 
-\frac{TSS - RSS}{TSS} = 
+R^2 =
+\frac{TSS - RSS}{TSS} =
 1 - \frac{RSS}{TSS} =
 1-\frac{\text { Unexplained Variation }}{\text{ Total Variation }}
 $$
 
-Where the TSS is the total sum of the squares and the RSS is Residual sum of the squares.TSS measures the total variance in the response Y , and can be thought of as the amount of variability inherent in the response before the regression is performed. In contrast, RSS measures the amount of variability that is left unexplained after performing the regression. Hence, TSS − RSS measures the amount of variability in the response that is explained (or removed) by performing the regression,$R^2$ measures the **$proportion~of~variability~in~Y~that~ can~ be~ explained~ using~ X$**. 
+Where the TSS is the total sum of the squares and the RSS is Residual sum of the squares.TSS measures the total variance in the response Y , and can be thought of as the amount of variability inherent in the response before the regression is performed. In contrast, RSS measures the amount of variability that is left unexplained after performing the regression. Hence, TSS − RSS measures the amount of variability in the response that is explained (or removed) by performing the regression,$R^2$ measures the **$proportion~of~variability~in~Y~that~ can~ be~ explained~ using~ X$**.
 
 An $R^2$ statistic that is close to 1 indicates that a large proportion of the variability in the response has been explained by the regression. A number near 0 indicates that the regression did not explain much of the variability in the response;this might occur because the linear model is wrong, or the inherent error $σ^2$ is high, or both.
-
 
 $Correlation$
 
@@ -313,11 +313,12 @@ $$
 
 \mathop{\widehat{Cor(X,Y)}}=r= \frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{√{\sum_{i=1}^n(x_i-\bar{x})^2}√{\sum_{i=1}^n(y_i-\bar{y})^2}}
 
+
 $$
-is also a measure of the linear relationship between $X$ and $Y$. 
+
+is also a measure of the linear relationship between $X$ and $Y$.
 
 In simple linear regression, $R^2=r^2$.
-
 
 ## 3. Multiple Linear Regression
 
@@ -331,7 +332,6 @@ where $X_j$ represents the jth predictor and $β_j$ quantifies the association b
 
 ### 3.1. Estimating the Regression Coefficients
 
-
 The parameters are estimated using the same least squares approach that we saw in the context of simple linear regression. We choose $β_0, β_1, \cdots  , β_p$ to minimize the sum of squared residuals($RSS$):
 
 $$
@@ -339,41 +339,47 @@ $$
 \\
 = \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_{i1} - \hat{β_2}x_{i2} - ⋯-\hat{β_p}x_{ip} )^2~~~~~~~~~~~~~~~~~~~~~~~~(3.22)
 
+
 $$
 
 The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
 
-
-
 ### 3.2. Important Issues
+
 When we perform multiple linear regression, we usually are interested in answering a few important questions.
 
 #### 3.2.1. One: Is There a Relationship Between the Response and Predictors?
 
-In the multiple regression setting with p predictors, we need to ask whether all of the regression coefficients are zero, i.e. whether $β_1 = β_2 = · · · = β_p = 0$. As in the simple linear regression setting, we use a **hypothesis test** to answer this question. 
+In the multiple regression setting with p predictors, we need to ask whether all of the regression coefficients are zero, i.e. whether $β_1 = β_2 = · · · = β_p = 0$. As in the simple linear regression setting, we use a **hypothesis test** to answer this question.
 
 We test the **null hypothesis**:
+
 $$
-H_0:β_1 = β_2 = · · · = β_p = 0 
+H_0:β_1 = β_2 = · · · = β_p = 0
 $$
+
 versus the alternative:
+
 $$
 H_a: at~least~one~β_j~is~non-zero.
 $$
 
 This hypothesis test is performed by computing the $F-statistic$,
+
 $$
 F = \frac{(\mathop{TSS-RSS})/p}{RSS/(n-p-1)},~~~~~~~~~~~~~~(3.23)
 $$
 
->where,as with with simple linear regression,$\mathop{TSS}= ∑(y_i=\bar{y})^2$ and $\mathop{RSS}= \sum(y_i-\bar{y_i})^2$.
+> where,as with with simple linear regression,$\mathop{TSS}= ∑(y_i=\bar{y})^2$ and $\mathop{RSS}= \sum(y_i-\bar{y_i})^2$.
 
->If linearmodel assumptions are correct,one can show that:
+> If linearmodel assumptions are correct,one can show that:
 
 $$
 \mathop{E\{{{RSS/(n-p-1)\}}}= σ^2}
 $$
+
 and that,provided $H_0$ is true,
+
 $$
 \mathop{E\{{{(RSS-RSS)/p\}}}= σ^2}
 $$
@@ -384,40 +390,36 @@ In (3.23) we are testing $H_0$ that all the coefficients are zero. Sometimes we 
 This corresponds to a null hypothesis:
 
 $$
-H_0:β_{p-q+1} = β_{p-q+2} = · · · = β_p = 0 
+H_0:β_{p-q+1} = β_{p-q+2} = · · · = β_p = 0
 $$
 
-where for convenience we have put the variables chosen for omission at the end of the list. 
+where for convenience we have put the variables chosen for omission at the end of the list.
 
 In this case we fit a second model that uses all the variables **except those last $q$**. Suppose that the residual sum of squares for that model is $RSS_0$. Then the appropriate $F-statistic$ is:
 
-$$F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}~~~~~~~~~~~~~~(3.2.4)
+$$
+F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}~~~~~~~~~~~~~~(3.2.4)
 $$
 
-
-
 #### 3.2.2. Deciding on Important Variables
+
 The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable selection$.
 
 Ideally, we would like to perform variable selection by trying out a lot of different models, each containing a different subset of the predictors.
 
 For instance, if $p = 2$, then we can consider four models:
->(1) a model containing no variables, (2) a model containing $X_1$ only, (3) a model containing $X_2$ only, and (4) a model containing both $X_1$ and $X_2$.
- We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model:
- $Mallow’s~ C_p, Akaike~informaMallow’s Cp tion criterion (AIC), Bayesian information criterion (BIC), and adjusted Akaike information criterion Bayesian information criterion R2. These are discussed in more detail in Chapter 6. We can also deteradjusted R2 mine which model is best by plotting various mAodel outputs, such as the residuals, in order to search for patterns.
 
-
+> (1) a model containing no variables, (2) a model containing $X_1$ only, (3) a model containing $X_2$ only, and (4) a model containing both $X_1$ and $X_2$.
+> We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model:
+> $Mallow’s~ C_p, Akaike~informaMallow’s Cp tion criterion (AIC), Bayesian information criterion (BIC), and adjusted Akaike information criterion Bayesian information criterion R2. These are discussed in more detail in Chapter 6. We can also deteradjusted R2 mine which model is best by plotting various mAodel outputs, such as the residuals, in order to search for patterns.
 
 #### 3.2.3. Model Fit
 
 #### 3.2.4. Predictions
 
-
-
-
 ### 3.3. Assumptions that matter in multiple linear regression
 
-- Linear relationship between y and x1, y and x2, *etc.*
+- Linear relationship between y and x1, y and x2, _etc._
 - Prediction errors, $ϵ$, have Normal Distribution
 - Homoscedasticity: $Var(ϵ)=σ^2$  for all values of the independent variables $(x_1, x_2 , …)$
 - No or little multicollinearity (correlation between $x_i$)
@@ -442,7 +444,7 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 
 | Important Assumption                                     | What to check & do                                                                             |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Linear relationship between Y and X"s                    | Look at graphs of Xi vs Y for each i  -  should be linear                                      |
+| Linear relationship between Y and X"s                    | Look at graphs of Xi vs Y for each i - should be linear                                        |
 | Prediction errors, ϵ, have Normal Distribution<br/><br/> | Look at Normal probability plot of residuals<br/><br/>Check for outliers                       |
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
