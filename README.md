@@ -132,21 +132,21 @@ ax.set_ylabel('y')
 
 ## ISLR
 
-[Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)<br>
-[Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)<br>
-[Chapter 04 - Classification](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
+[Chapter 02 - Statistical Learning](https:/colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)<br>
+[Chapter 03 - Linear Regression](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)<br>
+[Chapter 04 - Classification](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
 <br>
-[Chapter 05 - Resampling Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+[Chapter 05 - Resampling Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
 <br>
-[Chapter 06 - Linear Model Selection and Regularization](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+[Chapter 06 - Linear Model Selection and Regularization](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
 <br>
-[Chapter 07 - Moving Beyond Linearity](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
+[Chapter 07 - Moving Beyond Linearity](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
 <br>
-[Chapter 08 - Tree Based Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
+[Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
 <br>
-[Chapter 09 - Support Vector Machines](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
+[Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
 <br>
-[Chapter 10 - Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
+[Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
 
 
 ## References
