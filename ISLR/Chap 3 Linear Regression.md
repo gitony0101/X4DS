@@ -22,16 +22,19 @@
     - [1.2.3. Hypothesis Tests](#123-hypothesis-tests)
     - [1.2.4. Assessing the Accuracy of the Model-By RSE and $R^2$](#124-assessing-the-accuracy-of-the-model-by-rse-and-r2)
   - [1.2. Multiple Linear Regression](#12-multiple-linear-regression)
-    - [1.2.1. Estimating the Regression Coefficients](#121-estimating-the-regression-coefficients)
-    - [1.2.2. Important Issues](#122-important-issues)
-      - [1.2.2.1. One: Is There a Relationship Between the Response and Predictors?](#1221-one-is-there-a-relationship-between-the-response-and-predictors)
-      - [1.2.2.2. Deciding on Important Variables](#1222-deciding-on-important-variables)
-      - [1.2.2.3. Model Fit](#1223-model-fit)
-      - [1.2.2.4. Predictions](#1224-predictions)
-    - [1.1.2. Assumptions that matter in multiple linear regression](#112-assumptions-that-matter-in-multiple-linear-regression)
+    - [1.2.1. Assumptions that matter in multiple linear regression:](#121-assumptions-that-matter-in-multiple-linear-regression)
+    - [1.2.2. Estimating the Regression Coefficients](#122-estimating-the-regression-coefficients)
+    - [1.2.3. Important Issues](#123-important-issues)
+      - [1.2.3.1. One: Is There a Relationship Between the Response and Predictors?](#1231-one-is-there-a-relationship-between-the-response-and-predictors)
+      - [1.2.3.2. Deciding on Important Variables](#1232-deciding-on-important-variables)
+      - [1.2.3.3. Model Fit](#1233-model-fit)
+      - [1.2.3.4. Predictions](#1234-predictions)
+    - [1.1.2. Other Considerations in the Regression Model](#112-other-considerations-in-the-regression-model)
+      - [1.1.2.1. Qualitative Predictors In our discussion](#1121-qualitative-predictors-in-our-discussion)
+      - [1.1.2.2. Predictors with only Two Levels](#1122-predictors-with-only-two-levels)
+      - [Qualitative Predictors with More than Two Levels](#qualitative-predictors-with-more-than-two-levels)
+    - [1.1.2. Summary for checking out a regression model](#112-summary-for-checking-out-a-regression-model)
     - [1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#113-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
-    - [1.1.4. Summary for checking out a regression model](#114-summary-for-checking-out-a-regression-model)
-  - [1.2. Stepwise regression](#12-stepwise-regression)
 
 <!-- /TOC -->
 
@@ -349,7 +352,14 @@ $$
 
 where $X_j$ represents the jth predictor and $β_j$ quantifies the association between that variable and the response. We interpret $β_j$ as the average effect on Y of a one unit increase in $X_j$, holding all other predictors fixed.
 
-### 1.2.1. Estimating the Regression Coefficients
+### 1.2.1. Assumptions that matter in multiple linear regression:
+
+- Linear relationship between $y$ and $x_1$, $y$ and $x_2, etc.$
+- Prediction errors, $ϵ$, have Normal Distribution
+- Homoscedasticity: $Var(ϵ)=σ^2$  for all values of the independent variables $(x_1, x_2 , …)$
+- No or little multicollinearity (correlation between $x_i$)
+
+### 1.2.2. Estimating the Regression Coefficients
 
 The parameters are estimated using the same least squares approach that we saw in the context of simple linear regression. We choose $β_0, β_1, \cdots  , β_p$ to minimize the sum of squared residuals($RSS$):
 
@@ -361,11 +371,11 @@ $$
 
 The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
 
-### 1.2.2. Important Issues
+### 1.2.3. Important Issues
 
 When we perform multiple linear regression, we usually are interested in answering a few important questions.
 
-#### 1.2.2.1. One: Is There a Relationship Between the Response and Predictors?
+#### 1.2.3.1. One: Is There a Relationship Between the Response and Predictors?
 
 In the multiple regression setting with p predictors, we need to ask whether all of the regression coefficients are zero, i.e. whether $β_1 = β_2 = · · · = β_p = 0$. As in the simple linear regression setting, we use a **hypothesis test** to answer this question.
 
@@ -417,7 +427,7 @@ $$
 F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}~~~~~~~~~~~~~~(3.2.4)
 $$
 
-#### 1.2.2.2. Deciding on Important Variables
+#### 1.2.3.2. Deciding on Important Variables
 
 The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable selection$.
 
@@ -453,20 +463,50 @@ There are three ways to approach this task:
 - $R^2$ generally improves with each step but don"t be fooled!!!!!
 - Consider $Ridge\ or \  Lasso\ Regression$
 
-#### 1.2.2.3. Model Fit
+#### 1.2.3.3. Model Fit
 
 Two common methods of model fit are the $RSE $and $R^2$,the fraction of variance explained.**Plotting the model** can also be useful.
 
-#### 1.2.2.4. Predictions
+#### 1.2.3.4. Predictions
 
-**Three sorts of uncertainty** associated with the prediction
+**Three sorts of uncertainty** associated with the prediction:
 
-### 1.1.2. Assumptions that matter in multiple linear regression
+- 1. The coefficient estimates $\hat{β_0}+ \hat{β_1} + ⋯+\hat{β_p}   $ are estimates for $β_0+β_1 + ⋯ + β_p$. This inaccuracy is part of the reducible error. We can compute a confidence interval to determine how close $\hat{Y}$ is to $f(X)$.
+- 2 $Model~Bias$: can result from the fact that we are fitting a linear approximation to the true surface of $f(X)$.
+- 3. $Random~Error~ϵ$: $irreducible\ error$. We can use prediction intervals to estimate how far $Y$ will differ from $\hat{Y}$. These will always be larger than confidence intervals, because they incorporate both the $reducible + irreducible error$.
 
-- Linear relationship between y and x1, y and x2, _etc._
-- Prediction errors, $ϵ$, have Normal Distribution
-- Homoscedasticity: $Var(ϵ)=σ^2$  for all values of the independent variables $(x_1, x_2 , …)$
-- No or little multicollinearity (correlation between $x_i$)
+### 1.1.2. Other Considerations in the Regression Model
+
+#### 1.1.2.1. Qualitative Predictors In our discussion
+
+We assume that all variables in our linear regression model are quantitative. But in practice, this is not necessarily the case; often some predictors are qualitative.
+
+#### 1.1.2.2. Predictors with only Two Levels
+
+If a qualitative variable (also known as a factor) only has two possible values, then incorporating it into a model is easy. We can create a binomial dummy variable that takes on two values. For gender, this could be a variable that is 0 if observation has value male, and 1 if observation has value female. This variable can then be used in the regression equation.
+
+$$
+x_{i}= \begin{cases}1 & \text { if } i \text { th person is female } \\ 0 & \text { if } i \text { th person is male }\end{cases}~~~~~~~(3.26)
+$$
+
+#### Qualitative Predictors with More than Two Levels
+
+When a qualitative predictor has more than two levels, a single dummy variable cannot represent all possible values. In this situation, we can create additional dummy variables.
+
+The level with no dummy variable is known as the $baseline$.
+
+### Extensions of the Linear Model
+
+The standard linear regression $Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~~~~~~~~~~~~~~~~~~~~~~(3.19)$
+
+### 1.1.2. Summary for checking out a regression model
+
+| Important Assumption                                     | What to check & do                                                                             |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Linear relationship between Y and X"s                    | Look at graphs of Xi vs Y for each i - should be linear                                        |
+| Prediction errors, ϵ, have Normal Distribution<br/><br/> | Look at Normal probability plot of residuals<br/><br/>Check for outliers                       |
+| Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
+| No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
 ### 1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression
 
@@ -483,14 +523,3 @@ Always less than R2 since it includes penalty for too many terms
 As you add terms R2 always improves but the model may get worse
 
 If R2 >> R2-adjusted, eliminate some of the X"s from the model
-
-### 1.1.4. Summary for checking out a regression model
-
-| Important Assumption                                     | What to check & do                                                                             |
-| -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Linear relationship between Y and X"s                    | Look at graphs of Xi vs Y for each i - should be linear                                        |
-| Prediction errors, ϵ, have Normal Distribution<br/><br/> | Look at Normal probability plot of residuals<br/><br/>Check for outliers                       |
-| Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
-| No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
-
-## 1.2. Stepwise regression
