@@ -33,6 +33,8 @@
       - [1.1.2.1. Qualitative Predictors In our discussion](#1121-qualitative-predictors-in-our-discussion)
       - [1.1.2.2. Predictors with only Two Levels](#1122-predictors-with-only-two-levels)
       - [Qualitative Predictors with More than Two Levels](#qualitative-predictors-with-more-than-two-levels)
+    - [Extensions of the Linear Model](#extensions-of-the-linear-model)
+    - [Potential Problems](#potential-problems)
     - [1.1.2. Summary for checking out a regression model](#112-summary-for-checking-out-a-regression-model)
     - [1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#113-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
 
@@ -497,7 +499,24 @@ The level with no dummy variable is known as the $baseline$.
 
 ### Extensions of the Linear Model
 
-The standard linear regression $Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~~~~~~~~~~~~~~~~~~~~~~(3.19)$
+The standard linear regression $Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~(3.19)$makes 2 most important and restrictive assumptions often violated in practice.:$additive\ and\ linear.In fact, the two assumption may bot incorrect,each of the assumption can be removed by several methods.
+
+- The $additive\ assumption$:the effect of changes in a predictor $X_j$ on the response $Y$ is independent of the values of the other predictors.But ir may cause interaction (synergy),we can remove the assumption by adding interaction term-$X_iX_j$.
+
+- The $linear\ assumption$ the change in the response $Y$ due to a one-unit change in $X_j$ is constant, regardless of the value of $X_j$.But in some cases, the true relationship between the response and the predictors may be nonlinear. Here we present a very simple way to directly extend the linear model to accommodate non-linear relationships, using $polynomial\ regression$.
+
+### Potential Problems
+
+When we fit a linear regression model to a particular data set, many problems may occur. Most common among these are the following:
+
+$
+    1. Non-linearity\ of\ the\ response-predictor\ relationships.\\
+    2. Correlation\ of\ error\ terms.\\
+    3. Non-constant\ variance\ of\ error\ terms.\\
+    4. Outliers.\\
+    5. High-leverage\ points.\\
+    6. Collinearity.
+$
 
 ### 1.1.2. Summary for checking out a regression model
 
