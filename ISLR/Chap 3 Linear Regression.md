@@ -397,21 +397,49 @@ The task of determining which predictors are associated with the response is ref
 There are three ways to approach this task:
 
 - $Forward\ selection$: We begin with the $null\ model$, which contains **an intercept but no predictors**. We then fit $p$ Simple Linear regressions and add to the null model the variable that results in the lowest RSS. We then repeat the process to determine the lowest RSS of the now two-variable model, continuing until some stopping rule is satisfied.
-- $Backward selection$: Start with all the variables in the model,** remove** the variable with the largest p-value. Then, for the new $(p−1)$-variable model, do the same. Continue until stopping rule is reached (for example, some p-value threshold)
+- $Backward\ selection$: Start with all the variables in the model,**remove** the variable with the largest p-value. Then, for the new $(p−1)$-variable model, do the same. Continue until stopping rule is reached (for example, some $p-value$ threshold)
+- $Mixed\ selection$: Start with **no variables**, and proceed $ith$ forward selection. If any p-value of added variables pass a threshold once new predictors are added, we remove them. We continue the forward and backward until all variables in model have a sufficiently low $p-value$.
 
-  Mixed selection: Start with no variables, and 
+  > That is the **stepwise regression**:
 
+  - variables have importance measures
+  - start with current model
+  - try to ADD one variable and see if that helps – if yes, add in best one
+  - try to REMOVE one variable, if some are not significant, remove the worst one
+  -
 
-$p$$p$
-ss
-apple
+##### 1.2.2.2.1. **Remember – high p-value means NOT significant** (p>0.15)
 
+- specify 2 importance thresholds:
+- p-to-add threshold (p≤ 0.15 to add)
+- p-to-remove threshold (p>0.15 to remove)
 
-proceed ith forward selection. If any p-value of added variables pass a threshold once new predictors are added, we remove them. We continue the forward and backward until all variables in model have a sufficiently low p-value.
+##### 1.2.2.2.2. **Variables have an importance measure with threshold k**
 
-#### 1.2.2.3. Model Fit
+- suppose current model is f(x_1, x_2)
 
-#### 1.2.2.4. Predictions
+> You want to REMOVE one – if p-value for x_1, & x_2 are <0.15 you can"t remove anything
+> Otherwise, remove the least significant variable
+
+- suppose current model is f(x_1, x_2)
+
+> You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
+> Otherwise, remove the least significant variable
+
+##### 1.2.2.2.3. When to stop
+
+- Stop when no variables can be ADDED or REMOVED
+
+##### 1.2.2.2.4. The danger of Stepwise Regression
+
+- Subset of variables chosen not necessarily optimal
+- Not good if the number of variables >> observations (have at least 10 obs per variable is a guideline)
+- $R^2$ generally improves with each step but don"t be fooled!!!!!
+- Consider $Ridge\ or \  Lasso\ Regression$
+
+#### 1.1.2.2. Model Fit
+
+#### 1.1.2.3. Predictions
 
 ### 1.1.2. Assumptions that matter in multiple linear regression
 
@@ -446,37 +474,3 @@ If R2 >> R2-adjusted, eliminate some of the X"s from the model
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
 ## 1.2. Stepwise regression
-
-- variables have importance measures
-- start with current model
-- try to ADD one variable and see if that helps – if yes, add in best one
-- try to REMOVE one variable, if some are not significant, remove the worst one
-
-### 1.2.1. Remember – high p-value means NOT significant (p>0.15)
-
-- specify 2 importance thresholds:
-- p-to-add threshold (p≤ 0.15 to add)
-- p-to-remove threshold (p>0.15 to remove)
-
-### 1.2.2. Variables have an importance measure with threshold k
-
-- suppose current model is f(x_1, x_2)
-
-> You want to REMOVE one – if p-value for x_1, & x_2 are <0.15 you can"t remove anything
-> Otherwise, remove the least significant variable
-
-- suppose current model is f(x_1, x_2)
-
-> You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
-> Otherwise, remove the least significant variable
-
-## 1.2. When to stop
-
-- Stop when no variables can be ADDED or REMOVED
-
-## 1.3. The danger of Stepwise Regression
-
-- Subset of variables chosen not necessarily optimal
-- Not good if the number of variables >> observations (have at least 10 obs per variable is a guideline)
-- R2 generally improves with each step but don"t be fooled!!!!!
-- Consider ridge & lasso regression
