@@ -393,6 +393,22 @@ For instance, if $p = 2$, then we can consider four models:
 > (1) a model containing no variables, (2) a model containing $X_1$ only, (3) a model containing $X_2$ only, and (4) a model containing both $X_1$ and $X_2$.
 > We can then select the **best model** out of all of the models that we have considered. Various statistics can be used to judge the quality of a model: $AIC-Akaike~information~criterion\\BIC-Bayesian~information~criterion~\\Adjusted~R^2$
 
+The task of determining which predictors are associated with the response is referred to as variable selection. We could try out a lot of different models with combinations of predictors, $2^p$, but this is not practical as $p$ grows.
+There are three ways to approach this task:
+
+- $Forward\ selection$: We begin with the $null\ model$, which contains **an intercept but no predictors**. We then fit $p$ Simple Linear regressions and add to the null model the variable that results in the lowest RSS. We then repeat the process to determine the lowest RSS of the now two-variable model, continuing until some stopping rule is satisfied.
+- $Backward selection$: Start with all the variables in the model,** remove** the variable with the largest p-value. Then, for the new $(p−1)$-variable model, do the same. Continue until stopping rule is reached (for example, some p-value threshold)
+
+  Mixed selection: Start with no variables, and 
+
+
+$p$$p$
+ss
+apple
+
+
+proceed ith forward selection. If any p-value of added variables pass a threshold once new predictors are added, we remove them. We continue the forward and backward until all variables in model have a sufficiently low p-value.
+
 #### 1.2.2.3. Model Fit
 
 #### 1.2.2.4. Predictions
