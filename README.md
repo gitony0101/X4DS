@@ -126,7 +126,6 @@ ax.set_ylabel('y')
 ## Fundamental Exercises
 
 [matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)<br>
-[matplotlib-50](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50.ipynb)<br>
 [matplotlib-seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)<br>
 [numpy](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/numpy.ipynb)<br>
 [pandas-read](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_read.ipynb)<br>
