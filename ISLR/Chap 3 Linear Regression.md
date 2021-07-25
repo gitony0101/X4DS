@@ -1,5 +1,40 @@
 # 1. Chaper 3 Linear Regression
 
+<!-- TOC -->
+
+- [1. Chaper 3 Linear Regression](#1-chaper-3-linear-regression)
+  - [1.1. Simple linear regression](#11-simple-linear-regression)
+    - [1.1.1. Important assumptions in simple linear regression](#111-important-assumptions-in-simple-linear-regression)
+    - [1.1.2. Important definitions: RSS ESS TSS RSE MSE, etc.](#112-important-definitions-rss-ess-tss-rse-mse-etc)
+      - [1.1.2.1. **RSS——Residual Sum of Squares**](#1121-rssresidual-sum-of-squares)
+      - [1.1.2.2. **ESS——Explained Sum of Squares**](#1122-essexplained-sum-of-squares)
+      - [1.1.2.3. **TSS——Total Sum of Squares**](#1123-tsstotal-sum-of-squares)
+    - [1.1.2. Alternative definitions](#112-alternative-definitions)
+      - [1.1.2.1. Standard Error of $\hat{μ}$](#1121-standard-error-of-hatμ)
+      - [1.1.2.2. **RSE——Residual Standard Error**](#1122-rseresidual-standard-error)
+      - [1.1.2.3. **MSE--Mean Squared Error**](#1123-mse--mean-squared-error)
+      - [1.1.2.4. $R^2$ Statistic](#1124-r2-statistic)
+    - [1.1.2. P-value(Check $hypothesis~test$)](#112-p-valuecheck-hypothesistest)
+      - [1.1.2.1. X notes for me](#1121-x-notes-for-me)
+  - [1.2. Estimating the Coefficients](#12-estimating-the-coefficients)
+    - [1.2.1. Assessing the Accuracy of the Coefficient Estimates](#121-assessing-the-accuracy-of-the-coefficient-estimates)
+    - [1.2.2. Computing Confidence Intervals](#122-computing-confidence-intervals)
+    - [1.2.3. Hypothesis Tests](#123-hypothesis-tests)
+    - [1.2.4. Assessing the Accuracy of the Model-By RSE and $R^2$](#124-assessing-the-accuracy-of-the-model-by-rse-and-r2)
+  - [1.2. Multiple Linear Regression](#12-multiple-linear-regression)
+    - [1.2.1. Estimating the Regression Coefficients](#121-estimating-the-regression-coefficients)
+    - [1.2.2. Important Issues](#122-important-issues)
+      - [1.2.2.1. One: Is There a Relationship Between the Response and Predictors?](#1221-one-is-there-a-relationship-between-the-response-and-predictors)
+      - [1.2.2.2. Deciding on Important Variables](#1222-deciding-on-important-variables)
+      - [1.2.2.3. Model Fit](#1223-model-fit)
+      - [1.2.2.4. Predictions](#1224-predictions)
+    - [1.1.2. Assumptions that matter in multiple linear regression](#112-assumptions-that-matter-in-multiple-linear-regression)
+    - [1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#113-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
+    - [1.1.4. Summary for checking out a regression model](#114-summary-for-checking-out-a-regression-model)
+  - [1.2. Stepwise regression](#12-stepwise-regression)
+
+<!-- /TOC -->
+
 ## 1.1. Simple linear regression
 
 Simple linear regression:predicting a quantitative response Y on the basis of a single predictor variable X.
@@ -400,46 +435,31 @@ There are three ways to approach this task:
 - $Backward\ selection$: Start with all the variables in the model,**remove** the variable with the largest p-value. Then, for the new $(p−1)$-variable model, do the same. Continue until stopping rule is reached (for example, some $p-value$ threshold)
 - $Mixed\ selection$: Start with **no variables**, and proceed $ith$ forward selection. If any p-value of added variables pass a threshold once new predictors are added, we remove them. We continue the forward and backward until all variables in model have a sufficiently low $p-value$.
 
-  > That is the **stepwise regression**:
+  > That explains the **stepwise regression**:
 
   - variables have importance measures
   - start with current model
   - try to ADD one variable and see if that helps – if yes, add in best one
   - try to REMOVE one variable, if some are not significant, remove the worst one
-  -
+  - specify 2 importance thresholds:
+    - $p-to-add threshold$ ($p$≤ 0.15 to add)
+    - $p-to-remove threshold$ ($p$>0.15 to remove)
+  - When to Stop:_No variables can be ADDED or REMOVED_
 
-##### 1.2.2.2.1. **Remember – high p-value means NOT significant** (p>0.15)
-
-- specify 2 importance thresholds:
-- p-to-add threshold (p≤ 0.15 to add)
-- p-to-remove threshold (p>0.15 to remove)
-
-##### 1.2.2.2.2. **Variables have an importance measure with threshold k**
-
-- suppose current model is f(x_1, x_2)
-
-> You want to REMOVE one – if p-value for x_1, & x_2 are <0.15 you can"t remove anything
-> Otherwise, remove the least significant variable
-
-- suppose current model is f(x_1, x_2)
-
-> You want to REMOVE one – if p-value for $x_1$, & $x_2$ are <0.15 you can"t remove anything
-> Otherwise, remove the least significant variable
-
-##### 1.2.2.2.3. When to stop
-
-- Stop when no variables can be ADDED or REMOVED
-
-##### 1.2.2.2.4. The danger of Stepwise Regression
+**The danger of Stepwise Regression**
 
 - Subset of variables chosen not necessarily optimal
 - Not good if the number of variables >> observations (have at least 10 obs per variable is a guideline)
 - $R^2$ generally improves with each step but don"t be fooled!!!!!
 - Consider $Ridge\ or \  Lasso\ Regression$
 
-#### 1.1.2.2. Model Fit
+#### 1.2.2.3. Model Fit
 
-#### 1.1.2.3. Predictions
+Two common methods of model fit are the $RSE $and $R^2$,the fraction of variance explained.**Plotting the model** can also be useful.
+
+#### 1.2.2.4. Predictions
+
+**Three sorts of uncertainty** associated with the prediction
 
 ### 1.1.2. Assumptions that matter in multiple linear regression
 
