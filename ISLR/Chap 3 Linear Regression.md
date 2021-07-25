@@ -32,11 +32,11 @@
     - [1.1.2. Other Considerations in the Regression Model](#112-other-considerations-in-the-regression-model)
       - [1.1.2.1. Qualitative Predictors In our discussion](#1121-qualitative-predictors-in-our-discussion)
       - [1.1.2.2. Predictors with only Two Levels](#1122-predictors-with-only-two-levels)
-      - [Qualitative Predictors with More than Two Levels](#qualitative-predictors-with-more-than-two-levels)
-    - [Extensions of the Linear Model](#extensions-of-the-linear-model)
-    - [Potential Problems](#potential-problems)
-    - [1.1.2. Summary for checking out a regression model](#112-summary-for-checking-out-a-regression-model)
-    - [1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#113-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
+      - [1.1.2.3. Qualitative Predictors with More than Two Levels](#1123-qualitative-predictors-with-more-than-two-levels)
+    - [1.1.2. Extensions of the Linear Model](#112-extensions-of-the-linear-model)
+    - [1.1.3. Potential Problems](#113-potential-problems)
+    - [1.1.4. Summary for checking out a regression model](#114-summary-for-checking-out-a-regression-model)
+    - [1.1.5. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#115-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
 
 <!-- /TOC -->
 
@@ -491,13 +491,13 @@ $$
 x_{i}= \begin{cases}1 & \text { if } i \text { th person is female } \\ 0 & \text { if } i \text { th person is male }\end{cases}~~~~~~~(3.26)
 $$
 
-#### Qualitative Predictors with More than Two Levels
+#### 1.1.2.3. Qualitative Predictors with More than Two Levels
 
 When a qualitative predictor has more than two levels, a single dummy variable cannot represent all possible values. In this situation, we can create additional dummy variables.
 
 The level with no dummy variable is known as the $baseline$.
 
-### Extensions of the Linear Model
+### 1.1.2. Extensions of the Linear Model
 
 The standard linear regression $Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~(3.19)$makes 2 most important and restrictive assumptions often violated in practice.:$additive\ and\ linear.In fact, the two assumption may bot incorrect,each of the assumption can be removed by several methods.
 
@@ -505,7 +505,7 @@ The standard linear regression $Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ 
 
 - The $linear\ assumption$ the change in the response $Y$ due to a one-unit change in $X_j$ is constant, regardless of the value of $X_j$.But in some cases, the true relationship between the response and the predictors may be nonlinear. Here we present a very simple way to directly extend the linear model to accommodate non-linear relationships, using $polynomial\ regression$.
 
-### Potential Problems
+### 1.1.3. Potential Problems
 
 When we fit a linear regression model to a particular data set, many problems may occur. Most common among these are the following:
 
@@ -518,7 +518,7 @@ $
     6. Collinearity.
 $
 
-### 1.1.2. Summary for checking out a regression model
+### 1.1.4. Summary for checking out a regression model
 
 | Important Assumption                                     | What to check & do                                                                             |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -527,7 +527,7 @@ $
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
-### 1.1.3. Notice：R2 & multiple regression & R2-adjusted in multiple regression
+### 1.1.5. Notice：R2 & multiple regression & R2-adjusted in multiple regression
 
 R2-Adjusted：
 
