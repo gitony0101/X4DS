@@ -36,7 +36,7 @@
     - [1.1.2. Extensions of the Linear Model](#112-extensions-of-the-linear-model)
     - [1.1.3. Potential Problems](#113-potential-problems)
     - [1.1.4. Summary for checking out a regression model](#114-summary-for-checking-out-a-regression-model)
-    - [1.1.5. Notice：R2 & multiple regression & R2-adjusted in multiple regression](#115-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
+    - [1.1.5. Notice：$R^2$ & multiple regression & $R^2-adjusted$ in multiple regression](#115-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
 
 <!-- /TOC -->
 
@@ -527,18 +527,18 @@ $
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
-### 1.1.5. Notice：R2 & multiple regression & R2-adjusted in multiple regression
+### 1.1.5. Notice：$R^2$ & multiple regression & $R^2-adjusted$ in multiple regression
 
-R2-Adjusted：
+$R^2-adjusted$:
 
 $$
 R_{a d j}^{2}=1-\left[\frac{\left(1-R^{2}\right)(n-1)}{n-k-1}\right]
 $$
 
-Another measure of fit, R2-adjusted
+Another measure of fit, $R^2-adjusted$
 
-Always less than R2 since it includes penalty for too many terms
+Always less than$R^2$ since it includes penalty for too many terms
 
-As you add terms R2 always improves but the model may get worse
+As you add terms $R^2$ always improves but the model may get worse
 
-If R2 >> R2-adjusted, eliminate some of the X"s from the model
+If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
