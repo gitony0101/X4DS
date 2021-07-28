@@ -79,9 +79,9 @@
 
 ## Code Styles
 
-### basics
+### 2.1. basics
 
-- use `enumerate()` rather than `range(len())`
+- prefer `enumerate()` over `range(len())`
 
 ```python
 xs = range(3)
@@ -95,9 +95,10 @@ for i in range(len(xs)):
   print(f'{i}: {xs[i]}')
 ```
 
-### matplotlib
+### 2.2. plots
 
-- use `Axes` object rather than `Figure` object
+- prefer `Axes` object over `Figure` object
+- use `constrained_layout=True` when draw subplots
 
 ```python
 # good
@@ -112,15 +113,39 @@ plt.subplot(122)
 plt.hist(x2, y2)
 ```
 
-- use `set()` method rather than `set_*()` method
+- prefer `set()` method over `set_*()` method
 
 ```python
+
 # good
 ax.set(xlabel='x', ylabel='y')
 
 # bad
 ax.set_xlabel('x')
 ax.set_ylabel('y')
+```
+
+- Prefer `despine()` over `ax.spines[*].set_visible()`
+
+```python
+# good
+sns.despine()
+
+# bad
+ax.spines["top"].set_visible(False)
+ax.spines["bottom"].set_visible(False)
+ax.spines["right"].set_visible(False)
+ax.spines["left"].set_visible(False)
+```
+
+- prefer `dpi` over `figsize` in cases where the number of subplots is less than 3
+
+```python
+# good
+_, ax = plt.subplots(dpi=100)
+
+# bad
+_, ax = plt.subplots(figsize=(10, 8))
 ```
 
 ## Fundamental Exercises
