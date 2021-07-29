@@ -174,7 +174,7 @@ y = x^3 + x & x ≤ 0
 $$
 
 - matrix: `begin{matrix}...end{matrix}`
-
+<del>
 $$
 \begin{vmatrix}
   a + a^′ & b + b^′ \\ c & d
@@ -184,7 +184,8 @@ $$
   a^′ & b^′ \\ c & d
 \end{vmatrix}
 $$
-
+</del>
+  
 ### Brackets
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
@@ -227,10 +228,6 @@ $$
 
 <details>
   <summary>style</summary>
-    <link
-      rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
-    />
   <style>
     table {
       border-collapse: collapse;
