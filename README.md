@@ -174,8 +174,8 @@ y = x^3 + x & x ≤ 0
 $$
 
 - matrix: `begin{matrix}...end{matrix}`
-<del>
-$$
+
+![](http://latex.codecogs.com/svg.latex?$$
 \begin{vmatrix}
   a + a^′ & b + b^′ \\ c & d
   \end{vmatrix}= \begin{vmatrix}
@@ -183,8 +183,9 @@ $$
   \end{vmatrix} + \begin{vmatrix}
   a^′ & b^′ \\ c & d
 \end{vmatrix}
-$$
-</del>
+$$)
+
+
   
 ### Brackets
 
