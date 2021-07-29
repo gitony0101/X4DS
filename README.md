@@ -157,32 +157,50 @@ Reduce the use of `begin{array}...end{array}`
 
 - equations: `begin{aligned}...end{aligned}`
 
+```latex
 $$
 \begin{aligned}
 y_1 = x^2 + 2*x \\
 y_2 = x^3 + x
 \end{aligned}
 $$
+```
 
 - equations with conditions: `begin{cases}...end{cases}`
 
+```latex
 $$
 \begin{cases}
 y = x^2 + 2*x & x > 0 \\
 y = x^3 + x & x ≤ 0
 \end{cases}
 $$
+```
 
 - matrix: `begin{matrix}...end{matrix}`
 
-![formula](https://render.githubusercontent.com/render/math?math=\\huge%20\begin{vmatrix}a+a^′%20&b+b^′\\\%20c&d\end{vmatrix}=\begin{vmatrix}a&b\\\%20c&d\end{vmatrix}+\begin{vmatrix}a^′&b^′\\\c&d\end{vmatrix})
+```latex
+$$
+\begin{vmatrix}
+  a + a^′ & b + b^′ \\ c & d
+  \end{vmatrix}= \begin{vmatrix}
+  a & b \\ c & d
+  \end{vmatrix} + \begin{vmatrix}
+  a^′ & b^′ \\ c & d
+\end{vmatrix}
+$$
+```
   
 ### Brackets
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
 
-![formula](https://render.githubusercontent.com/render/math?math=\\huge%20A\\Bigg[v_1%20v_2%20...%20v_r\\Bigg])
 
+```latex
+$$
+A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]
+$$
+```
 
 ## Fundamental Exercises
 
