@@ -192,7 +192,7 @@ $$
 - prefer `\Bigg...\Bigg` over `\left...\right`
 
 
-![](http://latex.codecogs.com/svg.latex?$$A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]$$）
+![](http://latex.codecogs.com/svg.latex?A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]）
 
 
 ## Fundamental Exercises
