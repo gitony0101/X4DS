@@ -191,7 +191,7 @@ $$
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
 
-![formula](https://render.githubusercontent.com/render/math?math=A\\Bigg[v_1\\v_2\\...\\v_r\\Bigg])
+![formula](https://render.githubusercontent.com/render/math?math=\\huge%20A\\Bigg[v_1%20v_2%20...%20v_r\\Bigg])
 
 
 ## Fundamental Exercises
