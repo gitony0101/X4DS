@@ -148,6 +148,60 @@ _, ax = plt.subplots(dpi=100)
 _, ax = plt.subplots(figsize=(10, 8))
 ```
 
+
+## LaTeX Styles
+
+### Multiple lines
+
+Reduce the use of `begin{array}...end{array}`
+
+- equations: `begin{aligned}...end{aligned}`
+
+```latex
+$$
+\begin{aligned}
+y_1 = x^2 + 2*x \\
+y_2 = x^3 + x
+\end{aligned}
+$$
+```
+
+- equations with conditions: `begin{cases}...end{cases}`
+
+```latex
+$$
+\begin{cases}
+y = x^2 + 2*x & x > 0 \\
+y = x^3 + x & x ≤ 0
+\end{cases}
+$$
+```
+
+- matrix: `begin{matrix}...end{matrix}`
+
+```latex
+$$
+\begin{vmatrix}
+  a + a^′ & b + b^′ \\ c & d
+  \end{vmatrix}= \begin{vmatrix}
+  a & b \\ c & d
+  \end{vmatrix} + \begin{vmatrix}
+  a^′ & b^′ \\ c & d
+\end{vmatrix}
+$$
+```
+  
+### Brackets
+
+- prefer `\Bigg...\Bigg` over `\left...\right`
+
+
+```latex
+$$
+A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]
+$$
+```
+
 ## Fundamental Exercises
 
 [matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)<br>
