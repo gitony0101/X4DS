@@ -227,6 +227,10 @@ $$
 
 <details>
   <summary>style</summary>
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"
+    />
   <style>
     table {
       border-collapse: collapse;
