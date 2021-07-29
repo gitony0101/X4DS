@@ -175,7 +175,7 @@ $$
 
 - matrix: `begin{matrix}...end{matrix}`
 
-![](http://latex.codecogs.com/svg.latex?$$
+$$
 \begin{vmatrix}
   a + a^′ & b + b^′ \\ c & d
   \end{vmatrix}= \begin{vmatrix}
@@ -183,7 +183,7 @@ $$
   \end{vmatrix} + \begin{vmatrix}
   a^′ & b^′ \\ c & d
 \end{vmatrix}
-$$)
+$$
 
 
   
@@ -191,9 +191,8 @@ $$)
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
 
-$$
-A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]
-$$
+
+![](http://latex.codecogs.com/svg.latex?$$A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]$$）
 
 
 ## Fundamental Exercises
