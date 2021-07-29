@@ -175,17 +175,7 @@ $$
 
 - matrix: `begin{matrix}...end{matrix}`
 
-$$
-\begin{vmatrix}
-  a + a^′ & b + b^′ \\ c & d
-  \end{vmatrix}= \begin{vmatrix}
-  a & b \\ c & d
-  \end{vmatrix} + \begin{vmatrix}
-  a^′ & b^′ \\ c & d
-\end{vmatrix}
-$$
-
-
+![formula](https://render.githubusercontent.com/render/math?math=\\huge%20\begin{vmatrix}a+a^′%20&b+b^′\\\%20c&d\end{vmatrix}=\begin{vmatrix}a&b\\\%20c&d\end{vmatrix}+\begin{vmatrix}a^′&b^′\\\c&d\end{vmatrix})
   
 ### Brackets
 
