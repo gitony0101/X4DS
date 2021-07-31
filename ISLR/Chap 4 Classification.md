@@ -10,7 +10,17 @@ $$
 \mathop{Pr} = (default = Yes|balance)
 $$
 
-The values of Pr(default = Yes|balance), which we abbreviate p(balance), will range between 0 and 1. Then for any given value of balance, a prediction can be made for default. For example, one might predict default = Yes for any individual for whom p(balance) > 0.5. Alternatively, if a company wishes to be conservative in predicting individuals who are at risk for default, then they may choose to use a lower threshold, such as p(balance) > 0.1.
+The values of $\mathop{Pr} = (default = Yes|balance)$, which we abbreviate $p(balance)$, will range between 0 and 1. Then for any given value of balance, a prediction can be made for default. For example, one might predict default = Yes for any individual for whom $p(balance)$> 0.5. Alternatively, if a company wishes to be conservative in predicting individuals who are at risk for default, then they may choose to use a lower threshold, such as $p(balance)$> 0.1.
+
+**Key word: Conditional probabilty, Threshold**
+
+### Logistic Model
+
+WE can use the linear regression model:$p(X) = β_0 + β_1X$ to represent the probabilities$p(X)$, while the model is not sensible since the $p(X) ∈ (0,1)$,to avodi this problem, we use the $logistic\ function$:
+
+$$
+\mathop{P(x)} = \frac{e^{ β_0 + β_1X}}{1 + e^{ β_0 + β_1X}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.2)
+$$
 
 ## 1.2. Linear Discriminant Analysis(LDA)
 
