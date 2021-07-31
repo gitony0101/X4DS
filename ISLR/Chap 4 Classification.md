@@ -14,12 +14,57 @@ The values of $\mathop{Pr} = (default = Yes|balance)$, which we abbreviate $p(ba
 
 **Key word: Conditional probabilty, Threshold**
 
-### Logistic Model
+### 1.1.1. Logistic Model
 
 WE can use the linear regression model:$p(X) = β_0 + β_1X$ to represent the probabilities$p(X)$, while the model is not sensible since the $p(X) ∈ (0,1)$,to avodi this problem, we use the $logistic\ function$:
 
 $$
 \mathop{P(x)} = \frac{e^{ β_0 + β_1X}}{1 + e^{ β_0 + β_1X}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.2)
+$$
+
+To fit the model (4.2), we use a method called **maximum likelihood**,The logistic function will always produce an S-shaped curve of this form, and so regardless of the value of X, we will obtain a sensible prediction.With manipulation of (4.2), we find:
+$$\frac{p(X)}{1 - p(X)} = e^{β_0 + β_1X}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.3)$$
+The quatity $\frac{p(X)}{1 - p(X)}$ is called **$odds$**,and can take on any value odds between 0 and $∞$. Values of the odds close to 0 and $∞$ indicate very low and very high probabilities of default, respectively.By taking the logarithm of both sides of (4.3), we arrive at:
+
+$$
+log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.4)
+$$
+
+The left-hand side is called the $log-odds\ or\  logit$.
+
+### 1.1.2. Estimating the Regression Coefficients
+
+The coefficients $β_0$ and $β_1$ in (4.2) are unknown, and must be estimated based on the available training data by $MLE$.. This intuition can be formalized using a mathematical equation called a **likelihood function**:
+
+$$
+\mathop{ℓ(β_0, β_1)} = ∏_{i: y_{i}=1} p(x_{i}) ∏_{i': y_{i'}=1} p(x_{i'})
+$$
+
+The estimates $\hat{β}_0$ and $\hat{β}_1$ are chosen to **maximize this likelihood function.**
+
+The test-statistic also behaves similarly. Coefficients with large statistics indicate evidence against the null hypothesis $H_0:β_1=0$. For logistic regression, the null hypothesis implies that $p(X) = \frac{e^{β_0}}{1+e^{β_0}}$ , which means that the probability of defaulting does not depend on balance.
+
+Given the miniscule p-value associated with our balance coefficient, we can confidently reject $H_0$
+. The intercept $β_0$ is typically not of interest; it’s main purpose is to adjust the average fitted probabilities to the proportion of ones in the data.
+
+### 1.1.3. Making Predictions
+
+$$
+\hat{p}(X)=\frac{e^{\hat{β}_{0}+\hat{β}_{1} X}}{1+e^{\hat{β}_{0}+\hat{β}_{1} X}}
+$$
+
+### 1.1.4. Multiple Logistic Regression
+
+We now consider the problem of predicting a binary response using multiple predictors.we can generalize (4.4) as follows:
+
+$$
+log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p~~~~~~~~~~~~(4.6)
+$$
+
+where $X = (X_1, X_2, ⋯ + X_p)$ are $p$ predictors.manipulation of (4.6):
+
+$$
+\mathop{P(x)} = \frac{e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}{1 + e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.7)
 $$
 
 ## 1.2. Linear Discriminant Analysis(LDA)
