@@ -232,7 +232,8 @@ An example in R - we generate a our predictions base on $f(x)+e$, and also have 
 We assume that the true relationship between $X$ and $Y$ takes the form $Y = f(X) + ϵ$ for some unknown function $f$, where $ϵ$ is a mean-zero random error term. If $f$ is to be approximated by a linear function, then we can write this relationship as
 
 $$
-Y = β_0 +β_1X + ϵ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(3.5)
+Y = β_0 +β_1X + ϵ
+\tag{3.5}
 $$
 
 Here $β_0$ is the intercept term—that is, the expected value of $Y$ when $X = 0$, and $β_1$ is the slope—the average increase in $Y$ associated with a one-unit increase in $X$. The error term is a catch-all for what we miss with this simple model: the true relationship is probably not linear, there may be other variables that cause variation in $Y$ , and there may be measurement error. We typically assume that the error term is independent of X.
@@ -256,7 +257,7 @@ $$
 
 ### 1.2.3. Hypothesis Tests
 
-Standard Erros $μ$ can also be used to perform the $Hypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$.
+Standard Erros $μ$ can also be used to perform the $\teHypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$.
 Which is:
 
 $The~null~hypothesis~of$
