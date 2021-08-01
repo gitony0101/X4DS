@@ -24,7 +24,7 @@ $$
 
 To fit the model (4.2), we use a method called **maximum likelihood**,The logistic function will always produce an S-shaped curve of this form, and so regardless of the value of X, we will obtain a sensible prediction.With manipulation of (4.2), we find:
 $$\frac{p(X)}{1 - p(X)} = e^{β_0 + β_1X}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.3)$$
-The quatity $\frac{p(X)}{1 - p(X)}$ is called **$odds$**,and can take on any value odds between 0 and $∞$. Values of the odds close to 0 and $∞$ indicate very low and very high probabilities of default, respectively.By taking the logarithm of both sides of (4.3), we arrive at:
+The quatity $\frac{p(X)}{1 - p(X)}$ is called **$odds$**,and can take on any value odds between 0 and $∞$. Values of the odds close to 0 and $∞$ indicate very low and very high probabilities of default, respectively. By taking the logarithm of both sides of (4.3), we arrive at:
 
 $$
 log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.4)
@@ -67,12 +67,79 @@ $$
 \mathop{P(x)} = \frac{e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}{1 + e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.7)
 $$
 
+The dangers of drawing insights from **single predictor** regressions when other predictors may be relevant. The results from using one predictor can be substantially different compared to using multiple predictors. This phenomenon is known as **confounding**.
+
+### 1.1.5. Logistic Regression for >2 Response Classes
+
+Sometimes we wish to classify a response variable that has more than two classes. A method that is popular for multi-class classification is discriminant analysis.
+
 ## 1.2. Linear Discriminant Analysis(LDA)
 
 ### 1.2.1. Why LDA? Compared with LR?
 
 - Well-separated classes produce unstable parameter estimates for logistic regression models.
 - If $n$ is small and distribution of predictors $X$ is normall across the classes, the linear discriminant model is more stable than logistic regression.
+
+### 1.2.2. Using Bayes’ Theorem for Classification
+
+Consider the scenario where we want to classify an observation into one of $K$ classes, where $K≥2$.
+
+- Let $π_k$ represent the overall or $prior$ probability that a randomly chosen observation comes from the $kth$ class.
+
+- Let $f_k(x)=Pr(X=x|Y=k)$ denote the density function of $X$ for an observation that comes from the $kth$ class.
+
+In other words,$f_k(x)$ being large means that there is a high probability that an observation in the $kth$ class has $X≈x$.
+
+We can use $Bayes’\ theorem$
+
+$$
+Pr(Y=k|X=x) = \frac{π_kf_k(x)}{∑_{l=1}^Kπ_lf_l(x)}~~~~~~~~~~~~~(4.10)
+$$
+
+Call the left-hand side $p_k(X)$. We can plug in estimates of $π_k$ and $f_k(X)$ into Bayes’ theorem above to get the probability of a certain class, given an observation.
+
+- Solving for $π_k$ is easy if we have a random sample of $Y$s from the population. We simply calculate the fraction of observations that fall into a $k$ class.
+
+- Estimating $f_k(X)$ is more challenging unless we assume simple forms for these densities.
+
+We refer to $p_k(x)$ as the $posterior$ probability that an observation $X=x$ belongs to the $kth$ class. This is the probability that the observation belongs to the $kth$ class, given the predictor value for that observation.
+
+The Bayes’ classifier classifies an observation to the class for which $p_k(X)$ is largest. If we can find a way to estimate $f_k(X)$, we can develop a classifier that approximates the Bayes classifier.
+
+### 1.2.3. Linear Discriminant Analysis for p = 1
+
+Let’s assume we have **one predictor**. We need to obtain an estimate for $f_k(x)$ (the density function for $X$ given a class $k$). This will obtain a value for $p_k(x)$. We will then classify this observation for which $p_k(x)$ is greatest.
+
+To estimate $f_k(x)$, we need to make some assumptions about its form.
+
+Let’s assume $f_k(x)$ is $normal$ or $Gaussian$ ($f_k(x) ∈ N(μ, σ^2)$).The normal density takes the form:
+
+$$
+\mathop{f_k(x)} = \frac{1}{\sqrt{2π}σ_k} exp(-\frac{1}{2σ_k^2}(x-μ_k)^2)~~~~~~~~~~~~~~(4.11)
+$$
+
+where: $μ_k$ and $σ_k^2$ are the mean and variance parameters for the $kth$ class.
+
+Assuming that $σ_1^2= . . . = σ_k^2$: that is, there is a shared variance term across all $K$ classes, which for simplicity we can denote by $σ_2$.
+Plugging this back in to $p_k(x)$, we obtain:
+
+$$
+p_k(x) = \frac{π_k \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_k)^2)}{∑_{l=1}^K \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_l)^2)}~~~~~~~~~~~~~~~~~~~(4.12)
+$$
+
+$X = x$ to the class for which (4.12) is largest. Taking the log of (4.12) and rearranging the terms, it is not hard to show that this is equivalent to assigning the observation to the class for which is largest：
+
+$$
+δ_k(x) = x ⋅\frac{μ_k}{σ^2} - \frac{μ_k^2}{2σ^2} + log(π_k)~~~~~~~~~~~~~~~~~~~(4.13)
+$$
+
+If $K=2$ and $π_1 = π_2$,then the Bayes classifier assigns an observation to class 1,if $2x(μ_1 - μ_2) > μ_1^2 - μ_2^2$,and to class 2 otherwise. In this case, the Bayes decision boundary corresponds to the point where:
+
+$$
+x=\frac{\mu_{1}^{2}-\mu_{2}^{2}}{2\left(\mu_{1}-\mu_{2}\right)}=\frac{\mu_{1}+\mu_{2}}{2}~~~~~~~~~~~~~~~~~(4.14)
+$$
+
+### 1.2.4. Linear Discriminant Analysis for p > 1
 
 ## 1.2. Model Assessment
 
