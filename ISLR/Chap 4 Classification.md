@@ -222,13 +222,38 @@ Remember that LDA makes assumptions about normally distributed classes and equal
 
 ## 1.2. Model Assessment
 
+Criterion methods of evaluating models:
+
+- Precision-Recall Curve
+  - [g4g](https://www.geeksforgeeks.org/precision-recall-curve-ml/)
+- Confusion Matrix
+- Receiver Operating Characteristic (ROC) Curve.
+- AUC Curve
+
 ### 1.2.1. $Sensitivity$ and $specificity$
 
 Sensitivity and specificity characterize the performance of a classifier or screening test.In the balance-default case:
 
-- The $sensitivity$ is the percentage of **true defaults who are identified**
+- The $sensitivity$-(**Recall**) is the percentage of **true defaults who are identified**
 
 - The specificity is the percentage of **non-defaulters who are correctly identified**
+
+### Precision-Recall (PR) Curve
+
+A PR curve is simply a graph with Precision values on the y-axis and Recall values on the x-axis. The PR curve contains TP/(TP+FN) on the y-axis and TP/(TP+FP) on the x-axis.
+
+It is important to note that Precision is also called the Positive Predictive Value (PPV).Recall is also called Sensitivity, Hit Rate or True Positive Rate (TPR).
+
+The figure below shows a juxtaposition of sample PR and ROC curves.
+<img src=https://media.geeksforgeeks.org/wp-content/uploads/20190611002050/pr_roc.png>
+
+Interpreting a PR Curve –
+
+It is desired that the algorithm should have both high precision, and high recall. However, most machine learning algorithms often involve a trade-off between the two. A good PR curve has greater AUC (area under curve). In the figure above, the classifier corresponding to the blue line has better performance than the classifier corresponding to the green line.
+
+It is important to note that the classifier that has a higher AUC on the ROC curve will always have a higher AUC on the PR curve as well.
+
+Consider an algorithm that classifies whether or not a document belongs to the category “Sports” news. Assume there are 12 documents, with the following ground truth (actual) and classifier output class labels.
 
 ### 1.2.2. Confusion Matrix
 
