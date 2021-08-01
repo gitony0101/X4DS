@@ -156,7 +156,7 @@ $$
 
 #### 1.2.4.1. Why not PCA,bro?
 
-Linear Discriminant Analsys (LDA) islike PCA, but it focuses on maximzing the seperatibility among **known categories**:LDA is a **supervised** whereas PCA is **unsupervise**d – PCA ignores class labels.
+Linear Discriminant Analsys (LDA) is like PCA, but it focuses on maximzing the seperatibility among **known categories**:LDA is a **supervised** whereas PCA is **unsupervise**d – PCA ignores class labels.
 
 Morever, let's look at the two algorithms:
 
