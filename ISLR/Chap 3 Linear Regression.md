@@ -102,10 +102,11 @@ $$
 
 $$
 \mathop{\hat{β}_{1}}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\\
-\mathop{\hat{β}_{0}}=\bar{y}-\hat{β}_{1}\bar{x}~~~~~~~(3.4)
+\mathop{\hat{β}_{0}}=\bar{y}-\hat{β}_{1}\bar{x}
+\tag{3.4}
 $$
 
-where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\mathit{least\ squares\ estimats\ for\ simple \ linear\ regression}$
+where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\text{least squares  estimats  for  simple  linear  regression}$
 
 ### 1.1.2. Alternative definitions
 
