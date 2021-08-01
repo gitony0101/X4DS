@@ -145,14 +145,64 @@ $$
 \tag{4.13}
 $$
 
-If $K=2$ and $π_1 = π_2$,then the Bayes classifier assigns an observation to class 1,if $2x(μ_1 - μ_2) > μ_1^2 - μ_2^2$,and to class 2 otherwise. In this case, the Bayes decision boundary corresponds to the point where:
+If $K=2$ and $π_1 = π_2$,then the Bayes classifier assigns an observation to class 1,if $2x(μ_1 - μ_2) > μ_1^2 - μ_2^2$,and to class 2 otherwise. In this case, **the Bayes decision boundary** corresponds to the point where:
 
 $$
 x=\frac{\mu_{1}^{2}-\mu_{2}^{2}}{2\left(\mu_{1}-\mu_{2}\right)}=\frac{\mu_{1}+\mu_{2}}{2}
 \tag{4.14}
 $$
 
+Even if we are sure that $X$ is drawn from a Gaussian distribution within each class, we still need to estimate $μ_1, . . . , μ_K, π_1, . . . , π_K$, and σ_2. The $\textit{linear discriminant analysis (LDA)}$ method approximates the Bayes classifier by plugging in estimates as follows:
+
+$$
+\hat{\mu}_k = \frac{1}{n_k}\sum_{i:y_i=k}{x_i}
+\\
+\hat{\sigma}^2 = \frac{1}{n-K}\sum_{k=1}^{K}\sum_{i:y_i=k}{(x_i-\hat{\mu}_k)^2}
+\tag{4.15}
+$$
+
+where $n$ is the total number of training observations, and $n_k$ is the number of **training observations** in the $kth$ class.
+
+The estimate for $μ_k$ is simply the average of all the training observations from the kth class.To estimate $\hat{π}_k$, we simply take the proportion of training observations that belong to the $kth$ class:
+
+$$
+\hat{\pi}_k = n_k/n
+\tag{4.16}
+$$
+
+From these estimates, we can achieve a \*_decision boundary_:
+
+$$
+\hat{δ}_k(x) =x ⋅ \frac{\hat{μ_k}}{\hat{σ}^2} - \frac{\hat{μ_k}^2}{2\hat{σ}^2} + log(\hat{π}_k)
+\tag{4.17}
+$$
+
+The word **$linear$** in the classifier’s name stems from the fact that the $discriminant\ functions\ δ_k(x)$ in (4.17) are **linear functions** of $x$ (as opposed to a more complex function of x).
+
 ### 1.2.4. Linear Discriminant Analysis for p > 1
+
+the $Multivariate\ Gaussian\ (or\ Normal)\  Distribution(MVN)$ comes on line:
+
+To indicate that a $p-dimensional$ random variable $X$ has a MVN distribution: $X ~ N(μ, ∑)$ where:
+
+- $E(X)=μ$ is the mean of $X$ (a vector with $p$
+  components)
+
+- $Cov(X)=Σ$ is the $p∗p$ $covariance\ matrix$ of $X$.
+
+PDF:
+
+$$
+f(x) = \frac{1}{(2π)^{\frac{p}{2}}|∑|^{\frac{1}{2}}} exp(- \frac{1}{2}(x - μ)^T {∑}^{-1}(x - μ))
+\tag{4.18}
+$$
+
+Likewise, plugging the density function for the $kth$ class, $f_k(X=x)$, into(4.10),we have: the**Bayes classifier**(p > 1) ,it will assign observation $X=x$ by identifying the class for which
+
+$$
+\delta_{k}(x)=x^{T} \boldsymbol{\Sigma}^{-1} \mu_{k}-\frac{1}{2} \mu_{k}^{T} \boldsymbol{\Sigma}^{-1} \mu_{k}+\log \pi_{k}
+\tag{4.19}
+$$
 
 #### 1.2.4.1. Why not PCA,bro?
 
@@ -172,11 +222,19 @@ Remember that LDA makes assumptions about normally distributed classes and equal
 
 ## 1.2. Model Assessment
 
-### 1.2.1. Confusion Matrix
+### 1.2.1. $Sensitivity$ and $specificity$
+
+Sensitivity and specificity characterize the performance of a classifier or screening test.In the balance-default case:
+
+- The $sensitivity$ is the percentage of **true defaults who are identified**
+
+- The specificity is the percentage of **non-defaulters who are correctly identified**
+
+### 1.2.2. Confusion Matrix
 
 A confusion matrix is a convenient way to display this information, and looks as follows for the linear discriminant model (50% probability threshold) fit to the full Credit Default data:
 
-### 1.2.2. ROC Curve
+### 1.2.3. ROC Curve
 
 The ROC curve is a popular graphic for simultaneously displaying the two types of errors for all possible thresholds.
 
