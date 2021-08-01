@@ -19,15 +19,22 @@ The values of $\mathop{Pr} = (default = Yes|balance)$, which we abbreviate $p(ba
 WE can use the linear regression model:$p(X) = β_0 + β_1X$ to represent the probabilities$p(X)$, while the model is not sensible since the $p(X) ∈ (0,1)$,to avodi this problem, we use the $logistic\ function$:
 
 $$
-\mathop{P(x)} = \frac{e^{ β_0 + β_1X}}{1 + e^{ β_0 + β_1X}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.2)
+\mathop{P(x)} = \frac{e^{ β_0 + β_1X}}{1 + e^{ β_0 + β_1X}}
+\tag{4.2}
 $$
 
 To fit the model (4.2), we use a method called **maximum likelihood**,The logistic function will always produce an S-shaped curve of this form, and so regardless of the value of X, we will obtain a sensible prediction.With manipulation of (4.2), we find:
-$$\frac{p(X)}{1 - p(X)} = e^{β_0 + β_1X}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.3)$$
+
+$$
+\frac{p(X)}{1 - p(X)} = e^{β_0 + β_1X}
+\tag{4.3}
+$$
+
 The quatity $\frac{p(X)}{1 - p(X)}$ is called **$odds$**,and can take on any value odds between 0 and $∞$. Values of the odds close to 0 and $∞$ indicate very low and very high probabilities of default, respectively. By taking the logarithm of both sides of (4.3), we arrive at:
 
 $$
-log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.4)
+log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X
+\tag{4.4}
 $$
 
 The left-hand side is called the $log-odds\ or\  logit$.
@@ -58,13 +65,14 @@ $$
 We now consider the problem of predicting a binary response using multiple predictors.we can generalize (4.4) as follows:
 
 $$
-log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p~~~~~~~~~~~~(4.6)
+log(\frac{p(X)}{1 - p(X)}) = β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p
+\tag{4.6}
 $$
 
 where $X = (X_1, X_2, ⋯ + X_p)$ are $p$ predictors.manipulation of (4.6):
 
 $$
-\mathop{P(x)} = \frac{e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}{1 + e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(4.7)
+\mathop{P(x)} = \frac{e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}{1 + e^{β_0 + β_1X_1 + β_2X_2 ~ ⋯ + β_pX_p}}\tag{4.7}
 $$
 
 The dangers of drawing insights from **single predictor** regressions when other predictors may be relevant. The results from using one predictor can be substantially different compared to using multiple predictors. This phenomenon is known as **confounding**.
@@ -93,7 +101,8 @@ In other words,$f_k(x)$ being large means that there is a high probability that 
 We can use $Bayes’\ theorem$
 
 $$
-Pr(Y=k|X=x) = \frac{π_kf_k(x)}{∑_{l=1}^Kπ_lf_l(x)}~~~~~~~~~~~~~(4.10)
+Pr(Y=k|X=x) = \frac{π_kf_k(x)}{∑_{l=1}^Kπ_lf_l(x)}
+\tag{4.10}
 $$
 
 Call the left-hand side $p_k(X)$. We can plug in estimates of $π_k$ and $f_k(X)$ into Bayes’ theorem above to get the probability of a certain class, given an observation.
@@ -115,7 +124,8 @@ To estimate $f_k(x)$, we need to make some assumptions about its form.
 Let’s assume $f_k(x)$ is $normal$ or $Gaussian$ ($f_k(x) ∈ N(μ, σ^2)$).The normal density takes the form:
 
 $$
-\mathop{f_k(x)} = \frac{1}{\sqrt{2π}σ_k} exp(-\frac{1}{2σ_k^2}(x-μ_k)^2)~~~~~~~~~~~~~~(4.11)
+\mathop{f_k(x)} = \frac{1}{\sqrt{2π}σ_k} exp(-\frac{1}{2σ_k^2}(x-μ_k)^2)
+\tag{4.11}
 $$
 
 where: $μ_k$ and $σ_k^2$ are the mean and variance parameters for the $kth$ class.
@@ -124,19 +134,22 @@ Assuming that $σ_1^2= . . . = σ_k^2$: that is, there is a shared variance term
 Plugging this back in to $p_k(x)$, we obtain:
 
 $$
-p_k(x) = \frac{π_k \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_k)^2)}{∑_{l=1}^K \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_l)^2)}~~~~~~~~~~~~~~~~~~~(4.12)
+p_k(x) = \frac{π_k \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_k)^2)}{∑_{l=1}^K \frac{1}{\sqrt{2π}σ} exp(-\frac{1}{2σ^2}(x-μ_l)^2)}
+\tag{4.12}
 $$
 
 $X = x$ to the class for which (4.12) is largest. Taking the log of (4.12) and rearranging the terms, it is not hard to show that this is equivalent to assigning the observation to the class for which is largest：
 
 $$
-δ_k(x) = x ⋅\frac{μ_k}{σ^2} - \frac{μ_k^2}{2σ^2} + log(π_k)~~~~~~~~~~~~~~~~~~~(4.13)
+δ_k(x) = x ⋅\frac{μ_k}{σ^2} - \frac{μ_k^2}{2σ^2} + log(π_k)
+\tag{4.13}
 $$
 
 If $K=2$ and $π_1 = π_2$,then the Bayes classifier assigns an observation to class 1,if $2x(μ_1 - μ_2) > μ_1^2 - μ_2^2$,and to class 2 otherwise. In this case, the Bayes decision boundary corresponds to the point where:
 
 $$
-x=\frac{\mu_{1}^{2}-\mu_{2}^{2}}{2\left(\mu_{1}-\mu_{2}\right)}=\frac{\mu_{1}+\mu_{2}}{2}~~~~~~~~~~~~~~~~~(4.14)
+x=\frac{\mu_{1}^{2}-\mu_{2}^{2}}{2\left(\mu_{1}-\mu_{2}\right)}=\frac{\mu_{1}+\mu_{2}}{2}
+\tag{4.14}
 $$
 
 ### 1.2.4. Linear Discriminant Analysis for p > 1
