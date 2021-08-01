@@ -154,16 +154,27 @@ $$
 
 ### 1.2.4. Linear Discriminant Analysis for p > 1
 
+#### 1.2.4.1. Why not PCA,bro?
+
+Linear Discriminant Analsys (LDA) islike PCA, but it focuses on maximzing the seperatibility among **known categories**:LDA is a **supervised** whereas PCA is **unsupervise**d – PCA ignores class labels.
+
+Morever, let's look at the two algorithms:
+
+We can picture PCA as a technique that finds the directions of maximal variance:
+
+<img src=https://sebastianraschka.com/images/faq/lda-vs-pca/pca.png>
+
+In contrast to PCA, LDA attempts to find a feature subspace that maximizes class separability (note that LD 2 would be a very bad linear discriminant in the figure above).
+
+<img src=https://sebastianraschka.com/images/faq/lda-vs-pca/lda.png>
+
+Remember that LDA makes assumptions about normally distributed classes and equal class covariances.
+
 ## 1.2. Model Assessment
 
 ### 1.2.1. Confusion Matrix
 
 A confusion matrix is a convenient way to display this information, and looks as follows for the linear discriminant model (50% probability threshold) fit to the full Credit Default data:
-
-Did Not Default Did Default
-Predict No Default 9644 252
-Predict Default 23 81
-Total 9667 333
 
 ### 1.2.2. ROC Curve
 
