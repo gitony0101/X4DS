@@ -257,7 +257,7 @@ $$
 
 ### 1.2.3. Hypothesis Tests
 
-Standard Erros $μ$ can also be used to perform the $\teHypothesis~Tests~on ~the~coefficients$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$.
+Standard Erros $μ$ can also be used to perform the $\text{Hypothesis Tests on the coefficients}$,with the model of linear regression:$Y ≈ β_0 + β_1X$, we can find that if $β_1$ as the coefficient of $X$ is not equal to zero, that means there is some relationship between $X$ and $Y$.
 Which is:
 
 $The~null~hypothesis~of$
@@ -293,7 +293,8 @@ To test the null hypothesis, we need to determine whether $\hat{β_1},$our estim
 > In practice, we compute a $t-statistic$,given by
 
 $$
-t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}~~~~~~~~(3.14)
+t = \frac{\hat{β_1}-0}{\mathop{SE(\hat{β_1})}}
+\tag{3.14}
 $$
 
 If there really is no relationship between X and Y , then we expect that (3.14) will have a t-distribution with n − 2 degrees of freedom.
@@ -351,7 +352,8 @@ In simple linear regression, $R^2=r^2$.
 In general, suppose that we have $p$ distinct predictors. Then the multiple linear regression model takes the form:
 
 $$
-Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ ~~~~~~~~~~~~~~~~~~~~~~(3.19)
+Y = β_0 +β_1X_1+β_2X_2+ \cdots +β_pX_p + ϵ
+\tag{3.19}
 $$
 
 where $X_j$ represents the jth predictor and $β_j$ quantifies the association between that variable and the response. We interpret $β_j$ as the average effect on Y of a one unit increase in $X_j$, holding all other predictors fixed.
@@ -370,7 +372,8 @@ The parameters are estimated using the same least squares approach that we saw i
 $$
 \mathop{RSS} = \sum_{i=1}^n(y_i-\hat{y_i})^2
 \\
-= \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_{i1} - \hat{β_2}x_{i2} - ⋯-\hat{β_p}x_{ip} )^2~~~~~~~~~~~~~~~~~~~~~~~~(3.22)
+= \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_{i1} - ⋯-\hat{β_p}x_{ip} )^2
+\tag{3.22}
 $$
 
 The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
@@ -398,7 +401,8 @@ $$
 This hypothesis test is performed by computing the $F-statistic$,
 
 $$
-F = \frac{(\mathop{TSS-RSS})/p}{RSS/(n-p-1)},~~~~~~~~~~~~~~(3.23)
+F = \frac{(\mathop{TSS-RSS})/p}{RSS/(n-p-1)}
+\tag{3.23}
 $$
 
 > where,as with with simple linear regression,$\mathop{TSS}= ∑(y_i=\bar{y})^2$ and $\mathop{RSS}= \sum(y_i-\bar{y_i})^2$.
@@ -428,7 +432,8 @@ where for convenience we have put the variables chosen for omission at the end o
 In this case we fit a second model that uses all the variables **except those last $q$**. Suppose that the residual sum of squares for that model is $RSS_0$. Then the appropriate $F-statistic$ is:
 
 $$
-F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}~~~~~~~~~~~~~~(3.2.4)
+F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}
+\tag{3.24}
 $$
 
 #### 1.2.3.2. Deciding on Important Variables
@@ -490,7 +495,8 @@ We assume that all variables in our linear regression model are quantitative. Bu
 If a qualitative variable (also known as a factor) only has two possible values, then incorporating it into a model is easy. We can create a binomial dummy variable that takes on two values. For gender, this could be a variable that is 0 if observation has value male, and 1 if observation has value female. This variable can then be used in the regression equation.
 
 $$
-x_{i}= \begin{cases}1 & \text { if } i \text { th person is female } \\ 0 & \text { if } i \text { th person is male }\end{cases}~~~~~~~(3.26)
+x_{i}= \begin{cases}1 & \text { if } i \text { th person is female } \\ 0 & \text { if } i \text { th person is male }\end{cases}
+\tag{3.26}
 $$
 
 #### 1.1.2.3. Qualitative Predictors with More than Two Levels
