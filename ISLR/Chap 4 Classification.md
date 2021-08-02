@@ -225,7 +225,6 @@ Remember that LDA makes assumptions about normally distributed classes and equal
 Criterion methods of evaluating models:
 
 - Precision-Recall Curve
-  - [g4g](https://www.geeksforgeeks.org/precision-recall-curve-ml/)
 - Confusion Matrix
 - Receiver Operating Characteristic (ROC) Curve.
 - AUC Curve
@@ -238,32 +237,68 @@ Sensitivity and specificity characterize the performance of a classifier or scre
 
 - The specificity is the percentage of **non-defaulters who are correctly identified**
 
-### Precision-Recall (PR) Curve
+### 1.2.2. Precision-Recall (PR) Curve & ROC Curve
 
 A PR curve is simply a graph with Precision values on the y-axis and Recall values on the x-axis. The PR curve contains TP/(TP+FN) on the y-axis and TP/(TP+FP) on the x-axis.
 
 It is important to note that Precision is also called the Positive Predictive Value (PPV).Recall is also called Sensitivity, Hit Rate or True Positive Rate (TPR).
 
 The figure below shows a juxtaposition of sample PR and ROC curves.
+
 <img src=https://media.geeksforgeeks.org/wp-content/uploads/20190611002050/pr_roc.png>
 
-Interpreting a PR Curve –
+Interpreting a PR Curve – It is desired that the algorithm should have both high precision, and high recall.
+**However, most machine learning algorithms often involve a trade-off between the two**.
 
-It is desired that the algorithm should have both high precision, and high recall. However, most machine learning algorithms often involve a trade-off between the two. A good PR curve has greater AUC (area under curve). In the figure above, the classifier corresponding to the blue line has better performance than the classifier corresponding to the green line.
+A good PR curve has greater **AUC (area under curve**). In the figure above, the classifier corresponding to the blue line has better performance than the classifier corresponding to the green line.
 
-It is important to note that the classifier that has a higher AUC on the ROC curve will always have a higher AUC on the PR curve as well.
+- It is important to note that: the classifier that has **a higher AUC on the ROC curve will always have a higher AUC on the PR curve as well.**
 
-Consider an algorithm that classifies whether or not a document belongs to the category “Sports” news. Assume there are 12 documents, with the following ground truth (actual) and classifier output class labels.
+PR curve helps solve this issue. PR curve has the Recall value (TPR) on the x-axis, and precision = TP/(TP+FP) on the y-axis. Precision helps highlight how relevant the retrieved results are.
 
-### 1.2.2. Confusion Matrix
+**The ROC curve is a popular graphic for simultaneously displaying the two types of errors for all possible thresholds.**
+
+ROC curve is a plot containing Recall = TPR = TP/(TP+FN) on the x-axis and FPR = FP/(FP+TN) on the y-axis.
+
+The overall performance of a classifier summarized over all possible thresholds is given by the area under the curve (AUC). An ideal ROC curve will hug the top left corner, so the larger the AUC, the better the classifier.
+
+### 1.2.3. Confusion Matrix
 
 A confusion matrix is a convenient way to display this information, and looks as follows for the linear discriminant model (50% probability threshold) fit to the full Credit Default data:
 
-### 1.2.3. ROC Curve
+|          | Predicted 1 | Predicted2 |
+| -------- | ----------- | ---------- |
+| Actual 1 | $TP$        | $FN$       |
+| Actual 2 | $FP$        | $TN$       |
 
-The ROC curve is a popular graphic for simultaneously displaying the two types of errors for all possible thresholds.
+where
 
-The overall performance of a classifier summarized over all possible thresholds is given by the area under the curve (AUC). An ideal ROC curve will hug the top left corner, so the larger the AUC, the better the classifier.
+**TP -> True Positive** (Predicting Pregnant as Pregnant).
+
+**FN ->False Negative** (Predicting Pregnant as non-Pregnant).
+
+- (Type 2 Error)
+
+**FP -> False Positive** (predicting Non-Pregnant as Pregnant )
+
+- (Type 1 Error)
+
+**TN -> True Negativ**e (Predicting Non-Pregnant as non-Pregnant).
+
+Or:
+
+<img src=https://miro.medium.com/max/462/1*7EYylA6XlXSGBCF77j_rOA.png>
+
+<img src=https://miro.medium.com/max/1854/1*uR09zTlPgIj5PvMYJZScVg.png>
+
+### Compare 2 models-F-mearsure
+
+$$
+\mathop{F-measure} = F_1\ score = \frac{2 * Recall * Precision}{Recall + Precision}\\
+= \frac{2TP}{2TP + FP + FN} = \frac{2}{2 + \frac{FP + FN}{TP}}
+$$
+
+It is difficult to compare two models with low precision and high recall or vice versa. So to make them comparable, we useF-Score. F-score helps to measure Recall and Precision at the same time. It uses Harmonic Mean in place of Arithmetic Mean by punishing the extreme values more.
 
 ## 1.2. Quadratic Discriminant Analysis
 
@@ -271,25 +306,38 @@ Linear discriminant analysis assumes that observations within each class are dra
 
 Quadratic discriminant analysis assumes that each class has its own covariance matrix. In other words, quadratic discriminant analysis relaxes the assumption of the common covariance matrix.
 
+It assumes that each observation from the $kth$ class has the form $X∼N(μ_k,Σ_k), where $Σ_k$ is a covariance matrix for the $kth$ class.
+
+Under this assumption, **the Bayes classifier**assigns an observation $X=x$ to the class for which is largest. In this case, we plug in estimates for $Σ_k$, $μ_k$, and $π_k$. Notice the quantity $x$ appears as a quadratic function, hence the name.
+
+$$
+δ_k(x) = - \frac{1}{2}(x - μ_k)^T{∑}_k^{-1}(x - μ_k) - \frac{1}{2} log |\{{∑}_k| + log π_k\\
+            = - \frac{1}{2}x^T{∑}_k^{-1}x + x^T{∑}_k^{-1}μ_k - \frac{1}{2}μ_k^T{∑}_k^{-1}μ_k- \frac{1}{2} log |\{{∑}_k| + log π_k
+            \tag{4.23}
+$$
+
 ### 1.2.1. Linear vs Quadratic Discriminant Analysis
 
-Which method is better for classification? LDA or QDA? The answer lies in the bias-variance tradeoff.
+LDA or QDA is better for classification lies in the **bias-variance tradeoff.**
 
 LDA is a less flexible classifier, meaning it has lower variance than QDA. However, if the assumption of the common covariance matrix is badly off, then LDA could suffer from high bias.
 
-In general, LDA tends to be a better classifier than QDA if there are relatively few observations in the training data because reducing variance is crucial in this case.
+$$
+\textit{It depends.}
+$$
 
-In general, QDA is recommended over LDA if the training data is large, meaning that the variance of the classifier is not a major concern. QDA is also recommended over LDA if the assumption of the common covariance matrix is flawed.
+In general, LDA tends to be a better classifier than QDA if there are **relatively few observations** in the training data because reducing variance is crucial in this case.
 
-## 1.2. KNN K-Nearest Neighbors
+QDA is recommended over LDA if the **training data is large, meaning that the variance of the classifier is not a major concern.** Moreover, QDA is also recommended over LDA if the assumption of the common **covariance matrix is flawed**.
 
-K K K-Nearest Neighbors (KNN) is a popular nonparametric classifier method.
+·
 
-Given a positive integer K K K and some test observation, the KNN classifier identifies the K K K points in the training data that are closest to the test observation. These closest K K K points are represented by N0 N*{0} N0​. Then, it estimates the conditional probability for a class as the fraction of points in N0 N*{0} N0​ that represent that specific class. Lastly, KNN will apply the Bayes' rule and classify the test observation to the class with the largest probability.
+## A Comparison of Classification Methods
 
-However, the choice of the K K K value is very important. Lower values are more flexible, whereas higher values are less flexible but have more bias. Similar to the regression setting, a bias-variance tradeoff exists.
-
-## 1.3. Comparison of Classification Methods
+- Logistic regression
+- LDA
+- QDA
+- K-nearest neighbors
 
 There are four main classification methods: logistic regression, LDA, QDA, and KNN.
 
