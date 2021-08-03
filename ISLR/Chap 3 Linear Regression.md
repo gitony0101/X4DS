@@ -15,7 +15,6 @@
       - [1.1.2.3. **MSE--Mean Squared Error**](#1123-mse--mean-squared-error)
       - [1.1.2.4. $R^2$ Statistic](#1124-r2-statistic)
     - [1.1.2. P-value(Check $hypothesis~test$)](#112-p-valuecheck-hypothesistest)
-      - [1.1.2.1. X notes for me](#1121-x-notes-for-me)
   - [1.2. Estimating the Coefficients](#12-estimating-the-coefficients)
     - [1.2.1. Assessing the Accuracy of the Coefficient Estimates](#121-assessing-the-accuracy-of-the-coefficient-estimates)
     - [1.2.2. Computing Confidence Intervals](#122-computing-confidence-intervals)
@@ -195,25 +194,6 @@ larger in absolute value, assuming $β_1$= 0. We call this probability the p-val
 
 p-value is a association between the predictor and the response. Hence, if we see a small p-value,then we can infer that there is an association between the predictor and the response.
 
-#### 1.1.2.1. X notes for me
-
-表征依变数 Y 的变异中有多少百分比,可由控制的自变数 X 来解释.
-相关系数（coefficient of correlation）的平方即为决定系数。它与相关系数的区别在于除掉|R|=0 和 1 情况，
-由于 R2<R,可以防止对相关系数所表示的相关做夸张的解释。
-确定系数：在 Y 的总平方和中，由 X 引起的平方和所占的比例，记为 R2(R 的平方)
-确定系数的大小决定了相关的密切程度。
-当 R2 越接近 1 时，表示相关的方程式参考价值越高；相反，越接近 0 时，表示参考价值越低。这是在一元回归分 3 析中的情况。但从本质上说确定系数和回归系数没有关系，就像标准差和标准误差在本质上没有关系一样。
-在多元回归分析中，确定系数是通径系数的平方。
-表达式：R2=SSR/SST=1-SSE/SST
-其中：SST=SSR+SSE，SST (total sum of squares)为总平方和，SSR (regression sum of squares)为回归平方和，SSE (error sum of squares) 为残差平方和。
-注：（不同书命名不同）
-回归平方和：SSR(Sum of Squares for regression) = ESS (explained sum of squares)
-残差平方和：SSE（Sum of Squares for Error） = RSS (residual sum of squares)
-总离差平方和：SST(Sum of Squares for total) = TSS(total sum of squares)
-SSE+SSR=SST RSS+ESS=TSS
-意义：拟合优度越大，自变量对因变量的解释程度越高，自变量引起的变动占总变动的百分比高。观察点在回归直线附近越密集。
-取值范围：0-1.
-
 ## 1.2. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
@@ -309,7 +289,7 @@ Typical p-value cutoffs for rejecting the null hypothesis are 5 or 1 %.
 
 Onece the null hypothesis is rejected, which means there is some relationship between $X$ and $Y$.Thus we would like to quantify the extent to which the mode fits the data. Here in linear regression, the $residual~ standard~error(RSE)$ and the $R^2~statistic$ are two related quantities to assess the model.
 
-Recall the $RSE$:(残差标准误)
+Recall the $RSE$:
 
 $$
 \mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
