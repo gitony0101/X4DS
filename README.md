@@ -3,6 +3,7 @@
 **Python** & **Julia** port of codes in the following excellent R books (including exercises):
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
+- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917)(ITP)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
 
 > **Tidyverse** port also will be included.
@@ -227,6 +228,22 @@ $$
 <br>
 [Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
 
+
+## ITP
+
+* [Chapter 01 - Probability and Counting](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch1.ipynb) 
+* [Chapter 02 - Conditional Probability](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch2.ipynb)
+* [Chapter 03 - Random Variables and their Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch3.ipynb)
+* [Chapter 04 - Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch4.ipynb)
+* [Chapter 05 - Continuous Random Variables](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch5.ipynb)
+* [Chapter 06 - Moments](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch6.ipynb)
+* [Chapter 07 - Joint Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch7.ipynb)
+* [Chapter 08 - Transformations](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch8.ipynb)
+* [Chapter 09 - Conditional Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch9.ipynb)
+* [Chapter 10 - Inequalities and Limit Theorems](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch10.ipynb)
+* [Chapter 11 - Markov Chains](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch11.ipynb)
+* [Chapter 12 - Markov Chain Monte Carlo](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch12.ipynb)
+* [Chapter 13 - Poisson Processes](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch13.ipynb)
 
 ## References
 
