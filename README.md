@@ -205,28 +205,22 @@ $$
 
 ## Fundamental Exercises
 
-[matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)<br>
-[matplotlib-seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)<br>
-[pandas-read](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_read.ipynb)<br>
-[pandas-stats](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_stats.ipynb)<br>
+* [matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)
+* [matplotlib-seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
+* [pandas-read](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_read.ipynb)
+* [pandas-stats](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_stats.ipynb)
 
 ## ISLR
 
-[Chapter 02 - Statistical Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)<br>
-[Chapter 03 - Linear Regression](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)<br>
-[Chapter 04 - Classification](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
-<br>
-[Chapter 05 - Resampling Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
-<br>
-[Chapter 06 - Linear Model Selection and Regularization](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
-<br>
-[Chapter 07 - Moving Beyond Linearity](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
-<br>
-[Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
-<br>
-[Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
-<br>
-[Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
+* [Chapter 02 - Statistical Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)
+* [Chapter 03 - Linear Regression](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)
+* [Chapter 04 - Classification](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
+* [Chapter 05 - Resampling Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+* [Chapter 06 - Linear Model Selection and Regularization](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+* [Chapter 07 - Moving Beyond Linearity](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
+* [Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
+* [Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
+* [Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
 
 
 ## ITP
@@ -248,6 +242,7 @@ $$
 ## References
 
 - https://github.com/a-martyn/ISL-python
+- https://github.com/buruzaemon/IntroductionToProbabilityPy
 - https://github.com/tndoan/ISLR.jl
 
 <details>
