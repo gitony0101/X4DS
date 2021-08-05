@@ -75,5 +75,4 @@ $$
 
 装袋法是一种抽样方法
 
-
-### yinBagging法
+### 引导聚集算法 (Bagging-Boostrap aggregating)
