@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>Language Version</td>
+      <td>Language <br />Version</td>
       <td>v3.9</td>
       <td>v1.6</td>
     </tr>
