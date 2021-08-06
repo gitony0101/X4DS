@@ -6,8 +6,6 @@
 - [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
 
-> **Tidyverse** port also will be included.
-
 <table border="1">
   <thead>
     <tr>
