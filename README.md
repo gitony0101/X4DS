@@ -71,7 +71,6 @@
       <td>Basic</td>
       <td>
         <li>PyMC3</li>
-        <li>Bambi</li>
       </td>
       <td><li>Turing</li></td>
     </tr>
