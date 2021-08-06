@@ -19,13 +19,12 @@
   </thead>
   <tbody>
     <tr>
-      <td colspan="2">Language Version</td>
+      <td>Language Version</td>
       <td>v3.9</td>
       <td>v1.6</td>
     </tr>
     <tr>
       <td>Data <br />Processing</td>
-      <td>Basic</td>
       <td><li>Pandas</li></td>
       <td>
         <li>DataFrames</li>
@@ -34,7 +33,6 @@
     </tr>
     <tr>
       <td rowspan="2">Visualization</td>
-      <td>Basic</td>
       <td>
         <li>Matplotlib</li>
         <li>Seaborn</li>
@@ -45,13 +43,11 @@
       </td>
     </tr>
     <tr>
-      <td>Enhanced</td>
       <td><li>Yellowbrick</li></td>
       <td></td>
     </tr>
     <tr>
       <td>Machine<br />Learning</td>
-      <td>Basic</td>
       <td>
         <li>Scikit-Learn</li>
       </td>
@@ -64,7 +60,6 @@
         Probablistic<br />
         Programming
       </td>
-      <td>Basic</td>
       <td>
         <li>PyMC3</li>
       </td>
