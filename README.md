@@ -24,7 +24,7 @@
       <td>v1.6</td>
     </tr>
     <tr>
-      <td rowspan="2">Data <br />Processing</td>
+      <td>Data <br />Processing</td>
       <td>Basic</td>
       <td><li>Pandas</li></td>
       <td>
