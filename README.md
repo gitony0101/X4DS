@@ -27,12 +27,10 @@
       <td rowspan="2">Data <br />Processing</td>
       <td>Basic</td>
       <td><li>Pandas</li></td>
-      <td><li>StatsKit</li></td>
-    </tr>
-    <tr>
-      <td>Enhanced</td>
-      <td><li>PyJanitor</li></td>
-      <td><li>DataFramesMeta</li></td>
+      <td>
+        <li>DataFrames</li>
+        <li>DataFramesMeta</li>
+      </td>
     </tr>
     <tr>
       <td rowspan="2">Visualization</td>
