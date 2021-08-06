@@ -243,8 +243,7 @@ $$
 
 * [matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)
 * [matplotlib-seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
-* [pandas-read](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_read.ipynb)
-* [pandas-stats](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas_stats.ipynb)
+* [pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
 
 ## ISLR
 
