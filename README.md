@@ -56,11 +56,9 @@
       <td>Basic</td>
       <td>
         <li>Scikit-Learn</li>
-        <li>MLXtend</li>
       </td>
       <td>
         <li>MLJ</li>
-        <li>Clustering</li>
       </td>
     </tr>
     <tr>
