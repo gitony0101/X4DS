@@ -12,7 +12,6 @@
   <thead>
     <tr>
       <td></td>
-      <td></td>
       <td>Python Stack</td>
       <td>Julia Stack</td>
     </tr>
