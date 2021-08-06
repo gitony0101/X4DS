@@ -99,3 +99,5 @@ $$
 bootstrap
 
 ### 1.3.1. 引导聚集算法 (Bagging-Boostrap aggregating)
+
+#### 1.3.1.1. chap 8.2
