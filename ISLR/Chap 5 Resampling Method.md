@@ -1,6 +1,6 @@
-# 1. Chap 5 重抽样方法
+# 1. Chap 5 Resampling Methods
 
-重采样方法（resampling methods）：
+Resampling methods:
 
 重采样方法指重复地从训练集中选取数据进行拟合，以得到拟合模型的更多信息。主要有：
 
