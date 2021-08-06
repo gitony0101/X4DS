@@ -80,7 +80,7 @@
 
 ## Code Styles
 
-### 2.1. basics
+### 2.1. Basics
 
 - prefer `enumerate()` over `range(len())`
 
@@ -96,7 +96,9 @@ for i in range(len(xs)):
   print(f'{i}: {xs[i]}')
 ```
 
-### 2.2. plots
+### 2.2. Matplotlib
+
+including seaborn
 
 - prefer `Axes` object over `Figure` object
 - use `constrained_layout=True` when draw subplots
@@ -149,6 +151,40 @@ _, ax = plt.subplots(dpi=100)
 _, ax = plt.subplots(figsize=(10, 8))
 ```
 
+### 2.3. Pandas
+
+- prefer `df['col']` over `df.col`
+
+```python
+# good
+movies['duration']
+
+# bad
+movies.duration
+```
+
+- prefer `df.query` over `df[]` or `df.loc[]` in simple-selection
+
+```python
+# good
+movies.query('duration >= 200')
+
+# bad
+movies[movies['duration'] >= 200]
+movies.loc[movies['duration'] >= 200, :]
+```
+
+- prefer `df.loc` and `df.iloc` over `df[]` in multiple-selection
+
+```python
+# good
+movies.loc[movies['duration'] >= 200, 'genre']
+movies.iloc[0:2, :]
+
+# bad
+movies[movies['duration'] >= 200].genre
+movies[0:2]
+```
 
 ## LaTeX Styles
 
