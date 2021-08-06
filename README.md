@@ -241,9 +241,8 @@ $$
 
 ## Fundamental Exercises
 
-* [matplotlib-basics](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl_basics.ipynb)
-* [matplotlib-seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
-* [pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
+* [Matplotlib-Seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
+* [Pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
 
 ## ISLR
 
@@ -256,7 +255,6 @@ $$
 * [Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
 * [Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
 * [Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
-
 
 ## ITP
 
