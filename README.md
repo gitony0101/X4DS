@@ -219,10 +219,29 @@ $$
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
 
-
 ```latex
 $$
 A\Bigg[v_1\ v_2\ ⋯\ v_r\Bigg]
+$$
+```
+
+- prefer `\underset{}{}` over `\underset{}`
+
+$$
+\underset{θ}{\mathrm{argmax}}\ p(x_i|θ)
+$$
+
+### 3.3. Fonts
+
+- prefer `\mathrm` over `\mathop` or `\operatorname`
+
+$$
+θ_{\mathrm{MLE}}=\underset{θ}{\mathrm{argmax}}\ ∑_{i = 1}^{N}\log p(x_i|θ)
+$$
+
+```latex
+$$
+θ_{\mathrm{MLE}}=\underset{θ}{\mathrm{argmax}}\ ∑_{i = 1}^{N}\log p(x_i|θ)
 $$
 ```
 
