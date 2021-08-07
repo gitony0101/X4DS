@@ -227,17 +227,15 @@ $$
 
 - prefer `\underset{}{}` over `\underset{}`
 
+```latex
 $$
 \underset{θ}{\mathrm{argmax}}\ p(x_i|θ)
 $$
+```
 
 ### 3.3. Fonts
 
 - prefer `\mathrm` over `\mathop` or `\operatorname`
-
-$$
-θ_{\mathrm{MLE}}=\underset{θ}{\mathrm{argmax}}\ ∑_{i = 1}^{N}\log p(x_i|θ)
-$$
 
 ```latex
 $$
