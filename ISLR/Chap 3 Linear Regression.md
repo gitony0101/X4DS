@@ -186,7 +186,7 @@ $$
 $R^2$ proportion of total variation accountedfor by the independent variables in themodel.
 
 - $0 ≤ R^2 ≤ 1$
-- $R^2$ is correlation between predicted andobserved outcomes
+- $R^2$ is correlation between predicted and observed outcomes
 
 ### 1.1.2. P-value(Check $hypothesis~test$)
 
