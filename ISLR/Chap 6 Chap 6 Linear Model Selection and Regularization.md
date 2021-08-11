@@ -4,18 +4,27 @@
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
+Shrinkage methods = RSS + Penalty, this is a soultion of the multicollinearity for linear regression.
+
+Rethink about the multicollinearity and cramer's rule.
+
 ### 1.2.1. Why Shrinkage methods?
 
 Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}$, but what if ${\bf X^{⊤}X}$ is NOT inverse?
 
-> ${\bf X^{⊤}X}$ is NOT inverse:${\bf X^{⊤}X}$ is NOT Full-ranked, which means $Multicollinearity$.
-> Or there is at **least one eigenvalue** $λ_i = 0$
+> ${\bf X^{⊤}X}$ is NOT inverse:${\bf X^{⊤}X}$ is NOT Full-ranked, which means ${\bf |X^{⊤}X| = 0}$, or $Multicollinearity$: There is at **least one eigenvalue** $λ_i = 0$
+>
+> - In practice, the ${\bf |X^{⊤}X| ≈ 0}$, thus makes the $\hat{β}$ **unstable** : $D(\hat{β}) = σ^2({\bf X^{⊤}X})^{-1}$ **increases**.
 
 ### 1.2.2. Penalty
 
+In order to solve the practical problem, we want the $\hat{β}$ not to fluctuate to much, so we want to make a limitation for $\hat{β}$: the Penalty.
+
 #### 1.2.2.1. But why penalty?
 
-efinite Positive 正定
+In Matrix Algebra , Matrix has the property that, intuitively, if $\{λ_1,λ_2,⋯,λ_p\}$ are the eigenvalues of ${\bf X^{⊤}X}$,then $\{λ_1 + k,λ_2+ k,⋯,λ_p + k\}$ are the eigenvalues of $({\bf X^{⊤}X} + kI),(k > 0)$, where ${\bf X^{⊤}X}$ is $s.p.d(Semi-positive-definite)$.
+
+The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix full-ranked, in the original $RSS + penalty$, it make sure that solution of $\hat{β}$ exists.Alternatively, the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.
 
 #### 1.2.2.2. **The main difference of the models is the feature of the penalty**
 
@@ -123,8 +132,62 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p β_j^2}
 $$
 
+We let:
+
+$$
+\begin{aligned}
+\mathbf{y}&=\left[\begin{array}{c}
+y_{1} \\
+y_{2} \\
+\vdots \\
+y_{n}
+\end{array}\right], \quad\quad \quad  \mathbf{X}=\left[\begin{array}{ccccc}
+1 & x_{11} & x_{12} & \cdots & x_{1 k} \\
+1 & x_{21} & x_{22} & \cdots & x_{2 k} \\
+\vdots & \vdots & \vdots & & \vdots \\
+1 & x_{n 1} & x_{n 2} & \cdots & x_{n k}
+\end{array}\right]
+\\
+β&=\left[\begin{array}{c}
+β_{0} \\
+β_{1} \\
+\vdots \\
+β_{k}
+\end{array}\right], \quad\quad \quad
+ϵ=\left[\begin{array}{c}
+ϵ_{1} \\
+ϵ_{2} \\
+\vdots \\
+ϵ_{n}
+\end{array}\right]
+\end{aligned}
+$$
+
+We let:
+
+$$
+\begin{aligned}
+f(β) & = \sum_{i=1}^n(y_i-\hat{y})^2 + λ∑_{j=1}^p β_j^2
+\\ & ={\bf (y-xβ)^{⊤}(y-xβ) + λβ^{⊤}β}
+\end{aligned}
+$$
+
+We want to find $\mathop{arg \min\limits_{β}}f(β)$, which means $\frac{∂f(β)}{∂β} = ∇f(\beta)$.Firstly, $\frac{ λβ^{⊤}β}{∂β} = ∇f(\beta)$
+We want to find $\mathop{arg \min\limits_{β}}f(β)$, which means $\frac{∂f(β)}{∂β} = ∇f(\beta)$.Firstly, $\frac{∂(\bf λβ^{⊤}β)}{∂{\bf β}} = 2λβ$ ,Secondly, let $g(β) = {\bf (y-xβ)^{⊤}(y-xβ)}$
+
+Find the direction derivative of $g(β)$ by definition:
+
+$$
+\begin{aligned}
+\frac{∂g(β)}{∂β} & = ∇g(\beta)
+\\ & = \lim _{t→0} \frac{g(β + tv) - g(β)}{t} \stackrel{\text{\bf z = y-xβ}}{=}
+\end{aligned}
+$$
+
 ### 1.2.3. Lasso Regression
 
 $$
 \hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p |β_j|}
 $$
+
+$\stackrel{\text{text}}{=}$

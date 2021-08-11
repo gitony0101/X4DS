@@ -377,7 +377,7 @@ $$
 $$
 
 **This of course works only if the inverse exists.**If the inverse does not exist, the normal equations can still be solved, but the solution may not be unique.
-Then we will go to $Chapter\ 6$ looking for $\text{Ridge and Lasso Regression}$.
+Then we will go to $Chapter\ 6$ looking for $\text{Ridge and Lasso egression}$.
 
 ### 1.2.3. Important Issues
 

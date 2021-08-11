@@ -11,9 +11,8 @@ $$
 \mathit{Reference:b\_Ref\_Latex}
 $$
 
-
-
 ## 2. greek symbol
+
 $$
 \hatβ
 \\
@@ -21,16 +20,17 @@ y^{ix}_{jy}
 $$
 
 ## 3. Equations
+
 $$
 F(i)=\sum_{i=1}^m5i
 $$
 
 $$
-\begin{eqnarray}
-a=g^k mod~ p
-\end{eqnarray}
+\begin{aligned}
+\frac{∂g(β)}{∂β} & = ∇g(\beta)
+\\ & = \lim _{t→0} \frac{g(β + tv) - g(β)}{t} \stackrel{\text{\bf z = y-xβ}}{=}
+\end{aligned}
 $$
-
 
 ## codes
 
@@ -51,6 +51,7 @@ $$
 $$
 
 ### 4.1. \operatorname and \mathrm
+
 \
 $\sin x + \sin(x+y) + a\sin z$
 
@@ -65,8 +66,8 @@ $\operatorname{pre-norm}(\mathbf{v})$
 
 $\mathrm{pre-norm}(\mathbf{v})$
 
->Generally ,we can use \operatorname as standard
->When it goes to the text we use `\mathop`,which is preferable.
+> Generally ,we can use \operatorname as standard
+> When it goes to the text we use `\mathop`,which is preferable.
 
 $\mathop{sin} x + \mathop{sin}(x+y) + a\mathop{sin}z$
 
@@ -75,7 +76,6 @@ F(i)=\mathop{\sum y{(1)},y{(2)} , \cdots , y^{(m)}} \limits_{1 \cdots m}
 \\
 F(i)=\mathop{\sum y{(1)},y{(2)} , \cdots , y^{(m)}} \limits^{1 \cdots m}
 $$
-
 
 ## 5. blankspace
 
@@ -92,8 +92,7 @@ c+d=2
 \end{equation}
 $$
 
-
->$\mathit{Notes\ below\ by\ Xavier\ Yang:}$
+> $\mathit{Notes\ below\ by\ Xavier\ Yang:}$
 
 ## 6. Simple linear regression
 
@@ -114,15 +113,13 @@ We will sometimes describe (3.1) by saying that we are regressinsg Y on X (or Y 
 ## 7. Estimating the Coefficients
 
 The goal is to obtain coefficients such that the linear model fits
-the data well - *i.e.* as close as possible to the data points. The most common approach involves minimising the **least squares** criterion.
+the data well - _i.e._ as close as possible to the data points. The most common approach involves minimising the **least squares** criterion.
 
 We let
 
 $$
 e_i = y_i − ŷ_i
 $$
-
-
 
 which represents the ith **residual**. The **residual sum of squares** or **RSS** is the sum of the squares of each of these residuals.
 
@@ -147,8 +144,8 @@ $$
 ### 7.4. $R^2$
 
 $$
-R^2 = 
-\frac{TSS - RSS}{TSS} = 
+R^2 =
+\frac{TSS - RSS}{TSS} =
 1 - \frac{RSS}{TSS} =
 1-\frac{\text { Unexplained Variation }}{\text{ Total Variation }}
 $$
@@ -160,8 +157,6 @@ $R^2$ proportion of total variation accountedfor by the independent variables in
 
 ### 7.5. P-value
 
+比如不加 \mathrm 的 ABCDEFGabcdefg 如下所示：\mathrm{RSS [ABCDEFGabcdefg]
 
-
-比如不加 \mathrm 的 ABCDEFGabcdefg如下所示：\mathrm{RSS [ABCDEFGabcdefg]
-
-加了 \mathrm{ABCDEFGabcdefg} 如下所示： [\mathrm{ABCDEFGabcdefg}] 
+加了 \mathrm{ABCDEFGabcdefg} 如下所示： [\mathrm{ABCDEFGabcdefg}]
