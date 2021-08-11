@@ -189,5 +189,3 @@ $$
 $$
 \hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p |β_j|}
 $$
-
-$\stackrel{\text{text}}{=}$
