@@ -103,6 +103,22 @@ plt.subplot(122)
 plt.hist(x2, y2)
 ```
 
+- prefer `axes.flatten()` over `plt.subplot()` in cases where subplots' data is iterable
+- prefer `zip()` or `enumerate()` over `range()` for iterable objects
+
+```python
+# good
+_, ax = plt.subplots(2, 2, constrained_layout=True)
+
+for ax, x, y in zip(axes.flatten(), xs, ys):
+  ax.plot(x, y)
+
+# bad
+for i in range(4):
+  ax = plt.subplot(2, 2, i+1)
+  ax.plot(x[i], y[i])
+```
+
 - prefer `set()` method over `set_*()` method
 
 ```python
@@ -126,16 +142,6 @@ ax.spines["top"].set_visible(False)
 ax.spines["bottom"].set_visible(False)
 ax.spines["right"].set_visible(False)
 ax.spines["left"].set_visible(False)
-```
-
-- prefer `dpi` over `figsize` in cases where the number of subplots is less than 3
-
-```python
-# good
-_, ax = plt.subplots(dpi=100)
-
-# bad
-_, ax = plt.subplots(figsize=(10, 8))
 ```
 
 ### 2.3. Pandas
