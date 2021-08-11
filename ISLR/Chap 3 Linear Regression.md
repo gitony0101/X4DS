@@ -1,44 +1,5 @@
 # 1. Chaper 3 Linear Regression
 
-<!-- TOC -->
-
-- [1. Chaper 3 Linear Regression](#1-chaper-3-linear-regression)
-  - [1.1. Simple linear regression](#11-simple-linear-regression)
-    - [1.1.1. Important assumptions in simple linear regression](#111-important-assumptions-in-simple-linear-regression)
-    - [1.1.2. Important definitions: RSS ESS TSS RSE MSE, etc.](#112-important-definitions-rss-ess-tss-rse-mse-etc)
-      - [1.1.2.1. **RSS——Residual Sum of Squares**](#1121-rssresidual-sum-of-squares)
-      - [1.1.2.2. **ESS——Explained Sum of Squares**](#1122-essexplained-sum-of-squares)
-      - [1.1.2.3. **TSS——Total Sum of Squares**](#1123-tsstotal-sum-of-squares)
-    - [1.1.2. Alternative definitions](#112-alternative-definitions)
-      - [1.1.2.1. Standard Error of $\hat{μ}$](#1121-standard-error-of-hatμ)
-      - [1.1.2.2. **RSE——Residual Standard Error**](#1122-rseresidual-standard-error)
-      - [1.1.2.3. **MSE--Mean Squared Error**](#1123-mse--mean-squared-error)
-      - [1.1.2.4. $R^2$ Statistic](#1124-r2-statistic)
-    - [1.1.2. P-value(Check $hypothesis~test$)](#112-p-valuecheck-hypothesistest)
-  - [1.2. Estimating the Coefficients](#12-estimating-the-coefficients)
-    - [1.2.1. Assessing the Accuracy of the Coefficient Estimates](#121-assessing-the-accuracy-of-the-coefficient-estimates)
-    - [1.2.2. Computing Confidence Intervals](#122-computing-confidence-intervals)
-    - [1.2.3. Hypothesis Tests](#123-hypothesis-tests)
-    - [1.2.4. Assessing the Accuracy of the Model-By RSE and $R^2$](#124-assessing-the-accuracy-of-the-model-by-rse-and-r2)
-  - [1.2. Multiple Linear Regression](#12-multiple-linear-regression)
-    - [1.2.1. Assumptions that matter in multiple linear regression:](#121-assumptions-that-matter-in-multiple-linear-regression)
-    - [1.2.2. Estimating the Regression Coefficients](#122-estimating-the-regression-coefficients)
-    - [1.2.3. Important Issues](#123-important-issues)
-      - [1.2.3.1. One: Is There a Relationship Between the Response and Predictors?](#1231-one-is-there-a-relationship-between-the-response-and-predictors)
-      - [1.2.3.2. Deciding on Important Variables](#1232-deciding-on-important-variables)
-      - [1.2.3.3. Model Fit](#1233-model-fit)
-      - [1.2.3.4. Predictions](#1234-predictions)
-    - [1.1.2. Other Considerations in the Regression Model](#112-other-considerations-in-the-regression-model)
-      - [1.1.2.1. Qualitative Predictors In our discussion](#1121-qualitative-predictors-in-our-discussion)
-      - [1.1.2.2. Predictors with only Two Levels](#1122-predictors-with-only-two-levels)
-      - [1.1.2.3. Qualitative Predictors with More than Two Levels](#1123-qualitative-predictors-with-more-than-two-levels)
-    - [1.1.2. Extensions of the Linear Model](#112-extensions-of-the-linear-model)
-    - [1.1.3. Potential Problems](#113-potential-problems)
-    - [1.1.4. Summary for checking out a regression model](#114-summary-for-checking-out-a-regression-model)
-    - [1.1.5. Notice：$R^2$ & multiple regression & $R^2-adjusted$ in multiple regression](#115-noticer2--multiple-regression--r2-adjusted-in-multiple-regression)
-
-<!-- /TOC -->
-
 ## 1.1. Simple linear regression
 
 Simple linear regression:predicting a quantitative response Y on the basis of a single predictor variable X.
@@ -70,6 +31,8 @@ $$
 \mathop{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2=\left(y_{1}-\hat{β}_{0}-\hat{β}_{1} x_{1}\right)^{2}+\left(y_{2}-\hat{β}_{0}-\hat{β}_{1} x_{2}\right)^{2}+\ldots+\left(y_{n}-\hat{β}_{0}-\hat{β}_{1} x_{n}\right)^{2}
 $$
 
+The $RSS$ is the **key point of Statistical Learning**, since the target of which is to **$minimize$ the sum of differences** between **the observations $\hat{y_i}$ and the true value $y_i$**.
+
 #### 1.1.2.2. **ESS——Explained Sum of Squares**
 
 The explained sum of squares (ESS) is the sum of the squares of the deviations of the predicted values from the mean value of a response variable.
@@ -97,17 +60,23 @@ $$
 \mathop{TSS} = \mathop{ESS} + \mathop{RSS}
 $$
 
-**The least squares approach** chooses $\hat\beta_0$ and $\hat\beta_1$ to minimize the RSS. Using some calculus, one can show that the minimizers are:
+### 1.1.2. **The least squares approach**
+
+**Here we begins!**
+
+**The least squares approach** chooses $\hatβ_0$ and $\hatβ_1$ to minimize the RSS. Using some calculus, one can show that the minimizers are:
 
 $$
-\mathop{\hat{β}_{1}}=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\\
-\mathop{\hat{β}_{0}}=\bar{y}-\hat{β}_{1}\bar{x}
+\begin{aligned}
+\mathop{\hat{β}_{1}}&=\frac{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)\left(y_{i}-\bar{y}\right)}{\sum_{i=1}^{n}\left(x_{i}-\bar{x}\right)^{2}}\\
+\mathop{\hat{β}_{0}}&=\bar{y}-\hat{β}_{1}\bar{x}
 \tag{3.4}
+\end{aligned}
 $$
 
 where $\bar{y}≣ \frac{1}{n} \sum_{i=1}^ny_i$ and $\bar{x}≣ \frac{1}{n} \sum_{i=1}^nx_i$ are the sample means.Or the equation defines are $\text{least squares  estimats  for  simple  linear  regression}$
 
-### 1.1.2. Alternative definitions
+### 1.1.3. Alternative definitions
 
 > different definitions:
 
@@ -125,7 +94,7 @@ So we have:
 
 - **RSS+ESS=TSS**
 
-#### 1.1.2.1. Standard Error of $\hat{μ}$
+#### 1.1.3.1. Standard Error of $\hat{μ}$
 
 A natural question is as follows: how accurate is the sample mean $\hat{μ}$ as an estimate of $μ$? We have established that the average of $\hat{μ}'s$ over many data sets will be very close to $μ$, but that a single estimate $\hat{μ}$ may be a substantial underestimate or overestimate of $μ$.
 
@@ -152,7 +121,7 @@ $$
 For more applications,check the:
 $$Confidence~intervals~and~Hypothesis~test$$
 
-#### 1.1.2.2. **RSE——Residual Standard Error**
+#### 1.1.3.2. **RSE——Residual Standard Error**
 
 Since every observation has an associated error term $ϵ$, having the knowledge of true $β_0$ and $β_1$ will still not allow one to perfectly predict $Y$. The residual standard error estimates the standard deviation of the error term.
 
@@ -160,7 +129,7 @@ $$
 \mathop{RSE} = \sqrt{1/(n-2)*RSS} = \sqrt{1/(n-2)\sum_{i=1}^{n}(y_i - \hat y)^2}
 $$
 
-#### 1.1.2.3. **MSE--Mean Squared Error**
+#### 1.1.3.3. **MSE--Mean Squared Error**
 
 (CH02 2.2.1) \
 In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its predictions actually match the observed data. \
@@ -174,7 +143,7 @@ where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observ
 
 The MSE will be small if the predicted responses are very close to the true responses, and will be large if for some of the observations, the predicted and true responses differ substantially.
 
-#### 1.1.2.4. $R^2$ Statistic
+#### 1.1.3.4. $R^2$ Statistic
 
 $$
 R^2 =
@@ -350,13 +319,65 @@ where $X_j$ represents the jth predictor and $β_j$ quantifies the association b
 The parameters are estimated using the same least squares approach that we saw in the context of simple linear regression. We choose $β_0, β_1, \cdots  , β_p$ to minimize the sum of squared residuals($RSS$):
 
 $$
-\mathop{RSS} = \sum_{i=1}^n(y_i-\hat{y_i})^2
-\\
-= \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_{i1} - ⋯-\hat{β_p}x_{ip} )^2
+\begin{aligned}
+\mathop{RSS} &= \sum_{i=1}^n(y_i-\hat{y_i})^2
+\\ &= \sum_{i=1}^n(y_i-\hat{β_0} - \hat{β_1}x_{i1} - ⋯-\hat{β_p}x_{ip} )^2
+\\ & = {\bf (y - Xβ)^{⊤}(y - Xβ)}
 \tag{3.22}
+\end{aligned}
 $$
 
 The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
+
+### Least squares for Multiple Linear Regression
+
+We let:
+
+$$
+\begin{aligned}
+\mathbf{y}&=\left[\begin{array}{c}
+y_{1} \\
+y_{2} \\
+\vdots \\
+y_{n}
+\end{array}\right], \quad\quad \quad  \mathbf{X}=\left[\begin{array}{ccccc}
+1 & x_{11} & x_{12} & \cdots & x_{1 k} \\
+1 & x_{21} & x_{22} & \cdots & x_{2 k} \\
+\vdots & \vdots & \vdots & & \vdots \\
+1 & x_{n 1} & x_{n 2} & \cdots & x_{n k}
+\end{array}\right]
+\\
+β&=\left[\begin{array}{c}
+β_{0} \\
+β_{1} \\
+\vdots \\
+β_{k}
+\end{array}\right], \quad\quad \quad
+ϵ=\left[\begin{array}{c}
+ϵ_{1} \\
+ϵ_{2} \\
+\vdots \\
+ϵ_{n}
+\end{array}\right]
+\end{aligned}
+$$
+
+With this compact notation, the multiple linear regression model can be written in the form：
+
+$$
+{\bf y = Xβ + ϵ}
+$$
+
+In linear algebra terms, the least-squares parameter estimates β are the vectors that minimize:$RSS$
+
+The least-squares estimator of $β$ is (in vector form):
+
+$$
+\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}
+$$
+
+**This of course works only if the inverse exists.**If the inverse does not exist, the normal equations can still be solved, but the solution may not be unique.
+Then we will go to $Chapter\ 6$ looking for $\text{Ridge and Lasso Regression}$.
 
 ### 1.2.3. Important Issues
 
@@ -418,7 +439,7 @@ $$
 
 #### 1.2.3.2. Deciding on Important Variables
 
-The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable selection$.
+The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable\ selection$.
 
 Ideally, we would like to perform variable selection by trying out a lot of different models, each containing a different subset of the predictors.
 
@@ -460,7 +481,7 @@ Two common methods of model fit are the $RSE $and $R^2$,the fraction of variance
 
 **Three sorts of uncertainty** associated with the prediction:
 
-- 1. The coefficient estimates $\hat{β_0}+ \hat{β_1} + ⋯+\hat{β_p}   $ are estimates for $β_0+β_1 + ⋯ + β_p$. This inaccuracy is part of the reducible error. We can compute a confidence interval to determine how close $\hat{Y}$ is to $f(X)$.
+- 1. The coefficient estimates $\hat{β_0}+ \hat{β_1} + ⋯+\hat{β_p}$ are estimates for $β_0+β_1 + ⋯ + β_p$. This inaccuracy is part of the reducible error. We can compute a confidence interval to determine how close $\hat{Y}$ is to $f(X)$.
 - 2 $Model~Bias$: can result from the fact that we are fitting a linear approximation to the true surface of $f(X)$.
 - 3. $Random~Error~ϵ$: $irreducible\ error$. We can use prediction intervals to estimate how far $Y$ will differ from $\hat{Y}$. These will always be larger than confidence intervals, because they incorporate both the $reducible + irreducible error$.
 
