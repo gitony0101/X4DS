@@ -233,7 +233,45 @@ $$
 $$
 ```
 
-### 3.3. Fonts
+### Expressions
+
+- prefer `^{\top}` over `^T` for transpose
+
+$$
+𝐀^⊤
+$$
+
+```latex
+$$
+𝐀^{\top}
+$$
+```
+
+- prefer `\to` over `\rightarrow` for limit
+
+$$
+\lim_{n → ∞}
+$$
+
+```latex
+$$
+\lim_{n\to \infty}
+$$
+```
+
+- prefer `underset{}{}` over `\limits_`
+
+$$
+\underset{w}{\rm argmin}\ (wx +b)
+$$
+
+```latex
+$$
+\underset{w}{\rm argmin}\ (wx +b)
+$$
+```
+
+### Fonts
 
 - prefer `\mathrm` over `\mathop` or `\operatorname`
 
