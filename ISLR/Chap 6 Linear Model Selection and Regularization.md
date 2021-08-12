@@ -338,7 +338,7 @@ Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ 
 ### 1.2.4. Lasso Regression
 
 - Could we change the penalty? Obviously could! 
-- From 2-norm to 1-normLeast Absolute Selection and Shrinkage Operator (LASSO)
+- From 2-norm to 1-normLeastAbsolute Selection and Shrinkage Operator (LASSO)
 Have some unexpected properties.
 
 $$
