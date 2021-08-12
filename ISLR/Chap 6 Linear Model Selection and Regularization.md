@@ -353,7 +353,7 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
 
-### OthElastic Net
+### Other Penaties: Elastic Net
 
 
 ## 1.2. Dimension Reduction Methods
@@ -361,3 +361,4 @@ $$
 ### 1.2.1. Principal Components Regression
 
 ## 1.2. Considerations in High Dimensions
+<!-- #endregion -->
