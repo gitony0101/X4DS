@@ -4,11 +4,11 @@
 
 ## 1.1. Subset Selection
 
-### Best Subset Selection
+### 1.1.1. Best Subset Selection
 
-### Stepwise Selection
+### 1.1.2. Stepwise Selection
 
-### Choosing the Optimal Model
+### 1.1.3. Choosing the Optimal Model
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
@@ -62,7 +62,7 @@ while the **red ellipses** are the **contours of the $RSS$**.
 
 Rethinking of[models with penalty-Lagrange Relaxation](https://zhuanlan.zhihu.com/p/31458541)
 
-### 1.2.2. Pre. Matrix Derivative Computations
+### 1.1.2. Pre. Matrix Derivative Computations
 
 - Matrix Derivative is more than importantin many areasrelated to data science, such as $SVM$ and $RNN$.
 
@@ -89,7 +89,7 @@ Similarily,we have:
 
 If $f: \mathbb{R}^{n} → \mathbb{R}, C^{2}$, then $\nabla^{2} f(x) \cdot v=D(\nabla f(x))[v]$, where D means the directional derivative.
 
-#### 1.2.2.1. e.g Find the Gradient and Hessian of $f(x)= \frac12{\bf x^{⊤}Ax}$.
+#### 1.1.2.1. e.g Find the Gradient and Hessian of $f(x)= \frac12{\bf x^{⊤}Ax}$.
 
 $Sol.$ Firstly, note that $\forall v$, we have
 
@@ -115,7 +115,7 @@ $$
 
 So we have ${\bf \nabla^{2} f(x)=A}$
 
-#### 1.2.2.2. Matrixes inner product : trace of the product of the Matrixes:
+#### 1.1.2.2. Matrixes inner product : trace of the product of the Matrixes:
 
 Definition of the Matrixes inner product:
 
@@ -131,7 +131,7 @@ $$
 ⟨{\bf A,B}⟩ = \mathop{Tr}({\bf A^{⊤}B})
 $$
 
-### 1.2.2. Ridge Regression
+### 1.1.2. Ridge Regression
 
 Ridge Regression Estimator: $\hat{β}(k) = {\bf (X^{\top}X +kI)^{-1}X^{⊤}Y}$
 
@@ -221,7 +221,7 @@ $$
 
 So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Definite**. And we proved that the **Ridge Regression Estimator** and **Ridge Regression Objective** is equivalent substantially.
 
-### 1.2.3. From SVD to the essence of Ridge
+### 1.1.3. From SVD to the essence of Ridge
 
 For each matrix ${\bf X}$, we have ${\bf X = U_pΣ_pV_p^{⊤}}$(Low Ranked SVD), where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix.
 For each $σ_i$; in ${\bf Σ_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD is tightly correlated with eigenvalue.
@@ -271,7 +271,7 @@ V_p^{⊤}
 \end{bmatrix}}
 $$
 
-#### Norm
+#### 1.1.3.1. Norm
 
 **Norm:** $||...||$
 
@@ -309,7 +309,7 @@ where we have ${\bf ||AB|| ≤ ||A||⋅||B||}$.
 
 Here $||{\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}||⋅||\hat{β}|| \underset{col\ row\ orthogonal}{=}||{\bf  (Σ^{2} + kI)Σ^2}||⋅||\hat{β}||$
 
-#### Shrinkage factor - Which to Srinkage
+#### 1.1.3.2. Shrinkage factor - Which to Srinkage
 
 Yeah, we made it, go on ,let's look at what is ${\bf  (Σ^{2} + kI)Σ^2}$:
 
@@ -339,11 +339,11 @@ We find that $\frac{σ_i^2}{σ_i^2 + λ} < 1$,then $||{\bf  (Σ^{2} + kI)Σ^2|| 
 
 $\frac{σ_i^2}{σ_i^2 + λ}$ is called $\text{Shrinkage factor}$, **When $σ_i^2$ increases, the Shrinkage factor $i$ increases, consequently, it will be harder for shrinkaging**. Thus $σ_i^2$ detemines which to shrinkage.
 
-#### The essence of Ridge
+#### 1.1.3.3. The essence of Ridge
 
 Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ contains.Thats what the RIdge Regression means, leave the dataset with more information, get rid of the dataset with less information.
 
-### 1.2.4. Lasso Regression
+### 1.1.2. Lasso Regression
 
 - Could we change the penalty? Yes,From 2-norm to 1-norm.
 
@@ -353,8 +353,11 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
 
-## Dimension Reduction Methods
+### OthElastic Net
 
-### Principal Components Regression
 
-## Considerations in High Dimensions
+## 1.2. Dimension Reduction Methods
+
+### 1.2.1. Principal Components Regression
+
+## 1.2. Considerations in High Dimensions
