@@ -1,7 +1,14 @@
 <!-- #region -->
+
 # 1. Chap 6 Linear Model Selection and Regularization
 
 ## 1.1. Subset Selection
+
+### Best Subset Selection
+
+### Stepwise Selection
+
+### Choosing the Optimal Model
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
@@ -342,8 +349,12 @@ Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ 
 
 Least Absolute Selection and Shrinkage Operator (LASSO),which has some unexpected properties
 
-
 $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
-<!-- #endregion -->
+
+## Dimension Reduction Methods
+
+### Principal Components Regression
+
+## Considerations in High Dimensions
