@@ -213,12 +213,32 @@ $$
 
 So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Definite**. And we proved that the **Ridge Regression Estimator** and **Ridge Regression Objective** is equivalent substantially.
 
-### Application in shrinkage by SVD
+### 1.2.3. Application in shrinkage by SVD
 
-For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix. For each $σ_i$; in ${\bf ∑_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD iswithTightly correlated with eigenvalue.
+For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix.
+For each $σ_i$; in ${\bf ∑_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD is tightly correlated with eigenvalue.
 
+$$
+\underset{\bf U}{\begin{bmatrix}
+  U_1 & U_2 & ⋯ & U_m
+  \end{bmatrix}}
+  \underset{\bf ∑}{
+  \begin{bmatrix}
+σ_1 \\
+&σ_2 \\
+&& ⋱ \\
+&&& σ_m
+  \end{bmatrix}}
+\underset{\bf V^{⊤}}{
+ \begin{bmatrix}
+V_1^{⊤}\\
+V_2^{⊤}\\
+⋮\\
+V_m^{⊤}
+\end{bmatrix}}
+$$
 
-### 1.2.3. Lasso Regression
+### 1.2.4. Lasso Regression
 
 $$
 \hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p |β_j|}
