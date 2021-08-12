@@ -1,3 +1,4 @@
+<!-- #region -->
 # 1. Chap 6 Linear Model Selection and Regularization
 
 ## 1.1. Subset Selection
@@ -337,11 +338,12 @@ Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ 
 
 ### 1.2.4. Lasso Regression
 
-- Could we change the penalty? Obviously could! 
-- From 2-norm to 1-norm
-  - LeastAbsoluteSelection and Shrinkage Operator (LASSO)
-  - Have some unexpected properties.
+- Could we change the penalty? Yes,From 2-norm to 1-norm.
+
+Least Absolute Selection and Shrinkage Operator (LASSO),which has some unexpected properties
+
 
 $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
+<!-- #endregion -->
