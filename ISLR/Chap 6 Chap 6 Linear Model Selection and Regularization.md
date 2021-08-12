@@ -215,9 +215,7 @@ So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Defini
 
 ### Application in shrinkage by SVD
 
-For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n x p,p x p$ and${\bf E}$ is a squared diagonal matrix
-For each r; in Ep = diag(01,"..,op), we call it singularvalue.
-o Tightly correlated with eigenvalue.
+For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix. For each $σ_i$; in ${\bf ∑_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVDTightly correlated with eigenvalue.
 
 
 ### 1.2.3. Lasso Regression
