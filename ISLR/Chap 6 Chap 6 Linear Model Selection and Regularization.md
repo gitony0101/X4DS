@@ -22,9 +22,9 @@ In order to solve the practical problem, we want the $\hat{β}$ not to fluctuate
 
 #### 1.2.2.1. But why penalty?
 
-In Matrix Algebra , Matrix has the property that, intuitively, if $\{λ_1,λ_2,⋯,λ_p\}$ are the eigenvalues of ${\bf X^{⊤}X}$,then $\{λ_1 + k,λ_2+ k,⋯,λ_p + k\}$ are the eigenvalues of $({\bf X^{⊤}X} + kI),(k > 0)$, where ${\bf X^{⊤}X}$ is $s.p.d(Semi-positive-definite)$.
+In Matrix Algebra , Matrix has the property, intuitively, if $\{λ_1,λ_2,⋯,λ_p\}$ are the eigenvalues of ${\bf X^{⊤}X}$,then $\{λ_1 + k,λ_2+ k,⋯,λ_p + k\}$ are the eigenvalues of $({\bf X^{⊤}X} + kI),(k > 0)$, where ${\bf X^{⊤}X}$ is $s.p.d(Semi-positive-definite)$.
 
-The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix full-ranked, in the original $RSS + penalty$, it make sure that solution of $\hat{β}$ exists.Alternatively, the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.
+The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix **full-ranked** , in the original $RSS + penalty$, it make sure that **solution of $\hat{β}$ exists**.Alternatively, **the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.**
 
 #### 1.2.2.2. **The main difference of the models is the feature of the penalty**
 
@@ -168,22 +168,57 @@ We let:
 
 $$
 \begin{aligned}
-f(β) & = \sum_{i=1}^n(y_i-\hat{y})^2 + λ∑_{j=1}^p β_j^2
+f(β) & = \sum_{i=1}^n(y_i-\hat{y_i})^2 + λ∑_{j=1}^p β_j^2
 \\ & ={\bf (y-xβ)^{⊤}(y-xβ) + λβ^{⊤}β}
 \end{aligned}
 $$
 
-We want to find $\mathop{arg \min\limits_{β}}f(β)$, which means $\frac{∂f(β)}{∂β} = ∇f(\beta)$.Firstly, $\frac{ λβ^{⊤}β}{∂β} = ∇f(\beta)$
-We want to find $\mathop{arg \min\limits_{β}}f(β)$, which means $\frac{∂f(β)}{∂β} = ∇f(\beta)$.Firstly, $\frac{∂(\bf λβ^{⊤}β)}{∂{\bf β}} = 2λβ$ ,Secondly, let $g(β) = {\bf (y-xβ)^{⊤}(y-xβ)}$
+We want to find $\mathop{arg \min\limits_{β}}f(β)$
+
+Firstly, $\frac{ λβ^{⊤}β}{∂β} = ∇f(\beta)$
+We want to find $\mathop{arg \min\limits_{β}}f(β)$, which means $\frac{∂f(β)}{∂β} = ∇f(\beta)$.
+
+Given that $\frac{∂(\bf λβ^{⊤}β)}{∂{\bf β}} = 2λβ$ ,Secondly, let $g(β) = {\bf (y-xβ)^{⊤}(y-xβ)}$
 
 Find the direction derivative of $g(β)$ by definition:
 
 $$
 \begin{aligned}
 \frac{∂g(β)}{∂β} & = ∇g(\beta)
-\\ & = \lim _{t→0} \frac{g(β + tv) - g(β)}{t} \stackrel{\text{\bf z = y-xβ}}{=}
+\\ & = \lim _{t→0} \frac{g(β + tv) - g(β)}{t}
+\\ & \stackrel{\text{\bf z = y-xβ}}{=}  \lim _{t→0} \frac{\bf (z - txv)^{⊤}(z-txv) - z^{⊤}z }{t}
+\\ & = {\bf -v^{⊤}2x^{⊤}z} = {\bf -v^{⊤}2x^{⊤}(y-xβ)}= {\bf v^{⊤}∇g(β)}
 \end{aligned}
 $$
+
+Also,${\bf v}$ is arbitrary,${\bf ∇g(β) = -2x^{⊤}(y-xβ)}$.
+Thus,${\bf ∇f(β) = -2x^{⊤}(y-xβ)} + 2λβ$,let${\bf ∇f(β) =0}$,we have:
+
+$$
+\mathop{\hat{β}} = {\bf (x^{⊤}x + λI)^{-1}x^{⊤}y}
+$$
+
+However, it not enough, since it's just the **first-order derivative** of $f(β)$ which may be NOT Min(Max) point, instead, it could be the extreme point of $f(β)$, so we need the **Second Derivative** of $f(β)$, go on by definition of derivative:
+
+$$
+\begin{aligned}
+\mathop{\frac{\partial f^2(β)}{\partial β^2}} & = ∇^2f(β)
+\\ &= \lim _{t→0} {\bf \frac{∇f(β + tv) - ∇f(β)}{t}}
+\\ & = \lim _{t→0} {\bf \frac{2x^{⊤}xv + 2λv}{t}}
+\\ & =  {\bf 2(x^{⊤}x + λ)v = ∇^2f(β)v}
+\end{aligned}
+$$
+
+> Here ${\bf ∇f(β) = -2x^{⊤}(y-xβ)} + 2λβ = 2(λβ - x^{⊤}y + x^{⊤}xβ)$, the $- x^{⊤}y$ can be omitted since it is unrelative with $β$.
+
+So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Definite**. And we proved that the **Ridge Regression Estimator** and **Ridge Regression Objective** is equivalent substantially.
+
+### Application in shrinkage by SVD
+
+For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n x p,p x p$ and${\bf E}$ is a squared diagonal matrix
+For each r; in Ep = diag(01,"..,op), we call it singularvalue.
+o Tightly correlated with eigenvalue.
+
 
 ### 1.2.3. Lasso Regression
 
