@@ -64,6 +64,7 @@ If $f: \mathbb{R}^{n} → \mathbb{R}, C^1$, then
 
 $$
 \mathrm{D}{\bf f(x)[v]=v^⊤ ∇f(x)} = \langle {\bf v,∇f(x)}\rangle
+\\
 \tag{Theorem-12 “cha.”ch3-4}
 $$
 
