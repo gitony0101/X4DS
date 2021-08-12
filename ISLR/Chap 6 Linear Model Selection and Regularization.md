@@ -130,7 +130,7 @@ Ridge Regression Estimator: $\hat{β}(k) = {\bf (X^{\top}X +kI)^{-1}X^{⊤}Y}$
 Ridge Regression Objective:
 
 $$
-\hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p β_j^2}
+\hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p β_j^2}
 $$
 
 We let:
@@ -168,7 +168,7 @@ We let:
 
 $$
 \begin{aligned}
-f(β) & = \sum_{i=1}^n(y_i-\hat{y_i})^2 + λ∑_{j=1}^p β_j^2
+f(β) & = \sum_{i=1}^n(y_i-\hat{y_i})^2 + λΣ_{j=1}^p β_j^2
 \\ & ={\bf (y-xβ)^{⊤}(y-xβ) + λβ^{⊤}β}
 \end{aligned}
 $$
@@ -213,16 +213,16 @@ $$
 
 So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Definite**. And we proved that the **Ridge Regression Estimator** and **Ridge Regression Objective** is equivalent substantially.
 
-### 1.2.3. Application in shrinkage by SVD
+### 1.2.3. From SVD to the essence of Ridge
 
-For each matrix ${\bf X}$, we have ${\bf X = U_p∑_pV_p^{⊤}}$, where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix.
-For each $σ_i$; in ${\bf ∑_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD is tightly correlated with eigenvalue.
+For each matrix ${\bf X}$, we have ${\bf X = U_pΣ_pV_p^{⊤}}$(Low Ranked SVD), where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix.
+For each $σ_i$; in ${\bf Σ_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD is tightly correlated with eigenvalue.
 
 $$
 \underset{\bf U}{\begin{bmatrix}
   U_1 & U_2 & ⋯ & U_m
   \end{bmatrix}}
-  \underset{\bf ∑}{
+  \underset{\bf Σ}{
   \begin{bmatrix}
 σ_1 \\
 &σ_2 \\
@@ -238,8 +238,109 @@ V_m^{⊤}
 \end{bmatrix}}
 $$
 
-### 1.2.4. Lasso Regression
+if $σ_{p+1},⋯σ_m = 0$,then $U_{p+1},⋯U_m,V_{p+1}^{⊤},⋯V_m^{⊤}$ are all equals to 0(They all do not work:
 
 $$
-\hat{β} = \mathop{arg \min\limits_{β}}{∑_{i=1}^n(y_i - β_0 - ∑_{j=1}^p X_{ij}β_j)^2 + λ∑_{j=1}^p |β_j|}
+\underset{\bf U}{\begin{bmatrix}
+  U_1 & U_2 & ⋯ & U_p
+  \end{bmatrix}}
+  \underset{\bf Σ}{
+  \begin{bmatrix}
+σ_1 \\
+&σ_2 \\
+&& ⋱ \\
+&&& σ_p\\
+&&&& 0\\
+&&&&& ⋱\\
+&&&&&& 0\\
+  \end{bmatrix}}
+\underset{\bf V^{⊤}}{
+ \begin{bmatrix}
+V_1^{⊤}\\
+V_2^{⊤}\\
+⋮\\
+V_p^{⊤}
+\end{bmatrix}}
+$$
+
+#### Norm
+
+**Norm:** $||...||$
+
+e.g.
+${\bf X} =(x_1,x_2,⋯,x_n)^{⊤}$,then ${\bf ||X||_2 =\sqrt {x_1^2 +x_2^2 + ⋯ + x_n^2}}$,and we have ${\bf ||I||}_2 = 1$
+
+Now Assumming $\underset{m×p}{\bf X} = \underset{m×p}{\bf U} \underset{p×p}{\bf Σ}\underset{p×p}{\bf V^{⊤}}$, then we can find that:
+
+$$
+\begin{aligned}
+{\bf X^{⊤}X + kI} &= {\bf VΣU^{⊤}UΣV^{⊤} + kI}
+\\ & = {\bf VΣ^2V^{⊤} + kI}
+\\ & = {\bf V(Σ^{2} + kI)V^{⊤}}
+\end{aligned}
+$$
+
+where ${\bf V^{⊤}V = I, V^{⊤} = V^{-1}}$
+
+So
+
+$$
+\begin{aligned}
+{\bf (X^{⊤}X + kI)^{-1}X^{⊤}X} & = {\bf V(Σ^{2} + kI)V^{⊤} VΣ^2V^{⊤}}
+\\ & = {\bf V(Σ^{2} + kI)Σ^2V^{⊤}}
+\end{aligned}
+$$
+
+Also we have the $\hat{β}(k) = {\bf A_k\hat{β}}$,where ${\bf A_k} =  {\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}$,so
+
+$$
+||\hat{β}(k)|| = ||{\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}⋅\hat{β}|| ≤ ||{\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}||⋅||\hat{β}||
+$$
+
+where we have ${\bf ||AB|| ≤ ||A||⋅||B||}$.
+
+Here $||{\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}||⋅||\hat{β}|| \underset{col\ row\ orthogonal}{=}||{\bf  (Σ^{2} + kI)Σ^2}||⋅||\hat{β}||$
+
+#### Shrinkage factor - Which to Srinkage
+
+Yeah, we made it, go on ,let's look at what is ${\bf  (Σ^{2} + kI)Σ^2}$:
+
+$$
+\begin{pmatrix}
+\frac{1}{σ_1^2 + λ}\\
+&\frac{1}{σ_2^2 + λ}\\
+&&⋱\\
+&&&\frac{1}{σ_p^2 + λ}
+\end{pmatrix}
+\begin{pmatrix}
+σ_1 \\
+&σ_2 \\
+&& ⋱ \\
+&&& σ_p
+\end{pmatrix}
+=
+\begin{pmatrix}
+\frac{σ_1^2}{σ_1^2 + λ}\\
+&\frac{σ_2^2}{σ_2^2 + λ}\\
+&&⋱\\
+&&&\frac{σ_p^2}{σ_p^2 + λ}
+\end{pmatrix}
+$$
+
+We find that $\frac{σ_i^2}{σ_i^2 + λ} < 1$,then $||{\bf  (Σ^{2} + kI)Σ^2|| < ||I||}(=1)$, thus $||{\bf  (Σ^{2} + kI)Σ^2}||⋅||\hat{β}|| ≤ ||\hat{β}||$.
+
+$\frac{σ_i^2}{σ_i^2 + λ}$ is called $\text{Shrinkage factor}$, **When $σ_i^2$ increases, the Shrinkage factor $i$ increases, consequently, it will be harder for shrinkaging**. Thus $σ_i^2$ detemines which to shrinkage.
+
+#### The essence of Ridge
+
+Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ contains.Thats what the RIdge Regression means, leave the dataset with more information, get rid of the dataset with less information.
+
+### 1.2.4. Lasso Regression
+
+- Could we change the penalty? Obviously could! 
+- From 2-norm to 1-normLeast Absolute Selection and Shrinkage Operator (LASSO)
+Have some unexpected properties.
+
+$$
+\hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
