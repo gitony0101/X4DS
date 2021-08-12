@@ -34,7 +34,13 @@ In Matrix Algebra , Matrix has the property, intuitively, if $\{λ_1,λ_2,⋯,λ
 
 The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix **full-ranked** , in the original $RSS + penalty$, it make sure that **solution of $\hat{β}$ exists**.Alternatively, **the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.**
 
-#### 1.2.2.2. **The main difference of the models is the feature of the penalty**
+#### 1.2.2.2. Regularization Frame :**The main difference of the models is the feature of the penalty**
+
+Regularization Frame:
+
+$$
+{arg}\ \underset{w}{min}{[\underset{loss}{L(β)} + λ\underset{penalty}{P(β)}]}
+$$
 
 Here we would like to make the summary of the models with penalty:
 
@@ -47,6 +53,8 @@ When the ${\bf shrinkage}$ model is $Ridge$ Regression,${\mathit{S}} = 2$;
 When the ${\bf shrinkage}$ model is $Lasso$ Regression,${\mathit{S}} = 1$.
 
 Here come the models with $penalty:β_j^{\mathit{S}}$.
+
+More generally, we can
 
 where $\mathop{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2$.\, It is the **key point of Statistical Learning**, since the target of which is to **$minimize$ the sum of differences** between **the observations $\hat{y_i}$ and the true value $y_i$**.
 
@@ -353,12 +361,12 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
 
-### Other Penaties: Elastic Net
-
+### 1.1.3. Other Penaties: Elastic Net
 
 ## 1.2. Dimension Reduction Methods
 
 ### 1.2.1. Principal Components Regression
 
 ## 1.2. Considerations in High Dimensions
+
 <!-- #endregion -->
