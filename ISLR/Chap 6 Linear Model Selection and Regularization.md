@@ -1,5 +1,3 @@
-<!-- #region -->
-
 # 1. Chap 6 Linear Model Selection and Regularization
 
 ## 1.1. Subset Selection
@@ -9,6 +7,18 @@
 ### 1.1.2. Stepwise Selection
 
 ### 1.1.3. Choosing the Optimal Model
+
+Another measure of fit, $R^2-adjusted$
+
+$$
+R_{adj}^2=1- \bigg[\frac{(1-R^2)(n-1)}{n-k-1}\bigg]
+$$
+
+Always less than$R^2$ since it includes penalty for too many terms
+
+As you add terms $R^2$ always improves but the model may get worse
+
+If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
@@ -382,4 +392,10 @@ $$
 
 ## 1.2. Considerations in High Dimensions
 
-<!-- #endregion -->
+Today, it is common to be able to collect hundreds or even thousands of predictors for our data. The high dimensional setting refers to situations where the number of predictors exceeds the number of observations we have available.
+
+**In the high dimensional setting, least squares cannot be used** because it will result in coefficient estimates that are a **perfect fit** to the data, such that the residuals are zero. This is where subset selection, ridge regression, lasso, principal components regression, and partial least squares should be used instead.
+
+However, the interpretation of model results is a bit different.Since we have hundreds of predictors,**a different dataset might actually result in a totally different predictive model**. Therefore, we must indicate that we have identified one of the many possible models, and it must be further validated on independent datasets.
+
+Additionally, $\mathrmSSE, p-values, R^2$, and other traditional measures of model fit should never be used in the high dimensional setting. Instead, report the results of the model on an independent test dataset, or cross-validation errors.

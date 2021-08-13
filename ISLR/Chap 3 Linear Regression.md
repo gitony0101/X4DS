@@ -136,7 +136,7 @@ In order to evaluate the performance of a statistical learning method on a given
 That is, we need to quantify the extent to which the predicted response value for a given observation is close to the true response value for that observation. In the regression setting, the most commonly-used measure is the mean squared error (MSE), given by:
 
 $$
-\mathop{MSE}= \frac{1}{n}(y_i - \hat{f}(x_i))^2
+\mathop{MSE}=\frac{RSS}{n} = \frac{1}{n}(y_i - \hat{f}(x_i))^2
 $$
 
 where $\hat{f}(x_i)$ is the prediction that $\hat{f}$ gives for the $i$th observation
@@ -536,18 +536,3 @@ $
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
 
-### 1.1.5. Notice：$R^2$ & multiple regression & $R^2-adjusted$ in multiple regression
-
-$R^2-adjusted$:
-
-$$
-R_{a d j}^{2}=1-\left[\frac{\left(1-R^{2}\right)(n-1)}{n-k-1}\right]
-$$
-
-Another measure of fit, $R^2-adjusted$
-
-Always less than$R^2$ since it includes penalty for too many terms
-
-As you add terms $R^2$ always improves but the model may get worse
-
-If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
