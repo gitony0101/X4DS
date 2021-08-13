@@ -207,6 +207,19 @@ $$
 \end{aligned}
 $$
 
+It's triky that how $\text{\bf z = y-xβ}$ transfer works,thus I solve it by the second-derivative:$g(β) = {\bf (y-xβ)^{⊤}(y-xβ)} ={\bf y^{⊤}y - y^{⊤}xβ - x^{⊤}yβ + x^{⊤}xβ^2}$
+
+Thus:
+
+$$
+\begin{aligned}
+\frac{∂g(β)}{∂β} & = {\bf - y^{⊤}x - x^{⊤}y + 2x^{⊤}xβ}
+\\ & = {\bf -2x^{⊤}y + 2x^{⊤}xβ}
+\\ & = {\bf -2x^{⊤}(y-xβ)}
+\\ & {\bf (x^{⊤}y = y^{⊤}x)}
+\end{aligned}
+$$
+
 Also,${\bf v}$ is arbitrary,${\bf ∇g(β) = -2x^{⊤}(y-xβ)}$.
 Thus,${\bf ∇f(β) = -2x^{⊤}(y-xβ)} + 2λβ$,let${\bf ∇f(β) =0}$,we have:
 
