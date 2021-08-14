@@ -71,6 +71,10 @@ $$
 
 - If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
 
+### 1.1.2. Validation and Cross-Validation
+
+We can directly estimate the test error using the validation set and cross-validation methods.This procedure has an advantage over AIC, BIC, adjusted $R^2$ and $C_p$ in that it provides a direct estimate of the test error and makes fewer assumptions about the underlying model. It can also be used in cases in which it is hard to estimate $σ^2$ and/or the number of degrees of freedom is not known.Cross-validation has become a more attractive approach as computing power has increased.
+
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
 Shrinkage methods = RSS + Penalty, this is a soultion of the multicollinearity for linear regression.
@@ -439,35 +443,43 @@ $$
 
 ### 1.1.4. Ridge Regression vs Lasso Regression
 
-In general, lasso regression is expected to perform better than ridge regression when the response (Y Y Y) is expected to be a function of only a few of the predictors.
+In general, Lasso regression is expected to perform better than ridge regression when the response $Y$ is expected to be a function of only a few of the predictors.
 
 In general, ridge regression is expected to perform better than lasso regression when the response is expected to be a function of a large number of predictors.
 
 Cross-validation should be used to compare both methods and choose the best model.
 
-### 1.1.5. Selecting the Tuning Parameter λ \lambda λ
+### 1.1.5. Selecting the Tuning Parameter $λ$
 
-As mentioned previously, choosing the proper value for the tuning parameter is crucial for coming up with the best model.
+Choosing the proper value for the tuning parameter is crucial for coming up with the best model.
 
-Cross-validation is a simple method of choosing the appropriate λ \lambda λ value. First, create a grid of different λ \lambda λ values, and determine the cross-validation test error for each value. Finally, choose the value that resulted in the lowest error.
+Cross-validation is a simple method of choosing the appropriate $λ$
+
+First, create a grid of different $λ$ values, and determine the cross-validation test error for each value. Finally, choose the value that resulted in the lowest error.
+
+Check the [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
 
 ## 1.2. Dimension Reduction Methods
 
 ### 1.2.1. Principal Components Analysis & Regression
 
+#### 1.2.1.1. PCA
 
-#### PCA
+PCA seeks a projection that best represents the data in a least-squares sense.This method reduces the dimensionality of feature space by restricting attention to those directions along which the scatter of the cloud is greatest.
 
-#### PCR
+- Dimensionality reduction
+- Feature Extraction
+- Reduce overfitting
 
-The number of principal components to use in regression can be chosen in one of two ways. 
+#### 1.2.1.2. PCR
 
-- The first method involves simply using the number of components that explain a large amount of the variation in the data.
+The $\textit{principal components regression (PCR)}$ approach involves constructing the first $M$ principal components, $Z_1,⋯,Z_M$, and then using these components as the predictors in **a linear regression model that is fit using least squares**.
 
-- The second method involves choosing the number of principal components that results in the regression model with the lowest test error. 
+PCR suffers from a drawback:
 
-Typically, both methods should result in the same or similar final models with test errors that do not greatly differ from one another.
+- There is no guarantee that the directions that best explain the predictors will also be the best directions to use for predicting the response. Unsupervised
 
+### Partial Least Squares
 
 ## 1.2. Considerations in High Dimensions
 

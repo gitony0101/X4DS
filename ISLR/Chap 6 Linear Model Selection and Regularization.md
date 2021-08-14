@@ -475,6 +475,12 @@ PCA seeks a projection that best represents the data in a least-squares sense.Th
 
 The $\textit{principal components regression (PCR)}$ approach involves constructing the first $M$ principal components, $Z_1,⋯,Z_M$, and then using these components as the predictors in **a linear regression model that is fit using least squares**.
 
+PCR suffers from a drawback:
+
+- There is no guarantee that the directions that best explain the predictors will also be the best directions to use for predicting the response. Unsupervised
+
+### Partial Least Squares
+
 ## 1.2. Considerations in High Dimensions
 
 Today, it is common to be able to collect hundreds or even thousands of predictors for our data. The high dimensional setting refers to situations where the number of predictors exceeds the number of observations we have available.
