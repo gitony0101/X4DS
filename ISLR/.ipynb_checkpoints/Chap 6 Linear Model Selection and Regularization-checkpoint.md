@@ -1,14 +1,60 @@
-<!-- #region -->
-
 # 1. Chap 6 Linear Model Selection and Regularization
 
 ## 1.1. Subset Selection
 
+There are two main types of subset selection methods: best subset selection and stepwise model selection.
+
+we explore alternative fitting procedures since that alternative fitting procedures can yield better $\textit{Prediction accuracy and Model interpretability}$.
+
+- $\textit{Prediction accuracy}$: Provided the relationship between the response and its predictors is approximately linear, then least squares estimates will have low bias.
+    - If $n>>p$, meaning that the number of observations $n$ is much larger than the number of predictors $p$, then the least squares estimates tend to also have low variance. As $p$ approaches n, there can be a lot of variability in the least squares fit, which could result in **overfitting and poor predictions** on future observations. If $p > n$, there is no longer a unique least squares coefficient estimate; the method doesn’t work. By constraining or shrinking the estimated coefficients, we can significantly reduce the variance at the cost of a negligible increase in bias.
+
+- $\textit{Model interpretability}$: It is common for predictor variables used in a multiple regression model to not be associated with the response. Including these irrelevant variables leads to unnecessary complexity in the resulting model. If we could remove these variables by setting their coefficients equal to zero, we can obtain a simpler, more interpretable model. The chance of least squares yielding a zero coefficient is quite low. We will explore some approaches for feature selection.
+
 ### 1.1.1. Best Subset Selection
+
+We fit a separate least squares regression for each possible combination of the $p$ predictors. That is, we fit all p models that contain exactly one predictor, all $\binom{p}{2}$ that contain exactly two predictors, and so forth. Once we fit all of them, we identify the one that is best.However, this is just the problem with best subset selection is the computational cost. Fitting $2^p$ possible model quickly grows prohibitively expensive.
 
 ### 1.1.2. Stepwise Selection
 
-### 1.1.3. Choosing the Optimal Model
+- Forward stepwise selection
+- Backward stepwise selection
+- Hybrid Approaches
+    - Another alternative is a hybrid approach. Variables can be added to the model sequentially, as in forward selection. However, after adding each new variable, the method may also remove any variables that no longer provide an improvement in model fit. **Such an approach attempts to mimic best subset selection while retaining the computational advantages of forward and backward stepwise selection.**
+
+
+
+### 1.1.3. Choosing the Optimal Model( Cp
+, AIC, BIC, and Adjusted R2
+.)
+
+In order to select the best model with respect to the test error, the test error needs to be estimated through one of two methods:
+
+- An indirect estimate through some kind of mathematical adjustment to the training error, which accounts for bias due to overfitting.
+
+- A direct estimate through a method such as cross-validation.
+
+
+
+
+In general, the training set MSE is an underestimate of the test MSE. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training RSS is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as R2 to select from models containing different numbers of variables.
+
+$$
+C_{p}=\frac{1}{n}\left(\mathrm{RSS}+2 d \hat{\sigma}^{2}\right)
+$$
+
+
+Another measure of fit, $R^2-adjusted$
+
+$$
+R_{adj}^2=1- \bigg[\frac{(1-R^2)(n-1)}{n-k-1}\bigg]
+$$
+
+- Always less than$R^2$ since it includes penalty for too many terms
+
+- As you add terms $R^2$ always improves but the model may get worse
+
+- If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
@@ -34,7 +80,13 @@ In Matrix Algebra , Matrix has the property, intuitively, if $\{λ_1,λ_2,⋯,λ
 
 The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix **full-ranked** , in the original $RSS + penalty$, it make sure that **solution of $\hat{β}$ exists**.Alternatively, **the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.**
 
-#### 1.2.2.2. **The main difference of the models is the feature of the penalty**
+#### 1.2.2.2. Regularization Frame :**The main difference of the models is the feature of the penalty**
+
+Regularization Frame:
+
+$$
+{arg}\ \underset{w}{min}{[\underset{loss}{L(β)} + λ\underset{penalty}{P(β)}]}
+$$
 
 Here we would like to make the summary of the models with penalty:
 
@@ -47,6 +99,8 @@ When the ${\bf shrinkage}$ model is $Ridge$ Regression,${\mathit{S}} = 2$;
 When the ${\bf shrinkage}$ model is $Lasso$ Regression,${\mathit{S}} = 1$.
 
 Here come the models with $penalty:β_j^{\mathit{S}}$.
+
+More generally, we can
 
 where $\mathop{RSS}=\sum_{i=1}^n(y_i-\hat{y})^2$.\, It is the **key point of Statistical Learning**, since the target of which is to **$minimize$ the sum of differences** between **the observations $\hat{y_i}$ and the true value $y_i$**.
 
@@ -196,6 +250,19 @@ $$
 \\ & = \lim _{t→0} \frac{g(β + tv) - g(β)}{t}
 \\ & \stackrel{\text{\bf z = y-xβ}}{=}  \lim _{t→0} \frac{\bf (z - txv)^{⊤}(z-txv) - z^{⊤}z }{t}
 \\ & = {\bf -v^{⊤}2x^{⊤}z} = {\bf -v^{⊤}2x^{⊤}(y-xβ)}= {\bf v^{⊤}∇g(β)}
+\end{aligned}
+$$
+
+It's triky that how $\text{\bf z = y-xβ}$ transfer works,thus I solve it by the second-derivative:$g(β) = {\bf (y-xβ)^{⊤}(y-xβ)} ={\bf y^{⊤}y - y^{⊤}xβ - x^{⊤}yβ + x^{⊤}xβ^2}$
+
+Thus:
+
+$$
+\begin{aligned}
+\frac{∂g(β)}{∂β} & = {\bf - y^{⊤}x - x^{⊤}y + 2x^{⊤}xβ}
+\\ & = {\bf -2x^{⊤}y + 2x^{⊤}xβ}
+\\ & = {\bf -2x^{⊤}(y-xβ)}
+\\ & {\bf (x^{⊤}y = y^{⊤}x)}
 \end{aligned}
 $$
 
@@ -353,12 +420,18 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
 
-### Other Penaties: Elastic Net
-
+### 1.1.3. Other Penaties: Elastic Net
 
 ## 1.2. Dimension Reduction Methods
 
 ### 1.2.1. Principal Components Regression
 
 ## 1.2. Considerations in High Dimensions
-<!-- #endregion -->
+
+Today, it is common to be able to collect hundreds or even thousands of predictors for our data. The high dimensional setting refers to situations where the number of predictors exceeds the number of observations we have available.
+
+**In the high dimensional setting, least squares cannot be used** because it will result in coefficient estimates that are a **perfect fit** to the data, such that the residuals are zero. This is where subset selection, ridge regression, lasso, principal components regression, and partial least squares should be used instead.
+
+However, the interpretation of model results is a bit different.Since we have hundreds of predictors,**a different dataset might actually result in a totally different predictive model**. Therefore, we must indicate that we have identified one of the many possible models, and it must be further validated on independent datasets.
+
+Additionally, $\mathrm{SSE, p-values, R^2}$, and other traditional measures of model fit should never be used in the high dimensional setting. Instead, report the results of the model on an independent test dataset, or cross-validation errors.

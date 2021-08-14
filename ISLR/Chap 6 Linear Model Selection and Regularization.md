@@ -2,11 +2,47 @@
 
 ## 1.1. Subset Selection
 
+There are two main types of subset selection methods: best subset selection and stepwise model selection.
+
+we explore alternative fitting procedures since that alternative fitting procedures can yield better $\textit{Prediction accuracy and Model interpretability}$.
+
+- $\textit{Prediction accuracy}$: Provided the relationship between the response and its predictors is approximately linear, then least squares estimates will have low bias.
+    - If $n>>p$, meaning that the number of observations $n$ is much larger than the number of predictors $p$, then the least squares estimates tend to also have low variance. As $p$ approaches n, there can be a lot of variability in the least squares fit, which could result in **overfitting and poor predictions** on future observations. If $p > n$, there is no longer a unique least squares coefficient estimate; the method doesn’t work. By constraining or shrinking the estimated coefficients, we can significantly reduce the variance at the cost of a negligible increase in bias.
+
+- $\textit{Model interpretability}$: It is common for predictor variables used in a multiple regression model to not be associated with the response. Including these irrelevant variables leads to unnecessary complexity in the resulting model. If we could remove these variables by setting their coefficients equal to zero, we can obtain a simpler, more interpretable model. The chance of least squares yielding a zero coefficient is quite low. We will explore some approaches for feature selection.
+
 ### 1.1.1. Best Subset Selection
+
+We fit a separate least squares regression for each possible combination of the $p$ predictors. That is, we fit all p models that contain exactly one predictor, all $\binom{p}{2}$ that contain exactly two predictors, and so forth. Once we fit all of them, we identify the one that is best.However, this is just the problem with best subset selection is the computational cost. Fitting $2^p$ possible model quickly grows prohibitively expensive.
 
 ### 1.1.2. Stepwise Selection
 
-### 1.1.3. Choosing the Optimal Model
+- Forward stepwise selection
+- Backward stepwise selection
+- Hybrid Approaches
+    - Another alternative is a hybrid approach. Variables can be added to the model sequentially, as in forward selection. However, after adding each new variable, the method may also remove any variables that no longer provide an improvement in model fit. **Such an approach attempts to mimic best subset selection while retaining the computational advantages of forward and backward stepwise selection.**
+
+
+
+### 1.1.3. Choosing the Optimal Model( Cp
+, AIC, BIC, and Adjusted R2
+.)
+
+In order to select the best model with respect to the test error, the test error needs to be estimated through one of two methods:
+
+- An indirect estimate through some kind of mathematical adjustment to the training error, which accounts for bias due to overfitting.
+
+- A direct estimate through a method such as cross-validation.
+
+
+
+
+In general, the training set MSE is an underestimate of the test MSE. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training RSS is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as R2 to select from models containing different numbers of variables.
+
+$$
+C_{p}=\frac{1}{n}\left(\mathrm{RSS}+2 d \hat{\sigma}^{2}\right)
+$$
+
 
 Another measure of fit, $R^2-adjusted$
 
@@ -14,11 +50,11 @@ $$
 R_{adj}^2=1- \bigg[\frac{(1-R^2)(n-1)}{n-k-1}\bigg]
 $$
 
-Always less than$R^2$ since it includes penalty for too many terms
+- Always less than$R^2$ since it includes penalty for too many terms
 
-As you add terms $R^2$ always improves but the model may get worse
+- As you add terms $R^2$ always improves but the model may get worse
 
-If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
+- If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
 
 ## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
@@ -398,4 +434,4 @@ Today, it is common to be able to collect hundreds or even thousands of predicto
 
 However, the interpretation of model results is a bit different.Since we have hundreds of predictors,**a different dataset might actually result in a totally different predictive model**. Therefore, we must indicate that we have identified one of the many possible models, and it must be further validated on independent datasets.
 
-Additionally, $\mathrmSSE, p-values, R^2$, and other traditional measures of model fit should never be used in the high dimensional setting. Instead, report the results of the model on an independent test dataset, or cross-validation errors.
+Additionally, $\mathrm{SSE, p-values, R^2}$, and other traditional measures of model fit should never be used in the high dimensional setting. Instead, report the results of the model on an independent test dataset, or cross-validation errors.
