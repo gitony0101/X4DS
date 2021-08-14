@@ -7,7 +7,10 @@ There are two main types of subset selection methods: best subset selection and 
 we explore alternative fitting procedures since that alternative fitting procedures can yield better $\textit{Prediction accuracy and Model interpretability}$.
 
 - $\textit{Prediction accuracy}$: Provided the relationship between the response and its predictors is approximately linear, then least squares estimates will have low bias.
-    - If $n>>p$, meaning that the number of observations $n$ is much larger than the number of predictors $p$, then the least squares estimates tend to also have low variance. As $p$ approaches n, there can be a lot of variability in the least squares fit, which could result in **overfitting and poor predictions** on future observations. If $p > n$, there is no longer a unique least squares coefficient estimate; the method doesn’t work. By constraining or shrinking the estimated coefficients, we can significantly reduce the variance at the cost of a negligible increase in bias.
+
+  - If $n>>p$, meaning that the number of observations $n$ is much larger than the number of predictors $p$, then the least squares estimates tend to also have low variance. As $p$ approaches n, there can be a lot of variability in the least squares fit, which could result in **overfitting and poor predictions** on future observations. If $p > n$, there is no longer a unique least squares coefficient estimate; the method doesn’t work. By constraining or shrinking the estimated coefficients, we can significantly reduce the variance at the cost of a negligible increase in bias.
+
+<br/>
 
 - $\textit{Model interpretability}$: It is common for predictor variables used in a multiple regression model to not be associated with the response. Including these irrelevant variables leads to unnecessary complexity in the resulting model. If we could remove these variables by setting their coefficients equal to zero, we can obtain a simpler, more interpretable model. The chance of least squares yielding a zero coefficient is quite low. We will explore some approaches for feature selection.
 
@@ -20,13 +23,10 @@ We fit a separate least squares regression for each possible combination of the 
 - Forward stepwise selection
 - Backward stepwise selection
 - Hybrid Approaches
-    - Another alternative is a hybrid approach. Variables can be added to the model sequentially, as in forward selection. However, after adding each new variable, the method may also remove any variables that no longer provide an improvement in model fit. **Such an approach attempts to mimic best subset selection while retaining the computational advantages of forward and backward stepwise selection.**
 
+  - Another alternative is a hybrid approach. Variables can be added to the model sequentially, as in forward selection. However, after adding each new variable, the method may also remove any variables that no longer provide an improvement in model fit. **Such an approach attempts to mimic best subset selection while retaining the computational advantages of forward and backward stepwise selection.**
 
-
-### 1.1.3. Choosing the Optimal Model( Cp
-, AIC, BIC, and Adjusted R2
-.)
+### 1.1.3. Choosing the Optimal Model
 
 In order to select the best model with respect to the test error, the test error needs to be estimated through one of two methods:
 
@@ -34,17 +34,32 @@ In order to select the best model with respect to the test error, the test error
 
 - A direct estimate through a method such as cross-validation.
 
+#### 1.1.3.1. $C_p$,AIC,BIC and $R_{adj}^2$
 
+In general, the training set $MSE$ is an underestimate of the test $MSE$. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training $RSS$ is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as $R^2$ to select from models containing different numbers of variables.We do have a number of techniques for adjusting the training error:
 
-
-In general, the training set MSE is an underestimate of the test MSE. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training RSS is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as R2 to select from models containing different numbers of variables.
+1.  For a fitted least squares model containing d predictors, the $C_p$ estimate of test $MSE$ is computed using the equation:
 
 $$
 C_{p}=\frac{1}{n}\left(\mathrm{RSS}+2 d \hat{\sigma}^{2}\right)
 $$
 
+- Where $σ^2$ is an estimate of the variance of the error $ϵ$ associated with each response measurement. Typically, $σ^2$ is estimated using the full model with all predictors. The $C_p$ statistic essentially adds a penalty of $2dσ^2$ to the training $RSS$ in order to adjust for the fact that the training error tends to underestimate the test error. The more predictors, the higher the penalty.
 
-Another measure of fit, $R^2-adjusted$
+2.  The AIC criterion is defined for a large class of models fit by maximum likelihood. In the case of the model with Gaussian errors, maximum likelihood and least squares are the same thing.For least squares, AIC and $C_P$ are proportional to eachother.
+
+$$
+AIC=\frac{1}{n\hat\sigma^2}\left(\mathrm{RSS}+2 d \hat{\sigma}^{2}\right)
+$$
+
+3. BIC looks similar but can place a higher penalty on models with many variables.
+   $$
+   BIC=\frac{1}{n\hat\sigma^2}\left(\mathrm{RSS}+log(n){\sigma}^{2}\right)
+   $$
+
+- BIC replaces the $2dσ^2$ used by $C_p$ with a $log(n)σ^2$. Since log$(n)>2$ for any $n>7$, BIC places a heavier penalty on models with many variables and tends to select smaller models than $C_p$.
+
+4. Another measure of fit, $R^2-adjusted$.IT is another approach for selecting among a set of models. Remember that $R^2$ is defined as $1−RSS/TSS$. Since $RSS$ can only decrease as more variables are added to the model, $R^2$ always increases as more variables are added. For a least squares model with $d$ variables, adjusted $R^2$ is calculated as
 
 $$
 R_{adj}^2=1- \bigg[\frac{(1-R^2)(n-1)}{n-k-1}\bigg]
