@@ -242,3 +242,9 @@
   - `get_dummies()`
 
 ## 3. statsmodels
+
+## 4. 异常
+
+- debugging
+
+  - `assert`
