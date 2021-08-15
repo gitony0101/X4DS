@@ -2,7 +2,7 @@
 
 ## 1.1. Subset Selection
 
-There are two main types of *subset selection methods*: best subset selection and stepwise model selection.
+There are two main types of _subset selection methods_: best subset selection and stepwise model selection.
 
 we explore alternative fitting procedures since that alternative fitting procedures can yield better $\textit{Prediction accuracy and Model interpretability}$.
 
@@ -463,17 +463,35 @@ Check the [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklea
 
 Def: Transform the $predictors$ and then fit a $least\ squares\ model$ using the transformed variables.
 
-Let $Z_1,Z_2,⋯,Z_M$ represent $M < p$ $linear\ combinations$ of our original $p$ predictors. That is,
+Let $Z_1,Z_2,⋯,Z_M$ represent ${\bf M < p}\  linear\ combinations$ of our original $p$ predictors. That is,
 
 $$
-Z_m = \sum
+Z_m = ∑_{j=1}^p ϕ_{jm}X_j
+\tag{6.16}
+$$
 
+for some constans $ϕ_{1m},ϕ_{2m},⋯,ϕ_{pm}, m=1,⋯,M.$we can teh nfit the **Linear regression model** using least squares.
+
+$$
+y_i = θ_0 + ∑_{m=1}^Mθ_mz_{im} + ϵ_i, i = 1,⋯,n,
+\tag{6.17})
+$$
+
+The term **dimension reduction** comes from the fact that this *approach reduces the problem of estimating the *p+1\* coefficients $β_0, β_1,⋯ , β_p$to the simpler problem of estimating the $M + 1$ coefficients $θ_0, θ_1, . . . , θ_M$, where $M < p$. In other words, the dimension of the problem has been reduced from $p + 1$ to $M + 1$.
+Notice that from (6.16),
+
+$$
+∑_{m=1}^M θ_mz_{im} =∑_{m=1}^M θ_m ∑_{j=1}^p ϕ_{jm}x_j= ∑_{j=1}^p∑_{m=1}^ Mθ_mϕ_{jm}x_j = ∑_{j=1}^p β_jx_{ij}
+$$
+
+where
+
+$$
+β_j = ∑_{m=1}^M θ_mϕ_{jm}
+\tag{6.18}
 $$
 
 ### 1.2.1. Principal Components Analysis & Regression
-
-
-
 
 #### 1.2.1.1. PCA
 
@@ -481,7 +499,7 @@ PCA seeks a projection that best represents the data in a least-squares sense.Th
 
 - Dimensionality reduction
 - Feature Extraction
-- Reduce overfitting
+- Reduce ofitting
 
 #### 1.2.1.2. PCR
 
@@ -493,20 +511,20 @@ PCR suffers from a drawback:
 
 ### 1.1.2. Partial Least Squares$(PLS)$
 
-PLS： Go on linear regression with the **previous directions**' $orthogonal\ residual$ as the **next direction**,on and on.
+PLS： Compute the $Z_{i+1} with the **previous directions**' $orthogonal\ residual$ as the **next direction**,on and on.ThenRoughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
 
-$\textit{Partial least squares (PLS)}$ is a **supervised** alternative to partial least squares PCR. Like PCR, PLS is a **dimension reduction** method, which first identifies a new set of features $Z_1,⋯,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. But unlike PCR, PLS identifies these new features in a supervised way—that is, it makes use of the **response Y in order to identify new features** that not only approximate the old features well, but also that are related to the response. 
+$\textit{Partial least squares (PLS)}$ is a **supervised** alternative to partial least squares PCR. Like PCR, PLS is a **dimension reduction** method, which first identifies a new set of features $Z_1,⋯,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. But unlike PCR, PLS identifies these new features in a supervised way—that is, it makes use of the **response Y in order to identify new features** that not only approximate the old features well, but also that are related to the response.
 
-Roughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
+PLS methods steps:
 
-How the first PLS direction is computed:
+1. Compute $1st\ PLS\ Direction$. Standardize the $p$ predictors, PLS computes the first direction $Z_1$ by setting each $φj_1$ in (6.16) equal to the coefficient from the simple linear regression of $Y$ onto $X_j$. One can show that this coefficient is proportional to the correlation between $Y$ onto $X_j$. Hence, in computing $Z_1=∑_{j=1}^pφ_{j1}X_j$, PLS places the highest weight on the variables that are most strongly related to the response.
 
-1. Standardize the $p$ predictors, PLS computes the first direction $Z_1$ by setting each φj1in (6.16) equal to the coefficient from the simple linear regression of Y onto Xj. One can show that this coefficient is proportional to the correlation between Y and Xj. Hence, in computing Z1=?p j=1φj1Xj, PLS places the highest weight on the variables that are most strongly related to the response.
+2. Identify the $2nd\ PLS\ direction$ and Iterate this step for $$M times. First adjust each of the variables for $Z_1$, by regressing each variable on $Z_1$ and **taking residuals**. These **residuals** can be interpreted as the **remaining information** that **has not been explained by the first PLS direction**. We then compute $Z_2s$ **using this orthogonalized data** in **exactly the same fashion as** $Z_1$ was computed based on the original data. This **iterative approach** can be repeated $M$ times to identify multiple PLS components $Z_1, ⋯ , Z_M$.
+3. Finally, at the end of this procedure, we use least squares to fit a linear model to predict $Y$ using $Z_1, ⋯ , Z_M$ in exactly the same fashion as for PCR.
 
-To identify the second PLS direction we first adjust each of the variables for Z1, by regressing each variable on Z1and taking residuals. These residuals can be interpreted as the remaining information that has not been explained by the first PLS direction. We then compute Z2using this orthogonalized data in exactly the same fashion as Z1was computed based on the original data. This iterative approach can be repeated M times to identify multiple PLS components Z1, . . . , ZM. Finally, at the end of this procedure, we use least squares to fit a linear model to predict Y using Z1, . . . , ZM in exactly the same fashion as for PCR.
-As with PCR, the number M of partial least squares directions used in PLS is a tuning parameter that is typically chosen by cross-validation. We generally standardize the predictors and response before performing PLS.
-PLS is popular in the field of chemometrics, where many variables arise from digitized spectrometry signals. In practice it often performs no better than ridge regression or PCR. While the supervised dimension reduction of PLS can reduce bias, it also has the potential to increase variance, so that the overall benefit of PLS relative to PCR is a wash.
+Disadvatages:
 
+While the supervised dimension reduction of PLS can reduce bias, it also has the potential to increase variance, so that the overall benefit of PLS relative to PCR is a wash.
 
 ## 1.2. Considerations in High Dimensions
 
