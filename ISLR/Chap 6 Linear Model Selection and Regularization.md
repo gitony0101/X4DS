@@ -461,7 +461,19 @@ Check the [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklea
 
 ## 1.2. Dimension Reduction Methods
 
+Def: Transform the $predictors$ and then fit a $least\ squares\ model$ using the transformed variables.
+
+Let $Z_1,Z_2,⋯,Z_M$ represent $M < p$ $linear\ combinations$ of our original $p$ predictors. That is,
+
+$$
+Z_m = \sum
+
+$$
+
 ### 1.2.1. Principal Components Analysis & Regression
+
+
+
 
 #### 1.2.1.1. PCA
 
@@ -483,17 +495,18 @@ PCR suffers from a drawback:
 
 PLS： Go on linear regression with the **previous directions**' $orthogonal\ residual$ as the **next direction**,on and on.
 
-$\textit{Partial least squares (PLS)}$ is a **supervised** alternative to partial least squares PCR. Like PCR, PLS is a **dimension reduction** method, which first identifies a new set of features $Z_1,⋯,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these M new features. But unlike PCR, PLS identifies these new features in a supervised way—that is, it makes use of the response Y in order to identify new features that not only approximate the old features well, but also that are related to the response. Roughly speaking, the PLS approach attempts to find directions that help explain both the response and the predictors.
+$\textit{Partial least squares (PLS)}$ is a **supervised** alternative to partial least squares PCR. Like PCR, PLS is a **dimension reduction** method, which first identifies a new set of features $Z_1,⋯,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. But unlike PCR, PLS identifies these new features in a supervised way—that is, it makes use of the **response Y in order to identify new features** that not only approximate the old features well, but also that are related to the response. 
 
-We now describe how the first PLS direction is computed. After standardizing the p predictors, PLS computes the first direction Z1by setting each φj1in (6.16) equal to the coefficient from the simple linear regression of Y onto Xj. One can show that this coefficient is proportional to the correlation between Y and Xj. Hence, in computing Z1=?p j=1φj1Xj, PLS places the highest weight on the variables that are most strongly related to the response.
+Roughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
+
+How the first PLS direction is computed:
+
+1. Standardize the $p$ predictors, PLS computes the first direction $Z_1$ by setting each φj1in (6.16) equal to the coefficient from the simple linear regression of Y onto Xj. One can show that this coefficient is proportional to the correlation between Y and Xj. Hence, in computing Z1=?p j=1φj1Xj, PLS places the highest weight on the variables that are most strongly related to the response.
 
 To identify the second PLS direction we first adjust each of the variables for Z1, by regressing each variable on Z1and taking residuals. These residuals can be interpreted as the remaining information that has not been explained by the first PLS direction. We then compute Z2using this orthogonalized data in exactly the same fashion as Z1was computed based on the original data. This iterative approach can be repeated M times to identify multiple PLS components Z1, . . . , ZM. Finally, at the end of this procedure, we use least squares to fit a linear model to predict Y using Z1, . . . , ZM in exactly the same fashion as for PCR.
 As with PCR, the number M of partial least squares directions used in PLS is a tuning parameter that is typically chosen by cross-validation. We generally standardize the predictors and response before performing PLS.
 PLS is popular in the field of chemometrics, where many variables arise from digitized spectrometry signals. In practice it often performs no better than ridge regression or PCR. While the supervised dimension reduction of PLS can reduce bias, it also has the potential to increase variance, so that the overall benefit of PLS relative to PCR is a wash.
 
-偏最小二乘（partial least squares），简称 PLS，是另一种降维方法。与 PCR 不同，PCR 在整合自变量时，没有涉及到因变量，而 PLS 则利用因变量来进行自变量的整合。方法如下：
-
-PLS 和 PCR 相比，虽然减少了预测结果的偏差，但是同时增大了预测结果的方差。
 
 ## 1.2. Considerations in High Dimensions
 
