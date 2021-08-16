@@ -34,7 +34,7 @@ In order to select the best model with respect to the test error, the test error
 
 - A direct estimate through a method such as cross-validation.
 
-#### 1.1.3.1. $C_p$,AIC,BIC and $R_{adj}^2$
+#### 1.1.3.1. $C_p$,AIC,BIC and $R_{adj}^2$ Approaches
 
 In general, the training set $MSE$ is an underestimate of the test $MSE$. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training $RSS$ is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as $R^2$ to select from models containing different numbers of variables.We do have a number of techniques for adjusting the training error:
 
