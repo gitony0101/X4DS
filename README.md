@@ -108,7 +108,7 @@ plt.hist(x2, y2)
 
 ```python
 # good
-_, ax = plt.subplots(2, 2, constrained_layout=True)
+_, ax = plt.subplots(2, 2, figsize=[12,8],constrained_layout=True)
 
 for ax, x, y in zip(axes.flatten(), xs, ys):
   ax.plot(x, y)
@@ -220,7 +220,7 @@ $$
 \end{vmatrix}
 $$
 ```
-  
+
 ### Brackets
 
 - prefer `\Bigg...\Bigg` over `\left...\right`
@@ -289,36 +289,36 @@ $$
 
 ## Fundamental Exercises
 
-* [Matplotlib-Seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
-* [Pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
+- [Matplotlib-Seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
+- [Pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
 
 ## ISLR
 
-* [Chapter 02 - Statistical Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)
-* [Chapter 03 - Linear Regression](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)
-* [Chapter 04 - Classification](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
-* [Chapter 05 - Resampling Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
-* [Chapter 06 - Linear Model Selection and Regularization](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
-* [Chapter 07 - Moving Beyond Linearity](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
-* [Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
-* [Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
-* [Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
+- [Chapter 02 - Statistical Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch02%20-%20Statistical%20Learning.ipynb)
+- [Chapter 03 - Linear Regression](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch03%20-%20Linear%20Regression.ipynb)
+- [Chapter 04 - Classification](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch04%20-%20Classification.ipynb)
+- [Chapter 05 - Resampling Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+- [Chapter 06 - Linear Model Selection and Regularization](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch05%20-%20Resampling%20Methods.ipynb)
+- [Chapter 07 - Moving Beyond Linearity](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch07%20-%20Moving%20Beyond%20Linearity.ipynb)
+- [Chapter 08 - Tree Based Methods](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
+- [Chapter 09 - Support Vector Machines](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
+- [Chapter 10 - Unsupervised Learning](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
 
 ## ITP
 
-* [Chapter 01 - Probability and Counting](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch1.ipynb) 
-* [Chapter 02 - Conditional Probability](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch2.ipynb)
-* [Chapter 03 - Random Variables and their Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch3.ipynb)
-* [Chapter 04 - Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch4.ipynb)
-* [Chapter 05 - Continuous Random Variables](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch5.ipynb)
-* [Chapter 06 - Moments](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch6.ipynb)
-* [Chapter 07 - Joint Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch7.ipynb)
-* [Chapter 08 - Transformations](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch8.ipynb)
-* [Chapter 09 - Conditional Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch9.ipynb)
-* [Chapter 10 - Inequalities and Limit Theorems](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch10.ipynb)
-* [Chapter 11 - Markov Chains](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch11.ipynb)
-* [Chapter 12 - Markov Chain Monte Carlo](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch12.ipynb)
-* [Chapter 13 - Poisson Processes](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch13.ipynb)
+- [Chapter 01 - Probability and Counting](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch1.ipynb)
+- [Chapter 02 - Conditional Probability](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch2.ipynb)
+- [Chapter 03 - Random Variables and their Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch3.ipynb)
+- [Chapter 04 - Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch4.ipynb)
+- [Chapter 05 - Continuous Random Variables](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch5.ipynb)
+- [Chapter 06 - Moments](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch6.ipynb)
+- [Chapter 07 - Joint Distributions](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch7.ipynb)
+- [Chapter 08 - Transformations](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch8.ipynb)
+- [Chapter 09 - Conditional Expectation](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch9.ipynb)
+- [Chapter 10 - Inequalities and Limit Theorems](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch10.ipynb)
+- [Chapter 11 - Markov Chains](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch11.ipynb)
+- [Chapter 12 - Markov Chain Monte Carlo](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch12.ipynb)
+- [Chapter 13 - Poisson Processes](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch13.ipynb)
 
 ## References
 
