@@ -53,7 +53,7 @@ The advantage of $k-fold$
 
 - Bias-Variance Trade-Off for k-Fold Cross-Validation. As these values have been shown empirically to yield test error rate estimates that suffer **neither** from excessively high bias nor from very high variance.
 
-## 1.2. 留一法 Leave-one-out cross-validation (LOOCV)
+## 1.2. Leave-one-out cross-validation (LOOCV)
 
 Special case of $\textit{k-fold Cross Validation}$, as $k=n$.There is**just one observation** used for validation the remaining observations maked up the training set.
 
