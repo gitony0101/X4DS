@@ -150,6 +150,13 @@ R^2 =
 1-\frac{\text { Unexplained Variation }}{\text{ Total Variation }}
 $$
 
+$$
+z = \begin{cases}
+ax+by
+\\cx+ dy
+\end{cases}
+$$
+
 $R^2$ proportion of total variation accountedfor by the independent variables in themodel.
 
 - $0 ≤ R^2 ≤ 1$
