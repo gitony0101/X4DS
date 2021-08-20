@@ -5,6 +5,7 @@
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
 - [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
+- [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)(HandsOnML2)
 
 <table border="1">
   <thead>
@@ -320,12 +321,14 @@ $$
 - [Chapter 12 - Markov Chain Monte Carlo](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch12.ipynb)
 - [Chapter 13 - Poisson Processes](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/IPT/Ch13.ipynb)
 
+## HandsOnML2
+
 ## References
 
 - https://github.com/a-martyn/ISL-python
 - https://github.com/buruzaemon/IntroductionToProbabilityPy
 - https://github.com/tndoan/ISLR.jl
-
+- https://github.com/ageron/handson-ml2
 <details>
   <summary>style</summary>
   <style>
