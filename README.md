@@ -3,8 +3,8 @@
 **Python** & **Julia** port of codes in the following excellent R books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
-- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
+- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 
 Also, **Julia** port of codes in the following excellent Python books:
 
