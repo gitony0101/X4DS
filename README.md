@@ -35,7 +35,7 @@ Also, **Julia** port of codes in the following excellent Python books:
       </td>
     </tr>
     <tr>
-      <td rowspan="2">Visualization</td>
+      <td>Visualization</td>
       <td>
         <li>Matplotlib</li>
         <li>Seaborn</li>
