@@ -34,7 +34,7 @@ The validation set approach is conceptually simple and is easy to implement. But
 
 I rearranged the order of the notes, since $LOOCV$ is the special case of $\textit{k-fold Cross Validation}$.
 
-This approach involves randomly $\textit{k-fold CV}$ dividing the set of observations into $k$ groups, or folds, of approximately equal size. The first fold is treated as a validation set, and the method is fit on the remaining $k − 1$ folds. The mean squared error, $MSE_1$, is then computed on the observations in the held-out fold. This procedure is repeated $k$ times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error, $MSE_1,MSE_2,⋯,MSE_k$.
+This approach involves randomly $\textit{k-fold CV}$ dividing the set of observations into $k$ groups, or folds, of approximately **equal size.** **The first fold** is treated as **a validation set,** and the method is **fit(train)** on the remaining $k − 1$ folds. The mean squared error, $MSE_1$, is then computed on the observations in the held-out fold. This procedure is repeated $k$ times; each time, a different group of observations is treated as a validation set. This process results in k estimates of the test error, $MSE_1,MSE_2,⋯,MSE_k$.
 
 <img src= https://pic3.zhimg.com/80/v2-b4cd20adb8d216dc3ce138cfde48d8be_1440w.jpg>
 
@@ -102,7 +102,7 @@ $$
 
 When we use high order expansion, the unknown $f(x)$ would be better fitted.
 
-Compare the taylor expansion and the highorder poynomials fit.
+**Compare the taylor expansion and the highorder poynomials fit.**
 
 ## 1.3. Bootstrap
 
