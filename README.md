@@ -46,10 +46,6 @@ Also, **Julia** port of codes in the following excellent Python books:
       </td>
     </tr>
     <tr>
-      <td><li>Yellowbrick</li></td>
-      <td></td>
-    </tr>
-    <tr>
       <td>Machine<br />Learning</td>
       <td>
         <li>Scikit-Learn</li>
