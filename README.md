@@ -1,5 +1,7 @@
 # X4DS
 
+This repo is a collection of
+
 **Python** & **Julia** port of codes in the following excellent R books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
