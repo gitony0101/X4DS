@@ -1,11 +1,16 @@
 # X4DS
 
-**Python** & **Julia** port of codes in the following excellent R books (including exercises):
+This repo is a collection of
+
+**Python** & **Julia** port of codes in the following excellent R books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
-- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
-- [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)(HandsOnML2)
+- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
+
+Also, **Julia** port of codes in the following excellent Python books:
+
+- [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) (HandsOnML2)
 
 <table border="1">
   <thead>
@@ -30,7 +35,7 @@
       </td>
     </tr>
     <tr>
-      <td rowspan="2">Visualization</td>
+      <td>Visualization</td>
       <td>
         <li>Matplotlib</li>
         <li>Seaborn</li>
@@ -39,10 +44,6 @@
         <li>MakiE</li>
         <li>AlgebraOfGraphics</li>
       </td>
-    </tr>
-    <tr>
-      <td><li>Yellowbrick</li></td>
-      <td></td>
     </tr>
     <tr>
       <td>Machine<br />Learning</td>
