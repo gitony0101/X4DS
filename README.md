@@ -324,6 +324,7 @@ $$
 
 ## HandsOnML2
 
+- [Chapter 1 – The Machine Learning Landscape](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/HandsOnML2/Chapter%201%20–%20The%20Machine%20Learning%20landscape.ipynb)
 - [Chapter 1 – The Machine Learning Landscape](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/HandsOnML2/Chapter%201%20–%20The%20Machine%20Learning%20landscape.ipynb)
 
 ## References
