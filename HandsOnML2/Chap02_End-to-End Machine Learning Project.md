@@ -1,10 +1,10 @@
-# Chap02 End-to-End Machine Learning Project feat. Checklist
+# 1. Chap02 End-to-End Machine Learning Project feat. Checklist
 
 Appendix B and my summary.
 
-## Machine Learning Project Checklist
+## 1.1. Machine Learning Project Checklist
 
-### Machine Learning projects main steps:
+### 1.1.1. Machine Learning projects main steps:
 
 1. **Frame the problem and look at the big picture**.
 2. Get the data.
@@ -15,7 +15,29 @@ Appendix B and my summary.
 7. Present your solution.
 8. Launch, monitor, and maintain your system.
 
-### Frame the Problem and Look at the Big Picture
+### 1.1.2. Pipelines
+
+**A sequence** of data processing components is called a data pipeline.
+
+**Pipelines** are very common in Machine Learning systems, since there is a lot of data to manipulate and many data transformations to apply.
+
+<br>
+
+![](img/2-2.png)
+
+$$
+\text{Figure 2-2. A Machine Learning pipeline for real estate investments}
+$$
+
+Components typically run asynchronously.
+
+- Each component pulls in a large amount of data, processes it, and spits out the result in another data store. Then, some time later, the next component in the pipeline pulls this data and spits out its own output.
+
+- Each component is fairly self-contained: the interface between components is simply the data store. This makes the system simple to grasp (with the help of a data flow graph), and different teams can focus on different components.
+
+- If a component breaks down, the downstream components can often continue to run normally (at least for a while) by just using the last output from the broken component.This makes the architecture quite robust.However, a broken component can go unnoticed for some time if proper monitoring is not implemented. The data gets stale and the overall system’s perfor‐mance drops.
+
+### 1.1.3. Frame the Problem and Look at the Big Picture
 
 1. Define the objective in business terms.
 2. How will your solution be used?
@@ -31,7 +53,7 @@ Appendix B and my summary.
 11. **List the assumptions** you (or others) have made so far. 12.**Verify assumptions if possible.**
 12. Keep on rethinking! add more here.
 
-### Get the Data
+### 1.1.4. Get the Data
 
 1.  **List the data you need and how much you need**.
 2.  Find and **document** where you can get that data.
@@ -46,7 +68,7 @@ Appendix B and my summary.
 10. Check the **size and type** of data (time series, sample, geographical, etc.).
 11. **Sample** a test set, **put it aside**, and never look at it.
 
-### **Explore the Data**-Try to get insights from a field expert for these steps.
+### 1.1.5. **Explore the Data**-Try to get insights from a field expert for these steps.
 
 1. Create a copy of the data for exploration (sampling it down to a manageable size if necessary).
 2. Create a Jupyter notebook to keep a record of your data exploration.
@@ -67,9 +89,9 @@ Appendix B and my summary.
 9. **Identify extra data** that would be useful (go back to “Get the Data”)
 10. **Document what you have learned**.
 
-### Prepare the Data
+### 1.1.6. Prepare the Data
 
-#### Note: Rules of Preparing the Data
+#### 1.1.6.1. Note: Rules of Preparing the Data
 
 - Work on copies of the data (keep the original dataset intact).
 - Write functions for all data transformations you apply, for five reasons:
@@ -80,7 +102,7 @@ Appendix B and my summary.
   4. To clean and prepare new data instances once your solution is live.
   5. To make it easy to t**reat your preparation choices as hyperparameters**
 
-#### Main steps:
+#### 1.1.6.2. Main steps:
 
 1. Data cleaning:
 
@@ -98,7 +120,7 @@ Appendix B and my summary.
 
 4. Feature **scaling: Standardize or normalize features**.
 
-### **Shortlist** the Promising Models
+### 1.1.2. **Shortlist** the Promising Models
 
 1. Train many quick-and-dirty models from different categories (e.g., linear, naive Bayes, SVM, Random Forest, neural net, etc.) using standard parameters.
 2. Measure and compare their performance.
@@ -110,13 +132,13 @@ Appendix B and my summary.
 7. Perform one or two more quick iterations of the five previous steps.
 8. **Shortlist the top three to five most promising models**, preferring models that make different types of errors.
 
-#### Be aware:
+#### 1.1.2.1. Be aware:
 
 - If the data is huge, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalizes complex models such as large neural nets or Random Forests).
 
 - Try to **automate these steps** as much as possible.
 
-### Fine-Tune the System
+### 1.1.2. Fine-Tune the System
 
 1. Fine-tune the hyperparameters using **cross-validation**:
 
@@ -134,7 +156,7 @@ Notes:
 - As always, automate what you can.
 - Don’t tweak your model after measuring the generalization error: you would just start overfitting the test set.
 
-### Present Your Solution
+### 1.1.3. Present Your Solution
 
 1. Document what you have done.
 2. Create a nice presentation: Make sure you **highlight the big picture** first.
@@ -146,7 +168,7 @@ Notes:
 
 5. Ensure your **key findings are communicated through beautiful visualizations or easy-to-remember statements**
 
-### Launch,Monitor, and Maintain
+### 1.1.4. Launch,Monitor, and Maintain
 
 1. Get your solution ready for production.
 2. **Write monitoring code** to check your system’s live performance at regular intervals and trigger alerts when it drops.
