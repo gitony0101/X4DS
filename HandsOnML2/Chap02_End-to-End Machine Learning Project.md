@@ -91,6 +91,14 @@ Components typically run asynchronously.
 4. For **supervised learning** tasks, **identify the target attribute(s)**.
 5. **Visualize the data**.
 6. Study the **correlations between attributes**.
+
+   - The correlation coefficient ranges from –1 to 1. When it is close to 1, it means that there is a strong positive correlation; for example, the median house value tends to go up when the median income goes up. When the coefficient is close to –1, it means that there is a strong negative correlation; you can see a small negative correlation between the latitude and the median house value (i.e., prices have a slight tendency to go down when you go north). Finally, coefficients close to 0 mean that there is no linear correlation:
+
+     <br>![](/HandsOnML2/img/2-14.png)
+
+   <br>
+   Figure shows various plots along with the correlation coeffi‐cient between their horizontal and vertical axes.
+
 7. Study how you would solve the problem manually.
 8. Identify the promising transformations you may want to apply.
 9. **Identify extra data** that would be useful (go back to “Get the Data”)
