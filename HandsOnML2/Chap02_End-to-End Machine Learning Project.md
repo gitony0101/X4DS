@@ -67,9 +67,13 @@ Components typically run asynchronously.
 9.  Ensure **sensitive information** is deleted or protected (e.g., anonymized).
 10. Check the **size and type** of data (time series, sample, geographical, etc.).
 11. **Sample** a test set, **put it aside**, and never look at it.
-    - Create the training/test set to avoid **data snooping bias**.
-    - Purely random sampling methods is generally fine if the dataset is large enough (especially relative to the number of attributes), but if it is not, you run the risk of **introducing a significant sampling bias**, so you need **stratified sampling**.
-    - However, we do not need to statify sampling every dataset, finllay we will **compare** the preformance of **Sampling methods**, (e.g, Overall, Stratified and Random sampling methods), in order to determine whether we need the stratified sampling or NOT.
+
+### Split and Sample the dataset Notes:
+
+- Create the training/test set to avoid **data snooping bias**.
+- Purely random sampling methods is generally fine if the dataset is large enough (especially relative to the number of attributes), but if it is not, you run the risk of **introducing a significant sampling bias**, so you need **stratified sampling**.
+- However, we do not need to statify sampling every dataset, finllay we will **compare** the preformance of **Sampling methods**, (e.g, Overall, Stratified and Random sampling methods), in order to determine whether we need the stratified sampling or NOT.
+- Test set generation is an often neglected but ritical part of a Machine Learning project,Moreover, many of these ideas will be useful later when we discuss crossvalidation.
 
 ### 1.1.5. **Explore the Data**-Try to get insights from a field expert for these steps.
 
