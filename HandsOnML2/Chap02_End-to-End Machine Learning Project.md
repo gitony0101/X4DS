@@ -68,7 +68,8 @@ Components typically run asynchronously.
 10. Check the **size and type** of data (time series, sample, geographical, etc.).
 11. **Sample** a test set, **put it aside**, and never look at it.
     - Create the training/test set to avoid **data snooping bias**.
-    - Purely random sampling methods is generally fine if the dataset is large enough (especially relative to the number of attributes), but if it is not, you run the risk of **introducing a significant sampling bias**, so you need **stratified sampling**. THe dataset is divided **into homogeneous subgroups called strata,** and the right number of instances are sampled from each stratum to guarantee that the test set is representative of the overall population
+    - Purely random sampling methods is generally fine if the dataset is large enough (especially relative to the number of attributes), but if it is not, you run the risk of **introducing a significant sampling bias**, so you need **stratified sampling**.
+    - However, we do not need to statify sampling every dataset, finllay we will **compare** the preformance of **Sampling methods**, (e.g, Overall, Stratified and Random sampling methods), in order to determine whether we need the stratified sampling or NOT.
 
 ### 1.1.5. **Explore the Data**-Try to get insights from a field expert for these steps.
 
