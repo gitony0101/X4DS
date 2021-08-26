@@ -4,7 +4,7 @@
 
 There are two main types of _subset selection methods_: best subset selection and stepwise model selection.
 
-we explore alternative fitting procedures since that alternative fitting procedures can yield better $\textit{Prediction accuracy and Model interpretability}$.
+we explore alternative fitting procedures since that alternative fitting procedures can yield better $\text{Prediction accuracy and Model interpretability}$.
 
 - $\textit{Prediction accuracy}$: Provided the relationship between the response and its predictors is approximately linear, then least squares estimates will have low bias.
 

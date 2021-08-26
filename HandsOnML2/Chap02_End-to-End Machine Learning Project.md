@@ -135,6 +135,9 @@ Components typically run asynchronously.
 
 4. Feature **scaling: Standardize or normalize features**.
 
+- Standardize features:$\frac{x_i = x_{min}}{x_{max}}$,simpliest;
+- Normalize features:$\frac{x_i - μ}{σ}$,problems for some algorithms but muchu less affected by **outliers**.
+
 ### 1.1.2. **Shortlist** the Promising Models
 
 1. Train many quick-and-dirty models from different categories (e.g., linear, naive Bayes, SVM, Random Forest, neural net, etc.) using standard parameters.
