@@ -15,7 +15,7 @@ Appendix B and my summary.
 7. Present your solution.
 8. Launch, monitor, and maintain your system.
 
-### 1.1.2. Pipelines
+### 1.1.2. Pipelines (Essential!)
 
 **A sequence** of data processing components is called a data pipeline.
 
@@ -28,6 +28,8 @@ Appendix B and my summary.
 $$
 \text{Figure 2-2. A Machine Learning pipeline for real estate investments}
 $$
+
+管道
 
 Components typically run asynchronously.
 
