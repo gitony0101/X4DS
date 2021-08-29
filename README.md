@@ -291,8 +291,8 @@ $$
 
 ## Fundamental Exercises
 
-- [Matplotlib-Seaborn](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
-- [Pandas](https://colab.research.google.com/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
+- [Matplotlib-Seaborn](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/FundamentalEx/mpl50_sns.ipynb)
+- [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/FundamentalEx/pandas.ipynb)
 
 ## ISLR
 
