@@ -268,8 +268,8 @@ A confusion matrix is a convenient way to display this information, and looks as
 
 |          | Predicted 1 | Predicted2 |
 | -------- | ----------- | ---------- |
-| Actual 1 | $TP$        | $FN$       |
-| Actual 2 | $FP$        | $TN$       |
+| Actual 1 | $TN$        | $FP$       |
+| Actual 2 | $FN$        | $TP$       |
 
 where
 
@@ -295,7 +295,7 @@ Or:
 
 $$
 \mathop{F-measure} = F_1\ score = \frac{2 * Recall * Precision}{Recall + Precision}\\
-= \frac{2TP}{2TP + FP + FN} = \frac{2}{2 + \frac{FP + FN}{TP}}
+= \frac{2TP}{2TP + FP + FN} = \frac{TP}{TP + \frac{FP + FN}{2}}
 $$
 
 It is difficult to compare two models with low precision and high recall or vice versa. So to make them comparable, we useF-Score. F-score helps to measure Recall and Precision at the same time. It uses Harmonic Mean in place of Arithmetic Mean by punishing the extreme values more.

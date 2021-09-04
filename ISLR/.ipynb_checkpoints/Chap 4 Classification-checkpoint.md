@@ -268,8 +268,8 @@ A confusion matrix is a convenient way to display this information, and looks as
 
 |          | Predicted 1 | Predicted2 |
 | -------- | ----------- | ---------- |
-| Actual 1 | $TP$        | $FN$       |
-| Actual 2 | $FP$        | $TN$       |
+| Actual 1 | $TN$        | $FP$       |
+| Actual 2 | $FN$        | $TP$       |
 
 where
 
