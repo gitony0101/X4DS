@@ -6,9 +6,8 @@ This repo is a collection of
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
-- [Introduction To Probability](https://www.crcpress.com/Introduction-to-Probability-Second-Edition/Blitzstein-Hwang/p/book/9781138369917) (ITP)
 
-Also, **Julia** port of codes in the following excellent Python books:
+As well as, **Julia** port of codes in the following excellent Python books:
 
 - [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) (HandsOnML2)
 
@@ -300,27 +299,6 @@ $$
 - [Chapter 08 - Tree Based Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch08%20-%20Tree-Based%20Methods.ipynb)
 - [Chapter 09 - Support Vector Machines](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch09%20-%20Support%20Vector%20Machines.ipynb)
 - [Chapter 10 - Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10%20-%20Unsupervised%20Learning.ipynb)
-
-## ITP
-
-- [Chapter 01 - Probability and Counting](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch1.ipynb)
-- [Chapter 02 - Conditional Probability](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch2.ipynb)
-- [Chapter 03 - Random Variables and their Distributions](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch3.ipynb)
-- [Chapter 04 - Expectation](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch4.ipynb)
-- [Chapter 05 - Continuous Random Variables](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch5.ipynb)
-- [Chapter 06 - Moments](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch6.ipynb)
-- [Chapter 07 - Joint Distributions](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch7.ipynb)
-- [Chapter 08 - Transformations](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch8.ipynb)
-- [Chapter 09 - Conditional Expectation](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch9.ipynb)
-- [Chapter 10 - Inequalities and Limit Theorems](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch10.ipynb)
-- [Chapter 11 - Markov Chains](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch11.ipynb)
-- [Chapter 12 - Markov Chain Monte Carlo](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch12.ipynb)
-- [Chapter 13 - Poisson Processes](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/IPT/Ch13.ipynb)
-
-## HandsOnML2
-
-- [Chapter 1 – The Machine Learning Landscape](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/HandsOnML2/Chapter_1_The%20Machine%20Learning%20Landscape.ipynb)
-- [Chapter 2 – End-to-End Machine Learning Project](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/HandsOnML2/Chapter_2_End-to-End%20Machine%20Learning%20Project.ipynb)
 
 ## References
 
