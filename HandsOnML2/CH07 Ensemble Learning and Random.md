@@ -27,3 +27,23 @@ This means that only about 63% of the training instances are sampled on average 
 - Note that they are not the same 37% for all predictors.
 
 ## Random Patches and Random Subspaces
+
+## Random forests
+
+A Random Forest is an ensemble of Decision Trees, generally trained via the bagging method (or sometimes pasting).
+
+The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. The algorithm results in greater tree diversity, which (again) trades **a higher bias for a lower variance**, generally yielding an overall better model.
+
+### Extra Trees
+
+`It is hard to tell in advance whether a RandomForestClassifier will perform better or worse than an ExtraTreesClassifier. Gen‐erally, the only way to know is to try both and compare them using cross-validation (tuning the hyperparameters using grid search).`
+
+When you are growing a tree in a Random Forest, at each node only a random subset of the features is considered for splitting (as discussed earlier). It is possible to make trees even more random by also using random thresholds for each feature rather than searching for the best possible thresholds (like regular Decision Trees do).
+A forest of such extremely random trees is called an $\textit{Extremely Randomized Trees ensemble (or Extra-Trees for short)}$. Once again, this technique trades **more bias for a lower variance**. It also makes Extra-Trees much faster to train than regular Random Forests, because finding the best possible threshold for each feature at every node is one of the most time-consuming tasks of growing a tree.
+
+### Feature importance
+
+In Random Forests method, measure the relative importance of each feature by looking at how much the tree nodes that use that feature reduce impurity on average (across all trees in the forest). More precisely, it is a weighted average, where each node’s weight is equal to the number of training samples that are associated with it
+
+## Boosting
+
