@@ -47,3 +47,11 @@ In Random Forests method, measure the relative importance of each feature by loo
 
 ## Boosting
 
+Boosting (originally called $hypothes\ boosting$) refers to any Ensemble method that can **combine several weak learners into a strong learner**. 
+
+**The general idea of most boosting methods is to train predictors sequentially, each trying to correct its predecessor.**
+
+Main boosting methods:
+- AdaBoost
+- Gradient Boosting
+  

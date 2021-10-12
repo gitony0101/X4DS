@@ -1,6 +1,16 @@
-# 1. Chap 6 Linear Model Selection and Regularization
+@Chap 6 Linear Model Selection and Regularization
 
-## 1.1. Subset Selection
+# Model Selection :Bias,Variance,Error,Public/Private Set
+
+- There is usually a **trade-off** between $bias\ and\ variance$.
+    ![](../gallery/img/biasvariance.jpg)
+- Select a model that balances two kinds of error to minimizetotal error
+- (Discuss thie in the future)What you should NOT do: take the static result as real world reflection:（逝者如斯，不舍昼夜）
+  - The real world in changing on and on,thus the real world testing set can be different from the Testing set given,yeah, the static one.
+  - how to correct?
+  ![](../gallery/img/publicset.png)
+  
+# 1. Subset Selection
 
 There are two main types of _subset selection methods_: best subset selection and stepwise model selection.
 
@@ -14,11 +24,11 @@ we explore alternative fitting procedures since that alternative fitting procedu
 
 - $\textit{Model interpretability}$: It is common for predictor variables used in a multiple regression model to not be associated with the response. Including these irrelevant variables leads to unnecessary complexity in the resulting model. If we could remove these variables by setting their coefficients equal to zero, we can obtain a simpler, more interpretable model. The chance of least squares yielding a zero coefficient is quite low. We will explore some approaches for feature selection.
 
-### 1.1.1. Best Subset Selection
+## 1.1. Best Subset Selection
 
 We fit a separate least squares regression for each possible combination of the $p$ predictors. That is, we fit all p models that contain exactly one predictor, all $\binom{p}{2}$ that contain exactly two predictors, and so forth. Once we fit all of them, we identify the one that is best.However, this is just the problem with best subset selection is the computational cost. Fitting $2^p$ possible model quickly grows prohibitively expensive.
 
-### 1.1.2. Stepwise Selection
+## 1.2. Stepwise Selection
 
 - Forward stepwise selection
 - Backward stepwise selection
@@ -26,7 +36,7 @@ We fit a separate least squares regression for each possible combination of the 
 
   - Another alternative is a hybrid approach. Variables can be added to the model sequentially, as in forward selection. However, after adding each new variable, the method may also remove any variables that no longer provide an improvement in model fit. **Such an approach attempts to mimic best subset selection while retaining the computational advantages of forward and backward stepwise selection.**
 
-### 1.1.3. Choosing the Optimal Model
+## 1.3. Choosing the Optimal Model
 
 In order to select the best model with respect to the test error, the test error needs to be estimated through one of two methods:
 
@@ -34,7 +44,7 @@ In order to select the best model with respect to the test error, the test error
 
 - A direct estimate through a method such as cross-validation.
 
-#### 1.1.3.1. $C_p$,AIC,BIC and $R_{adj}^2$ Approaches
+## 1.4. $C_p$,AIC,BIC and $R_{adj}^2$ Approaches
 
 In general, the training set $MSE$ is an underestimate of the test $MSE$. When we fit a model to the training data using least squares, we specifically estimate the regression coefficients such that the training $RSS$ is as small as possible. Training error will always decrease as we add more variables to the model, but the test error may not. Therefore, we cannot use metrics such as $R^2$ to select from models containing different numbers of variables.We do have a number of techniques for adjusting the training error:
 
@@ -71,17 +81,17 @@ $$
 
 - If $R^2$ >> $R^2-adjusted$, eliminate some of the $X_i$s from the model
 
-### 1.1.2. Validation and Cross-Validation
+## 1.5. Validation and Cross-Validation
 
 We can directly estimate the test error using the validation set and cross-validation methods.This procedure has an advantage over AIC, BIC, adjusted $R^2$ and $C_p$ in that it provides a direct estimate of the test error and makes fewer assumptions about the underlying model. It can also be used in cases in which it is hard to estimate $σ^2$ and/or the number of degrees of freedom is not known.Cross-validation has become a more attractive approach as computing power has increased.
 
-## 1.2. Shrinkage Methods-Ridge & Lasso-Models with penalty
+# 2. Shrinkage Methods-Ridge & Lasso-Models with penalty
 
 Shrinkage methods = RSS + Penalty, this is a soultion of the multicollinearity for linear regression.
 
 Rethink about the multicollinearity and cramer's rule.
 
-### 1.2.1. Why Shrinkage methods?
+## 2.1. Why Shrinkage methods?
 
 Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}$, but what if ${\bf X^{⊤}X}$ is NOT inverse?
 
@@ -89,17 +99,17 @@ Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $
 >
 > - In practice, the ${\bf |X^{⊤}X| ≈ 0}$, thus makes the $\hat{β}$ **unstable** : $D(\hat{β}) = σ^2({\bf X^{⊤}X})^{-1}$ **increases**.
 
-### 1.2.2. Penalty
+## 2.2. Penalty
 
 In order to solve the practical problem, we want the $\hat{β}$ not to fluctuate to much, so we want to make a limitation for $\hat{β}$: the Penalty.
 
-#### 1.2.2.1. But why penalty?
+## 2.3. But why penalty?
 
 In Matrix Algebra , Matrix has the property, intuitively, if $\{λ_1,λ_2,⋯,λ_p\}$ are the eigenvalues of ${\bf X^{⊤}X}$,then $\{λ_1 + k,λ_2+ k,⋯,λ_p + k\}$ are the eigenvalues of $({\bf X^{⊤}X} + kI),(k > 0)$, where ${\bf X^{⊤}X}$ is $s.p.d(Semi-positive-definite)$.
 
 The penalty works like the $kI$ in the matrix $({\bf X^{⊤}X} + kI),(k > 0)$, which can make the new matrix **full-ranked** , in the original $RSS + penalty$, it make sure that **solution of $\hat{β}$ exists**.Alternatively, **the estimator of Ridge or Lasso Regression exist. The multicollinearity issue got solved.**
 
-#### 1.2.2.2. Regularization Frame :**The main difference of the models is the feature of the penalty**
+## 2.4. Regularization Frame :**The main difference of the models is the feature of the penalty**
 
 Regularization Frame:
 
@@ -135,7 +145,7 @@ while the **red ellipses** are the **contours of the $RSS$**.
 
 Rethinking of[models with penalty-Lagrange Relaxation](https://zhuanlan.zhihu.com/p/31458541)
 
-### 1.1.2. Pre. Matrix Derivative Computations
+## 2.5. Pre. Matrix Derivative Computations
 
 - Matrix Derivative is more than importantin many areasrelated to data science, such as $SVM$ and $RNN$.
 
@@ -162,7 +172,7 @@ Similarily,we have:
 
 If $f: \mathbb{R}^{n} → \mathbb{R}, C^{2}$, then $\nabla^{2} f(x) \cdot v=D(\nabla f(x))[v]$, where D means the directional derivative.
 
-#### 1.1.2.1. e.g Find the Gradient and Hessian of $f(x)= \frac12{\bf x^{⊤}Ax}$.
+## 2.6. e.g Find the Gradient and Hessian of $f(x)= \frac12{\bf x^{⊤}Ax}$.
 
 $Sol.$ Firstly, note that $\forall v$, we have
 
@@ -188,7 +198,7 @@ $$
 
 So we have ${\bf \nabla^{2} f(x)=A}$
 
-#### 1.1.2.2. Matrixes inner product : trace of the product of the Matrixes:
+## 2.7. Matrixes inner product : trace of the product of the Matrixes:
 
 Definition of the Matrixes inner product:
 
@@ -204,7 +214,7 @@ $$
 ⟨{\bf A,B}⟩ = \mathop{Tr}({\bf A^{⊤}B})
 $$
 
-### 1.1.2. Ridge Regression
+## 2.8. Ridge Regression
 
 Ridge Regression Estimator: $\hat{β}(k) = {\bf (X^{\top}X +kI)^{-1}X^{⊤}Y}$
 
@@ -307,7 +317,7 @@ $$
 
 So,$∇^2f(β) =  {\bf 2(x^{⊤}x + λI)} > 0$, the $f(β)$ is **Positive Definite**. And we proved that the **Ridge Regression Estimator** and **Ridge Regression Objective** is equivalent substantially.
 
-### 1.1.3. From SVD to the essence of Ridge
+## 2.9. From SVD to the essence of Ridge
 
 For each matrix ${\bf X}$, we have ${\bf X = U_pΣ_pV_p^{⊤}}$(Low Ranked SVD), where ${\bf U_p,V_p}$are two orthonormal matrix with size $n×p,p×p$ and${\bf E}$ is a squared diagonal matrix.
 For each $σ_i$; in ${\bf Σ_p} =diag(σ_1,σ_2⋯,σ_p)$, we call it **singular value**.SVD is tightly correlated with eigenvalue.
@@ -357,7 +367,7 @@ V_p^{⊤}
 \end{bmatrix}}
 $$
 
-#### 1.1.3.1. Norm
+## 2.10. Norm
 
 **Norm:** $||...||$
 
@@ -395,7 +405,7 @@ where we have ${\bf ||AB|| ≤ ||A||⋅||B||}$.
 
 Here $||{\bf  V(Σ^{2} + kI)Σ^2V^{⊤}}||⋅||\hat{β}|| \underset{col\ row\ orthogonal}{=}||{\bf  (Σ^{2} + kI)Σ^2}||⋅||\hat{β}||$
 
-#### 1.1.3.2. Shrinkage factor - Which to Srinkage
+## 2.11. Shrinkage factor - Which to Srinkage
 
 Yeah, we made it, go on ,let's look at what is ${\bf  (Σ^{2} + kI)Σ^2}$:
 
@@ -425,11 +435,11 @@ We find that $\frac{σ_i^2}{σ_i^2 + λ} < 1$,then $||{\bf  (Σ^{2} + kI)Σ^2|| 
 
 $\frac{σ_i^2}{σ_i^2 + λ}$ is called $\text{Shrinkage factor}$, **When $σ_i^2$ increases, the Shrinkage factor $i$ increases, consequently, it will be harder for shrinkaging**. Thus $σ_i^2$ detemines which to shrinkage.
 
-#### 1.1.3.3. The essence of Ridge
+## 2.12. The essence of Ridge
 
 Alternatively, we can say the larger the $σ_i^2$ is , the more information $i$ contains.Thats what the RIdge Regression means, leave the dataset with more information, get rid of the dataset with less information.
 
-### 1.1.2. Lasso Regression
+## 2.13. Lasso Regression
 
 - Could we change the penalty? Yes,From 2-norm to 1-norm.
 
@@ -439,9 +449,9 @@ $$
 \hat{β} = \mathop{arg \min\limits_{β}}{Σ_{i=1}^n(y_i - β_0 - Σ_{j=1}^p X_{ij}β_j)^2 + λΣ_{j=1}^p |β_j|}
 $$
 
-### 1.1.3. Other Penaties: Elastic Net
+## 2.14. Other Penaties: Elastic Net
 
-### 1.1.4. Ridge Regression vs Lasso Regression
+## 2.15. Ridge Regression vs Lasso Regression
 
 In general, Lasso regression is expected to perform better than ridge regression when the response $Y$ is expected to be a function of only a few of the predictors.
 
@@ -449,7 +459,7 @@ In general, ridge regression is expected to perform better than lasso regression
 
 Cross-validation should be used to compare both methods and choose the best model.
 
-### 1.1.5. Selecting the Tuning Parameter $λ$
+## 2.16. Selecting the Tuning Parameter $λ$
 
 Choosing the proper value for the tuning parameter is crucial for coming up with the best model.
 
@@ -459,7 +469,7 @@ First, create a grid of different $λ$ values, and determine the cross-validatio
 
 Check the [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
 
-## 1.2. Dimension Reduction Methods
+# 2. Dimension Reduction Methods
 
 Def: Transform the $predictors$ and then fit a $least\ squares\ model$ using the transformed variables.
 
@@ -491,9 +501,9 @@ $$
 \tag{6.18}
 $$
 
-### 1.2.1. Principal Components Analysis & Regression
+## 2.1. Principal Components Analysis & Regression
 
-#### 1.2.1.1. PCA
+## 2.2. PCA
 
 PCA seeks a projection that best represents the data in a least-squares sense.This method reduces the dimensionality of feature space by restricting attention to those directions along which the scatter of the cloud is greatest.
 
@@ -501,7 +511,7 @@ PCA seeks a projection that best represents the data in a least-squares sense.Th
 - Feature Extraction
 - Reduce ofitting
 
-#### 1.2.1.2. PCR
+## 2.3. PCR
 
 The $\textit{principal components regression (PCR)}$ approach involves constructing the first $M$ principal components, $Z_1,⋯,Z_M$, and then using these components as the predictors in **a linear regression model that is fit using least squares**.
 
@@ -509,7 +519,7 @@ PCR suffers from a drawback:
 
 - There is no guarantee that the directions that best explain the predictors will also be the best directions to use for predicting the response. Unsupervised
 
-### 1.1.2. Partial Least Squares$(PLS)$
+## 2.4. Partial Least Squares$(PLS)$
 
 PLS： Compute the $Z_{i+1} with the **previous directions**' $orthogonal\ residual$ as the **next direction**,on and on.ThenRoughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
 
@@ -526,7 +536,7 @@ Disadvatages:
 
 While the supervised dimension reduction of PLS can reduce bias, it also has the potential to increase variance, so that the overall benefit of PLS relative to PCR is a wash.
 
-## 1.2. Considerations in High Dimensions
+# 2. Considerations in High Dimensions
 
 Today, it is common to be able to collect hundreds or even thousands of predictors for our data. The high dimensional setting refers to situations where the number of predictors exceeds the number of observations we have available.
 
