@@ -75,4 +75,10 @@ $$
 where $\hat{y_j}^{(i)}$ is the $jth$ predictor’s prediction for the $ith$ instance.
 
 
-The predictor’s weight αj is then computed using Equation 7-2, where η is the learn‐ing rate hyperparameter (defaults to 1).15 The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong (i.e., less accurate than random guessing), then its weight will be negative.
+- The predictor’s weight $α_j$ is then computed using Equation 7-2:
+
+$$
+\mathop{α_j} = η\ log \frac{1-r_j}{r_j}
+$$
+
+where $η$ is the **learning rate** hyperparameter (defaults to 1). The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong (i.e., less accurate than random guessing), then its weight will be negative.
