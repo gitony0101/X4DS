@@ -54,4 +54,25 @@ Boosting (originally called $hypothes\ boosting$) refers to any Ensemble method 
 Main boosting methods:
 - AdaBoost
 - Gradient Boosting
-  
+
+### AdaBoost
+
+- “Adaptive Boosting”
+    
+    One way for a **new predictor to correct its predecessor is to pay a bit more attention to the training instances that the predecessor underfitted**. This results in new predictors focusing more and more on the hard cases.
+
+- the higher the weight, the more often it has been misclassified.
+
+    When training an AdaBoost classifier, the algorithm first trains a base classifier (such as a Decision Tree) and uses it to make predictions on the training set.The algorithm then increases the relative weight of misclassified training instances.Then it trains a second classifier, using the updated weights, and again makes predic‐tions on the training set, updates the instance weights, and so on.
+
+Steps:
+
+- Initially, Each instance weight $w(i)$ is set to $1/m$. A first predictor is trained, and its weighted error rate r1 is computed on the training set:
+$$
+\mathop{r_j} = \frac{\underset{\hat{y_j}^{(i)} ≠\ y^{(i)}}{∑_{i=1}^m}w^{(i)}}{∑_{i=1}^mw^{(i)}}
+\tag{Equation 7-1}
+$$
+where $\hat{y_j}^{(i)}$ is the $jth$ predictor’s prediction for the $ith$ instance.
+
+
+The predictor’s weight αj is then computed using Equation 7-2, where η is the learn‐ing rate hyperparameter (defaults to 1).15 The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong (i.e., less accurate than random guessing), then its weight will be negative.
