@@ -72,13 +72,72 @@ $$
 \mathop{r_j} = \frac{\underset{\hat{y_j}^{(i)} ≠\ y^{(i)}}{∑_{i=1}^m}w^{(i)}}{∑_{i=1}^mw^{(i)}}
 \tag{Equation 7-1}
 $$
-where $\hat{y_j}^{(i)}$ is the $jth$ predictor’s prediction for the $ith$ instance.
 
+where $\hat{y_j}^{(i)}$ is the $jth$ predictor’s prediction for the $ith$ instance.
 
 - The predictor’s weight $α_j$ is then computed using Equation 7-2:
 
 $$
 \mathop{α_j} = η\ log \frac{1-r_j}{r_j}
+\tag{Equation 7-2}
 $$
 
-where $η$ is the **learning rate** hyperparameter (defaults to 1). The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong (i.e., less accurate than random guessing), then its weight will be negative.
+where $η$ is the **learning rate** hyperparameter (defaults to 1). The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong.
+
+- Next, the AdaBoost algorithm updates the instance weights, using Equation 7-3, which boosts the weights of the misclassified instances:
+
+Weight update rule: for $i=1,2,⋯,m$
+$$
+w^{(i)}←
+\begin{cases}
+w^{(i)} & \text{if}  \hat{y_j^{(i)}} = y^{(i)}\\
+w^{(i)}exp(α_j)&  \text{if}  \hat{y_j^{(i)}} ≠ y^{(i)}
+\end{cases}
+\tag{Equation 7-3}
+$$
+
+Then all the **instance weights are normalized**:(divided by $∑_{i=1}^m w^{(i)}$).
+
+- Finally, a new predictor is trained using the updated weights, and the whole process is repeated *(the new predictor’s weight is computed, the instance weights are updated, then another predictor is trained, and so on)*. The algorithm **stops when the $desired$ number of predictors is reached, or when a perfect predictor is found.** To make predictions, AdaBoost simply computes the predictions of all the predictors and weighs them using the predictor weights $α_j$. The predicted class is the one that receives the majority of weighted votes (see Equation 7-4).
+
+Equation 7-4. AdaBoost predictions
+$$
+\hat{y}(\bf x) = arg \underset{k}max{} \underset{\hat{y_j(\bf x)=k}}{∑_{j = 1}^N α_j}
+\tag{Equation  7-4}
+$$
+
+where $N$ is the number of predictors.
+
+### Gradient Boosting
+
+Just like AdaBoost,Gradient Boosting works by sequentially adding predictors to an ensemble, each one correcting its predecessor. However, instead of tweaking the instance weights at every iteration like AdaBoost does, this method tries to **fit the new predictor to the residual errors made by the previous predictor**.
+
+This is the Gradient Boosting method showned by `DecisionTreeRegressor`: 
+
+
+```python
+from sklearn.tree import DecisiontreeRegressor
+tree_reg1 = DecisionTreeRegressor(max_depth=2) 
+tree_reg1.fit(X, y)
+# Then we train a third regressor on the residual errors made by the second predictor: 
+y2 = y - tree_reg1.predict(X) 
+tree_reg2 = DecisionTreeRegressor(max_depth=2) 
+tree_reg2.fit(X, y2) 
+
+y3 = y2 - tree_reg2.predict(X) 
+tree_reg3 = DecisionTreeRegressor(max_depth=2) 
+tree_reg3.fit(X, y3) 
+
+# Now we have an ensemble containing three trees. It can make predictions on a new instance simply by adding up the predictions of all the trees:
+y_pred = sum(tree.predict(X_new) for tree in (tree_reg1, tree_reg2, tree_reg3))
+```
+notice the functions: `y3 = y2 - tree_reg2.predict(X)` and the sum:`y_pred = sum(tree.predict(X_new) for tree in (tree_reg1, tree_reg2, tree_reg3))`,they explain that **"fit the new predictor to the residual errors made by the previous predictor"**.
+
+However, the functions showed above tell us how the Gradient Boosting works, and feel the gradient. `GradientBoostingRegressor` is the api we can apply with this method.
+
+- Optimization:In order to find the optimal number of trees, you can use early stopping
+
+### XGBoost
+
+
+### LightGBM
