@@ -329,7 +329,7 @@ $$
 
 The values$\hat{β_0},\hat{β_1}, ⋯ ,\hat{β_p}$ that minimize (3.22) are the multiple least squares regression coefficient estimates.
 
-### Least squares for Multiple Linear Regression
+### 1.2.3. Least squares for Multiple Linear Regression
 
 We let:
 
@@ -379,11 +379,11 @@ $$
 **This of course works only if the inverse exists.**If the inverse does not exist, the normal equations can still be solved, but the solution may not be unique.
 Then we will go to $Chapter\ 6$ looking for $\text{Ridge and Lasso egression}$.
 
-### 1.2.3. Important Issues
+### 1.2.4. Important Issues
 
 When we perform multiple linear regression, we usually are interested in answering a few important questions.
 
-#### 1.2.3.1. One: Is There a Relationship Between the Response and Predictors?
+#### 1.2.4.1. One: Is There a Relationship Between the Response and Predictors?
 
 In the multiple regression setting with p predictors, we need to ask whether all of the regression coefficients are zero, i.e. whether $β_1 = β_2 = · · · = β_p = 0$. As in the simple linear regression setting, we use a **hypothesis test** to answer this question.
 
@@ -437,7 +437,7 @@ F=\frac{(RSS_0-RSS)/q}{RSS/(n-p-1)}
 \tag{3.24}
 $$
 
-#### 1.2.3.2. Deciding on Important Variables
+#### 1.2.4.2. Deciding on Important Variables
 
 The task of determining which predictors are associated with the response, in order to fit a single model involving only those predictors, is referred to as $variable\ selection$.
 
@@ -473,11 +473,11 @@ There are three ways to approach this task:
 - $R^2$ generally improves with each step but don"t be fooled!!!!!
 - Consider $Ridge\ or \  Lasso\ Regression$
 
-#### 1.2.3.3. Model Fit
+#### 1.2.4.3. Model Fit
 
 Two common methods of model fit are the $RSE $and $R^2$,the fraction of variance explained.**Plotting the model** can also be useful.
 
-#### 1.2.3.4. Predictions
+#### 1.2.4.4. Predictions
 
 **Three sorts of uncertainty** associated with the prediction:
 
@@ -535,4 +535,3 @@ $
 | Prediction errors, ϵ, have Normal Distribution<br/><br/> | Look at Normal probability plot of residuals<br/><br/>Check for outliers                       |
 | Homoscedasticity<br/>constant variance<br/><br/><br/>    | Check plot of residuals vs. predicted values. Spread should be similar. If not, try transforms |
 | No or little multicollinearity                           | Look at correlation matrix and graph – remove variables as needed                              |
-
