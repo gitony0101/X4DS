@@ -67,7 +67,7 @@ Main boosting methods:
 
 Steps:
 
-- Initially, Each instance weight $w(i)$ is set to $1/m$. A first predictor is trained, and its weighted error rate r1 is computed on the training set:
+- Initially, Each instance weight $w(i)$ is set to $1/m$. A first predictor is trained, and its **weighted error rate** $r_1$ is computed on the training set:
 $$
 \mathop{r_j} = \frac{\underset{\hat{y_j}^{(i)} ≠\ y^{(i)}}{∑_{i=1}^m}w^{(i)}}{∑_{i=1}^mw^{(i)}}
 \tag{Equation 7-1}
@@ -138,6 +138,11 @@ However, the functions showed above tell us how the Gradient Boosting works, and
 - Optimization:In order to find the optimal number of trees, you can use early stopping
 
 ### XGBoost
+
+It is worth noting that an optimized implementation of Gradient Boosting is available in the popular Python library XGBoost, which stands for Extreme Gradient Boosting.
+This package was initially developed by Tianqi Chen as part of the Distributed (Deep) Machine Learning Community (DMLC), and it aims to be extremely fast, scalable, and portable. In fact, XGBoost is often an important component of the winning entries in ML competitions. XGBoost’s API is quite similar to Scikit-Learn’s:
+
+
 
 
 ### LightGBM
