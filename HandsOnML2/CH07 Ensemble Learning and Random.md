@@ -142,6 +142,8 @@ However, the functions showed above tell us how the Gradient Boosting works, and
 It is worth noting that an optimized implementation of Gradient Boosting is available in the popular Python library XGBoost, which stands for Extreme Gradient Boosting.
 This package was initially developed by Tianqi Chen as part of the Distributed (Deep) Machine Learning Community (DMLC), and it aims to be extremely fast, scalable, and portable. In fact, XGBoost is often an important component of the winning entries in ML competitions. XGBoost’s API is quite similar to Scikit-Learn’s:
 
+- GDBT 加法模型 前向优化算法 Taylor Expansion
+  - why  2nd Order in Taylor Expansion? The changing of gradients is 2nd order
 
 
 
