@@ -9,7 +9,8 @@
   - The real world in changing on and on,thus the real world testing set can be different from the Testing set given,yeah, the static one.
   - how to correct?
   ![](../gallery/img/publicset.png)
-  
+
+- Balance the Bias and Variance: **Regularization**
 # 1. Subset Selection
 
 There are two main types of _subset selection methods_: best subset selection and stepwise model selection.
@@ -85,7 +86,9 @@ $$
 
 We can directly estimate the test error using the validation set and cross-validation methods.This procedure has an advantage over AIC, BIC, adjusted $R^2$ and $C_p$ in that it provides a direct estimate of the test error and makes fewer assumptions about the underlying model. It can also be used in cases in which it is hard to estimate $σ^2$ and/or the number of degrees of freedom is not known.Cross-validation has become a more attractive approach as computing power has increased.
 
-# 2. Shrinkage Methods-Ridge & Lasso-Models with penalty
+# 2. Regularization:Shrinkage Methods-Ridge & Lasso-Models with penalty
+
+- **Regularization is a kind of desensitization.**
 
 Shrinkage methods = RSS + Penalty, this is a soultion of the multicollinearity for linear regression.
 
@@ -93,7 +96,9 @@ Rethink about the multicollinearity and cramer's rule.
 
 ## 2.1. Why Shrinkage methods?
 
-Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}$, but what if ${\bf X^{⊤}X}$ is NOT inverse?
+Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}$.
+
+- **However,** what if ${\bf X^{⊤}X}$ is NOT inverse?
 
 > ${\bf X^{⊤}X}$ is NOT inverse:${\bf X^{⊤}X}$ is NOT Full-ranked, which means ${\bf |X^{⊤}X| = 0}$, or $Multicollinearity$: There is at **least one eigenvalue** $λ_i = 0$
 >
