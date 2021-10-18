@@ -28,13 +28,22 @@ This means that only about 63% of the training instances are sampled on average 
 
 ## Random Patches and Random Subspaces
 
-## Random forests
+### Random forests
+
+- Random Forests = Bagging + Decision Trees
 
 A Random Forest is an ensemble of Decision Trees, generally trained via the bagging method (or sometimes pasting).
 
-The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. The algorithm results in greater tree diversity, which (again) trades **a higher bias for a lower variance**, generally yielding an overall better model.
+The algorithm results in greater tree diversity:
+ - Trades **a higher bias for a lower variance**, generally yielding an overall better model.
+ - Reduce the overfitting by decision trees
 
-### Extra Trees
+
+The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node, it searches for the best feature among a random subset of features. 
+
+
+
+- Extra Trees
 
 `It is hard to tell in advance whether a RandomForestClassifier will perform better or worse than an ExtraTreesClassifier. Gen‐erally, the only way to know is to try both and compare them using cross-validation (tuning the hyperparameters using grid search).`
 
@@ -49,11 +58,41 @@ In Random Forests method, measure the relative importance of each feature by loo
 
 Boosting (originally called $hypothes\ boosting$) refers to any Ensemble method that can **combine several weak learners into a strong learner**. 
 
+
 **The general idea of most boosting methods is to train predictors sequentially, each trying to correct its predecessor.**
+
+Key word of boosting: 
+- Additive model
+- Forward stafewise
+### **Additive mode**l
+
+Additive model: Strong Classifier is made up with several weak classifiers which sum up together.
+
+$$
+F_M(x;P) = ∑_{m=1}^nβ_Mh(x;a_m)
+$$
+where 
+- $h(x:a_m)$ is weak classifier
+- $a_m$ is the best parameter of the weak classifier
+- $β_m$is the weight of the weak class in the strong classifier
+- $P$ is all the conbinations of $a_m$ and $β_m$
+
+### **Forward stagewise**
+
+Forward stagewise:
+
+The next interated classifier is trained the previous classifier:
+
+$$
+F_m(x) = F_{m-1}(x) + β_mh_m(x;a_m)
+$$
+
 
 Main boosting methods:
 - AdaBoost
 - Gradient Boosting
+  - XGBoost
+  - LightBGM
 
 ### AdaBoost
 
@@ -84,6 +123,8 @@ $$
 
 where $η$ is the **learning rate** hyperparameter (defaults to 1). The more accurate the predictor is, the higher its weight will be. If it is just guessing randomly, then its weight will be close to zero. However, if it is most often wrong.
 
+**So the adaboost update the weights of weak classifiers by the error rates**
+
 - Next, the AdaBoost algorithm updates the instance weights, using Equation 7-3, which boosts the weights of the misclassified instances:
 
 Weight update rule: for $i=1,2,⋯,m$
@@ -109,6 +150,7 @@ $$
 where $N$ is the number of predictors.
 
 ### Gradient Boosting
+
 
 Just like AdaBoost,Gradient Boosting works by sequentially adding predictors to an ensemble, each one correcting its predecessor. However, instead of tweaking the instance weights at every iteration like AdaBoost does, this method tries to **fit the new predictor to the residual errors made by the previous predictor**.
 
