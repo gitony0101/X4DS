@@ -88,7 +88,7 @@ F_m(x) = F_{m-1}(x) + β_mh_m(x;a_m)
 $$
 
 
-Main boosting methods:
+Main Boosting methods:
 - AdaBoost
 - Gradient Boosting
   - XGBoost
