@@ -98,7 +98,9 @@ Rethink about the multicollinearity and cramer's rule.
 
 Previously, in Multiple Linear Regression, we can estimate the $\hat{β}$ with $\mathop{\hat{β}} = {\bf (X^{⊤}X)^{-1}X^{⊤}y}$.
 
+---
 - **However,** what if ${\bf X^{⊤}X}$ is NOT inverse?
+---
 
 > ${\bf X^{⊤}X}$ is NOT inverse:${\bf X^{⊤}X}$ is NOT Full-ranked, which means ${\bf |X^{⊤}X| = 0}$, or $Multicollinearity$: There is at **least one eigenvalue** $λ_i = 0$
 >
