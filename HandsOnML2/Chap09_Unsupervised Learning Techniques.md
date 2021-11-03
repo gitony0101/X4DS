@@ -14,7 +14,7 @@
   - Gaussian mixture models
   - EM(Expectation Maximization)
 
-## Clustering
+# Clustering
 
 $$
 \textit{Birds of a feather flock together.}
@@ -27,13 +27,21 @@ A cluster  depends on the context, and different algorithms will capture differe
 
 Two popular clustering algorithms:**K-Means and DBSCAN**
 
-### K-means
+## K-means
 
-- def k, find centroids
+- Def k, find centroids of k clusters
 
-The vast majority of the instances were clearly assigned to the appropriate cluster, but a few instances were probably mislabeled (especially near the boundary between the top-left cluster and the central cluster). Indeed, the K-Means algorithm does not behave very well when the blobs have very different diameters because all it cares about when assigning an instance to a cluster is the distance to the centroid.
+- Computational complexity
+  - Generally linear with regard to the number of instances $m$, the number of clusters $k$, and the number of dimensions $n$ **when the data has a clustering structure**. If not, boom exponentially with the number of instances.
 
-#### Compare with KNN
+### Finding the optimal number of clusters
+
+- silhouette score
+  
+- silhouette diagram
+
+
+### Compare with KNN
 
 - KNN
   - Classification
@@ -44,3 +52,13 @@ The vast majority of the instances were clearly assigned to the appropriate clus
   - Clustering
   - Unsupervised
   - Find the centroids of the $k$ clusters
+
+### Limits of K-means
+
+  - Def k every time when test with iterations
+  - Does not behave very well when the clusters have varying sizes
+
+ **Note** 
+    
+  It is **important to scale the input features before you run K-Means**, or the clusters may be very stretched and K-Means will perform poorly.
+
