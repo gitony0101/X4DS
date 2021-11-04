@@ -77,8 +77,16 @@ How it works:
 
 A Gaussian mixture model **(GMM)** is a probabilistic model that assumes that the instances were generated from a mixture of several Gaussian distributions whose parameters are unknown.
 
+
+![](./img/MVN-GMM.png)
+
+
+
 ![](./img/GMM.drawio.png)
 
 A graphical representation of a Gaussian mixture model, including its parameters (squares), random variables (circles), and their conditional dependencies (solid arrows)
+
+
+
 
 ## EM(Expectation Maximization)
