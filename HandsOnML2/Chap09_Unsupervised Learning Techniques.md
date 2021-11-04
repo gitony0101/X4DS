@@ -75,10 +75,16 @@ How it works:
 
 ## Gaussian mixture models
 
-A Gaussian mixture model **(GMM)** is a probabilistic model that assumes that the instances were generated from a mixture of several Gaussian distributions whose parameters are unknown.
+A Gaussian mixture model **(GMM)** is a $\textit{probabilistic model}$ that assumes that the instances were generated from a mixture of several **Gaussian distributions** whose parameters are unknown.
 
+- GMM variants:
+  - The number $k$ of Gaussian distributions. 
+  - The dataset $\bf{X}$ generated through the following probabilistic process: 
+  - A cluster is picked randomly from among $k$ clusters. 
+  - The probability of choosing the $j$th cluster is defined by the cluster’s $weight, φ^{(j)}$. The index of the cluster chosen for the $i$th instance is noted $z^{(i)}$.
+  
+    - If $z^{(i)} = j$, meaning the $i$th instance has been assigned to the $j$th cluster, the location$x^{(i)}$ of this instance is sampled randomly from the Gaussian distribution with mean $\bf{μ^{(j)}}$ and **covariance matrix** $\bf{Σ^{(j)}}$,which is noted $\bf{X}^{(i)}  ∼  N(\bf{μ^{(j)}},\bf{Σ^{(j)}})$
 
-![](./img/MVN-GMM.png)
 
 
 
@@ -87,6 +93,8 @@ A Gaussian mixture model **(GMM)** is a probabilistic model that assumes that th
 A graphical representation of a Gaussian mixture model, including its parameters (squares), random variables (circles), and their conditional dependencies (solid arrows)
 
 
+
+![](./img/MVN-GMM.png)
 
 
 ## EM(Expectation Maximization)
