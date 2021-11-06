@@ -124,6 +124,55 @@ How the weights calculated?
 
 Model parameter estimation with latent variables
 
+$$
+θ_{MLE} = arg \underset{θ}{max} log\mathop{p}(x|θ))
+$$
+
+- log likelihood: $log\mathop{p}(x|θ))$ is the log likelihood of the data $x$ given the model parameters $θ$.
+- Can not compute directly
+- The algorithm is based on the **expectation step**, which is the process of estimating the parameters of the model.
+
+$$
+θ^{t+1} = arg \underset{θ}{max} ∫_{z}\underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}}⋅\underset{postetior}{p(z|x,\theta^{(t)})}dz
+\tag{9.1}
+$$
+
+where the **core of E-step**:
+
+$$
+\underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}} = E_{z|x,\theta^{(t)}}[log\mathop{p(x,z|θ)})]
+\tag{9.2}
+$$
+
+### Convergence proof
+
+When $θ^{t} → θ^{t+1}$, there is $log\mathop{p(x|θ^{(t)})} ≤ log\mathop{p(x|θ^{(t + 1)})}$:
+
+**Prof:**
+
+$$
+\begin{aligned}
+{log\mathop{p(x|θ)}} & = log\mathop{p(x,z|θ)} - log\mathop{p(z|x,θ)}
+
+\\ &\text{Bayes rule:} p(x,z|θ) = p(z|x,θ)⋅p(x|θ)
+\\ & \text{Compute the log expectation, right side:}
+\\ & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz
+\\ & Let : Q(θ,θ^{(t)})=∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz
+\\ & H(θ,θ^{(t)}) = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz,then,
+\\ & \text{Right side}=  Q(θ,θ^{(t)}) -  H(θ,θ^{(t)}),
+\\ &  \text{By argmax definition (9.1) we have:} 
+\\ & Q(θ^{t+1},θ^{(t)}) ≥ Q(θ^{(t)},θ^{(t)}) (increasing)
+\\
+\\  \text{Now we focus on :}  H(θ,θ^{(t)})
+\\ 
+\\  H(θ^{(t+1)},θ^{(t)}) - H(θ^{(t)},θ^{(t)})  & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t+1)})}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t)})}dz
+\\ & = ∫_{z}p(z|x,θ^{(t)})log\frac{p(z|x,θ^{(t+1)})}{p(z|x,θ^{(t)})}dz
+\\  (\text{By, KL-Divergence:} & = -KL(p(z|x,θ^{(t)}),p(z|x,θ^{(t+1)})) ,)
+
+\end{aligned}
+$$
+
+
 ### E-step (“Expectation")
 
 - For each datum (example) $x$ in the dataset, calculate the probability that it belongs to each of the $k$ clusters.
