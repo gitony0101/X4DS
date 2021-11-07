@@ -80,3 +80,6 @@ $$
 #  issues
 
 # Thinking
+
+What is Model?
+What is algorithm?

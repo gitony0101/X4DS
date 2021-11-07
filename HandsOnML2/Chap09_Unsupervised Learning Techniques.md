@@ -120,7 +120,7 @@ How the weights calculated?
 
 - EM(Expectation Maximization) algorithm.
 
-## EM(Expectation Maximization)
+## EM(Expectation Maximization) Algorithm
 
 Model parameter estimation with latent variables
 
@@ -131,14 +131,14 @@ $$
 - log likelihood: $log\mathop{p}(x|θ))$ is the log likelihood of the data $x$ given the model parameters $θ$.
 - Can not compute directly
 - The algorithm is based on the **expectation step**, which is the process of estimating the parameters of the model.
-
+  
+The **core of the M-step** is the **maximization step**, which is the process of choosing the parameters that maximize the likelihood:
 $$
 θ^{t+1} = arg \underset{θ}{max} ∫_{z}\underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}}⋅\underset{postetior}{p(z|x,\theta^{(t)})}dz
 \tag{9.1}
 $$
 
-where the **core of E-step**:
-
+where the **core of E-step** is the **expectation step**, which is the process of estimating the parameters of the model:
 $$
 \underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}} = E_{z|x,\theta^{(t)}}[log\mathop{p(x,z|θ)})]
 \tag{9.2}
@@ -155,11 +155,11 @@ $$
 {log\mathop{p(x|θ)}} & = log\mathop{p(x,z|θ)} - log\mathop{p(z|x,θ)}
 
 \\ &\text{Bayes rule:} p(x,z|θ) = p(z|x,θ)⋅p(x|θ)
-\\ & \text{Compute the log expectation, right side:}
+\\ & \text{Compute the log expectation, right side:} 
 \\ & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz
-\\ & Let : Q(θ,θ^{(t)})=∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz
-\\ & H(θ,θ^{(t)}) = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz,then,
-\\ & \text{Right side}=  Q(θ,θ^{(t)}) -  H(θ,θ^{(t)}),
+\\  Let : Q(θ,θ^{(t)}) & =∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz
+\\  H(θ,θ^{(t)}) & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz,then,
+\\  \text{Right side} & =  Q(θ,θ^{(t)}) -  H(θ,θ^{(t)}),
 \\ &  \text{By argmax definition (9.1) we have:} 
 \\ & Q(θ^{t+1},θ^{(t)}) ≥ Q(θ^{(t)},θ^{(t)}) (increasing)
 \\
@@ -167,11 +167,18 @@ $$
 \\ 
 \\  H(θ^{(t+1)},θ^{(t)}) - H(θ^{(t)},θ^{(t)})  & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t+1)})}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t)})}dz
 \\ & = ∫_{z}p(z|x,θ^{(t)})log\frac{p(z|x,θ^{(t+1)})}{p(z|x,θ^{(t)})}dz
-\\  (\text{By, KL-Divergence:} & = -KL(p(z|x,θ^{(t)}),p(z|x,θ^{(t+1)})) ,)
-
+\\  (\text{By, KL-Divergence(≥0),so} & = -KL(p(z|x,θ^{(t)}) || p(z|x,θ^{(t+1)})) ≤ 0 )
+\\  \text{Thus, we  have:} & H(θ^{(t+1)},θ^{(t)}) ≤ H(θ^{(t)},θ^{(t)})
+\\ \text{So, the convergence is achieved.}
 \end{aligned}
 $$
 
+There is another substitution for KL-Divergence: [**Jensen Inequality** of **logarithmic function(concave)**](https://www.probabilitycourse.com/chapter6/6_2_5_jensen%27s_inequality.php)
+
+- For a convex function, the Jensen inequality[^1] is satisfied if the function is increasing:
+$$
+E(g(X)) ≥ g[E(X)]
+$$
 
 ### E-step (“Expectation")
 
@@ -184,7 +191,7 @@ $$
 - For each cluster $z^{(i)} = j$
 - Update its parameters using the (weighted) data points
 - Each step **increases** the log-likelihood of our model
-- Iterate until convergence
+- **Iterate until convergence,if not step back**
   - Convergence guaranteed
   - Local optima: initialization often important
 
@@ -233,3 +240,9 @@ Expectation-Maximization
 Selecting the number of clusters
 
 - Penalized likelihood or validation data likelihood
+
+
+
+# References
+
+[^1]: [Jensen Inequality](https://bookdown.org/ts_robinson1994/10_fundamental_theorems_for_econometrics/exp-ineq.html#jensens-inequality)
