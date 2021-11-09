@@ -90,35 +90,6 @@ How it works:
   - EM algorithm: assign data to cluster with some probability
   - Gives probability model of $x$ ("generative")
 
-## A Gaussian mixture model
-
-A Gaussian mixture model **(GMM)** is a $\textit{probabilistic model}$ that assumes that the instances were generated from a mixture of several **Gaussian distributions** whose parameters are unknown.
-
-- GMM variants:
-
-  - The number $k$ of Gaussian distributions.
-  - The dataset $\bf{X}$ generated through the following probabilistic process:
-  - A cluster is picked randomly from among $k$ clusters.
-  - The probability of choosing the $j$th cluster is defined by the cluster’s $weight, φ^{(j)}$. The index of the cluster chosen for the $i$th instance is noted $z^{(i)}$.
-
-    - If $z^{(i)} = j$, meaning the $i$th instance has been assigned to the $j$th cluster, the location$x^{(i)}$ of this instance is sampled randomly from the Gaussian distribution with mean $\bf{μ^{(j)}}$ and **covariance matrix** $\bf{Σ^{(j)}}$,which is noted $\bf{X}^{(i)}  ∼  N(\bf{μ^{(j)}},\bf{Σ^{(j)}})$
-
-![](./img/GMM.drawio.png)
-
-- A graphical representation of a Gaussian mixture model, including its parameters (squares), random variables (circles), and their conditional dependencies (solid arrows)
-- “Latent assignment" $z$: we observe $x$, but $z$ is hidden.
-
-GMM Model:
-
-$$
-\mathop{p(x)}= ∑_{i=1}^kϕ^{(j)}N(\bf{μ^{(j)}},\bf{Σ^{(j)}})
-$$
-
-![](./img/MVN-GMM.png)
-
-How the weights calculated?
-
-- EM(Expectation Maximization) algorithm.
 
 ## EM(Expectation Maximization) Algorithm
 
@@ -131,14 +102,16 @@ $$
 - log likelihood: $log\mathop{p}(x|θ))$ is the log likelihood of the data $x$ given the model parameters $θ$.
 - Can not compute directly
 - The algorithm is based on the **expectation step**, which is the process of estimating the parameters of the model.
-  
+
 The **core of the M-step** is the **maximization step**, which is the process of choosing the parameters that maximize the likelihood:
+
 $$
 θ^{t+1} = arg \underset{θ}{max} ∫_{z}\underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}}⋅\underset{postetior}{p(z|x,\theta^{(t)})}dz
 \tag{9.1}
 $$
 
 where the **core of E-step** is the **expectation step**, which is the process of estimating the parameters of the model:
+
 $$
 \underset{\textit{log joint probs.}}{log\mathop{p(x,z|θ)}} = E_{z|x,\theta^{(t)}}[log\mathop{p(x,z|θ)})]
 \tag{9.2}
@@ -155,16 +128,16 @@ $$
 {log\mathop{p(x|θ)}} & = log\mathop{p(x,z|θ)} - log\mathop{p(z|x,θ)}
 
 \\ &\text{Bayes rule:} p(x,z|θ) = p(z|x,θ)⋅p(x|θ)
-\\ & \text{Compute the log expectation, right side:} 
+\\ & \text{Compute the log expectation, right side:}
 \\ & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz
 \\  Let : Q(θ,θ^{(t)}) & =∫_{z}p(z|x,θ^{(t)})log\mathop{p(x,z|θ)}dz
 \\  H(θ,θ^{(t)}) & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ)}dz,then,
 \\  \text{Right side} & =  Q(θ,θ^{(t)}) -  H(θ,θ^{(t)}),
-\\ &  \text{By argmax definition (9.1) we have:} 
+\\ &  \text{By argmax definition (9.1) we have:}
 \\ & Q(θ^{t+1},θ^{(t)}) ≥ Q(θ^{(t)},θ^{(t)}) (increasing)
 \\
 \\  \text{Now we focus on :}  H(θ,θ^{(t)})
-\\ 
+\\
 \\  H(θ^{(t+1)},θ^{(t)}) - H(θ^{(t)},θ^{(t)})  & = ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t+1)})}dz - ∫_{z}p(z|x,θ^{(t)})log\mathop{p(z|x,θ^{(t)})}dz
 \\ & = ∫_{z}p(z|x,θ^{(t)})log\frac{p(z|x,θ^{(t+1)})}{p(z|x,θ^{(t)})}dz
 \\  (\text{By, KL-Divergence(≥0),so} & = -KL(p(z|x,θ^{(t)}) || p(z|x,θ^{(t+1)})) ≤ 0 )
@@ -176,11 +149,35 @@ $$
 There is another substitution for KL-Divergence: [**Jensen Inequality** of **logarithmic function(concave)**](https://www.probabilitycourse.com/chapter6/6_2_5_jensen%27s_inequality.php)
 
 - For a convex function, the Jensen inequality[^1] is satisfied if the function is increasing:
+  $$
+  E(g(X)) ≥ g[E(X)]
+  $$
+
+### ELBO and KL-Divergence forms
+
+ELBO: Evidence Lower bound
+
 $$
-E(g(X)) ≥ g[E(X)]
+p(x|θ) = ELBO + KL(q||p)
+$$
+
+where:
+
+$$
+\begin{aligned}
+ELBO & = E_{q(z)}[log\frac{p(x,z|θ)}{q(z)}]
+\\
+KL(q||p) & = ∫q(z)log\frac{q(z)}{p(z|x,θ)}dz
+\end{aligned}
 $$
 
 ### E-step (“Expectation")
+
+Fix $θ$:
+
+$$
+\hat{q} = arg\underset{q}{min} KL(q||p)= argmax \mathcal{L}(q,θ)
+$$
 
 - For each datum (example) $x$ in the dataset, calculate the probability that it belongs to each of the $k$ clusters.
 - Normalize to sum to one (over $k$ clusters )
@@ -188,12 +185,28 @@ $$
 
 ### M-step (“Maximization" )
 
+Fix $\hat{q}$
+
+$$
+θ = arg\underset{θ}{max} \mathcal{L}(\hat{q},θ)
+$$
+
 - For each cluster $z^{(i)} = j$
 - Update its parameters using the (weighted) data points
 - Each step **increases** the log-likelihood of our model
 - **Iterate until convergence,if not step back**
   - Convergence guaranteed
   - Local optima: initialization often important
+
+### General EM 
+
+$$
+\begin{aligned}
+\text{E-step:} \mathop{q^{(t+1)}} & = arg\underset{q}{max} \mathcal{L}(q,θ^{(t)})
+\\
+\text{M-step:} \mathop{θ^{(t+1)}} & = argmax \mathcal{L}(q^{(t+1)},θ)
+\end{aligned}
+$$
 
 ### EM Notes:
 
@@ -222,6 +235,35 @@ Stochastic EM:
 - Similar to EM, but with extra randomness
 - Not obvious when it has converged
 
+
+## Gaussian mixture model
+
+A Gaussian mixture model **(GMM)** is a $\textit{probabilistic model}$ that assumes that the instances were generated from a mixture of several **Gaussian distributions** whose parameters are unknown.
+
+- GMM variants:
+
+  - The number $k$ of Gaussian distributions.
+  - The dataset $\bf{X}$ generated through the following probabilistic process:
+  - A cluster is picked randomly from among $k$ clusters.
+  - The probability of choosing the $j$th cluster is defined by the cluster’s $weight, φ^{(j)}$. The index of the cluster chosen for the $i$th instance is noted $z^{(i)}$.
+
+    - If $z^{(i)} = j$, meaning the $i$th instance has been assigned to the $j$th cluster, the location$x^{(i)}$ of this instance is sampled randomly from the Gaussian distribution with mean $\bf{μ^{(j)}}$ and **covariance matrix** $\bf{Σ^{(j)}}$,which is noted $\bf{X}^{(i)}  ∼  N(\bf{μ^{(j)}},\bf{Σ^{(j)}})$
+
+![](./img/GMM.drawio.png)
+
+- A graphical representation of a Gaussian mixture model, including its parameters (squares), random variables (circles), and their conditional dependencies (solid arrows)
+- “Latent assignment" $z$: we observe $x$, but $z$ is hidden.
+
+GMM Model:
+
+$$
+\mathop{p(x)}= ∑_{i=1}^kϕ^{(j)}N(\bf{μ^{(j)}},\bf{Σ^{(j)}})
+$$
+
+![](./img/MVN-GMM.png)
+
+ 
+
 ### GMM & EM Summary
 
 Gaussian mixture models
@@ -240,6 +282,7 @@ Expectation-Maximization
 Selecting the number of clusters
 
 - Penalized likelihood or validation data likelihood
+
 
 
 
