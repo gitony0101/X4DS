@@ -117,6 +117,8 @@ $$
 \tag{9.2}
 $$
 
+- #### Hold on tight, what is $θ$?
+  - Parameters of the  model, discuss in GMM below.
 ### Convergence proof
 
 When $θ^{t} → θ^{t+1}$, there is $log\mathop{p(x|θ^{(t)})} ≤ log\mathop{p(x|θ^{(t + 1)})}$:
@@ -260,9 +262,20 @@ $$
 \mathop{p(x)}= ∑_{i=1}^kϕ^{(j)}N(\bf{μ^{(j)}},\bf{Σ^{(j)}})
 $$
 
+where:
+
+ $θ = \{P_1,P_2 ⋯,p_k,μ_1,μ_2⋯μ_k,∑_1,∑_2,⋯,∑_k\}$ 
+
+
+
+
+
 ![](./img/MVN-GMM.png)
 
  
+
+
+
 
 ### GMM & EM Summary
 
