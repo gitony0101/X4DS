@@ -90,7 +90,6 @@ How it works:
   - EM algorithm: assign data to cluster with some probability
   - Gives probability model of $x$ ("generative")
 
-
 ## EM(Expectation Maximization) Algorithm
 
 Model parameter estimation with latent variables
@@ -118,7 +117,8 @@ $$
 $$
 
 - #### Hold on tight, what is $θ$?
-  - Parameters of the  model, discuss in GMM below.
+  - Parameters of the model, discuss in GMM below.
+
 ### Convergence proof
 
 When $θ^{t} → θ^{t+1}$, there is $log\mathop{p(x|θ^{(t)})} ≤ log\mathop{p(x|θ^{(t + 1)})}$:
@@ -200,7 +200,7 @@ $$
   - Convergence guaranteed
   - Local optima: initialization often important
 
-### General EM 
+### General EM
 
 $$
 \begin{aligned}
@@ -237,10 +237,19 @@ Stochastic EM:
 - Similar to EM, but with extra randomness
 - Not obvious when it has converged
 
-
-## Gaussian mixture model
+## Gaussian Mixture Model
 
 A Gaussian mixture model **(GMM)** is a $\textit{probabilistic model}$ that assumes that the instances were generated from a mixture of several **Gaussian distributions** whose parameters are unknown.
+
+### From geometric interpretation, the model is a weighted sum of Gaussian distributions:
+
+$$
+\mathop{p(x)= ∑_{i=1}^kϕ^{(j)}N(\bf{μ^{(j)}},\bf{Σ^{(j)}})}
+$$
+
+where:
+
+$θ = \{P_1,P_2 ⋯,p_k,μ_1,μ_2⋯μ_k,∑_1,∑_2,⋯,∑_k\}$
 
 - GMM variants:
 
@@ -253,29 +262,88 @@ A Gaussian mixture model **(GMM)** is a $\textit{probabilistic model}$ that assu
 
 ![](./img/GMM.drawio.png)
 
+### From mixture interpretation, the model is a generative model with latent variables.
+
 - A graphical representation of a Gaussian mixture model, including its parameters (squares), random variables (circles), and their conditional dependencies (solid arrows)
 - “Latent assignment" $z$: we observe $x$, but $z$ is hidden.
 
-GMM Model:
-
-$$
-\mathop{p(x)}= ∑_{i=1}^kϕ^{(j)}N(\bf{μ^{(j)}},\bf{Σ^{(j)}})
-$$
-
-where:
-
- $θ = \{P_1,P_2 ⋯,p_k,μ_1,μ_2⋯μ_k,∑_1,∑_2,⋯,∑_k\}$ 
-
-
-
-
-
 ![](./img/MVN-GMM.png)
 
- 
+### EM for GMM E-step,Find $Q(θ,θ^{(t)})$
+
+$$
+\begin{aligned}
+
+\mathop{Q(θ,θ^{(t)})} & = ∫_z logp(x,z|θ)p(z|x,θ^{(t)})dz)\\
+& \underset{discrete}{=} ∑_z ∏_{i=1}^N p(x_i,z_i|
+θ)∏_{i=1}^{N}p(z_i|x_i,θ^{(t)})\\
+& = ∑_{z_1,z_2,⋯,z_N}[logp(x_1,z_1|θ) + logp(x_2,z_2|θ) + ⋯ + logp(x_n,z_n|θ)]∏_{i=1}^{N}p(z_i|x_i,θ^{(t)})
+\\
+
+ \text{Note:Expand the first item:}& \\
+& ∑_{z_1,z_2,⋯,z_N}logp(x_1,z_1|θ)p(z_1|x_1,θ^{(t)})∏_{i=2}^Np(z_i|x_i,θ^{(t)})
+
+\\
+ \text{Noticing that:}&\\
+ ∏_{i=2}^Np(z_i|x_i,θ^{(t)}) & = ∑_{z_2,z_3⋯,z_N}p(z_i|x_i,θ^{(t)})\\
+& = \sum_{z_2}\underbrace{p(z_2|x_2,θ^{(t)})}_1 ∑_{z_3}\underbrace{p(z_3|x_3,θ^{(t)})}_{1}⋯∑_{z_N}\underbrace{p(z_N|x_N,θ^{(t)})}_{1}\\
+& = 1⋅1 ⋯1=1 \\
+\text{Thus:} \\
+& ∑_{z_1,z_2,⋯,z_N}logp(x_1,z_1|θ)p(z_1|x_1,θ^{(t)})∏_{i=2}^Np(z_i|x_i,θ^{(t)}) \\
+& = ∑_{z_1}logp(x_1,z_1|θ)p(z_1|x_1,θ^{(t)}) + ∑_{z_2}logp(x_2,z_2|θ)p(z_2|x_2,θ^{(t)}) + ⋯ + ∑_{z_N}logp(x_N,z_N|θ)p(z_N|x_N,θ^{(t)}) \\
+& = ∑_{i=1}^N∑_{z_i}\underbrace{logp_{z_i}N(x_i|μ_{z_i},Σ_{z_i})}_{p(x,z)=p(z)p(x|z)=p_zN(x|μ_k,Σ_k)}⋅\underbrace{\frac{p_{z_i}N(x_i|μ_{z_i},Σ_{z_i})}{∑_{k=1}^Kp_kN(x_i|μ_k,Σ_k)}}_{p(z|x)=\frac{p(x,z)}{p(x)}=\frac{p_zN(x|μ_k,Σ_k)}{∑_{k=1}^Kp_kN(x_i|μ_k,Σ_k)}}\\
+& = Q(θ,θ^{(t)})
+
+\\
+
+\end{aligned}
+$$
+
+###EM for GMM M-step: $arg\underset{θ}{max} Q(θ,θ^{(t)})$
+
+- Lagrange multipliers method is a method for solving the following optimization with constraints problem:
+
+$$
+\left\{
+\begin{aligned}
+\mathop{p_k^{(t+1)}} & =arg \underset{p_k}{max} logp_k p(z_i=c_k|x_i,θ^{(t)})
+\\
+s.t. ∑_{k=1}^Kp_k & =1
+\end{aligned}
+\right.
+$$
+
+Create a function that returns the Lagrange multipliers:
+
+$$
+\mathcal{L(p,λ)} = \sum_{k=1}^K ∑_{i=1}^N logp_kp(z_i=c_k|x_i,θ^{(t)})  + λ(∑_{k=1}^Kp_k -1)
 
 
+$$
 
+Computhe the second derivative of the Lagrange multipliers:
+
+$$
+\frac{∂\mathcal{L}}{∂p_k} = \sum_{i=1}^N \frac{1}{p_k}p(z_i=c_k|x_i,θ^{(t)}) + λ = 0
+\\
+ \sum_{i=1}^N p(z_i=c_k|x_i,θ^{(t)}) + λp_k = 0
+$$
+Here, we need to take the constraints:$s.t. ∑_{k=1}^Kp_k =1$ into consideration:
+   - Let $k=1,2,3,⋯K$, then sum up all the functions:
+
+$$
+\begin{aligned}
+∑_{i=1}^N\underbrace{∑_{k=1}^Kp(z_i = c_k|x_i,θ^{(t)})}_{\textit{probs. related to }C_k,=1} +∑_{k=1}^Kp_kλ & = 0\\
+N⋅1 + λ & = 0\\
+λ & = - N
+
+\end{aligned}
+$$
+
+
+$$
+  = \frac{1}{N}∑_{i=1}^N\sum_{z_i=1}^Kp_kN(x_i|μ_k,Σ_k)
+$$
 
 ### GMM & EM Summary
 
@@ -295,9 +363,6 @@ Expectation-Maximization
 Selecting the number of clusters
 
 - Penalized likelihood or validation data likelihood
-
-
-
 
 # References
 
