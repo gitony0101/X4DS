@@ -154,7 +154,7 @@ Rethinking of[models with penalty-Lagrange Relaxation](https://zhuanlan.zhihu.co
 
 ## 2.5. Pre. Matrix Derivative Computations
 
-- Matrix Derivative is more than importantin many areasrelated to data science, such as $SVM$ and $RNN$.
+- Matrix Derivative is more than important in many areas related to data science, such as $SVM$ and $RNN$.
 
 - Therefore, some tricks of computation could aid a lot in computing $gradient$ and $Hessian$.
 
