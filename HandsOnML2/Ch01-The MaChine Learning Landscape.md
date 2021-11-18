@@ -203,7 +203,7 @@ A common solution to this problem is called holdout validation: you simply hold 
 
 The new held-out set is called the validation set (or sometimes the development set, or dev set). More specifically, you train multiple models with various hyperparameters on the reduced training set (i.e., the full training set minus the validation set), and you select the model that performs best on the validation set. After this holdout vali‐dation process, you train the best model on the full training set (including the valida‐tion set), and this gives you the final model. Lastly, you evaluate this final model on the test set to get an estimate of the generalization error.
 
-#### [Difference Between a Parameter and a Hyperparameter](https://machinelearningmastery.com/difference-between-a-parameter-and-a-hyperparameter/)
+#### 1.2.9.1. [Difference Between a Parameter and a Hyperparameter](https://machinelearningmastery.com/difference-between-a-parameter-and-a-hyperparameter/)
 
 ![](img/hyper.png)
 
@@ -239,7 +239,7 @@ Some examples of model hyperparameters include:
 - **model parameters are estimated from data automatically**
 - **model hyperparameters are set manually and are used in processes to help estimate model parameters.**
 
-### 1.2.10. Data Mismatch
+### 1.2.2. Data Mismatch
 
 In some cases, it’s easy to get a large amount of data for training, but this data proba‐bly won’t be perfectly representative of the data that will be used in production.
 
