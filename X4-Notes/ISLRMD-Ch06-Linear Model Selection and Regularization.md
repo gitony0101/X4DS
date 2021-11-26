@@ -466,6 +466,21 @@ In general, ridge regression is expected to perform better than lasso regression
 
 Cross-validation should be used to compare both methods and choose the best model.
 
+L1正则化
+
+    对参数的绝对值之和进行惩罚，导致稀疏模型
+    稀疏模型会有参数选择的效果
+    稀疏模型更简单且更容易解释，但是比较不容易学习到复杂的关系（毕竟很多不重要的参数值可能都变为了0）
+    对样本异常点比较稳定，不太容易受其干扰
+
+L2正则化
+
+    对参数的平方项进行惩罚，可以得到稠密模型
+    稠密模型一般来讲具有更好的模型精确度
+    对样本异常点比较敏感
+
+
+
 ## 2.16. Selecting the Tuning Parameter $λ$
 
 Choosing the proper value for the tuning parameter is crucial for coming up with the best model.
