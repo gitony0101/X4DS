@@ -3,12 +3,12 @@
 # Model Selection :Bias,Variance,Error,Public/Private Set
 
 - There is usually a **trade-off** between $bias\ and\ variance$.
-    ![](./../gallery/img/biasvariance.jpg))
+    ![](./img/biasvariance.jpg)
 - Select a model that balances two kinds of error to minimizetotal error
 - (Discuss thie in the future)What you should NOT do: take the static result as real world reflection:（逝者如斯，不舍昼夜）
   - The real world in changing on and on,thus the real world testing set can be different from the Testing set given,yeah, the static one.
   - how to correct?
-  ![](../gallery/img/publicset.png)
+  ![](./img/publicset.png)
 
 - Balance the Bias and Variance: **Regularization**
 # 1. Subset Selection
