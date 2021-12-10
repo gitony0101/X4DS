@@ -543,7 +543,7 @@ PCR suffers from a drawback:
 
 ## 2.4. Partial Least Squares$(PLS)$
 
-PLS： Compute the $Z_{i+1} with the **previous directions**' $orthogonal\ residual$ as the **next direction**,on and on.ThenRoughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
+PLS： Compute the $Z_{i+1}$ with the **previous directions** $orthogonal\ residuals$ as the **next direction**,on and on.ThenRoughly speaking, the PLS approach attempts **to find directions** that help explain both the response and the predictors.
 
 $\textit{Partial least squares (PLS)}$ is a **supervised** alternative to partial least squares PCR. Like PCR, PLS is a **dimension reduction** method, which first identifies a new set of features $Z_1,⋯,Z_M$ that are linear combinations of the original features, and then fits a linear model via least squares using these $M$ new features. But unlike PCR, PLS identifies these new features in a supervised way—that is, it makes use of the **response Y in order to identify new features** that not only approximate the old features well, but also that are related to the response.
 
