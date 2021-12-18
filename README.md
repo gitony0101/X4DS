@@ -19,7 +19,7 @@ This repo is a collection of
     <tr>
       <td>Language <br />Version</td>
       <td>v3.9</td>
-      <td>v1.6</td>
+      <td>v1.7</td>
     </tr>
     <tr>
       <td>Data <br />Processing</td>
@@ -55,7 +55,7 @@ This repo is a collection of
         Programming
       </td>
       <td>
-        <li>PyMC3</li>
+        <li>PyMC</li>
       </td>
       <td><li>Turing</li></td>
     </tr>
