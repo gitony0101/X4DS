@@ -26,7 +26,6 @@ This repo is a collection of
       <td><li>Pandas</li></td>
       <td>
         <li>DataFrames</li>
-        <li>DataFramesMeta</li>
       </td>
     </tr>
     <tr>
