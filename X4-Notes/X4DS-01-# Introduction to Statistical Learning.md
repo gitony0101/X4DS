@@ -65,18 +65,9 @@ Every data set is different and there is no one statistical learning method that
 
 #### [MSE:Mean Squared Error](https://en.wikipedia.org/wiki/Mean_squared_error)
 
-<img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/e258221518869aa1c6561bb75b99476c4734108e>
-
 **Proof of variance and bias relationship:**
 
-<img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/98c253fd2ab03bfc46743f5524b7fd060a94f4f6>
 
-**Proff:**
-<img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/2ac524a751828f971013e1297a33ca1cc4c38cd6>
-
-Alternatively, we have:
-
-<img src=https://wikimedia.org/api/rest_v1/media/math/render/svg/632fe180f618ad29d879f08fa21a88bda3e44876>
 
 In regression, mean squared error (MSE) is the most commonly-used measure. A small MSE indicates the predicted responses are very close to the true ones. MSE used on training data is more accurately referred to as the training MSE.
 
