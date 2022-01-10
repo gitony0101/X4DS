@@ -1,36 +1,30 @@
 # Introduction to Statistical Learning
 
-
-##  What Is Statistical Learning?
+## What Is Statistical Learning?
 
 **Statistical Learning** - a set of approaches for estimating a function $f(X)$ from a set of data.
 
-More generally, suppose that we observe a quantitative response $Y$ and $p$ different predictors, $X_{1}, X_{2}, \ldots, X_{p} $.
+More generally, suppose that we observe a quantitative response $Y$ and $p$ different predictors, $X*{1}, X*{2}, \ldots, X\_{p} $.
 
 We assume that there is some relationship between $Y$ and $X=\left(X_{1}, X_{2}, \ldots, X_{p}\right)$, which can be written in the very general form:
-
 
 $$
 Y=f(X)+\epsilon
 $$
 
-
 The symbol $f$ represents the systematic information that $X$ provides about $Y$. Statistical learning refers to a set of approaches for estimating $f$.
-
-
 
 ## Why estimate $f$?
 
 Either for **prediction** or **inference**.
 
-## Prediction 
+## Prediction
 
 The set of inputs X are readily available, but the output Y cannot easily be obtained. We wish to predict what Y will be given a set of inputs X
 
 $$
 \hat{Y}=\hat{f}(X)
 $$
-
 
 The accuracy of the prediction depends on two quantities - **the reducible and the irreducible error**. The estimate $\hat{f}(X)$
 will not be a perfect estimate for the **true** $f(X)$
@@ -49,8 +43,6 @@ $$
 
 where $E(Y-\hat{Y})^{2}$ represents the average, or expected value, of the squared difference between the predicted and actual value of $Y$, and $\operatorname{Var}(\epsilon)$ represents the variance associated with the error term $\epsilon$.
 
-
-
 ## Inference
 
 We are often interested in the way that Y
@@ -60,23 +52,18 @@ is affected by changes in X. We need to estimate $f(X)$, but we don’t want to 
 
 Every data set is different and there is no one statistical learning method that works best for all data sets. It is important for any given data set to find the statistical learning method that produces the best results. This section presents some concepts that are part of that decision-making process.
 
-
 ### Measuring the Quality of Fit
 
 #### [MSE:Mean Squared Error](https://en.wikipedia.org/wiki/Mean_squared_error)
 
 **Proof of variance and bias relationship:**
 
-
-
 In regression, mean squared error (MSE) is the most commonly-used measure. A small MSE indicates the predicted responses are very close to the true ones. MSE used on training data is more accurately referred to as the training MSE.
 
 We are most concerned with the accuracy of the predictions when we apply our methods to previously unseen data. If you are trying to predict the value of a stock, your concern is how it performs in the future, not on known data from the past. Thus, the goal is then minimizing the test MSE, which measures the accuracy of a model on observations that were not used to train the model. Imagine a set of observations (x0,y0)
 that were not used to train the statistical learning method.
 
-
 $$Ave(y_0 - \hat{f}(x_0))^2$$
-
 
 ### The Bias-Variance Trade-Off
 
@@ -85,25 +72,17 @@ The expected test MSE can be broken down into the sum of three quantities:
 1. the variance of $\hat{f}\left(x_{0}\right)$
 2. the squared bias of $\hat{f}\left(x_{0}\right)$
 3. the variance of the error terms $\varepsilon$
-$$
-E\left(y_{0}-\hat{f}\left(x_{0}\right)^{2}=\operatorname{Var}\left(\hat{f}\left(x_{0}\right)\right)+\left[\operatorname{Bias}\left(\hat{f}\left(x_{0}\right)\right)\right]^{2}+\operatorname{Var}(\varepsilon)\right.
-$$
-
-
+   $$
+   E\left(y_{0}-\hat{f}\left(x_{0}\right)^{2}=\operatorname{Var}\left(\hat{f}\left(x_{0}\right)\right)+\left[\operatorname{Bias}\left(\hat{f}\left(x_{0}\right)\right)\right]^{2}+\operatorname{Var}(\varepsilon)\right.
+   $$
 
 # Stastical Learning Methods
 
-## Supervised  Learning
+## Supervised Learning
 
 ## Unsupervised Learning
 
 ## Reinforcement Learning
-
-
-
-
-
-
 
 # Chap01 - The Machine Learning Landscape
 

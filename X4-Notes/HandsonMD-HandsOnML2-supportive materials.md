@@ -1,6 +1,6 @@
 # HandsOn Machin Learning 2 supportive materials
 
-# Statistical Learining 
+# Statistical Learining & Machine Learning
 
 ## Bayesian Theorem
 
