@@ -1,3 +1,8 @@
+ MAE MAPE  MSE RMSE R2 
+
+
+
+
 # Machine Learning Algorithms Pros and Cons as well as the evaluation metrics
 
 Start with Logistic Regression, then try Tree Ensembles, and/or Neural Networks.
