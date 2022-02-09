@@ -1,11 +1,9 @@
 # X4DS
 
-This repo is a collection of
-
-**Python** & **Julia** port of codes in the following excellent R books:
+This repo is a collection of **Python** & **Julia** port of codes in the following excellent R & Py books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
-- [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (SRT)
+- [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) (HandsOnML2)
 
 <table border="1">
   <thead>
@@ -61,9 +59,28 @@ This repo is a collection of
   </tbody>
 </table>
 
+
+## Basics
+
+- [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/mpl.ipynb)
+- [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
+
+## ISLR
+
+- [Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02-Statistical-Learning.ipynb)
+- [Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03-Linear-Regression.ipynb)
+- [Chapter 04 - Classification](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch04-Classification.ipynb)
+- [Chapter 05 - Resampling Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05-Resampling-Methods.ipynb)
+- [Chapter 06 - Linear Model Selection and Regularization](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch06-Linear-Model-Selection-and-Regularization.ipynb)
+- [Chapter 07 - Moving Beyond Linearity](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch07-Moving-Beyond-Linearity.ipynb)
+- [Chapter 08 - Tree Based Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch08-Tree-Based-Methods.ipynb)
+- [Chapter 09 - Support Vector Machines](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch09-Support-Vector-Machines.ipynb)
+- [Chapter 10 - Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10-Unsupervised-Learning.ipynb)
+
+
 ## Code Styles
 
-### 2.1. Basics
+### Basics
 
 - prefer `enumerate()` over `range(len())`
 
@@ -79,7 +96,7 @@ for i in range(len(xs)):
   print(f'{i}: {xs[i]}')
 ```
 
-### 2.2. Matplotlib
+### Matplotlib
 
 including seaborn
 
@@ -140,7 +157,7 @@ ax.spines["right"].set_visible(False)
 ax.spines["left"].set_visible(False)
 ```
 
-### 2.3. Pandas
+### Pandas
 
 - prefer `df['col']` over `df.col`
 
@@ -282,18 +299,6 @@ $$
 θ_{\mathrm{MLE}}=\underset{θ}{\mathrm{argmax}}\ ∑_{i = 1}^{N}\log p(x_i|θ)
 $$
 ```
-
-## ISLR
-
-- [Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02-Statistical%20Learning.ipynb)
-- [Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03-Linear%20Regression.ipynb)
-- [Chapter 04 - Classification](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch04-Classification.ipynb)
-- [Chapter 05 - Resampling Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05-Resampling%20Methods.ipynb)
-- [Chapter 06 - Linear Model Selection and Regularization](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch06-Linear%20Model%20Selection%20and%20Regularization.ipynb)
-- [Chapter 07 - Moving Beyond Linearity](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch07-Moving%20Beyond%20Linearity.ipynb)
-- [Chapter 08 - Tree Based Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch08-Tree-Based%20Methods.ipynb)
-- [Chapter 09 - Support Vector Machines](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch09-Support%20Vector%20Machines.ipynb)
-- [Chapter 10 - Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10-Unsupervised%20Learning.ipynb)
 
 ## References
 
