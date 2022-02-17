@@ -67,16 +67,8 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 
 ## ISLR
 
-- [Chapter 02 - Statistical Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch02-Statistical-Learning.ipynb)
-- [Chapter 03 - Linear Regression](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch03-Linear-Regression.ipynb)
-- [Chapter 04 - Classification](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch04-Classification.ipynb)
-- [Chapter 05 - Resampling Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch05-Resampling-Methods.ipynb)
-- [Chapter 06 - Linear Model Selection and Regularization](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch06-Linear-Model-Selection-and-Regularization.ipynb)
-- [Chapter 07 - Moving Beyond Linearity](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch07-Moving-Beyond-Linearity.ipynb)
-- [Chapter 08 - Tree Based Methods](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch08-Tree-Based-Methods.ipynb)
-- [Chapter 09 - Support Vector Machines](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch09-Support-Vector-Machines.ipynb)
-- [Chapter 10 - Unsupervised Learning](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/ISLR/Ch10-Unsupervised-Learning.ipynb)
-
+- [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/master/ISLR/)
+- [HandsOnML2-Updated](https://nbviewer.org/github/gitony0101/X4DS/tree/master/HandsOnML2/)
 
 ## Code Styles
 
