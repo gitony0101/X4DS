@@ -65,10 +65,12 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 - [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/mpl.ipynb)
 - [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
 
-## ISLR
+## Series
 
-- [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/master/ISLR/)
-- [HandsOnML2-Updated](https://nbviewer.org/github/gitony0101/X4DS/tree/master/HandsOnML2/)
+- [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/ISLR/)
+- [HandsOnML2-Updated](https://nbviewer.org/github/gitony0101/X4DS/tree/main/HandsOnML2/)
+- [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
+
 
 ## Code Styles
 
