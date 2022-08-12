@@ -1,5 +1,3 @@
-
-
 ```python
 import numpy as np
 import pandas as pd
@@ -14,7 +12,6 @@ plt.xkcd();
 
 Create the data
 
-
 ```python
 np.random.seed = 7
 X = pd.DataFrame(np.random.random(100)*100)
@@ -23,24 +20,15 @@ X[1] = X[0]+np.random.randn(100)*10
 
 Use Principal Component Analysis to change the axis
 
-
 ```python
 pca = PCA(n_components=2, random_state=42)
 X2 = pca.fit_transform(X)
 ```
 
-
 ```python
 pca.explained_variance_ratio_
+array([ 0.96763994,  0.03236006])
 ```
-
-
-
-
-    array([ 0.96763994,  0.03236006])
-
-
-
 
 ```python
 alpha = 0.5
@@ -85,12 +73,9 @@ plt.text(-80,27,'(D)',fontsize=20);
 plt.axis([-80,80,-25,25]);
 ```
 
-
 ![png](output_6_0.png)
 
-
 Create 2 types of labels y
-
 
 ```python
 y1 = X[1]<100-X[0]
@@ -98,7 +83,6 @@ y2 = X[1]>X[0]
 ```
 
 Data is separable by its direction of highest variance
-
 
 ```python
 plt.figure(figsize=[13,13])
@@ -137,12 +121,9 @@ plt.text(-80,27,'(D)',fontsize=20);
 plt.axis([-80,80,-25,25]);
 ```
 
-
 ![png](output_10_0.png)
 
-
 Data is separable by its direction of lowest variance
-
 
 ```python
 plt.figure(figsize=[13,13])
@@ -181,10 +162,7 @@ plt.text(-80,27,'(D)',fontsize=20);
 plt.axis([-80,80,-25,25]);
 ```
 
-
 ![png](output_12_0.png)
-
-
 
 ```python
 
