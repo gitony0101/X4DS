@@ -1,5 +1,8 @@
 # X4DS
 
+![code size](https://img.shields.io/github/languages/code-size/gitony0101/X4DS.svg)
+![repo size](https://img.shields.io/github/repo-size/gitony0101/X4DS.svg)
+
 This repo is a collection of **Python** & **Julia** port of codes in the following excellent R & Py books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
