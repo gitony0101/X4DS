@@ -59,19 +59,17 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
   </tbody>
 </table>
 
-
 ## Basics
 
-- [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/mpl.ipynb)
+- [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/matplotlib.ipynb)
 - [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
 - [NumPy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/numpy.ipynb)
 
 ## Series
 
 - [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/ISLR/)
-- [HandsOnML2-Updated](https://nbviewer.org/github/gitony0101/X4DS/tree/main/HandsOnML2/)
+- [HandsOnML2](https://nbviewer.org/github/gitony0101/X4DS/tree/main/HandsOnML2/)
 - [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
-
 
 ## Code Styles
 
