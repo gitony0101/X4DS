@@ -64,6 +64,7 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 
 - [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/mpl.ipynb)
 - [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
+- [NumPy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/numpy.ipynb)
 
 ## Series
 
