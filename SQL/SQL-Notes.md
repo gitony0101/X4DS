@@ -1242,11 +1242,10 @@ ON SP.product_id = P.product_id;
 窗口函数的通用形式：
 
 ```sql
-
 <窗口函数> OVER ([PARTITION BY <列名>]
 
-                     ORDER BY <排序用列名>)
 
+ORDER BY <排序用列名>)
 ```
 
 [   ]中的内容可以省略。
@@ -1302,7 +1301,6 @@ SELECT product_name
 运行以下代码：
 
 ```sql
-
 SELECT  product_name
 
        ,product_type
@@ -1315,8 +1313,8 @@ SELECT  product_name
 
        ,ROW_NUMBER() OVER (ORDER BY sale_price) AS row_num
 
-  FROM product;
 
+FROM product;
 ```
 
 ![图片](./img/ch05/ch0503.png)
@@ -1328,19 +1326,13 @@ SELECT  product_name
 运行以下代码：
 
 ```sql
-
 SELECT  product_id
-
        ,product_name
-
        ,sale_price
-
        ,SUM(sale_price) OVER (ORDER BY product_id) AS current_sum
-
        ,AVG(sale_price) OVER (ORDER BY product_id) AS current_avg
 
   FROM product;
-
 ```
 
 ![图片](./img/ch05/ch0504.png)
@@ -1356,12 +1348,8 @@ SELECT  product_id
 语法
 
 ```sql
-
 <窗口函数> OVER (ORDER BY <排序用列名>
-
                  ROWS n PRECEDING )
-
-
 
 <窗口函数> OVER (ORDER BY <排序用列名>
 
@@ -1378,9 +1366,7 @@ BETWEEN 1 PRECEDING AND 1 FOLLOWING，将框架指定为 “之前1行” + “�
 执行以下代码：
 
 ```sql
-
 SELECT  product_id
-
        ,product_name
 
        ,sale_price
@@ -1388,15 +1374,12 @@ SELECT  product_id
        ,AVG(sale_price) OVER (ORDER BY product_id
 
                                ROWS 2 PRECEDING) AS moving_avg
-
        ,AVG(sale_price) OVER (ORDER BY product_id
-
                                ROWS BETWEEN 1 PRECEDING
 
                                         AND 1 FOLLOWING) AS moving_avg
 
   FROM product;
-
 ```
 
 **执行结果：**
@@ -1431,7 +1414,6 @@ SELECT  product_type
        ,SUM(sale_price) AS sum_price
 
   FROM product
-
  GROUP BY product_type, regist_date WITH ROLLUP;
 
 ```
