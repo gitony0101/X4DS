@@ -1245,7 +1245,7 @@ ON SP.product_id = P.product_id;
 
 <窗口函数> OVER ([PARTITION BY <列名>]
 
-                     ORDER BY <排序用列名>)  
+                     ORDER BY <排序用列名>)
 
 ```
 
@@ -1315,7 +1315,7 @@ SELECT  product_name
 
        ,ROW_NUMBER() OVER (ORDER BY sale_price) AS row_num
 
-  FROM product;  
+  FROM product;
 
 ```
 
@@ -1337,9 +1337,9 @@ SELECT  product_id
 
        ,SUM(sale_price) OVER (ORDER BY product_id) AS current_sum
 
-       ,AVG(sale_price) OVER (ORDER BY product_id) AS current_avg  
+       ,AVG(sale_price) OVER (ORDER BY product_id) AS current_avg
 
-  FROM product;  
+  FROM product;
 
 ```
 
@@ -1359,9 +1359,9 @@ SELECT  product_id
 
 <窗口函数> OVER (ORDER BY <排序用列名>
 
-                 ROWS n PRECEDING )  
+                 ROWS n PRECEDING )
 
-               
+
 
 <窗口函数> OVER (ORDER BY <排序用列名>
 
@@ -1391,11 +1391,11 @@ SELECT  product_id
 
        ,AVG(sale_price) OVER (ORDER BY product_id
 
-                               ROWS BETWEEN 1 PRECEDING 
+                               ROWS BETWEEN 1 PRECEDING
 
-                                        AND 1 FOLLOWING) AS moving_avg  
+                                        AND 1 FOLLOWING) AS moving_avg
 
-  FROM product;  
+  FROM product;
 
 ```
 
@@ -1432,7 +1432,7 @@ SELECT  product_type
 
   FROM product
 
- GROUP BY product_type, regist_date WITH ROLLUP;  
+ GROUP BY product_type, regist_date WITH ROLLUP;
 
 ```
 
