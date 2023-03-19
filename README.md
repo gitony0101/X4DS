@@ -5,7 +5,7 @@
 
 This repo is a collection of **Python** & **Julia** port of codes in the following excellent R books:
 
-- [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
+- [An Introduction to Statistical Learning](https://statlearning.com/) (ISLR)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (Rethinking)
 - [Introduction to Probability](http://probabilitybook.net/) (Stat110)
 
@@ -67,13 +67,13 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 
 - [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
 - [NumPy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/numpy.ipynb)
+- [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
 
 ## Series
 
 - [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/ISLR/)
 - [Rethinking-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Rethinking/)
 - [Stat110-Jl](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Stat110/)
-- [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
 
 ## Code Styles
 
@@ -297,10 +297,12 @@ $$
 $$
 ```
 
-## References
+## Credits
 
 - [ISL-python](https://github.com/a-martyn/ISL-python)
-- [ISLR.jl](https://github.com/tndoan/ISLR.jl)
+- [JuliaLang version of An Introduction to Statistical Learning](https://github.com/tndoan/ISLR.jl)
+- [Statistical Rethinking with Python and PyMC](https://github.com/pymc-devs/pymc-resources/tree/main/Rethinking)
+- [Port of Statistical Rethinking code to Julia](https://github.com/Shmuma/rethinking-2ed-julia)
 
 <details>
   <summary>style</summary>
