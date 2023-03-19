@@ -19,8 +19,8 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
   <tbody>
     <tr>
       <td>Language <br />Version</td>
-      <td>v3.9</td>
-      <td>v1.7</td>
+      <td>v3.11</td>
+      <td>v1.8</td>
     </tr>
     <tr>
       <td>Data <br />Processing</td>
