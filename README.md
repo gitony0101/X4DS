@@ -299,7 +299,6 @@ $$
 
 - [ISL-python](https://github.com/a-martyn/ISL-python)
 - [ISLR.jl](https://github.com/tndoan/ISLR.jl)
-- [handson-ml2](https://github.com/ageron/handson-ml2)
 
 <details>
   <summary>style</summary>
