@@ -6,7 +6,7 @@
 This repo is a collection of **Python** & **Julia** port of codes in the following excellent R & Py books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
-- [Hands-on Machine Learning with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) (HandsOnML2)
+- [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (Rethinking)
 
 <table border="1">
   <thead>
