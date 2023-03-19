@@ -19,8 +19,8 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
   <tbody>
     <tr>
       <td>Language <br />Version</td>
-      <td>v3.9</td>
-      <td>v1.7</td>
+      <td>v3.11</td>
+      <td>v1.8</td>
     </tr>
     <tr>
       <td>Data <br />Processing</td>
@@ -64,13 +64,13 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 
 ## Basics
 
-- [Matplotlib](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/matplotlib.ipynb)
 - [Pandas](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/pandas.ipynb)
 - [NumPy](https://nbviewer.jupyter.org/github/gitony0101/X4DS/blob/main/numpy.ipynb)
 
 ## Series
 
 - [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/ISLR/)
+- [Rethinking-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Rethinking/)
 - [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
 
 ## Code Styles
