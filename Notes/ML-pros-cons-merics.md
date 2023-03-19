@@ -1,8 +1,3 @@
- MAE MAPE  MSE RMSE R2 
-
-
-
-
 # Machine Learning Algorithms Pros and Cons as well as the evaluation metrics
 
 Start with Logistic Regression, then try Tree Ensembles, and/or Neural Networks.
@@ -169,17 +164,15 @@ Factors to consider
 
 Start with something simple like Logistic Regression to set a baseline and only make it more complicated if you need to. At that point, tree ensembles, and in particular Random Forests since they are easy to tune, might be the right way to go. If you feel there is still room for improvement, try GBDT or get even fancier and go for Deep Learning.
 
-
-
 Pros and cons of classical supervised ML algorithms
-Here we explore the pros and cons of some the most popular classical machine learning algorithms for supervised learning. To recap, this is a learning situation where we are given some labelled data and the model must predict the value or class of a new datapoint using a hypothesis function that it has learned from studying the provided examples. 
-By ‘classical’ machine leaning algorithms I mean anything that is not a neural network. We will cover the advantages and disadvantages of various neural network architectures in a future post. 
+Here we explore the pros and cons of some the most popular classical machine learning algorithms for supervised learning. To recap, this is a learning situation where we are given some labelled data and the model must predict the value or class of a new datapoint using a hypothesis function that it has learned from studying the provided examples.
+By ‘classical’ machine leaning algorithms I mean anything that is not a neural network. We will cover the advantages and disadvantages of various neural network architectures in a future post.
 Also note that this post deals only with supervised learning. There will be another dealing with clustering algorithms for unsupervised tasks.
-Linear Regression  
- 
+Linear Regression
+
 Note that there are two basic flavors of this: Lasso and Ridge regression, which regularize with the L1 and L2 norms respectively
 This is used for regression problems.
-Pros 
+Pros
 
     Small number of hyperparmeters
     Easy to understand and explain
@@ -190,30 +183,28 @@ Cons
 
     Input data need to be scaled and there are a range of ways to do this
     May not work well when the hypothesis function is non-linear
-    A complex hypothesis function is really difficult to fit.  This can be done by using quadratic and higher order features, but the number of these grows rapidly with the number of original features and may become very computationally expensive 
+    A complex hypothesis function is really difficult to fit.  This can be done by using quadratic and higher order features, but the number of these grows rapidly with the number of original features and may become very computationally expensive
     Prone to overfitting with a large number of features are present
     May not handle irrelevant features well
 
 Logistic Regression
-Again, this can be regularized with the L1 or L2 norm 
+Again, this can be regularized with the L1 or L2 norm
 This is used for classification problems.
-Pros 
+Pros
 
     Outputs a probabilistic interpretation, which can be investigated with P-R curves, ROC curves etc.
-    Has a small number of hyperparameters 
-    Overfitting can be addressed though regularization 
+    Has a small number of hyperparameters
+    Overfitting can be addressed though regularization
     Using L2 regularization will provide feature importances
 
 Cons
 
- 
-
     May overfit when provided with large numbers of features
-    Can only learn linear hypothesis functions so are less suitable to complex relationships between features and target 
-    Input data might need scaling 
-    May not handle irrelevant features well, especially if the features are strongly correlated  
+    Can only learn linear hypothesis functions so are less suitable to complex relationships between features and target
+    Input data might need scaling
+    May not handle irrelevant features well, especially if the features are strongly correlated
 
-Naive Bayes 
+Naive Bayes
 This is used for classification problems.
 An intuitive way of determining the probability that a sample falls into classes based on a simplification of Bayes Theorem where we treat all the features as statistically independent. Specifically, we are attempting to determine the classification of some example given its feature values.
 Bayes Theroem states this is proportional to the probability of each class multiplied by the product of observing each of the feature values in each class.
@@ -226,57 +217,45 @@ Pros
 
 Cons
 
- 
-
     Assumes that the features are independent, which is rarely true
     Will usually not perform as well as classification algorithms that follow the ‘train-test’ approach
 
- 
-
-K nearest neighbors 
+K nearest neighbors
 This is an approach where the values of a datapoint’s nearest neighbors is used to either classify it or find its value
 
     For classification, the neighbors of the datapoint all vote for its class. The class with the most votes wins
-    For regression, the value of the datapoint is determined as the average of its neighbors 
+    For regression, the value of the datapoint is determined as the average of its neighbors
 
 This is also known as lazy learning because there is no training and testing dataset
 Pros
 
-    No training involved 
+    No training involved
     Intuitive and easy to understand the concept, especially for clustering
     Naturally handles multiclass classification and can learn complex decision boundaries
 
 Cons
 
- 
-
     The distance metric to choose it not obvious and difficult to justify in many cases
-    Performs poorly on high dimensional datasets 
-    Expensive and slow to predict new instances because the distance to all neighbors must be recalculated 
-    Data needs to be scaled before use 
+    Performs poorly on high dimensional datasets
+    Expensive and slow to predict new instances because the distance to all neighbors must be recalculated
+    Data needs to be scaled before use
 
-Decision Trees 
+Decision Trees
 Decision trees are rule-based learning methods that usually use either gini impurity or entropy to split the dataset at a series of decisions, made at nodes. Each internal node represents a ‘test’ on an attribute and each test has a series of outcomes, which are represented by branches. At the very end of the branches are leaf nodes that represent a class or regression outcome from the tree. The tree is ‘learned’ by splitting the source set into subsets based on an attribute-value test. The process can be repeated on each derived subset in a recursive fashion.
 Decision trees are known as ‘weak learners’ and form the basis for ensemble methods like bagging and boosting
 Pros
 
-    Easy to interpret 
-    Can adapt to learn arbitrarily complex hypothesis functions 
+    Easy to interpret
+    Can adapt to learn arbitrarily complex hypothesis functions
     Requires little data preparation - data typically does not need to be scaled
-    Feature importance is built in due to the way inwhich decision nodes are built 
+    Feature importance is built in due to the way inwhich decision nodes are built
     Performs well on large datasets
 
 Cos
 
- 
-
-    Prone to overfitting unless pruning is used 
-    Can be very non-robust, meaning that small changes in the training dataset can lead to quite major differences in the hypothesis function that gets learned 
+    Prone to overfitting unless pruning is used
+    Can be very non-robust, meaning that small changes in the training dataset can lead to quite major differences in the hypothesis function that gets learned
     Generally have worse performance than ensemble methods
-
- 
-
- 
 
 Support Vector Machines (SVM)
 SVMs come in a variety of different flavors and are likely deserved of their own blog post for a more detailed description. Ultimately their goal is to find optimal hyperplanes that best separate the dataset. Typically a hyperplane is chosen such that the ‘margin’ between the plane and datapoints of different classes on either side is maximized
@@ -294,42 +273,38 @@ Pros
 Cons
 
     Feature scaling is required
-    There are many hyperparameters and their meanings are often not intuitive 
-    Do not scale well to large datasets (difficult to parallelize) 
+    There are many hyperparameters and their meanings are often not intuitive
+    Do not scale well to large datasets (difficult to parallelize)
 
 Bagging (random forest, for example)
-The concept of bagging aggregates/combines the results of many weak learners. Each weak learner has low bias but high variance (not robust to variation in the training dataset), but when aggregated their variance is lowered. In classification, each tree votes for the class of the input datapoint. In regression, the value assigned to each input is the mean of the bagged learners. 
-In random forest, the weak learners are decision trees. Each tree is grown using a random subset of features using a random subset of the data. This decorrelates the trees by showing them different datasets. See the overview of random forest document for more information. 
+The concept of bagging aggregates/combines the results of many weak learners. Each weak learner has low bias but high variance (not robust to variation in the training dataset), but when aggregated their variance is lowered. In classification, each tree votes for the class of the input datapoint. In regression, the value assigned to each input is the mean of the bagged learners.
+In random forest, the weak learners are decision trees. Each tree is grown using a random subset of features using a random subset of the data. This decorrelates the trees by showing them different datasets. See the overview of random forest document for more information.
 Pros
 
     Highly flexible and generally very accurate
     Naturally assigns feature importance scores, so can handle redundant feature columns
     Has the ability to address class imbalance by using the balanced class weight flag
-    Scales to large datasets 
-    Generally robust to overfitting 
-    Data does not need to be scaled 
+    Scales to large datasets
+    Generally robust to overfitting
+    Data does not need to be scaled
     Can learn non-linear hypothesis functions
 
-Cons 
+Cons
 
-    Results may be difficult to interpret 
+    Results may be difficult to interpret
     Feature importances may not be robust to variation in the training dataset
 
- 
-
 Boosting (gradient boosted trees, for example)
-Boosting is alternative ensemble method that relies on the idea of iteratively improving the performance of weak learners. In the case of gradient boosted decision trees, the trees are built sequentially and each tree is designed to correct errors made by previous trees. At each step, the residual between the predicted and observed training data is added to the cost function, which is then minimized in the next step. 
+Boosting is alternative ensemble method that relies on the idea of iteratively improving the performance of weak learners. In the case of gradient boosted decision trees, the trees are built sequentially and each tree is designed to correct errors made by previous trees. At each step, the residual between the predicted and observed training data is added to the cost function, which is then minimized in the next step.
 Pros
 
     Robust to missing data, highly correlated features and irrelevant features in much the same way as random forest
-    Naturally assigns feature importance scores 
+    Naturally assigns feature importance scores
     In Kaggle competitions at least, XGBoost appears to be the method of choice, with slightly better performance than random forest
     Data does not need to be scaled
     Can learn non-linear hypothesis function
 
 Cons
-
- 
 
     May be more prone to overfitting than random forest - the main purpose of the boosting approach is to reduce bias , not variance
     Has many hyperparameters to tune, so model development may not be as fast
@@ -340,6 +315,7 @@ Advantages of Machine Learning
 There is an endless number of advantages of ML. We can take a look at the ones which are really helpful. The advantages of Machine Learning tell us how using ML would benefit us.
 
 So, let’s have a look at the advantages of Machine Learning.
+
 1. Automation of Everything
 
 Machine Learning is responsible for cutting the workload and time. By automating things we let the algorithm do the hard work for us. Automation is now being done almost everywhere. The reason is that it is very reliable. Also, it helps us to think more creatively.
@@ -370,6 +346,7 @@ Now in TechVidvan’s advantages and disadvantages of Machine Learning article, 
 Disadvantages of Machine Learning
 
 Similar to the advantages of Machine Learning, we should also know the disadvantages of Machine Learning. If you don’t know the cons, you won’t know the risks of ML. So, let’s have a look at these disadvantages:
+
 1. Possibility of High Error
 
 In ML, we can choose the algorithms based on accurate results. For that, we have to run the results on every algorithm. The main problem occurs in the training and testing of data. The data is huge, so sometimes removing errors becomes nearly impossible. These errors can cause a headache to users. Since the data is huge, the errors take a lot of time to resolve.
