@@ -1,4 +1,4 @@
-# Machine Learning Algorithms Pros and Cons as well as the evaluation metrics
+# Machine Learning Algorithms Pros and Cons
 
 Start with Logistic Regression, then try Tree Ensembles, and/or Neural Networks.
 
