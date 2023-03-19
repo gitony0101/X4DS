@@ -3,10 +3,11 @@
 ![code size](https://img.shields.io/github/languages/code-size/gitony0101/X4DS.svg)
 ![repo size](https://img.shields.io/github/repo-size/gitony0101/X4DS.svg)
 
-This repo is a collection of **Python** & **Julia** port of codes in the following excellent R & Py books:
+This repo is a collection of **Python** & **Julia** port of codes in the following excellent R books:
 
 - [An Introduction to Statistical Learning](https://www.statlearning.com/) (ISLR)
 - [Statistical Rethinking](https://xcelab.net/rm/statistical-rethinking/) (Rethinking)
+- [Introduction to Probability](http://probabilitybook.net/) (Stat110)
 
 <table border="1">
   <thead>
@@ -71,6 +72,7 @@ This repo is a collection of **Python** & **Julia** port of codes in the followi
 
 - [ISLR-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/ISLR/)
 - [Rethinking-Py](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Rethinking/)
+- [Stat110-Jl](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Stat110/)
 - [ML-Notes](https://nbviewer.org/github/gitony0101/X4DS/tree/main/Notes/)
 
 ## Code Styles
