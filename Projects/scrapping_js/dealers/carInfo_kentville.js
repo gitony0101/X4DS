@@ -72,15 +72,15 @@ async function scrapeWebsite(url, outputPath, selectors) {
 }
 
 const website = {
-  url: 'https://oreganstoyotahalifax.com/inventory/?search.vehicle-inventory-type-ids.0=1',
-  output: 'carInfo_halifax.csv',
+  url: 'https://www.kentvilletoyota.com/en/shop-online?paymentFrequency=52&purchaseMethodOrder=4352&preferredMake=ALL',
+  output: 'carInfo_kentville.csv',
   selectors: {
-    item: '.ouvsrItem',
-    model: '.ouvsrModelYear',
-    price: '.currencyValue',
-    specs: '.ouvsrTechSpecs .ouvsrSpec',
-    label: '.ouvsrLabel',
-    value: '.ouvsrValue',
+    item: '.vehicle-tile',
+    model: '.vehicle-name',
+    price: '.vehicle-price-total .vehicle-price',
+    specs: '.vehicle-description .vehicle-cost div',
+    label: '.vehicle-price-label',
+    value: '.vehicle-price',
   },
 };
 

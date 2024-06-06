@@ -71,21 +71,26 @@ async function scrapeWebsite(url, outputPath, selectors) {
   console.log(`Data has been written to ${outputPath}`);
 }
 
-const website = {
-  url: 'https://oreganstoyotahalifax.com/inventory/?search.vehicle-inventory-type-ids.0=1',
-  output: 'carInfo_halifax.csv',
-  selectors: {
-    item: '.ouvsrItem',
-    model: '.ouvsrModelYear',
-    price: '.currencyValue',
-    specs: '.ouvsrTechSpecs .ouvsrSpec',
-    label: '.ouvsrLabel',
-    value: '.ouvsrValue',
+const websites = [
+  {
+    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
+    output: 'carInfo_anchor.csv',
+    selectors: {
+      item: '.vehicle-card',
+      model: '.vehicle-card__title',
+      price: '.price-block__price',
+      specs: '.detailed-specs__single',
+      label: '.detailed-specs__label',
+      value: '.detailed-specs__value',
+    },
   },
-};
+  // 可以在这里添加更多网站的URL、输出文件名和选择器
+];
 
 (async () => {
-  await scrapeWebsite(website.url, website.output, website.selectors);
+  for (const site of websites) {
+    await scrapeWebsite(site.url, site.output, site.selectors);
+  }
 })().catch((err) => console.error(err));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
