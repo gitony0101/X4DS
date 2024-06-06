@@ -33,23 +33,34 @@ async function scrapePage(page, url) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDescription = $(element).find('.new-car-motor').text().trim();
-    const carVin = $(element).find('.listing-tile-vin p').text().trim();
-    const stockNumber = $(element)
-      .find('.listing-tile-specification-stock')
+  $('.vehicle-card-vertical').each((index, element) => {
+    const carModel =
+      $(element).find('.vehicle-name__make').text().trim() +
+      ' ' +
+      $(element).find('.vehicle-name__year').text().trim() +
+      ' ' +
+      $(element).find('.vehicle-name__model').text().trim() +
+      ' ' +
+      $(element).find('.vehicle-name__trim').text().trim();
+    const carPrice = $(element)
+      .find('.vehicle-payment-cashdown__regular-price .price')
       .text()
       .trim();
+    const carDetails = $(element)
+      .find('.di-light-specs__list')
+      .text()
+      .replace(/\s\s+/g, ', ')
+      .trim();
+    const carStock = $(element).find('.di-stock-number').text().trim();
 
-    carInfo.push({
-      carModel,
-      carPrice,
-      carDescription,
-      carVin,
-      stockNumber,
-    });
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+        carStock,
+      });
+    }
   });
 
   return carInfo;
@@ -76,9 +87,8 @@ async function scrapeWebsite(url, outputPath) {
     header: [
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
-      { id: 'carDescription', title: 'Description' },
-      { id: 'carVin', title: 'VIN' },
-      { id: 'stockNumber', title: 'Stock Number' },
+      { id: 'carDetails', title: 'Details' },
+      { id: 'carStock', title: 'Stock Number' },
     ],
   });
 
@@ -87,8 +97,8 @@ async function scrapeWebsite(url, outputPath) {
 }
 
 const website = {
-  url: 'https://www.bathursttoyota.ca/en/new-inventory',
-  output: 'carInfo_bathurst.csv',
+  url: 'https://www.edmundstontoyota.com/en/new-inventory',
+  output: 'carInfo_edmundston.csv',
 };
 
 (async () => {
