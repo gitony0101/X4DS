@@ -5,6 +5,25 @@ import express from 'express';
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+async function autoScroll(page) {
+  await page.evaluate(async () => {
+    await new Promise((resolve, reject) => {
+      let totalHeight = 0;
+      const distance = 100;
+      const timer = setInterval(() => {
+        const scrollHeight = document.body.scrollHeight;
+        window.scrollBy(0, distance);
+        totalHeight += distance;
+
+        if (totalHeight >= scrollHeight) {
+          clearInterval(timer);
+          resolve();
+        }
+      }, 100);
+    });
+  });
+}
+
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -13,8 +32,7 @@ const app = express();
     { waitUntil: 'networkidle2' },
   );
 
-  // 等待特定元素加载
-  await page.waitForSelector('.ouvsrItem');
+  await autoScroll(page);
 
   const htmlData = await page.content();
   await browser.close();
@@ -42,7 +60,15 @@ const app = express();
     });
   });
 
-  console.log('Car Info: ', JSON.stringify(carInfo, null, 2));
+  carInfo.forEach((car) => {
+    console.log('Car Model: ', car.carModel);
+    console.log('Car Price: ', car.carPrice);
+    console.log('Car Specs:');
+    car.carSpecs.forEach((spec) => {
+      console.log(`  ${spec.label}: ${spec.value}`);
+    });
+    console.log('------------------------');
+  });
 })().catch((err) => console.error(err));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
