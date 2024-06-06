@@ -12,7 +12,7 @@ async function autoScroll(page) {
       let totalHeight = 0;
       const distance = 100;
       const timer = setInterval(() => {
-        const scrollHeight = document.body.scrollHeight;
+        const { scrollHeight } = document.body;
         window.scrollBy(0, distance);
         totalHeight += distance;
 
@@ -39,11 +39,6 @@ async function scrapeWebsite(url, outputPath, selectors) {
   const carInfo = [];
 
   $(selectors.item).each((index, element) => {
-    const status = $(element).find(selectors.status).text().trim();
-    if (status.includes('Sold') || status.includes('Reserved')) {
-      return;
-    }
-
     const carModel = $(element).find(selectors.model).text().trim();
     const carPrice = $(element).find(selectors.price).text().trim();
     const carSpecs = [];
@@ -51,13 +46,9 @@ async function scrapeWebsite(url, outputPath, selectors) {
     $(element)
       .find(selectors.specs)
       .each((i, specElement) => {
-        const label = selectors.label
-          ? $(specElement).find(selectors.label).text().trim()
-          : 'Option';
-        const value = $(specElement).text().trim();
-        if (label && value) {
-          carSpecs.push({ label, value });
-        }
+        const label = $(specElement).find(selectors.label).text().trim();
+        const value = $(specElement).find(selectors.value).text().trim();
+        carSpecs.push({ label, value });
       });
 
     carInfo.push({
@@ -82,16 +73,15 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
 const websites = [
   {
-    url: 'https://www.trurotoyota.com/en/new-inventory',
-    output: 'carInfo_truro_toyota.csv',
+    url: 'https://www.summersidetoyota.com/en/new-inventory',
+    output: 'carInfo_summerside_toyota.csv',
     selectors: {
       item: '.listing-tile-link',
       model: '.new-car-name',
       price: '.payment-row-price',
       specs: '.listing-tile-package-description',
-      label: null, // 由于specs直接包含了值，所以这里设为null
+      label: '.listing-tile-package-head',
       value: '.listing-tile-package-description',
-      status: '.tile-tag span',
     },
   },
   // 可以在这里添加更多网站的URL、输出文件名和选择器
