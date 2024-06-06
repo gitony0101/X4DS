@@ -8,7 +8,7 @@ async function autoScroll(page) {
       let totalHeight = 0;
       const distance = 100;
       const timer = setInterval(() => {
-        const { scrollHeight } = document.body;
+        const scrollHeight = document.body.scrollHeight;
         window.scrollBy(0, distance);
         totalHeight += distance;
 
@@ -21,7 +21,8 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapePage(page) {
+async function scrapePage(page, url) {
+  await page.goto(url, { waitUntil: 'networkidle2' });
   await autoScroll(page);
 
   const htmlData = await page.content();
@@ -66,27 +67,13 @@ async function scrapeWebsite(url, outputPath) {
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  let hasNextPage = true;
-  while (hasNextPage) {
-    await page.goto(url, { waitUntil: 'networkidle2' });
-
-    const carInfo = await scrapePage(page);
+  try {
+    const carInfo = await scrapePage(page, url);
     if (carInfo.length > 0) {
       allCarInfo.push(...carInfo);
     }
-
-    // 检查是否存在下一页按钮
-    const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
-    );
-    if (nextPageButton) {
-      await Promise.all([
-        page.waitForNavigation({ waitUntil: 'networkidle2' }),
-        nextPageButton.click(),
-      ]);
-    } else {
-      hasNextPage = false;
-    }
+  } catch (error) {
+    console.error(`Error scraping ${url}:`, error);
   }
 
   await browser.close();
