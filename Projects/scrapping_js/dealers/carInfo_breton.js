@@ -29,26 +29,27 @@ async function scrapePage(page, url) {
   await page.goto(url, { waitUntil: 'networkidle2' });
   await autoScroll(page);
 
+  // 增加延时等待，确保所有内容加载完成
+  await page.waitForTimeout(5000);
+
+  // 等待特定元素出现，确保页面完全加载
+  await page.waitForSelector('.vehicle-card-vertical__info-section');
+
   const htmlData = await page.content();
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDescription = $(element).find('.new-car-motor').text().trim();
-    const carVin = $(element).find('.listing-tile-vin p').text().trim();
-    const stockNumber = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .trim();
+  $('.vehicle-card-vertical__info-section').each((index, element) => {
+    if ($(element).find('.label__text').text().trim() === 'Sold') {
+      return;
+    }
+
+    const carModel = $(element).find('.vehicle-name__model').text().trim();
+    const carPrice = $(element).find('.price').text().trim();
 
     carInfo.push({
       carModel,
       carPrice,
-      carDescription,
-      carVin,
-      stockNumber,
     });
   });
 
@@ -56,17 +57,21 @@ async function scrapePage(page, url) {
 }
 
 async function scrapeWebsite(url, outputPath) {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  try {
-    const carInfo = await scrapePage(page, url);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
+  const urls = [url, `${url}?page=2`];
+
+  for (const u of urls) {
+    try {
+      const carInfo = await scrapePage(page, u);
+      if (carInfo.length > 0) {
+        allCarInfo.push(...carInfo);
+      }
+    } catch (error) {
+      console.error(`Error scraping ${u}:`, error);
     }
-  } catch (error) {
-    console.error(`Error scraping ${url}:`, error);
   }
 
   await browser.close();
@@ -76,9 +81,6 @@ async function scrapeWebsite(url, outputPath) {
     header: [
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
-      { id: 'carDescription', title: 'Description' },
-      { id: 'carVin', title: 'VIN' },
-      { id: 'stockNumber', title: 'Stock Number' },
     ],
   });
 
@@ -87,8 +89,8 @@ async function scrapeWebsite(url, outputPath) {
 }
 
 const website = {
-  url: 'https://www.bathursttoyota.ca/en/new-inventory',
-  output: 'carInfo_bathurst.csv',
+  url: 'https://www.edmundstontoyota.com/en/new-inventory',
+  output: 'carInfo_edmundston.csv',
 };
 
 (async () => {

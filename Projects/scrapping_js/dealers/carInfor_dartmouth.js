@@ -25,74 +25,67 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapePage(page, url) {
+async function scrapeWebsite(url, outputPath, selectors) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
   await page.goto(url, { waitUntil: 'networkidle2' });
+
   await autoScroll(page);
 
   const htmlData = await page.content();
+  await browser.close();
+
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDescription = $(element).find('.new-car-motor').text().trim();
-    const carVin = $(element).find('.listing-tile-vin p').text().trim();
-    const stockNumber = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .trim();
+  $(selectors.item).each((index, element) => {
+    const carModel = $(element).find(selectors.model).text().trim();
+    const carPrice = $(element).find(selectors.price).text().trim();
+    const carSpecs = [];
+
+    $(element)
+      .find(selectors.specs)
+      .each((i, specElement) => {
+        const label = $(specElement).find(selectors.label).text().trim();
+        const value = $(specElement).find(selectors.value).text().trim();
+        carSpecs.push({ label, value });
+      });
 
     carInfo.push({
       carModel,
       carPrice,
-      carDescription,
-      carVin,
-      stockNumber,
+      carSpecs: JSON.stringify(carSpecs),
     });
   });
-
-  return carInfo;
-}
-
-async function scrapeWebsite(url, outputPath) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  const allCarInfo = [];
-
-  try {
-    const carInfo = await scrapePage(page, url);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
-    }
-  } catch (error) {
-    console.error(`Error scraping ${url}:`, error);
-  }
-
-  await browser.close();
 
   const csvWriter = createObjectCsvWriter({
     path: outputPath,
     header: [
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
-      { id: 'carDescription', title: 'Description' },
-      { id: 'carVin', title: 'VIN' },
-      { id: 'stockNumber', title: 'Stock Number' },
+      { id: 'carSpecs', title: 'Specs' },
     ],
   });
 
-  await csvWriter.writeRecords(allCarInfo);
+  await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
 }
 
 const website = {
-  url: 'https://www.bathursttoyota.ca/en/new-inventory',
-  output: 'carInfo_bathurst.csv',
+  url: 'https://oreganstoyotadartmouth.com/inventory/?search.vehicle-inventory-type-ids.0=1',
+  output: 'carInfo_dartmouth.csv',
+  selectors: {
+    item: '.ouvsrItem',
+    model: '.ouvsrModelYear',
+    price: '.currencyValue',
+    specs: '.ouvsrTechSpecs .ouvsrSpec',
+    label: '.ouvsrLabel',
+    value: '.ouvsrValue',
+  },
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output);
+  await scrapeWebsite(website.url, website.output, website.selectors);
 })().catch((err) => console.error(err));
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
