@@ -8,7 +8,7 @@ async function autoScroll(page) {
       let totalHeight = 0;
       const distance = 100;
       const timer = setInterval(() => {
-        const scrollHeight = document.body.scrollHeight;
+        const { scrollHeight } = document.body;
         window.scrollBy(0, distance);
         totalHeight += distance;
 
@@ -21,8 +21,7 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapePage(page, url) {
-  await page.goto(url, { waitUntil: 'networkidle2' });
+async function scrapePage(page) {
   await autoScroll(page);
 
   const htmlData = await page.content();
@@ -30,50 +29,70 @@ async function scrapePage(page, url) {
   const carInfo = [];
 
   $('.vehicle-card-vertical').each((index, element) => {
-    const carModel =
-      $(element).find('.vehicle-name__make').text().trim() +
-      ' ' +
-      $(element).find('.vehicle-name__year').text().trim() +
-      ' ' +
-      $(element).find('.vehicle-name__model').text().trim() +
-      ' ' +
-      $(element).find('.vehicle-name__trim').text().trim();
-    const carPrice = $(element)
-      .find('.vehicle-payment-cashdown__regular-price .price')
-      .text()
-      .trim();
-    const carDetails = $(element)
-      .find('.di-light-specs__list')
-      .text()
-      .replace(/\s\s+/g, ', ')
-      .trim();
-    const carStock = $(element).find('.di-stock-number').text().trim();
+    // 检查车辆是否已售出
+    const isSold =
+      $(element).find('div.di-watermark:contains("Sold")').length > 0;
 
-    if (carModel && carPrice) {
-      carInfo.push({
-        carModel,
-        carPrice,
-        carDetails,
-        carStock,
-      });
+    // 如果车辆未售出，则抓取信息
+    if (!isSold) {
+      const carModel =
+        $(element).find('.vehicle-name__make').text().trim() +
+        ' ' +
+        $(element).find('.vehicle-name__year').text().trim() +
+        ' ' +
+        $(element).find('.vehicle-name__model').text().trim() +
+        ' ' +
+        $(element).find('.vehicle-name__trim').text().trim();
+      const carPrice = $(element)
+        .find('.vehicle-payment-cashdown__regular-price .price')
+        .text()
+        .trim();
+      const carDetails = $(element)
+        .find('.di-light-specs__list')
+        .text()
+        .replace(/\s\s+/g, ', ')
+        .trim();
+      const carStock = $(element).find('.di-stock-number').text().trim();
+
+      if (carModel && carPrice) {
+        carInfo.push({
+          carModel,
+          carPrice,
+          carDetails,
+          carStock,
+        });
+      }
     }
   });
 
   return carInfo;
 }
 
-async function scrapeWebsite(url, outputPath) {
+async function scrapeWebsite(baseUrl, outputPath) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  try {
-    const carInfo = await scrapePage(page, url);
+  let currentPage = 1;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
+
+    const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
       allCarInfo.push(...carInfo);
     }
-  } catch (error) {
-    console.error(`Error scraping ${url}:`, error);
+
+    // 检查是否存在下一页按钮
+    const nextPageButton = await page.$(
+      '.pagination__item:not(.disabled) .simple-arrow-right',
+    );
+    if (nextPageButton) {
+      currentPage += 1;
+    } else {
+      hasNextPage = false;
+    }
   }
 
   await browser.close();
@@ -89,10 +108,10 @@ async function scrapeWebsite(url, outputPath) {
 }
 
 const website = {
-  url: 'https://www.edmundstontoyota.com/en/new-inventory',
+  baseUrl: 'https://www.edmundstontoyota.com/en/new-inventory',
   output: 'carInfo_edmundston.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output);
+  await scrapeWebsite(website.baseUrl, website.output);
 })().catch((err) => console.error(err));

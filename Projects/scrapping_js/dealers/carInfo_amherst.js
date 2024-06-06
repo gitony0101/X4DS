@@ -36,7 +36,7 @@ async function scrapePage(page, url) {
   $('.listing-new-tile').each((index, element) => {
     // 检查是否包含 "Sold" 或 "Demo" 标记
     if (
-      $(element).find('span:contains("Sold")').length === 0 &&
+      $(element).find('div:contains("Sold")').length === 0 &&
       $(element).find('.demo-tag').length === 0
     ) {
       const carModel = $(element).find('.new-car-name').text().trim();
