@@ -74,10 +74,10 @@ async function scrapeWebsite(baseUrl, outputPath) {
   let currentPage = 1;
   let hasNextPage = true;
   while (hasNextPage) {
-    const url = `${baseUrl}?page=${currentPage}`;
+    const url = `${baseUrl}&page=${currentPage}`;
     await page.goto(url, { waitUntil: 'networkidle2' });
 
-    await page.waitForTimeout(5000); // 增加延时等待
+    await page.waitFor(5000); // 使用 waitFor 方法
 
     const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
@@ -108,7 +108,8 @@ async function scrapeWebsite(baseUrl, outputPath) {
 }
 
 const website = {
-  baseUrl: 'https://www.southshoretoyota.com/en/new-inventory',
+  baseUrl:
+    'https://oreganstoyotabridgewater.com/inventory/?search.vehicle-inventory-type-ids.0=1',
   output: 'carInfo_south_shore.csv',
 };
 
