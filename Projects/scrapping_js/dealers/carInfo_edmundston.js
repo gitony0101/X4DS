@@ -105,6 +105,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
+  process.exit(); // 确保程序在完成后退出
 }
 
 const website = {

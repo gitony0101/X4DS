@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -21,21 +25,19 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapeWebsite(url, outputPath, selectors) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+async function scrapePage(page, url, selectors) {
   await page.goto(url, { waitUntil: 'networkidle2' });
-
   await autoScroll(page);
 
   const htmlData = await page.content();
-  await browser.close();
-
   const $ = load(htmlData);
   const carInfo = [];
 
   $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
+    const carYear = $(element).find(selectors.year).text().trim();
+    const carMakeModel = $(element).find(selectors.makeModel).text().trim();
+    const carTrim = $(element).find(selectors.trim).text().trim();
+    const carModel = `${carYear} ${carMakeModel} ${carTrim}`;
     const carPrice = $(element).find(selectors.price).text().trim();
     const carSpecs = [];
 
@@ -54,6 +56,25 @@ async function scrapeWebsite(url, outputPath, selectors) {
     });
   });
 
+  return carInfo;
+}
+
+async function scrapeWebsite(urls, outputPath, selectors) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  const allCarInfo = [];
+
+  for (const url of urls) {
+    try {
+      const carInfo = await scrapePage(page, url, selectors);
+      allCarInfo.push(...carInfo);
+    } catch (error) {
+      console.error(`Error scraping ${url}:`, error);
+    }
+  }
+
+  await browser.close();
+
   const csvWriter = createObjectCsvWriter({
     path: outputPath,
     header: [
@@ -63,29 +84,30 @@ async function scrapeWebsite(url, outputPath, selectors) {
     ],
   });
 
-  await csvWriter.writeRecords(carInfo);
+  await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
-const websites = [
-  {
-    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
-    output: 'carInfo_anchor.csv',
-    selectors: {
-      item: '.vehicle-card',
-      model: '.vehicle-card__title',
-      price: '.price-block__price',
-      specs: '.detailed-specs__single',
-      label: '.detailed-specs__label',
-      value: '.detailed-specs__value',
-    },
+const website = {
+  urls: [
+    'https://www.gandertoyota.com/new/inventory/search.html',
+    'https://www.gandertoyota.com/inventory.html?filterid=a1b3d1Sq1-10x0-0-0',
+  ],
+  output: 'carInfo_gander.csv',
+  selectors: {
+    item: '.carDescriptionContent',
+    year: '.divModelYear',
+    makeModel: '.divMake',
+    trim: '.divTrim',
+    price: '.carPrice .dollarsigned',
+    specs: '.carDescription .s-desc',
+    label: 'span',
+    value: 'span',
   },
-  // 可以在这里添加更多网站的URL、输出文件名和选择器
-];
+};
 
 (async () => {
-  for (const site of websites) {
-    await scrapeWebsite(site.url, site.output, site.selectors);
-  }
+  await scrapeWebsite(website.urls, website.output, website.selectors);
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

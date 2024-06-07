@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -29,23 +33,25 @@ async function scrapePage(page, url) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDescription = $(element).find('.new-car-motor').text().trim();
-    const carVin = $(element).find('.listing-tile-vin p').text().trim();
-    const stockNumber = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .trim();
+  $('li').each((index, element) => {
+    const carModel =
+      $(element).find('.inventory-vehicle-name h2').text().trim() +
+      ' ' +
+      $(element).find('.inventory-vehicle-name h3').text().trim();
+    const carPrice = $(element).find('.price').text().trim();
+    const carDetails = $(element)
+      .find('ul li')
+      .map((i, el) => $(el).text().trim())
+      .get()
+      .join(', ');
 
-    carInfo.push({
-      carModel,
-      carPrice,
-      carDescription,
-      carVin,
-      stockNumber,
-    });
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+      });
+    }
   });
 
   return carInfo;
@@ -72,22 +78,21 @@ async function scrapeWebsite(url, outputPath) {
     header: [
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
-      { id: 'carDescription', title: 'Description' },
-      { id: 'carVin', title: 'VIN' },
-      { id: 'stockNumber', title: 'Stock Number' },
+      { id: 'carDetails', title: 'Details' },
     ],
   });
 
   await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
 const website = {
-  url: 'https://www.bathursttoyota.ca/en/new-inventory',
-  output: 'carInfo_bathurst.csv',
+  url: 'https://m.woodstocknbtoyota.com/en/for-sale/car/new',
+  output: 'carInfo_woodstock.csv',
 };
 
 (async () => {
   await scrapeWebsite(website.url, website.output);
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

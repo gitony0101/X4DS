@@ -1,6 +1,11 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+let server;
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -65,7 +70,6 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
   await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
 const websites = [
@@ -88,4 +92,14 @@ const websites = [
   for (const site of websites) {
     await scrapeWebsite(site.url, site.output, site.selectors);
   }
+
+  // 关闭服务器并结束程序
+  server.close(() => {
+    console.log('Server closed');
+    process.exit();
+  });
 })().catch((err) => console.error(err));
+
+server = app.listen(PORT, () =>
+  console.log(`Server listening on port ${PORT}`),
+);

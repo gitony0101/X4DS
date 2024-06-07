@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -65,27 +69,23 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
   await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
-const websites = [
-  {
-    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
-    output: 'carInfo_anchor.csv',
-    selectors: {
-      item: '.vehicle-card',
-      model: '.vehicle-card__title',
-      price: '.price-block__price',
-      specs: '.detailed-specs__single',
-      label: '.detailed-specs__label',
-      value: '.detailed-specs__value',
-    },
+const website = {
+  url: 'https://www.kentvilletoyota.com/en/shop-online?paymentFrequency=52&purchaseMethodOrder=4352&preferredMake=ALL',
+  output: 'carInfo_kentville.csv',
+  selectors: {
+    item: '.vehicle-tile',
+    model: '.vehicle-name',
+    price: '.vehicle-price-total .vehicle-price',
+    specs: '.vehicle-description .vehicle-cost div',
+    label: '.vehicle-price-label',
+    value: '.vehicle-price',
   },
-  // 可以在这里添加更多网站的URL、输出文件名和选择器
-];
+};
 
 (async () => {
-  for (const site of websites) {
-    await scrapeWebsite(site.url, site.output, site.selectors);
-  }
+  await scrapeWebsite(website.url, website.output, website.selectors);
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

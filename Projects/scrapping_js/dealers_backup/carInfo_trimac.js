@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -35,7 +39,9 @@ async function scrapeWebsite(url, outputPath, selectors) {
   const carInfo = [];
 
   $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
+    const carYear = $(element).find(selectors.year).text().trim();
+    const carMakeModel = $(element).find(selectors.makeModel).text().trim();
+    const carModel = `${carYear} ${carMakeModel}`;
     const carPrice = $(element).find(selectors.price).text().trim();
     const carSpecs = [];
 
@@ -65,27 +71,24 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
   await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
-const websites = [
-  {
-    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
-    output: 'carInfo_anchor.csv',
-    selectors: {
-      item: '.vehicle-card',
-      model: '.vehicle-card__title',
-      price: '.price-block__price',
-      specs: '.detailed-specs__single',
-      label: '.detailed-specs__label',
-      value: '.detailed-specs__value',
-    },
+const website = {
+  url: 'https://trimactoyota.ca/new-inventory/',
+  output: 'carInfo_trimac.csv',
+  selectors: {
+    item: '.vehicle_classic',
+    year: '.vehicle-year',
+    makeModel: '.vehicle-make-model',
+    price: '.vehicle-price .price',
+    specs: '.vehicle__content .feature',
+    label: '.feature-name',
+    value: '.feature-value',
   },
-  // 可以在这里添加更多网站的URL、输出文件名和选择器
-];
+};
 
 (async () => {
-  for (const site of websites) {
-    await scrapeWebsite(site.url, site.output, site.selectors);
-  }
+  await scrapeWebsite(website.url, website.output, website.selectors);
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -29,22 +33,46 @@ async function scrapePage(page, url) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDescription = $(element).find('.new-car-motor').text().trim();
-    const carVin = $(element).find('.listing-tile-vin p').text().trim();
-    const stockNumber = $(element)
-      .find('.listing-tile-specification-stock')
+  $('.col-xs-12.col-sm-12.col-md-7').each((index, element) => {
+    const carModel = $(element)
+      .find('.vehicle-year-make-model .stat-text-link')
       .text()
       .trim();
+    const carPrice = $(element).find('.vehicle-price-2-new').text().trim();
+    const carDescription = $(element).find('.s-desc').text().trim();
+    const engineType = $(element)
+      .find('td[itemprop="vehicleEngine"]')
+      .text()
+      .trim();
+    const transmission = $(element)
+      .find('td[itemprop="vehicleTransmission"]')
+      .text()
+      .trim();
+    const exteriorColor = $(element).find('td[itemprop="color"]').text().trim();
+    const vin = $(element).find('td:contains("VIN:")').next().text().trim();
+    const drivetrain = $(element)
+      .find('td:contains("Drivetrain:")')
+      .next()
+      .text()
+      .trim();
+    const stockNumber = $(element)
+      .find('td:contains("Stock #:")')
+      .next()
+      .text()
+      .trim();
+    const city = $(element).find('td:contains("City:")').next().text().trim();
 
     carInfo.push({
       carModel,
       carPrice,
       carDescription,
-      carVin,
+      engineType,
+      transmission,
+      exteriorColor,
+      vin,
+      drivetrain,
       stockNumber,
+      city,
     });
   });
 
@@ -73,21 +101,27 @@ async function scrapeWebsite(url, outputPath) {
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
       { id: 'carDescription', title: 'Description' },
-      { id: 'carVin', title: 'VIN' },
+      { id: 'engineType', title: 'Engine Type' },
+      { id: 'transmission', title: 'Transmission' },
+      { id: 'exteriorColor', title: 'Exterior Color' },
+      { id: 'vin', title: 'VIN' },
+      { id: 'drivetrain', title: 'Drivetrain' },
       { id: 'stockNumber', title: 'Stock Number' },
+      { id: 'city', title: 'City' },
     ],
   });
 
   await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
 const website = {
-  url: 'https://www.bathursttoyota.ca/en/new-inventory',
-  output: 'carInfo_bathurst.csv',
+  url: 'https://www.toyotaplaza.ca/new/',
+  output: 'carInfo_plazaNL.csv',
 };
 
 (async () => {
   await scrapeWebsite(website.url, website.output);
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

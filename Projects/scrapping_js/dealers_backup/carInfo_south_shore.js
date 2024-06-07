@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
+import express from 'express';
 import { createObjectCsvWriter } from 'csv-writer';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -21,10 +25,13 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapeWebsite(url, outputPath, selectors) {
+(async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(
+    'https://oreganstoyotabridgewater.com/inventory/?do-search=1&search.vehicle-inventory-type-ids.0=1',
+    { waitUntil: 'networkidle2' },
+  );
 
   await autoScroll(page);
 
@@ -34,16 +41,16 @@ async function scrapeWebsite(url, outputPath, selectors) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
-    const carPrice = $(element).find(selectors.price).text().trim();
+  $('.ouvsrItem').each((index, element) => {
+    const carModel = $(element).find('.ouvsrModelYear').text().trim();
+    const carPrice = $(element).find('.currencyValue').text().trim();
     const carSpecs = [];
 
     $(element)
-      .find(selectors.specs)
+      .find('.ouvsrTechSpecs .ouvsrSpec')
       .each((i, specElement) => {
-        const label = $(specElement).find(selectors.label).text().trim();
-        const value = $(specElement).find(selectors.value).text().trim();
+        const label = $(specElement).find('.ouvsrLabel').text().trim();
+        const value = $(specElement).find('.ouvsrValue').text().trim();
         carSpecs.push({ label, value });
       });
 
@@ -55,7 +62,7 @@ async function scrapeWebsite(url, outputPath, selectors) {
   });
 
   const csvWriter = createObjectCsvWriter({
-    path: outputPath,
+    path: 'carInfo_south_shore.csv',
     header: [
       { id: 'carModel', title: 'Model' },
       { id: 'carPrice', title: 'Price' },
@@ -64,28 +71,7 @@ async function scrapeWebsite(url, outputPath, selectors) {
   });
 
   await csvWriter.writeRecords(carInfo);
-  console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
-}
-
-const websites = [
-  {
-    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
-    output: 'carInfo_anchor.csv',
-    selectors: {
-      item: '.vehicle-card',
-      model: '.vehicle-card__title',
-      price: '.price-block__price',
-      specs: '.detailed-specs__single',
-      label: '.detailed-specs__label',
-      value: '.detailed-specs__value',
-    },
-  },
-  // 可以在这里添加更多网站的URL、输出文件名和选择器
-];
-
-(async () => {
-  for (const site of websites) {
-    await scrapeWebsite(site.url, site.output, site.selectors);
-  }
+  console.log('Data has been written to carInfo_south_shore.csv');
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

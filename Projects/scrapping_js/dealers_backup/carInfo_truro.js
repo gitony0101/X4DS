@@ -1,6 +1,10 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -35,6 +39,11 @@ async function scrapeWebsite(url, outputPath, selectors) {
   const carInfo = [];
 
   $(selectors.item).each((index, element) => {
+    const status = $(element).find(selectors.status).text().trim();
+    if (status.includes('Sold') || status.includes('Reserved')) {
+      return;
+    }
+
     const carModel = $(element).find(selectors.model).text().trim();
     const carPrice = $(element).find(selectors.price).text().trim();
     const carSpecs = [];
@@ -42,9 +51,13 @@ async function scrapeWebsite(url, outputPath, selectors) {
     $(element)
       .find(selectors.specs)
       .each((i, specElement) => {
-        const label = $(specElement).find(selectors.label).text().trim();
-        const value = $(specElement).find(selectors.value).text().trim();
-        carSpecs.push({ label, value });
+        const label = selectors.label
+          ? $(specElement).find(selectors.label).text().trim()
+          : 'Option';
+        const value = $(specElement).text().trim();
+        if (label && value) {
+          carSpecs.push({ label, value });
+        }
       });
 
     carInfo.push({
@@ -65,20 +78,20 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
   await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
 }
 
 const websites = [
   {
-    url: 'https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new',
-    output: 'carInfo_anchor.csv',
+    url: 'https://www.trurotoyota.com/en/new-inventory',
+    output: 'carInfo_truro_toyota.csv',
     selectors: {
-      item: '.vehicle-card',
-      model: '.vehicle-card__title',
-      price: '.price-block__price',
-      specs: '.detailed-specs__single',
-      label: '.detailed-specs__label',
-      value: '.detailed-specs__value',
+      item: '.listing-tile-link',
+      model: '.new-car-name',
+      price: '.payment-row-price',
+      specs: '.listing-tile-package-description',
+      label: null, // 由于specs直接包含了值，所以这里设为null
+      value: '.listing-tile-package-description',
+      status: '.tile-tag span',
     },
   },
   // 可以在这里添加更多网站的URL、输出文件名和选择器
@@ -89,3 +102,5 @@ const websites = [
     await scrapeWebsite(site.url, site.output, site.selectors);
   }
 })().catch((err) => console.error(err));
+
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

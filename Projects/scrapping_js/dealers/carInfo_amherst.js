@@ -6,6 +6,8 @@ import express from 'express';
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+let server;
+
 async function autoScroll(page) {
   await page.evaluate(async () => {
     await new Promise((resolve) => {
@@ -87,6 +89,12 @@ async function scrapeWebsite(url, outputPath) {
 
   await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
+
+  // 关闭服务器并退出程序
+  server.close(() => {
+    console.log('Server closed');
+    process.exit();
+  });
 }
 
 const website = {
@@ -98,4 +106,6 @@ const website = {
   await scrapeWebsite(website.url, website.output);
 })().catch((err) => console.error(err));
 
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+server = app.listen(PORT, () =>
+  console.log(`Server listening on port ${PORT}`),
+);

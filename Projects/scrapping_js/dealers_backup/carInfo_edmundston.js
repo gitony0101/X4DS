@@ -105,12 +105,11 @@ async function scrapeWebsite(baseUrl, outputPath) {
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit();
 }
 
 const website = {
-  baseUrl: 'https://www.summersidetoyota.com/en/new-inventory',
-  output: 'carInfo_summerside.csv',
+  baseUrl: 'https://www.edmundstontoyota.com/en/new-inventory',
+  output: 'carInfo_edmundston.csv',
 };
 
 (async () => {
