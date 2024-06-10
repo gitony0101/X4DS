@@ -1,49 +1,49 @@
-import { exec } from 'child_process';
-import path from 'path';
+import puppeteer from 'puppeteer';
+import { parse } from 'json2csv';
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+async function scrapeVehicles(url) {
+  // 启动浏览器
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-const scriptsDir = path.join(__dirname, 'dealers');
-const outputDir = path.join(__dirname, 'output');
+  // 访问网页
+  await page.goto(url, { waitUntil: 'networkidle2' });
 
-// 检查输出目录是否存在，如果不存在则创建
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir);
-}
+  // 抓取页面上的JSON-LD脚本内容
+  const data = await page.evaluate(() => {
+    const script = document.querySelector('script[type="application/ld+json"]');
+    return script ? JSON.parse(script.innerText) : null;
+  });
 
-// 获取所有的脚本文件
-const scriptFiles = fs
-  .readdirSync(scriptsDir)
-  .filter((file) => file.endsWith('.js'));
+  // 关闭浏览器
+  await browser.close();
 
-// 依次执行每个脚本
-(async () => {
-  for (const file of scriptFiles) {
-    const scriptPath = path.join(scriptsDir, file);
-    const outputFileName = file.replace('.js', '.csv');
-    const outputFilePath = path.join(outputDir, outputFileName);
-
-    console.log(`正在执行 ${file} 并输出到 ${outputFileName}...`);
-    await new Promise((resolve, reject) => {
-      exec(`node ${scriptPath}`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`执行 ${file} 时出错: ${error.message}`);
-          return reject(error);
-        }
-        if (stderr) {
-          console.error(`stderr: ${stderr}`);
-          return reject(new Error(stderr));
-        }
-        console.log(`stdout: ${stdout}`);
-        resolve();
-      });
-    });
+  // 检查数据是否存在
+  if (!data) {
+    console.log('No vehicles found.');
+    return;
   }
 
-  console.log('所有脚本执行完毕');
-})().catch((err) => {
-  console.error('执行过程中发生错误:', err);
-});
+  // 解析数据，这里假设data是一个数组
+  const vehicles = data.map((vehicle) => ({
+    type: vehicle['@type'],
+    name: vehicle.item.name,
+    description: vehicle.item.description,
+    price: vehicle.item.offers.price,
+    currency: vehicle.item.offers.priceCurrency,
+    url: vehicle.item.url,
+  }));
+
+  // 将数据转换为CSV
+  const csv = parse(vehicles, {
+    fields: ['type', 'name', 'description', 'price', 'currency', 'url'],
+  });
+
+  // 保存到文件
+  fs.writeFileSync('vehicles.csv', csv);
+  console.log('CSV file has been successfully saved.');
+}
+
+// 调用函数，替换下面的URL为实际的页面地址
+scrapeVehicles('https://www.acadiatoyota.com/en/new-inventory');
