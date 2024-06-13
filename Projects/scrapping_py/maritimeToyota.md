@@ -27,6 +27,21 @@
 
 
 
+- central toyota problem
+
+- halifax
+- south shore
+- kentville
+- plaza NL 
+- south shore
+- trimac
+- woodstock
+- truro
+
+
+
+
+
 Successfully scraped data from:
 - https://www.acadiatoyota.com/en/new-inventory
 - https://www.frederictontoyota.com/en/new-inventory

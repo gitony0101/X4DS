@@ -1,17 +1,17 @@
 ,Vehicle Name,price,Source Website
-0,2024 Toyota Tundra SR5,61401,https://www.acadiatoyota.com/en/new-inventory
-1,2024 Toyota Tundra CREWMAX LIMITED L,86767,https://www.acadiatoyota.com/en/new-inventory
-2,2024 Toyota Tundra LIMITED TRD OFF ROAD,75171,https://www.acadiatoyota.com/en/new-inventory
-3,2024 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,88603,https://www.acadiatoyota.com/en/new-inventory
-4,2024 Toyota Tundra Limited Hybrid,75380,https://www.acadiatoyota.com/en/new-inventory
-5,2024 Toyota Tundra CREWMAX PLATINUM,80390,https://www.acadiatoyota.com/en/new-inventory
-6,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
+0,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
+1,2024 Toyota Tundra Limited Hybrid,75380,https://www.acadiatoyota.com/en/new-inventory
+2,2024 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,88603,https://www.acadiatoyota.com/en/new-inventory
+3,2024 Toyota Tundra CREWMAX LIMITED L,86767,https://www.acadiatoyota.com/en/new-inventory
+4,2024 Toyota Tundra LIMITED TRD OFF ROAD,75171,https://www.acadiatoyota.com/en/new-inventory
+5,2024 Toyota Tundra SR5,75799,https://www.acadiatoyota.com/en/new-inventory
+6,2024 Toyota Tundra CREWMAX PLATINUM,80390,https://www.acadiatoyota.com/en/new-inventory
 7,2024 Toyota Tundra 1794,83601,https://www.acadiatoyota.com/en/new-inventory
-8,2024 Toyota Prius XLE AWD,39632,https://www.frederictontoyota.com/en/new-inventory
-9,2024 Toyota Tundra TRD OFF ROAD,64812,https://www.frederictontoyota.com/en/new-inventory
-10,2024 Toyota Prius Limited AWD,46027,https://www.frederictontoyota.com/en/new-inventory
-11,2024 Toyota Tundra PLATINUM,81142,https://www.frederictontoyota.com/en/new-inventory
-12,2024 Toyota Tundra LIMITED TRD OFF ROAD,72527,https://www.frederictontoyota.com/en/new-inventory
+8,2024 Toyota Tundra TRD OFF ROAD,64812,https://www.frederictontoyota.com/en/new-inventory
+9,2024 Toyota Prius Limited AWD,46027,https://www.frederictontoyota.com/en/new-inventory
+10,2024 Toyota Tundra LIMITED TRD OFF ROAD,74272,https://www.frederictontoyota.com/en/new-inventory
+11,2024 Toyota Prius XLE AWD,39632,https://www.frederictontoyota.com/en/new-inventory
+12,2024 Toyota Tundra PLATINUM,81142,https://www.frederictontoyota.com/en/new-inventory
 13,2024 Toyota GR Supra 3.0L Premium,72002,https://www.frederictontoyota.com/en/new-inventory
 14,2024 Toyota Corolla,23590,https://www.charlottetowntoyota.ca/en/new-catalog
 15,2025 Toyota Corolla Hatchback,24175,https://www.charlottetowntoyota.ca/en/new-catalog
@@ -112,32 +112,29 @@
 110,2024 Toyota Land Cruiser,70338,https://www.grandtoyota.ca/en/new-catalog
 111,2024 Toyota Tundra Hybrid,74398,https://www.grandtoyota.ca/en/new-catalog
 112,2024 Toyota Sequoia Hybrid,81508,https://www.grandtoyota.ca/en/new-catalog
-113,2024 Toyota Tacoma TRD Off Road Premium,60402,https://www.restigouchetoyota.com/en/new-inventory
-114,2024 Toyota Tundra TRD SPORT,64602,https://www.restigouchetoyota.com/en/new-inventory
-115,2024 Toyota Tundra TRD OFF ROAD,65182,https://www.restigouchetoyota.com/en/new-inventory
-116,2025 Toyota Camry Hybrid XLE AWD,46932,https://www.restigouchetoyota.com/en/new-inventory
-117,2024 Toyota GRAND HIGHLANDER HYBRID Platinum Hybrid MAX,67502,https://www.restigouchetoyota.com/en/new-inventory
-118,2024 Toyota Corolla Cross Hybrid XSE,39942,https://www.restigouchetoyota.com/en/new-inventory
-119,2024 Toyota COROLLA CROSS LE PREMIUM AWD,34822,https://www.restigouchetoyota.com/en/new-inventory
-120,2024 Toyota Corolla Cross Hybrid SE,37182,https://www.restigouchetoyota.com/en/new-inventory
-121,2024 Toyota RAV4 LE,35202,https://www.restigouchetoyota.com/en/new-inventory
-122,2024 Toyota RAV4 Hybrid XLE,41102,https://www.restigouchetoyota.com/en/new-inventory
-123,2024 Toyota RAV4 Prime XSE Technology Package,59624,https://www.restigouchetoyota.com/en/new-inventory
-124,2024 Toyota Tundra SR5,62502,https://www.restigouchetoyota.com/en/new-inventory
-125,2024 Toyota TUNDRA HYBRID TRD PRO,88962,https://www.restigouchetoyota.com/en/new-inventory
-126,2024 Toyota GRAND HIGHLANDER HYBRID Limited,63242,https://www.restigouchetoyota.com/en/new-inventory
-127,2024 Toyota Tacoma TRD Sport Premium,60202,https://www.restigouchetoyota.com/en/new-inventory
-128,2024 Toyota RAV4 Prime SE,48854,https://www.restigouchetoyota.com/en/new-inventory
-129,2024 Toyota VENZA HYBRID LE,44857,https://www.restigouchetoyota.com/en/new-inventory
-130,2024 Toyota VENZA HYBRID LIMITED,54557,https://www.restigouchetoyota.com/en/new-inventory
-131,2024 Toyota Tundra SR5,64790,https://www.rousseltoyota.com/en/new-inventory
-132,2024 Toyota Tundra Limited,74250,https://www.rousseltoyota.com/en/new-inventory
-133,2024 Toyota Grand Highlander XLE,52520,https://www.rousseltoyota.com/en/new-inventory
-134,2024 Toyota Tundra Platinum,82035,https://www.rousseltoyota.com/en/new-inventory
-135,2024 Toyota Grand Highlander Limited,59720,https://www.rousseltoyota.com/en/new-inventory
+113,2024 Toyota VENZA HYBRID LE,44602,https://www.restigouchetoyota.com/en/new-inventory
+114,2024 Toyota RAV4 XLE,38902,https://www.restigouchetoyota.com/en/new-inventory
+115,2024 Toyota RAV4 TRAIL,43142,https://www.restigouchetoyota.com/en/new-inventory
+116,2024 Toyota Corolla LE Upgrade,28562,https://www.restigouchetoyota.com/en/new-inventory
+117,2024 Toyota Corolla Cross Hybrid XSE,39402,https://www.restigouchetoyota.com/en/new-inventory
+118,2025 Toyota Camry Hybrid XLE AWD,46932,https://www.restigouchetoyota.com/en/new-inventory
+119,2024 Toyota GRAND HIGHLANDER HYBRID Platinum Hybrid MAX,67502,https://www.restigouchetoyota.com/en/new-inventory
+120,2024 Toyota Tacoma TRD Off Road Premium,60402,https://www.restigouchetoyota.com/en/new-inventory
+121,2024 Toyota Tundra TRD OFF ROAD,65182,https://www.restigouchetoyota.com/en/new-inventory
+122,2024 Toyota COROLLA CROSS LE PREMIUM AWD,34822,https://www.restigouchetoyota.com/en/new-inventory
+123,2024 Toyota Corolla Cross Hybrid SE,37182,https://www.restigouchetoyota.com/en/new-inventory
+124,2024 Toyota RAV4 Hybrid XLE,41102,https://www.restigouchetoyota.com/en/new-inventory
+125,2024 Toyota RAV4 LE,35202,https://www.restigouchetoyota.com/en/new-inventory
+126,2024 Toyota RAV4 Prime XSE Technology Package,59624,https://www.restigouchetoyota.com/en/new-inventory
+127,2024 Toyota Tundra SR5,62502,https://www.restigouchetoyota.com/en/new-inventory
+128,2024 Toyota Tacoma TRD Sport Premium,60202,https://www.restigouchetoyota.com/en/new-inventory
+129,2024 Toyota TUNDRA HYBRID TRD PRO,88962,https://www.restigouchetoyota.com/en/new-inventory
+130,2024 Toyota GRAND HIGHLANDER HYBRID Limited,63242,https://www.restigouchetoyota.com/en/new-inventory
+131,2024 Toyota RAV4 Prime SE,48854,https://www.restigouchetoyota.com/en/new-inventory
+132,2024 Toyota Tacoma TRD Sport PREMIUM,60380,https://www.rousseltoyota.com/en/new-inventory
+133,2024 Toyota Tundra SR5,64790,https://www.rousseltoyota.com/en/new-inventory
+134,2024 Toyota Tundra Limited,74250,https://www.rousseltoyota.com/en/new-inventory
+135,2024 Toyota Grand Highlander XLE,52520,https://www.rousseltoyota.com/en/new-inventory
 136,2024 Toyota Tundra SR,60480,https://www.rousseltoyota.com/en/new-inventory
 137,2024 Toyota RAV4 XLE,38880,https://www.rousseltoyota.com/en/new-inventory
-138,2024 Toyota RAV4 Limited,46780,https://www.rousseltoyota.com/en/new-inventory
-139,2024 Toyota Venza XLE Hybrid,50790,https://www.rousseltoyota.com/en/new-inventory
-140,2023 Toyota Tundra Limited Hybrid,82000,https://www.rousseltoyota.com/en/new-inventory
-141,2023 Toyota GR Supra,70960,https://www.rousseltoyota.com/en/new-inventory
+138,2023 Toyota Tundra Limited Hybrid,82000,https://www.rousseltoyota.com/en/new-inventory
