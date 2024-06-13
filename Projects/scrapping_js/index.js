@@ -28,39 +28,85 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.ouvsrItem').each((index, element) => {
-    const carModel = $(element).find('.ouvsrModelYear').text().trim();
-    const carPrice = $(element).find('.currencyValue').text().trim();
-    const carSpecs = [];
+  $('li.carBoxWrapper').each((index, element) => {
+    const carModel =
+      $(element).find('.divMake').text().trim() +
+      ' ' +
+      $(element).find('.divModelYear').text().trim();
+    const carPrice = $(element).find('.dollarsigned').text().trim();
+    const mileage = $(element).find('.s-km').text().trim();
+    const trim = $(element).find('.divTrim').text().trim();
+    const stock = $(element)
+      .find('.divStockTextSelect')
+      .text()
+      .trim()
+      .split('VIN:')[0]
+      .replace('Stock:', '')
+      .trim();
+    const vin = $(element)
+      .find('.divStockTextSelect')
+      .text()
+      .trim()
+      .split('VIN:')[1]
+      .trim();
+    const exteriorColor = $(element)
+      .find('.carDescription')
+      .text()
+      .split('Ext:')[1]
+      .split(',')[0]
+      .trim();
+    const interiorColor = $(element)
+      .find('.carDescription')
+      .text()
+      .split('Int:')[1]
+      .trim()
+      .split('.')[0]
+      .trim();
+    const drivetrain = $(element)
+      .find('.divCarPaymentContainerTooltip')
+      .attr('data-tooltip')
+      .split('Drive train:')[1]
+      .split('<')[0]
+      .trim();
 
-    $(element)
-      .find('.ouvsrTechSpecs .ouvsrSpec')
-      .each((i, specElement) => {
-        const label = $(specElement).find('.ouvsrLabel').text().trim();
-        const value = $(specElement).find('.ouvsrValue').text().trim();
-        carSpecs.push({ label, value });
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        mileage,
+        trim,
+        stock,
+        vin,
+        exteriorColor,
+        interiorColor,
+        drivetrain,
       });
-
-    carInfo.push({
-      carModel,
-      carPrice,
-      carSpecs: JSON.stringify(carSpecs),
-    });
+    }
   });
 
   return carInfo;
 }
 
-async function scrapeWebsite(url, outputPath) {
-  const browser = await puppeteer.launch({ headless: true });
+async function scrapeWebsite(baseUrl, outputPath) {
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+  await page.setRequestInterception(true);
+
+  page.on('request', (request) => {
+    if (request.isNavigationRequest() && request.redirectChain().length) {
+      request.abort();
+    } else {
+      request.continue();
+    }
+  });
+
   const allCarInfo = [];
 
   let currentPage = 1;
   let hasNextPage = true;
   while (hasNextPage) {
-    const pageUrl = `${url}&page=${currentPage}`;
-    await page.goto(pageUrl, { waitUntil: 'networkidle2' });
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
     const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
@@ -68,7 +114,7 @@ async function scrapeWebsite(url, outputPath) {
     }
 
     const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
+      '.divPaginationArrowBox:not(.disabled)',
     );
     if (nextPageButton) {
       currentPage += 1;
@@ -79,19 +125,24 @@ async function scrapeWebsite(url, outputPath) {
 
   await browser.close();
 
-  const csvContent = allCarInfo
-    .map((car) => `${car.carModel},${car.carPrice},${car.carSpecs}`)
-    .join('\n');
+  const csvContent = [
+    'Model,Price,Mileage,Trim,Stock,VIN,Exterior Color,Interior Color,Drivetrain',
+    ...allCarInfo.map(
+      (car) =>
+        `${car.carModel},${car.carPrice},${car.mileage},${car.trim},${car.stock},${car.vin},${car.exteriorColor},${car.interiorColor},${car.drivetrain}`,
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
   process.exit();
 }
 
 const website = {
-  url: 'https://oreganstoyotadartmouth.com/inventory/?search.vehicle-inventory-type-ids.0=1',
-  output: 'carInfo_dartmouth.csv',
+  baseUrl: 'https://www.gandertoyota.com/new/inventory/search.html',
+  output: 'carInfo_gander_toyota.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output);
+  await scrapeWebsite(website.baseUrl, website.output);
 })().catch((err) => console.error(err));
