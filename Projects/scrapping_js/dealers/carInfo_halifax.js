@@ -28,40 +28,41 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
-
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
+  $('div.ouvsrItem').each((index, element) => {
+    const inventoryType = $(element).find('.ouvsrInventoryType').text().trim();
+    if (inventoryType === 'New') {
+      const carModel = $(element).find('.ouvsrModelYear').text().trim();
+      const carPrice = $(element).find('.currencyValue').text().trim();
+      const exteriorColor = $(element).find('.ouvsrColorName').text().trim();
+      const trim = $(element).find('.ouvsrTrim').text().trim();
+      const stock = $(element)
+        .find('.ouvsrSpec.ouvsrStockNumber .ouvsrValue')
+        .text()
+        .replace('#', '')
+        .trim();
+      const drivetrain = $(element)
+        .find('.ouvsrSpec.ouvsrDrivetrain .ouvsrValue')
         .text()
         .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
+      const transmission = $(element)
+        .find('.ouvsrSpec.ouvsrTransmission .ouvsrValue')
         .text()
-        .replace(/\s\s+/g, ', ')
         .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
+      const fuelType = $(element)
+        .find('.ouvsrSpec.ouvsrFuelType .ouvsrValue')
+        .text()
+        .trim();
 
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carDetails,
-          carStock,
-        });
-      }
+      carInfo.push({
+        carModel,
+        carPrice,
+        exteriorColor,
+        trim,
+        stock,
+        drivetrain,
+        transmission,
+        fuelType,
+      });
     }
   });
 
@@ -84,9 +85,8 @@ async function scrapeWebsite(baseUrl, outputPath) {
       allCarInfo.push(...carInfo);
     }
 
-    // 检查是否存在下一页按钮
     const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
+      '.divPaginationArrowBox:not(.disabled)',
     );
     if (nextPageButton) {
       currentPage += 1;
@@ -97,20 +97,22 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
-  const csvContent = allCarInfo
-    .map(
+  const csvContent = [
+    'Model,Price,Exterior Color,Trim,Stock,Drivetrain,Transmission,Fuel Type',
+    ...allCarInfo.map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
-    )
-    .join('\n');
+        `${car.carModel},${car.carPrice},${car.exteriorColor},${car.trim},${car.stock},${car.drivetrain},${car.transmission},${car.fuelType}`,
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
+  process.exit();
 }
 
 const website = {
-  baseUrl: 'https://www.halifaxtoyota.com/en/new-inventory',
-  output: 'carInfo_halifax.csv',
+  baseUrl: 'https://oreganstoyotahalifax.com/inventory/',
+  output: 'carInfo_oregans_toyota.csv',
 };
 
 (async () => {

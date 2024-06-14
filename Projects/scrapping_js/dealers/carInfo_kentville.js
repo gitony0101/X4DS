@@ -21,6 +21,17 @@ async function autoScroll(page) {
   });
 }
 
+async function clickLoadMore(page) {
+  let loadMoreButton = await page.$('.listing-used-button-loading');
+  while (loadMoreButton) {
+    await loadMoreButton.click();
+    await page.evaluate(
+      () => new Promise((resolve) => setTimeout(resolve, 3000)),
+    ); // 等待加载更多数据
+    loadMoreButton = await page.$('.listing-used-button-loading');
+  }
+}
+
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -28,40 +39,23 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
+  $('.listing-tile-link .listing-new-tile').each((index, element) => {
+    const carModel = $(element).find('.new-car-name').text().trim();
+    const carPrice = $(element).find('.payment-row-price').text().trim();
+    const carDetails = $(element)
+      .find('.new-car-motor')
+      .text()
+      .replace(/\s\s+/g, ', ')
+      .trim();
+    const carStock = $(element).find('.listing-tile-vin').text().trim();
 
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
-        .text()
-        .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
-        .text()
-        .replace(/\s\s+/g, ', ')
-        .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
-
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carDetails,
-          carStock,
-        });
-      }
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+        carStock,
+      });
     }
   });
 
@@ -73,26 +67,15 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  let currentPage = 1;
-  let hasNextPage = true;
-  while (hasNextPage) {
-    const url = `${baseUrl}?page=${currentPage}`;
-    await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
 
-    const carInfo = await scrapePage(page);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
-    }
+  // 点击所有的"Load More"按钮直到页面完全加载
+  await clickLoadMore(page);
 
-    // 检查是否存在下一页按钮
-    const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
-    );
-    if (nextPageButton) {
-      currentPage += 1;
-    } else {
-      hasNextPage = false;
-    }
+  // 开始爬取数据
+  const carInfo = await scrapePage(page);
+  if (carInfo.length > 0) {
+    allCarInfo.push(...carInfo);
   }
 
   await browser.close();
@@ -109,7 +92,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
 }
 
 const website = {
-  baseUrl: 'https://www.kentvilletoyota.com/en/new-inventory',
+  baseUrl: 'https://www.kentvilletoyota.com/en/new-inventory?page=1',
   output: 'carInfo_kentville.csv',
 };
 

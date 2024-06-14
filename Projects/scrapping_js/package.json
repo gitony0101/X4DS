@@ -18,6 +18,7 @@
     "express": "^4.19.2",
     "json2csv": "^6.0.0-alpha.2",
     "node-cron": "^3.0.3",
+    "node-fetch": "^3.3.2",
     "puppeteer": "^22.11.0"
   },
   "devDependencies": {
