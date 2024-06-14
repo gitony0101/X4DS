@@ -21,17 +21,6 @@ async function autoScroll(page) {
   });
 }
 
-async function clickLoadMore(page) {
-  let loadMoreButton = await page.$('.listing-used-button-loading');
-  while (loadMoreButton) {
-    await loadMoreButton.click();
-    await page.evaluate(
-      () => new Promise((resolve) => setTimeout(resolve, 3000)),
-    ); // 等待加载更多数据
-    loadMoreButton = await page.$('.listing-used-button-loading');
-  }
-}
-
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -39,21 +28,33 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-tile-link .listing-new-tile').each((index, element) => {
-    const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
-    const carDetails = $(element)
-      .find('.new-car-motor')
+  $('.catalog-block-alpha__spec').each((index, element) => {
+    const carModel = $(element)
+      .find('.catalog-block-alpha__name-anchor span')
       .text()
-      .replace(/\s\s+/g, ', ')
       .trim();
-    const carStock = $(element).find('.listing-tile-vin').text().trim();
+    const carPrice = $(element)
+      .find('.showroom-price__price--regular')
+      .text()
+      .trim();
+    const leaseInfo = $(element)
+      .find('.showroom-financing__payment')
+      .text()
+      .trim();
+    const leaseTerm = $(element)
+      .find('.showroom-financing__term')
+      .text()
+      .trim();
+    const carStock = $(element)
+      .find('.catalog-block-alpha__name img')
+      .attr('alt');
 
     if (carModel && carPrice) {
       carInfo.push({
         carModel,
         carPrice,
-        carDetails,
+        leaseInfo,
+        leaseTerm,
         carStock,
       });
     }
@@ -67,15 +68,26 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+  let currentPage = 1;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
-  // 点击所有的"Load More"按钮直到页面完全加载
-  await clickLoadMore(page);
+    const carInfo = await scrapePage(page);
+    if (carInfo.length > 0) {
+      allCarInfo.push(...carInfo);
+    }
 
-  // 开始爬取数据
-  const carInfo = await scrapePage(page);
-  if (carInfo.length > 0) {
-    allCarInfo.push(...carInfo);
+    // 检查是否存在下一页按钮
+    const nextPageButton = await page.$(
+      '.pagination__item:not(.disabled) .simple-arrow-right',
+    );
+    if (nextPageButton) {
+      currentPage += 1;
+    } else {
+      hasNextPage = false;
+    }
   }
 
   await browser.close();
@@ -83,17 +95,17 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const csvContent = allCarInfo
     .map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
+        `${car.carModel},${car.carPrice},${car.leaseInfo},${car.leaseTerm},${car.carStock}`,
     )
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
+  process.exit();
 }
 
 const website = {
-  baseUrl: 'https://www.kentvilletoyota.com/en/new-inventory?page=1',
-  output: 'carInfo_kentville.csv',
+  baseUrl: 'https://www.trurotoyota.com/en/new-inventory',
+  output: 'carInfo_truro.csv',
 };
 
 (async () => {

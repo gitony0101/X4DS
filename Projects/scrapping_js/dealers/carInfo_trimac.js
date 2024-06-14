@@ -28,38 +28,35 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
+  $('a.vehicle').each((index, element) => {
+    const status = $(element).find('.vehicle__hitbox').attr('status-label');
 
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
+    // Only scrape available vehicles
+    if (!status || status !== 'sold') {
+      const carModel = $(element)
+        .find('.vehicle__title .vehicle-title')
         .text()
         .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
+      const carPrice = $(element).find('.vehicle-price .price').text().trim();
+      const carStock = $(element).find('.feature-value.js-stock').text().trim();
+      const carTransmission = $(element)
+        .find('.feature-value.js-transmission')
         .text()
-        .replace(/\s\s+/g, ', ')
         .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
+      const carEngine = $(element)
+        .find('.feature-value.js-engine-type')
+        .text()
+        .trim();
+      const carUrl = $(element).attr('href');
 
       if (carModel && carPrice) {
         carInfo.push({
           carModel,
           carPrice,
-          carDetails,
           carStock,
+          carTransmission,
+          carEngine,
+          carUrl,
         });
       }
     }
@@ -73,26 +70,11 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const page = await browser.newPage();
   const allCarInfo = [];
 
-  let currentPage = 1;
-  let hasNextPage = true;
-  while (hasNextPage) {
-    const url = `${baseUrl}?page=${currentPage}`;
-    await page.goto(url, { waitUntil: 'networkidle2' });
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
 
-    const carInfo = await scrapePage(page);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
-    }
-
-    // 检查是否存在下一页按钮
-    const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
-    );
-    if (nextPageButton) {
-      currentPage += 1;
-    } else {
-      hasNextPage = false;
-    }
+  const carInfo = await scrapePage(page);
+  if (carInfo.length > 0) {
+    allCarInfo.push(...carInfo);
   }
 
   await browser.close();
@@ -100,17 +82,17 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const csvContent = allCarInfo
     .map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
+        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission},${car.carEngine},${car.carUrl}`,
     )
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit();
+  process.exit(); // Ensure the program exits normally
 }
 
 const website = {
-  baseUrl: 'https://www.trimactoyota.ca/en/new-inventory',
-  output: 'carInfo_trimac.csv',
+  baseUrl: 'https://trimactoyota.ca/new-inventory/',
+  output: 'carInfo_trimactoyota.csv',
 };
 
 (async () => {

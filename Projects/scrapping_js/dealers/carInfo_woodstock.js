@@ -28,38 +28,23 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
+  $('ul').each((index, element) => {
     // 检查车辆是否已售出
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
+    const isSold = $(element).find('.label.sold').length > 0;
 
     // 如果车辆未售出，则抓取信息
     if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
-        .text()
-        .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
-        .text()
-        .replace(/\s\s+/g, ', ')
-        .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
+      const carModel = $(element).find('.vehicle-title').text().trim();
+      const carPrice = $(element).find('.vehicle-new-price').text().trim();
+      const carStock = $(element).find('.vehicle-stockno').text().trim();
+      const carTransmission = $(element).find('.vehicle-odo').text().trim();
 
       if (carModel && carPrice) {
         carInfo.push({
           carModel,
           carPrice,
-          carDetails,
           carStock,
+          carTransmission,
         });
       }
     }
@@ -100,7 +85,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const csvContent = allCarInfo
     .map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
+        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission}`,
     )
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
@@ -109,7 +94,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
 }
 
 const website = {
-  baseUrl: 'https://www.woodstocktoyota.com/en/new-inventory',
+  baseUrl: 'https://www.woodstocknbtoyota.com/en/new-inventory',
   output: 'carInfo_woodstock.csv',
 };
 
