@@ -27,10 +27,6 @@
 
 
 
-- central toyota problem
-
-
-
 
 
 Successfully scraped data from:
