@@ -28,38 +28,33 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
+  $('[data-vehicle-inventory-type-id="1"]').each((index, element) => {
+    const carModel = $(element).find('.ouvsrModelYear').text().trim();
+    const carPrice = $(element)
+      .find('.ouvsrCurrentPrice .currencyValue')
+      .text()
+      .trim();
+    const carStock = $(element)
+      .find('.ouvsrSpec.ouvsrStockNumber .ouvsrValue')
+      .text()
+      .trim();
+    const carDetails = $(element).find('.ouvsrTrimAndPackage').text().trim();
 
-    if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
-        .text()
-        .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
-        .text()
-        .replace(/\s\s+/g, ', ')
-        .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
+    const carFeatures = [];
+    $(element)
+      .find('.ouvsrFeaturesList li')
+      .each((idx, el) => {
+        carFeatures.push($(el).find('.ouvsrFeatureLabel').text().trim());
+      });
 
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carDetails,
-          carStock,
-        });
-      }
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+        carStock,
+        carFeatures: carFeatures.join(', '),
+      });
     }
   });
 
@@ -77,7 +72,15 @@ async function scrapeWebsite(baseUrl, outputPath) {
     const url = `${baseUrl}&page=${currentPage}`;
     await page.goto(url, { waitUntil: 'networkidle2' });
 
-    await page.waitFor(5000); // 使用 waitFor 方法
+    // 关闭弹窗
+    try {
+      await page.waitForSelector('.modal-dialog .btn-close', { timeout: 5000 });
+      await page.click('.modal-dialog .btn-close');
+    } catch (err) {
+      console.log('No modal dialog found');
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // 替代waitForTimeout
 
     const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
@@ -99,7 +102,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const csvContent = allCarInfo
     .map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
+        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock},${car.carFeatures}`,
     )
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
@@ -109,7 +112,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
 const website = {
   baseUrl:
-    'https://oreganstoyotabridgewater.com/inventory/?search.vehicle-inventory-type-ids.0=1',
+    'https://oreganstoyotabridgewater.com/inventory/?search.vehicle-inventory-type-ids.0=1&search.vehicle-make-ids.0=45',
   output: 'carInfo_south_shore.csv',
 };
 

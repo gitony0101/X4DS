@@ -1,10 +1,6 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-import { createObjectCsvWriter } from 'csv-writer';
-import express from 'express';
-
-const PORT = process.env.PORT || 3000;
-const app = express();
+import fs from 'fs';
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -25,67 +21,81 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapeWebsite(url, outputPath, selectors) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
+async function clickLoadMore(page) {
+  let loadMoreButton = await page.$('.listing-used-button-loading');
+  while (loadMoreButton) {
+    await loadMoreButton.click();
+    await page.evaluate(
+      () => new Promise((resolve) => setTimeout(resolve, 3000)),
+    ); // 等待加载更多数据
+    loadMoreButton = await page.$('.listing-used-button-loading');
+  }
+}
 
+async function scrapePage(page) {
   await autoScroll(page);
 
   const htmlData = await page.content();
-  await browser.close();
-
   const $ = load(htmlData);
   const carInfo = [];
 
-  $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
-    const carPrice = $(element).find(selectors.price).text().trim();
-    const carSpecs = [];
+  $('.listing-tile-link .listing-new-tile').each((index, element) => {
+    const carModel = $(element).find('.new-car-name').text().trim();
+    const carPrice = $(element).find('.payment-row-price').text().trim();
+    const carDetails = $(element)
+      .find('.new-car-motor')
+      .text()
+      .replace(/\s\s+/g, ', ')
+      .trim();
+    const carStock = $(element).find('.listing-tile-vin').text().trim();
 
-    $(element)
-      .find(selectors.specs)
-      .each((i, specElement) => {
-        const label = $(specElement).find(selectors.label).text().trim();
-        const value = $(specElement).find(selectors.value).text().trim();
-        carSpecs.push({ label, value });
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+        carStock,
       });
-
-    carInfo.push({
-      carModel,
-      carPrice,
-      carSpecs: JSON.stringify(carSpecs),
-    });
+    }
   });
 
-  const csvWriter = createObjectCsvWriter({
-    path: outputPath,
-    header: [
-      { id: 'carModel', title: 'Model' },
-      { id: 'carPrice', title: 'Price' },
-      { id: 'carSpecs', title: 'Specs' },
-    ],
-  });
+  return carInfo;
+}
 
-  await csvWriter.writeRecords(carInfo);
+async function scrapeWebsite(baseUrl, outputPath) {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  const allCarInfo = [];
+
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+
+  // 点击所有的"Load More"按钮直到页面完全加载
+  await clickLoadMore(page);
+
+  // 开始爬取数据
+  const carInfo = await scrapePage(page);
+  if (carInfo.length > 0) {
+    allCarInfo.push(...carInfo);
+  }
+
+  await browser.close();
+
+  const csvContent = allCarInfo
+    .map(
+      (car) =>
+        `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock}`,
+    )
+    .join('\n');
+  fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
+  process.exit(); // 确保程序能正常结束
 }
 
 const website = {
-  url: 'https://www.kentvilletoyota.com/en/shop-online?paymentFrequency=52&purchaseMethodOrder=4352&preferredMake=ALL',
+  baseUrl: 'https://www.kentvilletoyota.com/en/new-inventory?page=1',
   output: 'carInfo_kentville.csv',
-  selectors: {
-    item: '.vehicle-tile',
-    model: '.vehicle-name',
-    price: '.vehicle-price-total .vehicle-price',
-    specs: '.vehicle-description .vehicle-cost div',
-    label: '.vehicle-price-label',
-    value: '.vehicle-price',
-  },
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output, website.selectors);
+  await scrapeWebsite(website.baseUrl, website.output);
 })().catch((err) => console.error(err));
-
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

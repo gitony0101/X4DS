@@ -21,6 +21,24 @@ async function autoScroll(page) {
   });
 }
 
+async function clickLoadMoreUntilDisappear(page) {
+  let loadMoreVisible = true;
+  while (loadMoreVisible) {
+    loadMoreVisible = await page.evaluate(() => {
+      const loadMoreButton = document.querySelector(
+        '.listing-used-button-loading.sr-button-1',
+      );
+      if (loadMoreButton) {
+        loadMoreButton.click();
+        return true;
+      }
+      return false;
+    });
+    // 使用 setTimeout 来代替 waitForTimeout
+    await new Promise((resolve) => setTimeout(resolve, 3000)); // 等待3秒钟加载更多内容
+  }
+}
+
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -28,34 +46,48 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.catalog-block-alpha__spec').each((index, element) => {
+  $('.listing-new-tile').each((index, element) => {
     const carModel = $(element)
-      .find('.catalog-block-alpha__name-anchor span')
+      .find('.new-car-name.sr-text.is-bold')
       .text()
       .trim();
+    const carDrive = $(element).find('.new-car-motor p').first().text().trim();
+    const carTransmission = $(element)
+      .find('.new-car-motor p')
+      .eq(1)
+      .text()
+      .trim();
+    const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
     const carPrice = $(element)
-      .find('.showroom-price__price--regular')
+      .find('.payment-row-price.sr-text.is-bold')
       .text()
       .trim();
-    const leaseInfo = $(element)
-      .find('.showroom-financing__payment')
+    const carVIN = $(element)
+      .find('.listing-tile-vin p')
       .text()
-      .trim();
-    const leaseTerm = $(element)
-      .find('.showroom-financing__term')
-      .text()
+      .replace('VIN ', '')
       .trim();
     const carStock = $(element)
-      .find('.catalog-block-alpha__name img')
-      .attr('alt');
+      .find('.listing-tile-specification-stock')
+      .text()
+      .replace('Stock #', '')
+      .trim();
+    const carColor = $(element)
+      .find('.listing-tile-package-description')
+      .first()
+      .text()
+      .trim();
 
     if (carModel && carPrice) {
       carInfo.push({
         carModel,
+        carDrive,
+        carTransmission,
+        carEngine,
         carPrice,
-        leaseInfo,
-        leaseTerm,
+        carVIN,
         carStock,
+        carColor,
       });
     }
   });
@@ -66,41 +98,22 @@ async function scrapePage(page) {
 async function scrapeWebsite(baseUrl, outputPath) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  const allCarInfo = [];
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
 
-  let currentPage = 1;
-  let hasNextPage = true;
-  while (hasNextPage) {
-    const url = `${baseUrl}?page=${currentPage}`;
-    await page.goto(url, { waitUntil: 'networkidle2' });
+  await clickLoadMoreUntilDisappear(page);
 
-    const carInfo = await scrapePage(page);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
-    }
-
-    // 检查是否存在下一页按钮
-    const nextPageButton = await page.$(
-      '.pagination__item:not(.disabled) .simple-arrow-right',
-    );
-    if (nextPageButton) {
-      currentPage += 1;
-    } else {
-      hasNextPage = false;
-    }
-  }
-
+  const carInfo = await scrapePage(page);
   await browser.close();
 
-  const csvContent = allCarInfo
+  const csvContent = carInfo
     .map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.leaseInfo},${car.leaseTerm},${car.carStock}`,
+        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice},${car.carVIN},${car.carStock},${car.carColor}`,
     )
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit();
+  process.exit(); // 确保程序能正常结束
 }
 
 const website = {

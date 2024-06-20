@@ -1,10 +1,6 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-import { createObjectCsvWriter } from 'csv-writer';
-import express from 'express';
-
-const PORT = process.env.PORT || 3000;
-const app = express();
+import fs from 'fs';
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -25,70 +21,80 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapeWebsite(url, outputPath, selectors) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
-
+async function scrapePage(page) {
   await autoScroll(page);
 
   const htmlData = await page.content();
-  await browser.close();
-
   const $ = load(htmlData);
   const carInfo = [];
 
-  $(selectors.item).each((index, element) => {
-    const carYear = $(element).find(selectors.year).text().trim();
-    const carMakeModel = $(element).find(selectors.makeModel).text().trim();
-    const carModel = `${carYear} ${carMakeModel}`;
-    const carPrice = $(element).find(selectors.price).text().trim();
-    const carSpecs = [];
+  $('a.vehicle').each((index, element) => {
+    const status = $(element).find('.vehicle__hitbox').attr('status-label');
 
-    $(element)
-      .find(selectors.specs)
-      .each((i, specElement) => {
-        const label = $(specElement).find(selectors.label).text().trim();
-        const value = $(specElement).find(selectors.value).text().trim();
-        carSpecs.push({ label, value });
-      });
+    // Only scrape available vehicles
+    if (!status || status !== 'sold') {
+      const carModel = $(element)
+        .find('.vehicle__title .vehicle-title')
+        .text()
+        .trim();
+      const carPrice = $(element).find('.vehicle-price .price').text().trim();
+      const carStock = $(element).find('.feature-value.js-stock').text().trim();
+      const carTransmission = $(element)
+        .find('.feature-value.js-transmission')
+        .text()
+        .trim();
+      const carEngine = $(element)
+        .find('.feature-value.js-engine-type')
+        .text()
+        .trim();
+      const carUrl = $(element).attr('href');
 
-    carInfo.push({
-      carModel,
-      carPrice,
-      carSpecs: JSON.stringify(carSpecs),
-    });
+      if (carModel && carPrice) {
+        carInfo.push({
+          carModel,
+          carPrice,
+          carStock,
+          carTransmission,
+          carEngine,
+          carUrl,
+        });
+      }
+    }
   });
 
-  const csvWriter = createObjectCsvWriter({
-    path: outputPath,
-    header: [
-      { id: 'carModel', title: 'Model' },
-      { id: 'carPrice', title: 'Price' },
-      { id: 'carSpecs', title: 'Specs' },
-    ],
-  });
+  return carInfo;
+}
 
-  await csvWriter.writeRecords(carInfo);
+async function scrapeWebsite(baseUrl, outputPath) {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  const allCarInfo = [];
+
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+
+  const carInfo = await scrapePage(page);
+  if (carInfo.length > 0) {
+    allCarInfo.push(...carInfo);
+  }
+
+  await browser.close();
+
+  const csvContent = allCarInfo
+    .map(
+      (car) =>
+        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission},${car.carEngine},${car.carUrl}`,
+    )
+    .join('\n');
+  fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
+  process.exit(); // Ensure the program exits normally
 }
 
 const website = {
-  url: 'https://trimactoyota.ca/new-inventory/',
-  output: 'carInfo_trimac.csv',
-  selectors: {
-    item: '.vehicle_classic',
-    year: '.vehicle-year',
-    makeModel: '.vehicle-make-model',
-    price: '.vehicle-price .price',
-    specs: '.vehicle__content .feature',
-    label: '.feature-name',
-    value: '.feature-value',
-  },
+  baseUrl: 'https://trimactoyota.ca/new-inventory/',
+  output: 'carInfo_trimactoyota.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output, website.selectors);
+  await scrapeWebsite(website.baseUrl, website.output);
 })().catch((err) => console.error(err));
-
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

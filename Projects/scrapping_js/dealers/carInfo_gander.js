@@ -28,40 +28,24 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.vehicle-card-vertical').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('div.di-watermark:contains("Sold")').length > 0;
+  $('.carDescriptionContent').each((index, element) => {
+    const carModel =
+      $(element).find('.carTitle .divMake').text().trim() +
+      ' ' +
+      $(element).find('.carTitle .divModelYear').text().trim() +
+      ' ' +
+      $(element).find('.carTitle .divTrim').text().trim();
+    const carPrice = $(element).find('.carPrice .dollarsigned').text().trim();
+    const carStock = $(element).find('[data-carid]').data('stock-number');
+    const carDetails = $(element).find('.carDescription .s-desc').text().trim();
 
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel =
-        $(element).find('.vehicle-name__make').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__year').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__model').text().trim() +
-        ' ' +
-        $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
-        .find('.vehicle-payment-cashdown__regular-price .price')
-        .text()
-        .trim();
-      const carDetails = $(element)
-        .find('.di-light-specs__list')
-        .text()
-        .replace(/\s\s+/g, ', ')
-        .trim();
-      const carStock = $(element).find('.di-stock-number').text().trim();
-
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carDetails,
-          carStock,
-        });
-      }
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carPrice,
+        carDetails,
+        carStock,
+      });
     }
   });
 
@@ -79,12 +63,21 @@ async function scrapeWebsite(baseUrl, outputPath) {
     const url = `${baseUrl}?page=${currentPage}`;
     await page.goto(url, { waitUntil: 'networkidle2' });
 
+    // 关闭弹窗
+    try {
+      await page.waitForSelector('.modal-dialog .btn-close', { timeout: 5000 });
+      await page.click('.modal-dialog .btn-close');
+    } catch (err) {
+      console.log('No modal dialog found');
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 5000)); // 替代waitForTimeout
+
     const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
       allCarInfo.push(...carInfo);
     }
 
-    // 检查是否存在下一页按钮
     const nextPageButton = await page.$(
       '.pagination__item:not(.disabled) .simple-arrow-right',
     );

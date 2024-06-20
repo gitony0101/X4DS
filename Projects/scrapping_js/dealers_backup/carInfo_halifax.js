@@ -1,10 +1,6 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-import { createObjectCsvWriter } from 'csv-writer';
-import express from 'express';
-
-const PORT = process.env.PORT || 3000;
-const app = express();
+import fs from 'fs';
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -25,67 +21,100 @@ async function autoScroll(page) {
   });
 }
 
-async function scrapeWebsite(url, outputPath, selectors) {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
-
+async function scrapePage(page) {
   await autoScroll(page);
 
   const htmlData = await page.content();
-  await browser.close();
-
   const $ = load(htmlData);
   const carInfo = [];
 
-  $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
-    const carPrice = $(element).find(selectors.price).text().trim();
-    const carSpecs = [];
+  $('div.ouvsrItem').each((index, element) => {
+    const inventoryType = $(element).find('.ouvsrInventoryType').text().trim();
+    if (inventoryType === 'New') {
+      const carModel = $(element).find('.ouvsrModelYear').text().trim();
+      const carPrice = $(element).find('.currencyValue').text().trim();
+      const exteriorColor = $(element).find('.ouvsrColorName').text().trim();
+      const trim = $(element).find('.ouvsrTrim').text().trim();
+      const stock = $(element)
+        .find('.ouvsrSpec.ouvsrStockNumber .ouvsrValue')
+        .text()
+        .replace('#', '')
+        .trim();
+      const drivetrain = $(element)
+        .find('.ouvsrSpec.ouvsrDrivetrain .ouvsrValue')
+        .text()
+        .trim();
+      const transmission = $(element)
+        .find('.ouvsrSpec.ouvsrTransmission .ouvsrValue')
+        .text()
+        .trim();
+      const fuelType = $(element)
+        .find('.ouvsrSpec.ouvsrFuelType .ouvsrValue')
+        .text()
+        .trim();
 
-    $(element)
-      .find(selectors.specs)
-      .each((i, specElement) => {
-        const label = $(specElement).find(selectors.label).text().trim();
-        const value = $(specElement).find(selectors.value).text().trim();
-        carSpecs.push({ label, value });
+      carInfo.push({
+        carModel,
+        carPrice,
+        exteriorColor,
+        trim,
+        stock,
+        drivetrain,
+        transmission,
+        fuelType,
       });
-
-    carInfo.push({
-      carModel,
-      carPrice,
-      carSpecs: JSON.stringify(carSpecs),
-    });
+    }
   });
 
-  const csvWriter = createObjectCsvWriter({
-    path: outputPath,
-    header: [
-      { id: 'carModel', title: 'Model' },
-      { id: 'carPrice', title: 'Price' },
-      { id: 'carSpecs', title: 'Specs' },
-    ],
-  });
+  return carInfo;
+}
 
-  await csvWriter.writeRecords(carInfo);
+async function scrapeWebsite(baseUrl, outputPath) {
+  const browser = await puppeteer.launch({ headless: false });
+  const page = await browser.newPage();
+  const allCarInfo = [];
+
+  let currentPage = 1;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
+
+    const carInfo = await scrapePage(page);
+    if (carInfo.length > 0) {
+      allCarInfo.push(...carInfo);
+    }
+
+    const nextPageButton = await page.$(
+      '.divPaginationArrowBox:not(.disabled)',
+    );
+    if (nextPageButton) {
+      currentPage += 1;
+    } else {
+      hasNextPage = false;
+    }
+  }
+
+  await browser.close();
+
+  const csvContent = [
+    'Model,Price,Exterior Color,Trim,Stock,Drivetrain,Transmission,Fuel Type',
+    ...allCarInfo.map(
+      (car) =>
+        `${car.carModel},${car.carPrice},${car.exteriorColor},${car.trim},${car.stock},${car.drivetrain},${car.transmission},${car.fuelType}`,
+    ),
+  ].join('\n');
+
+  fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
+  process.exit();
 }
 
 const website = {
-  url: 'https://oreganstoyotahalifax.com/inventory/?search.vehicle-inventory-type-ids.0=1',
-  output: 'carInfo_halifax.csv',
-  selectors: {
-    item: '.ouvsrItem',
-    model: '.ouvsrModelYear',
-    price: '.currencyValue',
-    specs: '.ouvsrTechSpecs .ouvsrSpec',
-    label: '.ouvsrLabel',
-    value: '.ouvsrValue',
-  },
+  baseUrl: 'https://oreganstoyotahalifax.com/inventory/',
+  output: 'carInfo_oregans_toyota.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.url, website.output, website.selectors);
+  await scrapeWebsite(website.baseUrl, website.output);
 })().catch((err) => console.error(err));
-
-app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

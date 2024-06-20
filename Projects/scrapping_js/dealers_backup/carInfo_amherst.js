@@ -5,6 +5,7 @@ import express from 'express';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
 let server;
 
 async function autoScroll(page) {
@@ -88,6 +89,12 @@ async function scrapeWebsite(url, outputPath) {
 
   await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
+
+  // 关闭服务器并退出程序
+  server.close(() => {
+    console.log('Server closed');
+    process.exit();
+  });
 }
 
 const website = {
@@ -97,12 +104,6 @@ const website = {
 
 (async () => {
   await scrapeWebsite(website.url, website.output);
-
-  // 关闭服务器并结束程序
-  server.close(() => {
-    console.log('Server closed');
-    process.exit();
-  });
 })().catch((err) => console.error(err));
 
 server = app.listen(PORT, () =>

@@ -1,89 +1,17 @@
-Model,Price,Mileage,Trim,Stock,VIN,Exterior Color,Interior Color,Drivetrain
-New 2024 Toyota RAV4 LE 4D Sport Utility,$32,602,,LE,T283054,2T3H1RFV8RC283054,Silver Sky Metallic,20,FWD
-New 2024 Toyota RAV4 LE 4D Sport Utility,$33,005,,LE,T276013,2T3H1RFV3RC276013,Gray,20,FWD
-New 2025 Toyota Camry SE Sedan,$33,397,,SE,,4T1DAACK4SU014556,Ice Cap,Boulder,FWD
-New 2025 Toyota Camry SE Sedan,$33,476,,SE,,4T1DAACKXSU513734,Ice Cap,Boulder,FWD
-New 2025 Toyota Camry SE Sedan,$33,727,,SE,,4T1DAACK5SU011925,Underground,Boulder,FWD
-New 2024 Toyota RAV4 LE SUV,$34,002,,LE,,2T3F1RFV8RC456143,Ice Cap,Black Fabric,AWD
-New 2024 Toyota GR86 Premium Coupe,$34,037,,GR86 Premium,,JF1ZNBE13R9758614,Raven,Black Ultrasuede® With Leather-trimmed Side Bolsters,RWD
-New 2024 Toyota RAV4 XLE SUV,$34,372,,XLE,,2T3W1RFV1RC284845,Silver Sky Metallic,Ash Fabric,FWD
-New 2024 Toyota RAV4 XLE SUV,$34,372,,XLE,,2T3W1RFV1RW341804,Blueprint,Ash Fabric,FWD
-New 2024 Toyota RAV4 XLE SUV,$34,372,,XLE,,2T3W1RFV6RC285604,Silver Sky Metallic,Ash Fabric,FWD
-New 2024 Toyota GR86 Premium 2D Coupe,$34,738,,Premium,T754883,JF1ZNBE12R8754883,Pavement,20,RWD
-New 2024 Toyota GR86 Premium Coupe,$35,812,,GR86 Premium,,JF1ZNBE11R8759363,Track Bred [],Black Ultrasuede® With Leather-trimmed Side Bolsters,RWD
-New 2024 Toyota Corolla Cross Hybrid XSE 4D Sport Utility,$35,950,5,Hybrid XSE,T026156,7MUFBABGXRV026156,Jet Black,Blk Blu Mixed Medi,AWD
-New 2024 Toyota Corolla Cross Hybrid XSE 4D Sport Utility,$36,025,,Hybrid XSE,T038638,7MUFBABG0RV038638,Barcelona Red,20,AWD
-New 2024 Toyota RAV4 XLE Premium 4D Sport Utility,$36,093,,XLE Premium,T338215,2T3C1RFV7RW338215,Ruby,20,FWD
-New 2024 Toyota RAV4 XLE Premium SUV,$36,422,,XLE Premium,,2T3C1RFV4RW341007,Wind Chill Pearl [],Nutmeg Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,FWD
-New 2025 Toyota Camry XSE Sedan,$37,432,,XSE,,4T1DAACK7SU514503,Heavy Metal [],Black,FWD
-New 2024 Toyota Venza LE 4D Sport Utility,$37,773,,LE,T178116,JTEAAAAH9RJ178116,Wind Chill Prl,20,AWD
-New 2025 Toyota Camry XSE Sedan,$38,579,,XSE,,4T1DAACK2SU510214,Heavy Metal [],Cockpit Red,FWD
-New 2025 Toyota Camry XSE Sedan,$39,381,,XSE,,4T1DAACKXSU512163,Heavy Metal [],Black,FWD
-New 2025 Toyota Camry XSE Sedan,$39,949,,XSE,,4T1DAACK5SU014100,Underground,Black,FWD
-New 2025 Toyota Camry XSE Sedan,$40,078,,XSE,,4T1DAACKXSU016960,Supersonic Red [],Black,FWD
-New 2024 Toyota Tacoma SR5 Double Cab,$41,048,,SR5,,3TMKB5FN8RM007498,Celestial Silver Metallic,Black Fabric,4X2
-New 2024 Toyota Highlander LE 4D Sport Utility,$42,116,,LE,T542545,5TDKDRAHXRS542545,Gray,10,FWD
-New 2023 Toyota bZ4X XLE 4D Sport Utility,$44,846,5,XLE,T024614,JTMAAAAA6PA024614,Silver,Blk Fabric &,FWD
-New 2024 Toyota GR Corolla Premium 5D Hatchback,$42,497,,Premium,T013260,JTNABAAEXRA013260,Black,20,AWD
-New 2024 Toyota RAV4 Hybrid Limited SUV,$42,623,,Hybrid Limited,,4T3D6RFV4RU162603,Midnight Black Metallic,Black Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,Hybrid
-New 2024 Toyota Tacoma SR5 Double Cab,$42,773,,SR5,,3TMKB5FN7RM007556,Celestial Silver Metallic,Black Fabric,4X2
-New 2024 Toyota Tacoma TRD Sport 4D Double Cab,$43,552,,TRD Sport,T003448,3TMKB5FN6RM003448,Silver,12,RWD
-New 2024 Toyota Tacoma TRD Sport 4D Double Cab,$43,552,,TRD Sport,T003489,3TMKB5FN9RM003489,Underground,12,RWD
-New 2024 Toyota Tacoma SR5 Double Cab,$44,448,,SR5,,3TMLB5JN5RM025727,Ice Cap,Black Fabric,4WD
-New 2024 Toyota Tacoma SR5 Double Cab,$44,493,,SR5,,3TMLB5JN7RM029245,Ice Cap,Black Fabric,4WD
-New 2024 Toyota Venza Limited 4D Sport Utility,$45,738,,Limited,T168452,JTEAAAAH8RJ168452,Gray,20,AWD
-New 2024 Toyota Tacoma SR5 Double Cab,$45,973,,SR5,,3TYLB5JNXRT029938,Underground,Boulder Fabric,4WD
-New 2024 Toyota Venza Limited 4D Sport Utility,$46,312,,Limited,T177037,JTEAAAAH8RJ177037,Titanium,10,AWD
-New 2024 Toyota Tacoma TRD Sport Double Cab,$46,387,,TRD Sport,,3TYLB5JNXRT028188,Underground,Boulder/Black Fabric W/ Smoke Silver,4WD
-New 2024 Toyota Grand Highlander XLE 4D Sport Utility,$46,796,,XLE,T016380,5TDAAAA5XRS016380,Coastal Cream,Light Gray Softex®,FWD
-New 2024 Toyota Tacoma TRD Sport Double Cab,$46,797,,TRD Sport,,3TMLB5JN1RM027359,Blue Crush Metallic,Boulder/Black Fabric W/ Smoke Silver,4WD
-New 2024 Toyota Grand Highlander XLE SUV,$47,095,,XLE,,5TDAAAA54RS017511,Storm Cloud,Light Gray Softex®,FWD
-New 2024 Toyota Tacoma TRD OFF-ROAD Double Cab,$47,097,,TRD OFF-ROAD,,3TYLB5JN4RT027053,Underground,Boulder/Black Fabric W/ Smoke Silver,4WD
-New 2024 Toyota Tacoma TRD OFF-ROAD Double Cab,$47,097,,TRD OFF-ROAD,,3TMLB5JN7RM024806,Ice Cap,Boulder/Black Fabric W/ Smoke Silver,4WD
-New 2024 Toyota Grand Highlander XLE SUV,$47,403,,XLE,,5TDAAAA54RS016133,Storm Cloud,Light Gray Softex®,FWD
-New 2024 Toyota Grand Highlander XLE 4D Sport Utility,$47,449,,XLE,T016886,5TDAAAA59RS016886,Wind Chill Prl,20,FWD
-New 2024 Toyota Tundra SR5 4D CrewMax,$51,576,,SR5,T033464,5TFLA5AB2RX033464,Black,Blk Fabric,RWD
-New 2024 Toyota RAV4 Prime SE 4D Sport Utility,$48,705,,SE,T195349,JTMAB3FV4RD195349,Ice,20,AWD
-New 2024 Toyota 4Runner TRD Sport SUV,$49,202,,TRD Sport,,JTESU5JR5R6282293,Ice Cap,Black/Graphite Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota Grand Highlander XLE SUV,$50,176,,XLE,,5TDAAAB51RS063733,Midnight Black Metallic,Light Gray Softex®,AWD
-New 2024 Toyota Tacoma TRD Off-Road i-FORCE MAX Double Cab,$51,241,,TRD Off-Road i-FORCE MAX,,3TYLC5LN6RT001354,Underground,Fabric 3 Boulder/Black (Smoke Silver),4WD
-New 2024 Toyota Tundra SR5 4D Double Cab,$56,187,5,SR5,T162164,5TFLA5DA6RX162164,Gray,Boulder,4WD
-New 2024 Toyota 4Runner SR5 Premium SUV,$53,440,,SR5 Premium,,JTENU5JR3R6284640,Underground,Black/Graphite Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota 4Runner SR5 Premium 4D Sport Utility,$53,440,,SR5 Premium,T281585,JTENU5JR6R6281585,Ice,22,4WD
-New 2024 Toyota Sienna XSE Mini-Van,$53,791,,XSE,,5TDCRKECXRS210066,Midnight Black Metallic,Black Leather,FWD
-New 2024 Toyota 4Runner SR5 Premium SUV,$54,040,,SR5 Premium,,JTENU5JRXR6283873,Ice Cap,Sand Beige Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota 4Runner SR5 Premium SUV,$54,040,,SR5 Premium,,JTENU5JR3R6286257,Ice Cap,Sand Beige Softex® SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota Tundra SR5 4D Double Cab,$57,104,,SR5,T180435,5TFLA5DA2RX180435,Gray,13,4WD
-New 2024 Toyota 4Runner Limited 4D Sport Utility,$54,758,,Limited,T281830,JTEKU5JR0R6281830,Black,42,4WD
-New 2024 Toyota Tacoma TRD OFF-ROAD Double Cab,$55,398,,TRD OFF-ROAD,,3TYLB5JN6RT029550,Celestial Silver Metallic,Black Softex,4WD
-New 2024 Toyota Grand Highlander Limited SUV,$55,971,,Limited,,5TDAAAA53RS017693,Midnight Black Metallic,Light Gray Leather,FWD
-New 2024 Toyota Sienna XSE Mini-Van,$56,238,,XSE,,5TDCSKFC9RS137131,Ice Cap,Black Leather,AWD
-New 2024 Toyota Crown Platinum 4D Sedan,$56,248,,Platinum,T008851,JTDAFAAF0R3008851,Bronze,20,AWD
-New 2024 Toyota Crown Platinum 4D Sedan,$56,248,,Platinum,T007412,JTDAFAAF2R3007412,Black,Blk Lth,AWD
-New 2024 Toyota Tacoma TRD OFF-ROAD Double Cab,$56,628,,TRD OFF-ROAD,,3TMLB5JN9RM029098,Black,Black Softex,4WD
-New 2024 Toyota Tundra SR5 4D CrewMax,$60,702,,SR5,T199753,5TFLA5DB0RX199753,Gray,13,4WD
-New 2024 Toyota Tundra Limited 4D CrewMax,$61,445,,Limited,T191856,5TFJA5DB4RX191856,Black,21,4WD
-New 2024 Toyota Tundra Limited 4D CrewMax,$62,044,,Limited,T192004,5TFJA5DB2RX192004,Midnight Black Metallic,Boulder Softex®-trimmed SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota Tundra Limited 4D CrewMax,$62,618,,Limited,T199595,5TFJA5DB9RX199595,Bluprint,21,4WD
-New 2024 Toyota Tundra SR5 4D CrewMax,$64,468,,SR5,T191279,5TFLA5DB2RX191279,Silver,21,4WD
-New 2024 Toyota Tundra Limited 4D CrewMax,$64,948,,Limited,T186540,5TFJA5DB7RX186540,Silver,13,4WD
-New 2024 Toyota Tundra Limited 4D CrewMax,$65,547,,Limited,T186196,5TFJA5DB7RX186196,Silver,13,4WD
-New 2024 Toyota Tundra SR5 4D CrewMax,$66,003,,SR5,T203627,5TFLA5DB6RX203627,Silver,21,4WD
-New 2024 Toyota Tundra Limited CrewMax,$63,167,,Limited,,5TFJA5DB9RX208201,Midnight Black Metallic,Black Softex®-trimmed SofTex® is a registered trademark of Toyota Motor Sales, U.S.A., Inc.,4x4
-New 2024 Toyota Tundra Limited 4D Crew Cab,$68,219,,Limited,T64897,5TFJC5DB5RX064897,Ice,Blk,4WD
-New 2024 Toyota Tundra Limited 4D Crew Cab,$69,576,,Limited,T050319,5TFJC5DB5RX050319,Red,Boulder,4WD
-New 2024 Toyota Tundra Platinum 4D CrewMax,$70,706,,Platinum,T193215,5TFNA5DB7RX193215,Silver,Blk Lth,4WD
-New 2024 Toyota Tundra 1794 4D CrewMax,$71,844,,1794,T203932,5TFMA5DB5RX203932,Gray,44,4WD
-New 2024 Toyota Tundra Limited 4D Crew Cab,$71,887,,Limited,T077621,5TFWC5DBXRX077621,Wind Chill Prl,21,4WD
-New 2024 Toyota Land Cruiser SUV,$70,288,,LAND CRUISER,,JTEABFAJXRK003638,Black,Black Leather,4WD
-New 2024 Toyota Land Cruiser SUV,$70,713,,LAND CRUISER,,JTEABFAJ1RK003849,Wind Chill Pearl [],Black Leather,4WD
-New 2024 Toyota Land Cruiser SUV,$70,879,,LAND CRUISER,,JTEABFAJ6R5002422,Underground,Black Leather,4WD
-New 2024 Toyota Land Cruiser SUV,$71,528,,LAND CRUISER,,JTEABFAJ5RK004924,Black,Black Leather,4WD
-New 2024 Toyota Tundra 1794 EDITION 4D Crew Cab,$74,578,,1794 EDITION,T005747,5TFMC5EC4RX005747,Silver,Saddle Tan Lth,4WD
-New 2024 Toyota Tundra Platinum 4D Crew Cab,$74,666,,Platinum,T077421,5TFNC5DB8RX077421,Wind Chill Prl,21,4WD
-New 2024 Toyota Land Cruiser SUV,$71,953,,LAND CRUISER,,JTEABFAJ8R5001725,Wind Chill Pearl [],Black Leather,4WD
-New 2024 Toyota Tundra 1794 EDITION 4D Crew Cab,$75,061,,1794 EDITION,T078053,5TFMC5DB5RX078053,Black,44,4WD
-New 2024 Toyota Tundra 1794 EDITION 4D Crew Cab,$75,486,,1794 EDITION,T076372,5TFMC5DB0RX076372,Wind Chill Prl,Saddle Tan Lth,4WD
-New 2024 Toyota Tundra 1794 EDITION 4D Crew Cab,$76,109,,1794 EDITION,T077158,5TFMC5DB3RX077158,Black,44,4WD
-New 2024 Toyota Land Cruiser First Edition 4D Sport Utility,$77,415,,First Edition,T000431,JTEABFAJ6RK000431,Black,21,4WD
-New 2024 Toyota Sequoia Platinum 4D Sport Utility,$82,035,,Platinum,T040352,7SVAAABAXRX040352,Black,21,4WD
+2024ToyotaTundra,60,810,SR5 CrewMax L,#TB1954,4x4, Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaCorolla,30,450,Hybrid SE,#TB1963,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,33,150,LE,#TB1953,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaCorolla,28,800,SE CVT,#TB1948,Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front), Keyless Entry
+2024ToyotaRAV4,33,150,LE,#TB1961,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,33,150,LE,#TB1960,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaTundra,62,760,SR CrewMax,#TB1955,4x4, Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Keyless Entry
+2024ToyotaHighlander,49,650,XLE,#TB1949,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,33,150,LE,#TB1958,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2025ToyotaCamry,37,950,SE Upgrade Hybrid,#TB1928,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,33,150,LE,#TB1938,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,33,150,LE,#TB1939,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaGrand Highlander,50,490,XLE,#TB1933,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaTundra,73,350,Limited Hybrid CrewMax,#TB1874,4x4, Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaRAV4,44,750,Limited,#TB1819,Adaptive Cruise Control, Air Conditioning, All Wheel Drive, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaTundra,79,450,Platinum,#TB1662,4x4, Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Heated Seats (Front)
+2024ToyotaTundra,60,450,SR,#TB1661,4x4, Adaptive Cruise Control, Air Conditioning, Anti-Lock Brakes, Backup Camera, Bluetooth, Cruise Control, Keyless Entry

@@ -29,18 +29,6 @@
 
 - central toyota problem
 
-- halifax
-- south shore
-- kentville
-- plaza NL 
-- south shore
-- trimac
-- woodstock
-- truro
-- breton
-- 'https://www.gandertoyota.com/new/inventory/search.html',
-
-
 
 
 
