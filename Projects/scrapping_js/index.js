@@ -1,6 +1,12 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-import fs from 'fs';
+import { createObjectCsvWriter } from 'csv-writer';
+import express from 'express';
+
+const PORT = process.env.PORT || 3000;
+const app = express();
+
+let server;
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -21,25 +27,8 @@ async function autoScroll(page) {
   });
 }
 
-async function clickLoadMoreUntilDisappear(page) {
-  let loadMoreVisible = true;
-  while (loadMoreVisible) {
-    loadMoreVisible = await page.evaluate(() => {
-      const loadMoreButton = document.querySelector(
-        '.listing-used-button-loading.sr-button-1',
-      );
-      if (loadMoreButton) {
-        loadMoreButton.click();
-        return true;
-      }
-      return false;
-    });
-    // 使用 setTimeout 来代替 waitForTimeout
-    await new Promise((resolve) => setTimeout(resolve, 3000)); // 等待3秒钟加载更多内容
-  }
-}
-
-async function scrapePage(page) {
+async function scrapePage(page, url) {
+  await page.goto(url, { waitUntil: 'networkidle2' });
   await autoScroll(page);
 
   const htmlData = await page.content();
@@ -47,47 +36,24 @@ async function scrapePage(page) {
   const carInfo = [];
 
   $('.listing-new-tile').each((index, element) => {
-    const carModel = $(element)
-      .find('.new-car-name.sr-text.is-bold')
-      .text()
-      .trim();
-    const carDrive = $(element).find('.new-car-motor p').first().text().trim();
-    const carTransmission = $(element)
-      .find('.new-car-motor p')
-      .eq(1)
-      .text()
-      .trim();
-    const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
-    const carPrice = $(element)
-      .find('.payment-row-price.sr-text.is-bold')
-      .text()
-      .trim();
-    const carVIN = $(element)
-      .find('.listing-tile-vin p')
-      .text()
-      .replace('VIN ', '')
-      .trim();
-    const carStock = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .replace('Stock #', '')
-      .trim();
-    const carColor = $(element)
-      .find('.listing-tile-package-description')
-      .first()
-      .text()
-      .trim();
+    // 检查是否包含 "Sold" 或 "Demo" 标记
+    if (
+      $(element).find('div:contains("Sold")').length === 0 &&
+      $(element).find('.demo-tag').length === 0
+    ) {
+      const carModel = $(element).find('.new-car-name').text().trim();
+      const carPrice = $(element).find('.payment-row-price').text().trim();
+      const carDescription = $(element)
+        .find('.listing-new-tile-drivePowerTrains')
+        .text()
+        .trim();
+      const carVIN = $(element).find('.listing-tile-vin p').text().trim();
 
-    if (carModel && carPrice) {
       carInfo.push({
         carModel,
-        carDrive,
-        carTransmission,
-        carEngine,
         carPrice,
+        carDescription,
         carVIN,
-        carStock,
-        carColor,
       });
     }
   });
@@ -95,32 +61,51 @@ async function scrapePage(page) {
   return carInfo;
 }
 
-async function scrapeWebsite(baseUrl, outputPath) {
-  const browser = await puppeteer.launch({ headless: false });
+async function scrapeWebsite(url, outputPath) {
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+  const allCarInfo = [];
 
-  await clickLoadMoreUntilDisappear(page);
+  try {
+    const carInfo = await scrapePage(page, url);
+    if (carInfo.length > 0) {
+      allCarInfo.push(...carInfo);
+    }
+  } catch (error) {
+    console.error(`Error scraping ${url}:`, error);
+  }
 
-  const carInfo = await scrapePage(page);
   await browser.close();
 
-  const csvContent = carInfo
-    .map(
-      (car) =>
-        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice},${car.carVIN},${car.carStock},${car.carColor}`,
-    )
-    .join('\n');
-  fs.writeFileSync(outputPath, csvContent, 'utf8');
+  const csvWriter = createObjectCsvWriter({
+    path: outputPath,
+    header: [
+      { id: 'carModel', title: 'Model' },
+      { id: 'carPrice', title: 'Price' },
+      { id: 'carDescription', title: 'Description' },
+      { id: 'carVIN', title: 'VIN' },
+    ],
+  });
+
+  await csvWriter.writeRecords(allCarInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
+
+  // 关闭服务器并退出程序
+  server.close(() => {
+    console.log('Server closed');
+    process.exit();
+  });
 }
 
 const website = {
-  baseUrl: 'https://www.trurotoyota.com/en/new-inventory',
-  output: 'carInfo_truro.csv',
+  url: 'https://www.amhersttoyota.com/en/new-inventory?view=grid&sc=new',
+  output: 'carInfo_amherst.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.baseUrl, website.output);
+  await scrapeWebsite(website.url, website.output);
 })().catch((err) => console.error(err));
+
+server = app.listen(PORT, () =>
+  console.log(`Server listening on port ${PORT}`),
+);
