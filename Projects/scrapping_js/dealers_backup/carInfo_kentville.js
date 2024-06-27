@@ -41,7 +41,11 @@ async function scrapePage(page) {
 
   $('.listing-tile-link .listing-new-tile').each((index, element) => {
     const carModel = $(element).find('.new-car-name').text().trim();
-    const carPrice = $(element).find('.payment-row-price').text().trim();
+    let carPrice = $(element).find('.payment-row-price').text().trim();
+
+    // 移除价格中的逗号
+    carPrice = carPrice.replace(/,/g, '');
+
     const carDetails = $(element)
       .find('.new-car-motor')
       .text()

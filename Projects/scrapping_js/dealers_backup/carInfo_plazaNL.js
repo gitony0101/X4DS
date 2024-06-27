@@ -30,7 +30,8 @@ async function scrapePage(page) {
 
   $('.vehicle-list-cell').each((index, element) => {
     const carModel = $(element).find('.vehicle-year-make-model').text().trim();
-    const carPrice = $(element).find('.vehicle-price-2-new').text().trim();
+    let carPrice = $(element).find('.vehicle-price-2-new').text().trim();
+    carPrice = carPrice.replace(/,/g, ''); // 去除价格中的逗号
     const carDetails = $(element)
       .find('.veh-info-1')
       .text()

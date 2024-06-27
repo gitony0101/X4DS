@@ -28,16 +28,20 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('ul').each((index, element) => {
+  $('.box.inventory-vehicle-preview-list').each((index, element) => {
     // 检查车辆是否已售出
-    const isSold = $(element).find('.label.sold').length > 0;
+    const isSold =
+      $(element).find('.vehicle-image-txt:contains("Sold")').length > 0;
 
     // 如果车辆未售出，则抓取信息
     if (!isSold) {
       const carModel = $(element).find('.vehicle-title').text().trim();
-      const carPrice = $(element).find('.vehicle-new-price').text().trim();
+      let carPrice = $(element).find('.vehicle-new-price').text().trim();
       const carStock = $(element).find('.vehicle-stockno').text().trim();
       const carTransmission = $(element).find('.vehicle-odo').text().trim();
+
+      // 移除价格中的逗号和美元符号
+      carPrice = carPrice.replace(/[$,]/g, '');
 
       if (carModel && carPrice) {
         carInfo.push({
@@ -82,12 +86,14 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
-  const csvContent = allCarInfo
-    .map(
+  const csvContent = [
+    'Model,Price,Stock,Transmission',
+    ...allCarInfo.map(
       (car) =>
         `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission}`,
-    )
-    .join('\n');
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
   process.exit();

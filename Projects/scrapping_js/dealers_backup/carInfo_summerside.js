@@ -22,7 +22,7 @@ async function autoScroll(page) {
 }
 
 async function delay(time) {
-  return new Promise(function (resolve) {
+  return new Promise((resolve) => {
     setTimeout(resolve, time);
   });
 }
@@ -63,10 +63,11 @@ async function scrapePage(page) {
       .text()
       .trim();
     const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
-    const carPrice = $(element)
+    let carPrice = $(element)
       .find('.payment-row-price.sr-text.is-bold')
       .text()
       .trim();
+    carPrice = carPrice.replace(/,/g, ''); // 去除逗号
     const carVIN = $(element)
       .find('.listing-tile-vin p')
       .text()

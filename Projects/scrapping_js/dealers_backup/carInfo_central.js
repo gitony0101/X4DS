@@ -30,7 +30,8 @@ async function scrapePage(page) {
 
   $('.vehicle_item').each((index, element) => {
     const carModel = $(element).find('.vehicle_title a').text().trim();
-    const carPrice = $(element).find('.vehicle_price').first().text().trim();
+    let carPrice = $(element).find('.vehicle_price').first().text().trim();
+    carPrice = carPrice.replace(/[$,]/g, ''); // 移除美元符号和逗号
     const mileage = $(element)
       .find('.details-overview_title:contains("Mileage")')
       .next()

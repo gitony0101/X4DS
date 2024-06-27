@@ -30,10 +30,11 @@ async function scrapePage(page) {
 
   $('[data-vehicle-inventory-type-id="1"]').each((index, element) => {
     const carModel = $(element).find('.ouvsrModelYear').text().trim();
-    const carPrice = $(element)
+    let carPrice = $(element)
       .find('.ouvsrCurrentPrice .currencyValue')
       .text()
-      .trim();
+      .trim()
+      .replace(/,/g, ''); // 去除逗号
     const carStock = $(element)
       .find('.ouvsrSpec.ouvsrStockNumber .ouvsrValue')
       .text()
@@ -99,12 +100,14 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
-  const csvContent = allCarInfo
-    .map(
+  const csvContent = [
+    'Model,Price,Details,Stock,Features',
+    ...allCarInfo.map(
       (car) =>
         `${car.carModel},${car.carPrice},${car.carDetails},${car.carStock},${car.carFeatures}`,
-    )
-    .join('\n');
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
   process.exit();

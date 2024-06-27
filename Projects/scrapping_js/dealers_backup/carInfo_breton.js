@@ -35,7 +35,11 @@ async function scrapeWebsite(url, outputPath, selectors) {
   const carInfo = [];
 
   $(selectors.item).each((index, element) => {
-    const carModel = $(element).find(selectors.model).text().trim();
+    const carModel = $(element)
+      .find(selectors.model)
+      .text()
+      .replace(/\s+/g, ' ')
+      .trim();
     const carPrice = $(element).find(selectors.price).text().trim();
     const carSpecs = [];
 

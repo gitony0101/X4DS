@@ -43,10 +43,14 @@ async function scrapePage(page) {
         $(element).find('.vehicle-name__model').text().trim() +
         ' ' +
         $(element).find('.vehicle-name__trim').text().trim();
-      const carPrice = $(element)
+      let carPrice = $(element)
         .find('.vehicle-payment-cashdown__regular-price .price')
         .text()
         .trim();
+
+      // 去除价格中的逗号
+      carPrice = carPrice.replace(/,/g, '');
+
       const carDetails = $(element)
         .find('.di-light-specs__list')
         .text()
