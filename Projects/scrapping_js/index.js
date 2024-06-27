@@ -21,24 +21,6 @@ async function autoScroll(page) {
   });
 }
 
-async function clickLoadMoreUntilDisappear(page) {
-  let loadMoreVisible = true;
-  while (loadMoreVisible) {
-    loadMoreVisible = await page.evaluate(() => {
-      const loadMoreButton = document.querySelector(
-        '.listing-used-button-loading.sr-button-1',
-      );
-      if (loadMoreButton) {
-        loadMoreButton.click();
-        return true;
-      }
-      return false;
-    });
-    // 使用 setTimeout 来代替 waitForTimeout
-    await new Promise((resolve) => setTimeout(resolve, 3000)); // 等待3秒钟加载更多内容
-  }
-}
-
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -46,50 +28,29 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-new-tile').each((index, element) => {
-    const carModel = $(element)
-      .find('.new-car-name.sr-text.is-bold')
-      .text()
-      .trim();
-    const carDrive = $(element).find('.new-car-motor p').first().text().trim();
-    const carTransmission = $(element)
-      .find('.new-car-motor p')
-      .eq(1)
-      .text()
-      .trim();
-    const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
-    const carPrice = $(element)
-      .find('.payment-row-price.sr-text.is-bold')
-      .text()
-      .trim()
-      .replace(/,/g, ''); // 移除价格中的逗号
-    const carVIN = $(element)
-      .find('.listing-tile-vin p')
-      .text()
-      .replace('VIN ', '')
-      .trim();
-    const carStock = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .replace('Stock #', '')
-      .trim();
-    const carColor = $(element)
-      .find('.listing-tile-package-description')
-      .first()
-      .text()
-      .trim();
+  $('.box.inventory-vehicle-preview-list').each((index, element) => {
+    // 检查车辆是否已售出
+    const isSold =
+      $(element).find('.vehicle-image-txt:contains("Sold")').length > 0;
 
-    if (carModel && carPrice) {
-      carInfo.push({
-        carModel,
-        carDrive,
-        carTransmission,
-        carEngine,
-        carPrice,
-        carVIN,
-        carStock,
-        carColor,
-      });
+    // 如果车辆未售出，则抓取信息
+    if (!isSold) {
+      const carModel = $(element).find('.vehicle-title').text().trim();
+      let carPrice = $(element).find('.vehicle-new-price').text().trim();
+      const carStock = $(element).find('.vehicle-stockno').text().trim();
+      const carTransmission = $(element).find('.vehicle-odo').text().trim();
+
+      // 移除价格中的逗号和美元符号
+      carPrice = carPrice.replace(/[$,]/g, '');
+
+      if (carModel && carPrice) {
+        carInfo.push({
+          carModel,
+          carPrice,
+          carStock,
+          carTransmission,
+        });
+      }
     }
   });
 
@@ -99,27 +60,48 @@ async function scrapePage(page) {
 async function scrapeWebsite(baseUrl, outputPath) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+  const allCarInfo = [];
 
-  await clickLoadMoreUntilDisappear(page);
+  let currentPage = 1;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
-  const carInfo = await scrapePage(page);
+    const carInfo = await scrapePage(page);
+    if (carInfo.length > 0) {
+      allCarInfo.push(...carInfo);
+    }
+
+    // 检查是否存在下一页按钮
+    const nextPageButton = await page.$(
+      '.pagination__item:not(.disabled) .simple-arrow-right',
+    );
+    if (nextPageButton) {
+      currentPage += 1;
+    } else {
+      hasNextPage = false;
+    }
+  }
+
   await browser.close();
 
-  const csvContent = carInfo
-    .map(
+  const csvContent = [
+    'Model,Price,Stock,Transmission',
+    ...allCarInfo.map(
       (car) =>
-        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice},${car.carVIN},${car.carStock},${car.carColor}`,
-    )
-    .join('\n');
+        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission}`,
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
+  process.exit();
 }
 
 const website = {
-  baseUrl: 'https://www.trurotoyota.com/en/new-inventory',
-  output: 'carInfo_truro.csv',
+  baseUrl: 'https://www.woodstocknbtoyota.com/en/new-inventory',
+  output: 'carInfo_woodstock.csv',
 };
 
 (async () => {
