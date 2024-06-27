@@ -30,7 +30,11 @@ async function scrapePage(page) {
 
   $('.ouvsrItem').each((index, element) => {
     const carModel = $(element).find('.ouvsrModelYear').text().trim();
-    const carPrice = $(element).find('.currencyValue').text().trim();
+    let carPrice = $(element).find('.currencyValue').text().trim();
+
+    // 去除价格中的逗号
+    carPrice = carPrice.replace(/,/g, '');
+
     const carSpecs = [];
 
     $(element)

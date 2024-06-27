@@ -35,7 +35,11 @@ async function scrapePage(page) {
       $(element).find('.carTitle .divModelYear').text().trim() +
       ' ' +
       $(element).find('.carTitle .divTrim').text().trim();
-    const carPrice = $(element).find('.carPrice .dollarsigned').text().trim();
+    let carPrice = $(element).find('.carPrice .dollarsigned').text().trim();
+
+    // 移除价格中的逗号
+    carPrice = carPrice.replace(/,/g, '');
+
     const carStock = $(element).find('[data-carid]').data('stock-number');
     const carDetails = $(element).find('.carDescription .s-desc').text().trim();
 

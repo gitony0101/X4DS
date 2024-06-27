@@ -31,8 +31,21 @@ async function scrapePage(page) {
   $('div.ouvsrItem').each((index, element) => {
     const inventoryType = $(element).find('.ouvsrInventoryType').text().trim();
     if (inventoryType === 'New') {
-      const carModel = $(element).find('.ouvsrModelYear').text().trim();
-      const carPrice = $(element).find('.currencyValue').text().trim();
+      const carModel = $(element)
+        .find('.ouvsrModelYear')
+        .text()
+        .replace(/\s+/g, ' ')
+        .trim();
+      let carPrice = $(element)
+        .find('.currencyValue')
+        .text()
+        .replace(/,/g, '')
+        .trim();
+
+      if ($(element).find('.ouvsrMissingPriceLink').length > 0) {
+        carPrice = '0';
+      }
+
       const exteriorColor = $(element).find('.ouvsrColorName').text().trim();
       const trim = $(element).find('.ouvsrTrim').text().trim();
       const stock = $(element)
@@ -112,7 +125,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
 const website = {
   baseUrl: 'https://oreganstoyotahalifax.com/inventory/',
-  output: 'carInfo_oregans_toyota.csv',
+  output: 'carInfo_oregans_halifax_toyota.csv',
 };
 
 (async () => {

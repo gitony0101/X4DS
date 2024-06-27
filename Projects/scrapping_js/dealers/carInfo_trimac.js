@@ -37,7 +37,11 @@ async function scrapePage(page) {
         .find('.vehicle__title .vehicle-title')
         .text()
         .trim();
-      const carPrice = $(element).find('.vehicle-price .price').text().trim();
+      const carPrice = $(element)
+        .find('.vehicle-price .price')
+        .text()
+        .trim()
+        .replace(',', '');
       const carStock = $(element).find('.feature-value.js-stock').text().trim();
       const carTransmission = $(element)
         .find('.feature-value.js-transmission')
@@ -79,12 +83,14 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
-  const csvContent = allCarInfo
-    .map(
+  const csvContent = [
+    'Model,Price,Stock,Transmission,Engine,URL',
+    ...allCarInfo.map(
       (car) =>
         `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission},${car.carEngine},${car.carUrl}`,
-    )
-    .join('\n');
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
   process.exit(); // Ensure the program exits normally
