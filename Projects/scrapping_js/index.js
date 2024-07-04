@@ -28,52 +28,49 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.box.inventory-vehicle-preview-list').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('.vehicle-image-txt:contains("Sold")').length > 0;
+  $('.ouvsrItem').each((index, element) => {
+    const carModel = $(element).find('.ouvsrModelYear').text().trim();
+    let carPrice = $(element).find('.currencyValue').text().trim();
 
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel = $(element).find('.vehicle-title').text().trim();
-      let carPrice = $(element).find('.vehicle-new-price').text().trim();
-      const carStock = $(element).find('.vehicle-stockno').text().trim();
-      const carTransmission = $(element).find('.vehicle-odo').text().trim();
+    // 去除价格中的逗号
+    carPrice = carPrice.replace(/,/g, '');
 
-      // 移除价格中的逗号和美元符号
-      carPrice = carPrice.replace(/[$,]/g, '');
+    const carSpecs = [];
 
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carStock,
-          carTransmission,
-        });
-      }
-    }
+    $(element)
+      .find('.ouvsrTechSpecs .ouvsrSpec')
+      .each((i, specElement) => {
+        const label = $(specElement).find('.ouvsrLabel').text().trim();
+        const value = $(specElement).find('.ouvsrValue').text().trim();
+        carSpecs.push({ label, value });
+      });
+
+    carInfo.push({
+      carModel,
+      carPrice,
+      carSpecs: JSON.stringify(carSpecs),
+    });
   });
 
   return carInfo;
 }
 
-async function scrapeWebsite(baseUrl, outputPath) {
-  const browser = await puppeteer.launch({ headless: false });
+async function scrapeWebsite(url, outputPath) {
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const allCarInfo = [];
 
   let currentPage = 1;
   let hasNextPage = true;
   while (hasNextPage) {
-    const url = `${baseUrl}?page=${currentPage}`;
-    await page.goto(url, { waitUntil: 'networkidle2' });
+    const pageUrl = `${url}&page=${currentPage}`;
+    await page.goto(pageUrl, { waitUntil: 'networkidle2' });
 
     const carInfo = await scrapePage(page);
     if (carInfo.length > 0) {
       allCarInfo.push(...carInfo);
     }
 
-    // 检查是否存在下一页按钮
     const nextPageButton = await page.$(
       '.pagination__item:not(.disabled) .simple-arrow-right',
     );
@@ -86,24 +83,19 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
-  const csvContent = [
-    'Model,Price,Stock,Transmission',
-    ...allCarInfo.map(
-      (car) =>
-        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission}`,
-    ),
-  ].join('\n');
-
+  const csvContent = allCarInfo
+    .map((car) => `${car.carModel},${car.carPrice},${car.carSpecs}`)
+    .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
   process.exit();
 }
 
 const website = {
-  baseUrl: 'https://www.woodstocknbtoyota.com/en/new-inventory',
-  output: 'carInfo_woodstock.csv',
+  url: 'https://oreganstoyotadartmouth.com/inventory/?search.vehicle-inventory-type-ids.0=1',
+  output: 'carInfo_dartmouth.csv',
 };
 
 (async () => {
-  await scrapeWebsite(website.baseUrl, website.output);
+  await scrapeWebsite(website.url, website.output);
 })().catch((err) => console.error(err));
