@@ -5,6 +5,10 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 # Created by https://www.toptal.com/developers/gitignore/api/c,c++,circuitpython,cmake,jupyternotebooks,macos,pycharm,pycharm+all,pycharm+iml,pydev,python,pythonvanilla,renpy
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,c++,circuitpython,cmake,jupyternotebooks,macos,pycharm,pycharm+all,pycharm+iml,pydev,python,pythonvanilla,renpy
+## Data
+*.csv
+## index files
+index.js
 
 ### C ###
 # Prerequisites
@@ -593,3 +597,6 @@ files.txt
 
 *.pdf
 */*.pdf
+Projects/scrapping_js/carInfo_anchor.csv
+Projects/scrapping_js/index.js
+Projects/scrapping_js/index.js
