@@ -10,7 +10,8 @@
 ## index files
 index.js
 
-/scrapping_js/node_modules
+/projects/scrapping_js/node_modules/*
+/projects/node_modules/*
 
 ### C ###
 # Prerequisites
