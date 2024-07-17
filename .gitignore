@@ -10,6 +10,8 @@
 ## index files
 index.js
 
+/scrapping_js/node_modules
+
 ### C ###
 # Prerequisites
 *.d
@@ -606,3 +608,4 @@ Projects/scrapping_py/data_part_1.csv
 Projects/scrapping_py/Group_Scrap_part_1.ipynb
 Projects/scrapping_py/MaritimeToyota.xlsx
 Projects/scrapping_py/combine.ipynb
+Projects/scrapping_js/node_modules/codepage/bits/10003.js
