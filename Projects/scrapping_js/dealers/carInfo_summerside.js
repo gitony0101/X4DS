@@ -40,7 +40,7 @@ async function clickLoadMoreUntilDisappear(page) {
       }
       return false;
     });
-    await delay(3000); // 等待3秒钟加载更多内容
+    await delay(3000); // Wait 3 seconds for more content to load
   }
 }
 
@@ -52,49 +52,56 @@ async function scrapePage(page) {
   const carInfo = [];
 
   $('.listing-new-tile').each((index, element) => {
-    const carModel = $(element)
-      .find('.new-car-name.sr-text.is-bold')
-      .text()
-      .trim();
-    const carDrive = $(element).find('.new-car-motor p').first().text().trim();
-    const carTransmission = $(element)
-      .find('.new-car-motor p')
-      .eq(1)
-      .text()
-      .trim();
-    const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
-    let carPrice = $(element)
-      .find('.payment-row-price.sr-text.is-bold')
-      .text()
-      .trim();
-    carPrice = carPrice.replace(/,/g, ''); // 去除逗号
-    const carVIN = $(element)
-      .find('.listing-tile-vin p')
-      .text()
-      .replace('VIN ', '')
-      .trim();
-    const carStock = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .replace('Stock #', '')
-      .trim();
-    const carColor = $(element)
-      .find('.listing-tile-package-description')
-      .first()
-      .text()
-      .trim();
+    if (!$(element).text().includes('Reserved')) {
+      // Skip reserved vehicles
+      const carModel = $(element)
+        .find('.new-car-name.sr-text.is-bold')
+        .text()
+        .trim();
+      const carDrive = $(element)
+        .find('.new-car-motor p')
+        .first()
+        .text()
+        .trim();
+      const carTransmission = $(element)
+        .find('.new-car-motor p')
+        .eq(1)
+        .text()
+        .trim();
+      const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
+      let carPrice = $(element)
+        .find('.payment-row-price.sr-text.is-bold')
+        .text()
+        .trim();
+      carPrice = carPrice.replace(/,/g, ''); // Remove commas from the price
+      const carVIN = $(element)
+        .find('.listing-tile-vin p')
+        .text()
+        .replace('VIN ', '')
+        .trim();
+      const carStock = $(element)
+        .find('.listing-tile-specification-stock')
+        .text()
+        .replace('Stock #', '')
+        .trim();
+      const carColor = $(element)
+        .find('.listing-tile-package-description')
+        .first()
+        .text()
+        .trim();
 
-    if (carModel && carPrice) {
-      carInfo.push({
-        carModel,
-        carDrive,
-        carTransmission,
-        carEngine,
-        carPrice,
-        carVIN,
-        carStock,
-        carColor,
-      });
+      if (carModel && carPrice) {
+        carInfo.push({
+          carModel,
+          carDrive,
+          carTransmission,
+          carEngine,
+          carPrice,
+          carVIN,
+          carStock,
+          carColor,
+        });
+      }
     }
   });
 
@@ -119,12 +126,12 @@ async function scrapeWebsite(baseUrl, outputPath) {
     .join('\n');
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
+  process.exit(); // Ensure the process ends correctly
 }
 
 const website = {
   baseUrl: 'https://www.summersidetoyota.com/en/new-inventory',
-  output: 'carInfo_summerside.csv',
+  output: '../carInfo_summerside.csv', // Save to parent directory
 };
 
 (async () => {

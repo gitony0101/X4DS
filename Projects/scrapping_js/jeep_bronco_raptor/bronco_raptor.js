@@ -1,5 +1,6 @@
-const puppeteer = require('puppeteer');
-const fs = require('fs');
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
 
 async function autoScroll(page) {
   await page.evaluate(async () => {
@@ -21,66 +22,54 @@ async function autoScroll(page) {
 }
 
 async function scrapePage(page) {
-  await autoScroll(page);
+  await page.waitForSelector('.card-grid-view', { timeout: 15000 }); // Adjust timeout if needed
 
-  return await page.evaluate(() => {
+  const carInfo = await page.evaluate(() => {
     const cars = [];
-    document.querySelectorAll('div.vehicle-card').forEach((card) => {
+    document.querySelectorAll('.card-grid-view').forEach((card) => {
       const carModel = card
         .querySelector('.vehicle-title-link')
-        .innerText.trim();
+        ?.innerText.trim();
       const carPrice = card
         .querySelector('.adjusted-price .price')
-        .innerText.trim()
-        .replace('$', '')
-        .replace(',', '');
-      const carVIN = card.querySelector('.vehicle-vin').innerText.trim();
-      const carDealer = card.querySelector('.dealer-name').innerText.trim();
+        ?.innerText.trim();
+      const carVIN = card
+        .querySelector('.vehicle-vin-container .vehicle-vin')
+        ?.innerText.trim();
+      const carDealer = card.querySelector('.dealer-name')?.innerText.trim();
       const carDistance = card
         .querySelector('.dealer-name + span')
-        .innerText.trim();
+        ?.innerText.trim();
 
-      cars.push({
-        carModel,
-        carPrice,
-        carVIN,
-        carDealer,
-        carDistance,
-      });
+      if (carModel && carPrice && carVIN && carDealer && carDistance) {
+        cars.push({
+          carModel,
+          carPrice,
+          carVIN,
+          carDealer,
+          carDistance,
+        });
+      }
     });
     return cars;
   });
+
+  return carInfo;
 }
 
 async function scrapeWebsite(baseUrl, outputPath) {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  const allCarInfo = [];
+  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
 
-  let currentPage = 1;
-  let hasNextPage = true;
-  while (hasNextPage) {
-    const url = `${baseUrl}&page=${currentPage}`;
-    await page.goto(url, { waitUntil: 'networkidle2' });
+  await autoScroll(page);
 
-    const carInfo = await scrapePage(page);
-    if (carInfo.length > 0) {
-      allCarInfo.push(...carInfo);
-    }
-
-    const nextPageButton = await page.$('divPaginationArrowBox:not(.disabled)');
-    if (nextPageButton) {
-      currentPage += 1;
-    } else {
-      hasNextPage = false;
-    }
-  }
-
+  const carInfo = await scrapePage(page);
   await browser.close();
 
   const csvContent = [
     'Model,Price,VIN,Dealer,Distance',
-    ...allCarInfo.map(
+    ...carInfo.map(
       (car) =>
         `${car.carModel},${car.carPrice},${car.carVIN},${car.carDealer},${car.carDistance}`,
     ),
@@ -90,10 +79,12 @@ async function scrapeWebsite(baseUrl, outputPath) {
   console.log(`Data has been written to ${outputPath}`);
 }
 
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
 const website = {
   baseUrl:
     'https://shop.ford.ca/inventory/bronco/results?zipcode=B4C2R3&Radius=150&modeltrim=Bronco_F25-RAPTOR&Order=LowPrice&intcmp=moddetails-bb-si',
-  output: 'raptor_info.csv',
+  output: path.join(__dirname, 'raptor_info.csv'),
 };
 
 (async () => {

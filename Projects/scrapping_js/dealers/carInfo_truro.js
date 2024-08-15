@@ -1,98 +1,55 @@
 import puppeteer from 'puppeteer';
-import { load } from 'cheerio';
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-async function autoScroll(page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let totalHeight = 0;
-      const distance = 100;
-      const timer = setInterval(() => {
-        const { scrollHeight } = document.body;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
-
-        if (totalHeight >= scrollHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 100);
-    });
-  });
-}
-
-async function clickLoadMoreUntilDisappear(page) {
-  let loadMoreVisible = true;
-  while (loadMoreVisible) {
-    loadMoreVisible = await page.evaluate(() => {
-      const loadMoreButton = document.querySelector(
-        '.listing-used-button-loading.sr-button-1',
-      );
-      if (loadMoreButton) {
-        loadMoreButton.click();
-        return true;
-      }
-      return false;
-    });
-    // 使用 setTimeout 来代替 waitForTimeout
-    await new Promise((resolve) => setTimeout(resolve, 3000)); // 等待3秒钟加载更多内容
-  }
-}
+// Get the directory name of the current module file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function scrapePage(page) {
-  await autoScroll(page);
+  await page.waitForSelector('.listing-new-tile', { timeout: 10000 });
 
-  const htmlData = await page.content();
-  const $ = load(htmlData);
-  const carInfo = [];
+  return await page.evaluate(() => {
+    const cars = [];
+    document.querySelectorAll('.listing-new-tile').forEach((tile) => {
+      const carModel = tile.querySelector('.new-car-name')?.innerText.trim();
+      const carDrive = tile
+        .querySelector('.new-car-motor p:nth-child(1)')
+        ?.innerText.trim();
+      const carTransmission = tile
+        .querySelector('.new-car-motor p:nth-child(2)')
+        ?.innerText.trim();
+      const carEngine = tile
+        .querySelector('.new-car-motor p:nth-child(3)')
+        ?.innerText.trim();
+      const carPrice = tile
+        .querySelector('.payment-row-price')
+        ?.innerText.trim();
+      const carVIN = tile
+        .querySelector('.listing-tile-vin p')
+        ?.innerText.replace('VIN ', '')
+        .trim();
+      const carColor = tile
+        .querySelector('.listing-tile-package-description')
+        ?.innerText.trim();
+      const carImage = tile.querySelector('.preview-photo-wrapper img')?.src;
 
-  $('.listing-new-tile').each((index, element) => {
-    const carModel = $(element)
-      .find('.new-car-name.sr-text.is-bold')
-      .text()
-      .trim();
-    const carDrive = $(element).find('.new-car-motor p').first().text().trim();
-    const carTransmission = $(element)
-      .find('.new-car-motor p')
-      .eq(1)
-      .text()
-      .trim();
-    const carEngine = $(element).find('.new-car-motor p').eq(2).text().trim();
-    const carPrice = $(element)
-      .find('.payment-row-price.sr-text.is-bold')
-      .text()
-      .trim();
-    const carVIN = $(element)
-      .find('.listing-tile-vin p')
-      .text()
-      .replace('VIN ', '')
-      .trim();
-    const carStock = $(element)
-      .find('.listing-tile-specification-stock')
-      .text()
-      .replace('Stock #', '')
-      .trim();
-    const carColor = $(element)
-      .find('.listing-tile-package-description')
-      .first()
-      .text()
-      .trim();
-
-    if (carModel && carPrice) {
-      carInfo.push({
-        carModel,
-        carDrive,
-        carTransmission,
-        carEngine,
-        carPrice,
-        carVIN,
-        carStock,
-        carColor,
-      });
-    }
+      if (carModel && carPrice) {
+        cars.push({
+          carModel,
+          carDrive,
+          carTransmission,
+          carEngine,
+          carPrice,
+          carVIN,
+          carColor,
+          carImage,
+        });
+      }
+    });
+    return cars;
   });
-
-  return carInfo;
 }
 
 async function scrapeWebsite(baseUrl, outputPath) {
@@ -100,25 +57,26 @@ async function scrapeWebsite(baseUrl, outputPath) {
   const page = await browser.newPage();
   await page.goto(baseUrl, { waitUntil: 'networkidle2' });
 
-  await clickLoadMoreUntilDisappear(page);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   const carInfo = await scrapePage(page);
   await browser.close();
 
-  const csvContent = carInfo
-    .map(
+  const csvContent = [
+    'Model,Drive,Transmission,Engine,Price,VIN,Color,Image URL',
+    ...carInfo.map(
       (car) =>
-        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice},${car.carVIN},${car.carStock},${car.carColor}`,
-    )
-    .join('\n');
+        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice},${car.carVIN},${car.carColor},${car.carImage}`,
+    ),
+  ].join('\n');
+
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序能正常结束
 }
 
 const website = {
   baseUrl: 'https://www.trurotoyota.com/en/new-inventory',
-  output: 'carInfo_truro.csv',
+  output: path.join(__dirname, '..', 'carInfo_truro.csv'), // Save to the parent directory
 };
 
 (async () => {
