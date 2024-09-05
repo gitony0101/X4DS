@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
 import fs from 'fs';
 
+// 自动滚动页面以确保加载所有车辆
 async function autoScroll(page) {
   await page.evaluate(async () => {
     await new Promise((resolve) => {
@@ -21,6 +22,7 @@ async function autoScroll(page) {
   });
 }
 
+// 抓取单个页面的车辆信息
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -28,35 +30,45 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.box.inventory-vehicle-preview-list').each((index, element) => {
-    // 检查车辆是否已售出
-    const isSold =
-      $(element).find('.vehicle-image-txt:contains("Sold")').length > 0;
+  // 解析车辆信息
+  $('.listing-new-tile-drivePowerTrains').each((index, element) => {
+    const carModel = $(element).find('.new-car-name').text().trim();
+    const carDrive = $(element)
+      .find('.new-car-motor p:nth-child(1)')
+      .text()
+      .trim();
+    const carTransmission = $(element)
+      .find('.new-car-motor p:nth-child(2)')
+      .text()
+      .trim();
+    const carEngine = $(element)
+      .find('.new-car-motor p:nth-child(3)')
+      .text()
+      .trim();
 
-    // 如果车辆未售出，则抓取信息
-    if (!isSold) {
-      const carModel = $(element).find('.vehicle-title').text().trim();
-      let carPrice = $(element).find('.vehicle-new-price').text().trim();
-      const carStock = $(element).find('.vehicle-stockno').text().trim();
-      const carTransmission = $(element).find('.vehicle-odo').text().trim();
+    // 获取车辆价格
+    const carPrice = $(element)
+      .closest('.listing-new-tile')
+      .find('.payment-row-price')
+      .text()
+      .trim()
+      .replace(/[$,]/g, '');
 
-      // 移除价格中的逗号和美元符号
-      carPrice = carPrice.replace(/[$,]/g, '');
-
-      if (carModel && carPrice) {
-        carInfo.push({
-          carModel,
-          carPrice,
-          carStock,
-          carTransmission,
-        });
-      }
+    if (carModel && carPrice) {
+      carInfo.push({
+        carModel,
+        carDrive,
+        carTransmission,
+        carEngine,
+        carPrice,
+      });
     }
   });
 
   return carInfo;
 }
 
+// 抓取整个网站的车辆信息并写入CSV文件
 async function scrapeWebsite(baseUrl, outputPath) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -64,6 +76,7 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   let currentPage = 1;
   let hasNextPage = true;
+
   while (hasNextPage) {
     const url = `${baseUrl}?page=${currentPage}`;
     await page.goto(url, { waitUntil: 'networkidle2' });
@@ -86,24 +99,27 @@ async function scrapeWebsite(baseUrl, outputPath) {
 
   await browser.close();
 
+  // 写入CSV文件
   const csvContent = [
-    'Model,Price,Stock,Transmission',
+    'Model,Drive,Transmission,Engine,Price',
     ...allCarInfo.map(
       (car) =>
-        `${car.carModel},${car.carPrice},${car.carStock},${car.carTransmission}`,
+        `${car.carModel},${car.carDrive},${car.carTransmission},${car.carEngine},${car.carPrice}`,
     ),
   ].join('\n');
 
   fs.writeFileSync(outputPath, csvContent, 'utf8');
   console.log(`Data has been written to ${outputPath}`);
-  process.exit();
+  process.exit(); // 确保程序正常结束
 }
 
+// 配置抓取的目标网站和输出文件路径
 const website = {
   baseUrl: 'https://www.woodstocknbtoyota.com/en/new-inventory',
   output: 'carInfo_woodstock.csv',
 };
 
+// 执行抓取任务
 (async () => {
   await scrapeWebsite(website.baseUrl, website.output);
-})().catch((err) => console.error(err));
+})();

@@ -24,7 +24,9 @@ async function autoScroll(page) {
 async function scrapeWebsite(url, outputPath, selectors) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
+
+  // Set timeout to 60 seconds
+  await page.goto(url, { waitUntil: 'networkidle2', timeout: 60000 });
 
   await autoScroll(page);
 
@@ -65,7 +67,7 @@ async function scrapeWebsite(url, outputPath, selectors) {
 
   await csvWriter.writeRecords(carInfo);
   console.log(`Data has been written to ${outputPath}`);
-  process.exit(); // 确保程序在完成后退出
+  process.exit(); // Ensures the process exits after completion
 }
 
 const websites = [
@@ -81,7 +83,6 @@ const websites = [
       value: '.detailed-specs__value',
     },
   },
-  // 可以在这里添加更多网站的URL、输出文件名和选择器
 ];
 
 (async () => {
