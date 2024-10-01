@@ -56,3 +56,32 @@ Failed to scrape data from:
 - https://www.amhersttoyota.com/vehicles/new/?view=grid&sc=new: 'offers'
 - https://www.woodstocknbtoyota.com/en/for-sale/all/new: 'offers'
 
+
+
+10.01
+
+Successfully scraped data from https://www.acadiatoyota.com/en/new-inventory
+Failed to scrape data from https://www.frederictontoyota.com/en/new-inventory: 'offers'
+Failed to scrape data from https://www.summersidetoyota.com/en/new-inventory: 'offers'
+Successfully scraped data from https://www.charlottetowntoyota.ca/en/new-catalog
+Failed to scrape data from https://www.trurotoyota.com/en/new-inventory: 'offers'
+Failed to scrape data from https://www.anchortoyota.ca/vehicles/new/?st=year,desc&view=grid&sc=new: 'offers'
+Failed to scrape data from https://www.kentvilletoyota.com/en/shop-online?paymentFrequency=52&purchaseMethodOrder=4352&preferredMake=ALL: 'offers'
+Failed to scrape data from https://oreganstoyotabridgewater.com/inventory/?do-search=1: 'offers'
+Failed to scrape data from https://oreganstoyotahalifax.com/inventory/?search.vehicle-inventory-type-ids.0=1: 'offers'
+Failed to scrape data from https://oreganstoyotadartmouth.com/inventory/?search.vehicle-inventory-type-ids.0=1: 'offers'
+Failed to scrape data from https://trimactoyota.ca/new-inventory/: 'offers'
+Failed to scrape data from https://www.macdonaldtoyota.ca/new/inventory/search.html: 'offers'
+Successfully scraped data from https://www.westerntoyota.com/en/new-catalog
+Successfully scraped data from https://www.grandtoyota.ca/en/new-catalog
+Failed to scrape data from https://www.gandertoyota.com/new/inventory/search.html: 'offers'
+Failed to scrape data from https://www.centraltoyota.ca/new/inventory/search.html: 'offers'
+Failed to scrape data from https://www.toyotaplaza.ca/new/: 'offers'
+Failed to scrape data from https://www.edmundstontoyota.com/en/new-inventory: 'offers'
+Failed to scrape data from https://www.restigouchetoyota.com/en/new-inventory: 'offers'
+Failed to scrape data from https://www.bathursttoyota.ca/en/new-inventory: 'offers'
+Successfully scraped data from https://www.rousseltoyota.com/en/new-inventory
+Failed to scrape data from https://www.amhersttoyota.com/vehicles/new/?view=grid&sc=new: 'offers'
+Failed to scrape data from https://www.woodstocknbtoyota.com/en/for-sale/all/new: 'offers'
+
+
