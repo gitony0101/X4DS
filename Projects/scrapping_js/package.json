@@ -20,7 +20,8 @@
     "node-cron": "^3.0.3",
     "node-fetch": "^3.3.2",
     "puppeteer": "^22.11.2",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "debug": "^4.3.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.3"
