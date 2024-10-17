@@ -43,6 +43,11 @@ async function runAllScrapingTasks() {
       path.join(__dirname, 'dealers', 'carInfo_truro.js'),
       path.join(__dirname, 'dealers', 'carInfo_woodstock.js'),
       path.join(__dirname, 'dealers', 'carInfo_dartmouth.js'),
+      path.join(__dirname, 'dealers', 'carInfo_restigouche.js'),
+      path.join(__dirname, 'dealers', 'carInfo_oregans_bridgewater.js'),
+      path.join(__dirname, 'dealers', 'carInfo_fredericton.js'),
+        
+      
     ];
 
     for (const script of scripts) {

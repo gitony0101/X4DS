@@ -613,3 +613,5 @@ Projects/scrapping_js/node_modules/*
 
 # React Component Preview
 previewConfig.json
+Projects/scrapping_py/MaritimeToyota.xlsx
+Projects/scrapping_py/data_part_1.csv

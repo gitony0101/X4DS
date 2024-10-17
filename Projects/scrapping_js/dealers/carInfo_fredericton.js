@@ -21,30 +21,6 @@ async function autoScroll(page) {
   });
 }
 
-async function clickLoadMoreButton(page) {
-  let loadMoreVisible = true;
-  while (loadMoreVisible) {
-    try {
-      // 等待 "Load More" 按钮可见
-      await page.waitForSelector('.listing-used-button-loading.sr-button-1', {
-        visible: true,
-        timeout: 3000, // 3秒超时
-      });
-
-      // 点击 "Load More" 按钮
-      await page.click('.listing-used-button-loading.sr-button-1');
-      console.log('Clicked "Load More" button, loading more vehicles...');
-
-      // 等待页面内容加载
-      await page.waitForTimeout(2000); // 等待2秒让内容加载
-    } catch (error) {
-      // 如果超时或找不到 "Load More" 按钮，则停止
-      console.log('No more "Load More" button found or all vehicles loaded.');
-      loadMoreVisible = false;
-    }
-  }
-}
-
 async function scrapePage(page) {
   await autoScroll(page);
 
@@ -53,12 +29,10 @@ async function scrapePage(page) {
   const carInfo = [];
 
   $('div.listing-new-tile').each((index, element) => {
-    // 检查是否包含 "Reserved" 或 "Sold"
-    const isReservedOrSold =
-      $(element).find('span:contains("Reserved")').length > 0 ||
-      $(element).find('span:contains("Sold")').length > 0;
+    const isReserved =
+      $(element).find('div.tile-tag:contains("Reserved")').length > 0;
 
-    if (!isReservedOrSold) {
+    if (!isReserved) {
       const carModel = $(element)
         .find('.new-car-name.sr-text.is-bold')
         .text()
@@ -79,17 +53,12 @@ async function scrapePage(page) {
         .find('.listing-tile-specification-stock')
         .text()
         .trim();
-      const installedOptions = $(element)
-        .find('.listing-tile-package-description')
-        .text()
-        .trim();
 
       carInfo.push({
         carModel,
         carPrice,
         carVIN,
         carStockNumber,
-        installedOptions,
       });
     }
   });
@@ -100,21 +69,35 @@ async function scrapePage(page) {
 async function scrapeWebsite(baseUrl, outputPath) {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto(baseUrl, { waitUntil: 'networkidle2' });
+  const allCarInfo = [];
 
-  // 点击 "Load More" 按钮，直到没有更多数据可加载
-  await clickLoadMoreButton(page);
+  let currentPage = 1;
+  let hasNextPage = true;
+  while (hasNextPage) {
+    const url = `${baseUrl}?page=${currentPage}`;
+    await page.goto(url, { waitUntil: 'networkidle2' });
 
-  // 加载完毕后开始爬取
-  const carInfo = await scrapePage(page);
-  
+    const carInfo = await scrapePage(page);
+    if (carInfo.length > 0) {
+      allCarInfo.push(...carInfo);
+    }
+
+    const nextPageButton = await page.$(
+      '.divPaginationArrowBox:not(.disabled)',
+    );
+    if (nextPageButton) {
+      currentPage += 1;
+    } else {
+      hasNextPage = false;
+    }
+  }
+
   await browser.close();
 
   const csvContent = [
-    'Model,Price,VIN,Stock Number,Installed Options',
-    ...carInfo.map(
-      (car) =>
-        `${car.carModel},${car.carPrice},${car.carVIN},${car.carStockNumber},${car.installedOptions}`,
+    'Model,Price,VIN,Stock Number',
+    ...allCarInfo.map(
+      (car) => `${car.carModel},${car.carPrice},${car.carVIN},${car.carStockNumber}`,
     ),
   ].join('\n');
 
@@ -124,8 +107,8 @@ async function scrapeWebsite(baseUrl, outputPath) {
 }
 
 const website = {
-  baseUrl: 'https://www.summersidetoyota.com/en/new-inventory',
-  output: 'carInfo_summerside.csv',
+  baseUrl: 'https://www.frederictontoyota.com/en/new-inventory',
+  output: 'carInfo_fredericton.csv',
 };
 
 (async () => {
