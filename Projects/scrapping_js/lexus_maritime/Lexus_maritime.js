@@ -131,7 +131,10 @@ function saveToExcel(data, sheetName, workbook) {
 
 // 主函数
 async function runAllScrapingTasks() {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: ['--disable-features=IsolateOrigins', '--disable-site-isolation-trials'],
+  });
   const page = await browser.newPage();
 
   const workbook = xlsx.utils.book_new();
@@ -139,6 +142,7 @@ async function runAllScrapingTasks() {
   // 爬取Lexus of Saint John
   await page.goto('https://www.lexusofsaintjohn.com/en/new-inventory', {
     waitUntil: 'networkidle2',
+    timeout: 60000,  // 延长超时时间
   });
   const saintJohnData = await scrapeSaintJohn(page);
   saveToExcel(saintJohnData, 'SaintJohn', workbook);
@@ -146,7 +150,10 @@ async function runAllScrapingTasks() {
   // 爬取O'Regan's Lexus
   await page.goto(
     'https://www.oreganslexus.com/inventory/?search.vehicle-inventory-type-ids.0=1',
-    { waitUntil: 'networkidle2' },
+    {
+      waitUntil: 'networkidle2',
+      timeout: 60000,  // 延长超时时间
+    }
   );
   const oRegansData = await scrapeORegans(page);
   saveToExcel(oRegansData, 'ORegans', workbook);
@@ -157,4 +164,4 @@ async function runAllScrapingTasks() {
   console.log('Data has been written to Lexus_Inventory.xlsx');
 }
 
-runAllScrapingTasks().catch((err) => console.error(err));
+runAllScrapingTasks().catch((err) => console.error('Error:', err));
