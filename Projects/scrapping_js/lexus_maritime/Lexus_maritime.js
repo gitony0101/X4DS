@@ -1,6 +1,5 @@
 import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-import fs from 'fs';
 import xlsx from 'xlsx';
 
 // 自动滚动页面
