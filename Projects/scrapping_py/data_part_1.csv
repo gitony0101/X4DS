@@ -1,88 +1,114 @@
 ,Vehicle Name,price,Source Website
-0,2025 Toyota Tundra LIMITED TRD OFF ROAD,78121,https://www.acadiatoyota.com/en/new-inventory
-1,2025 Toyota TUNDRA HYBRID CAPSTONE,96426,https://www.acadiatoyota.com/en/new-inventory
-2,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
-3,2024 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,76301,https://www.acadiatoyota.com/en/new-inventory
-4,2024 Toyota Tacoma SR5,49901,https://www.acadiatoyota.com/en/new-inventory
-5,2024 Toyota Corolla,23590,https://www.charlottetowntoyota.ca/en/new-catalog
-6,2025 Toyota Corolla,23770,https://www.charlottetowntoyota.ca/en/new-catalog
-7,2025 Toyota Corolla Hatchback,24175,https://www.charlottetowntoyota.ca/en/new-catalog
-8,2024 Toyota Corolla Hatchback,24190,https://www.charlottetowntoyota.ca/en/new-catalog
-9,2024 Toyota Corolla Hybrid,26890,https://www.charlottetowntoyota.ca/en/new-catalog
-10,2025 Toyota Corolla Hybrid,27090,https://www.charlottetowntoyota.ca/en/new-catalog
-11,2024 Toyota Corolla Cross,27750,https://www.charlottetowntoyota.ca/en/new-catalog
-12,2024 Toyota Camry,31090,https://www.charlottetowntoyota.ca/en/new-catalog
-13,2024 Toyota GR86,32450,https://www.charlottetowntoyota.ca/en/new-catalog
-14,2025 Toyota GR86,32455,https://www.charlottetowntoyota.ca/en/new-catalog
-15,2024 Toyota Prius Prime,39650,https://www.charlottetowntoyota.ca/en/new-catalog
-16,2024 Toyota Camry Hybrid,32790,https://www.charlottetowntoyota.ca/en/new-catalog
-17,2024 Toyota RAV4,33250,https://www.charlottetowntoyota.ca/en/new-catalog
-18,2025 Toyota Camry Hybrid,34400,https://www.charlottetowntoyota.ca/en/new-catalog
-19,2024 Toyota Corolla Cross Hybrid,34690,https://www.charlottetowntoyota.ca/en/new-catalog
-20,2024 Toyota RAV4 Hybrid,36050,https://www.charlottetowntoyota.ca/en/new-catalog
-21,2024 Toyota BZ4X,50090,https://www.charlottetowntoyota.ca/en/new-catalog
-22,2024 Toyota Prius,37750,https://www.charlottetowntoyota.ca/en/new-catalog
-23,2024 Toyota Venza,42650,https://www.charlottetowntoyota.ca/en/new-catalog
-24,2024 Toyota RAV4 Prime,51250,https://www.charlottetowntoyota.ca/en/new-catalog
-25,2024 Toyota Sienna Hybrid,45050,https://www.charlottetowntoyota.ca/en/new-catalog
-26,2024 Toyota Highlander,46890,https://www.charlottetowntoyota.ca/en/new-catalog
-27,2024 Toyota GR Corolla,46950,https://www.charlottetowntoyota.ca/en/new-catalog
-28,2024 Toyota Tacoma,47050,https://www.charlottetowntoyota.ca/en/new-catalog
-29,2025 Toyota GR Corolla,48015,https://www.charlottetowntoyota.ca/en/new-catalog
-30,2024 Toyota Highlander Hybrid,49890,https://www.charlottetowntoyota.ca/en/new-catalog
-31,2024 Toyota Grand Highlander,50590,https://www.charlottetowntoyota.ca/en/new-catalog
-32,2024 Toyota Tundra,51550,https://www.charlottetowntoyota.ca/en/new-catalog
-33,2024 Toyota Crown,52090,https://www.charlottetowntoyota.ca/en/new-catalog
-34,2025 Toyota Tundra,53125,https://www.charlottetowntoyota.ca/en/new-catalog
-35,2024 Toyota 4Runner,53490,https://www.charlottetowntoyota.ca/en/new-catalog
-36,2024 Toyota Grand Highlander hybrid,53890,https://www.charlottetowntoyota.ca/en/new-catalog
-37,2025 Toyota Crown,54487,https://www.charlottetowntoyota.ca/en/new-catalog
-38,2024 Toyota GR Supra,56960,https://www.charlottetowntoyota.ca/en/new-catalog
-39,2025 Toyota Crown Signia,57550,https://www.charlottetowntoyota.ca/en/new-catalog
-40,2024 Toyota Tacoma Hybrid,63490,https://www.charlottetowntoyota.ca/en/new-catalog
-41,2024 Toyota Land Cruiser,69390,https://www.charlottetowntoyota.ca/en/new-catalog
-42,2025 Toyota Land Cruiser,69595,https://www.charlottetowntoyota.ca/en/new-catalog
-43,2025 Toyota GR Supra,69785,https://www.charlottetowntoyota.ca/en/new-catalog
-44,2024 Toyota Tundra Hybrid,73450,https://www.charlottetowntoyota.ca/en/new-catalog
-45,2025 Toyota Tundra Hybrid,74755,https://www.charlottetowntoyota.ca/en/new-catalog
-46,2024 Toyota Sequoia Hybrid,80560,https://www.charlottetowntoyota.ca/en/new-catalog
-47,2025 Toyota Sequoia Hybrid,83065,https://www.charlottetowntoyota.ca/en/new-catalog
-48,2025 Toyota Corolla,24369,https://www.westerntoyota.com/en/new-catalog
-49,2025 Toyota Corolla Hatchback,24774,https://www.westerntoyota.com/en/new-catalog
-50,2025 Toyota Corolla Hybrid,27689,https://www.westerntoyota.com/en/new-catalog
-51,2025 Toyota GR86,33054,https://www.westerntoyota.com/en/new-catalog
-52,2025 Toyota Camry Hybrid,34999,https://www.westerntoyota.com/en/new-catalog
-53,2025 Toyota GR Corolla,48614,https://www.westerntoyota.com/en/new-catalog
-54,2025 Toyota Tundra,53724,https://www.westerntoyota.com/en/new-catalog
-55,2025 Toyota Crown,55086,https://www.westerntoyota.com/en/new-catalog
-56,2025 Toyota Crown Signia,58149,https://www.westerntoyota.com/en/new-catalog
-57,2025 Toyota Land Cruiser,70194,https://www.westerntoyota.com/en/new-catalog
-58,2025 Toyota GR Supra,70384,https://www.westerntoyota.com/en/new-catalog
-59,2025 Toyota Tundra Hybrid,75354,https://www.westerntoyota.com/en/new-catalog
-60,2025 Toyota Sequoia Hybrid,83664,https://www.westerntoyota.com/en/new-catalog
-61,2025 Toyota Corolla,24718,https://www.grandtoyota.ca/en/new-catalog
-62,2025 Toyota Corolla Hatchback,25123,https://www.grandtoyota.ca/en/new-catalog
-63,2025 Toyota Corolla Hybrid,28038,https://www.grandtoyota.ca/en/new-catalog
-64,2025 Toyota GR86,33403,https://www.grandtoyota.ca/en/new-catalog
-65,2025 Toyota Camry Hybrid,35348,https://www.grandtoyota.ca/en/new-catalog
-66,2025 Toyota GR Corolla,48963,https://www.grandtoyota.ca/en/new-catalog
-67,2025 Toyota Tundra,54073,https://www.grandtoyota.ca/en/new-catalog
-68,2025 Toyota Crown,55435,https://www.grandtoyota.ca/en/new-catalog
-69,2025 Toyota Crown Signia,58498,https://www.grandtoyota.ca/en/new-catalog
-70,2025 Toyota Land Cruiser,70543,https://www.grandtoyota.ca/en/new-catalog
-71,2025 Toyota GR Supra,70733,https://www.grandtoyota.ca/en/new-catalog
-72,2025 Toyota Tundra Hybrid,75703,https://www.grandtoyota.ca/en/new-catalog
-73,2025 Toyota Sequoia Hybrid,84013,https://www.grandtoyota.ca/en/new-catalog
-74,2025 Toyota Tundra CREWMAX PLATINUM L,85536,https://www.rousseltoyota.com/en/new-inventory
-75,2025 Toyota Tundra CREWMAX SR5 L,66101,https://www.rousseltoyota.com/en/new-inventory
-76,2025 Toyota Tundra CREWMAX LIMITED L,77560,https://www.rousseltoyota.com/en/new-inventory
-77,2025 Toyota Tundra CREWMAX LIMITED,77200,https://www.rousseltoyota.com/en/new-inventory
-78,2025 Toyota TUNDRA HYBRID CREWMAX LIMITED L,76985,https://www.rousseltoyota.com/en/new-inventory
-79,2025 Toyota Tundra CREWMAX PLATINUM,85176,https://www.rousseltoyota.com/en/new-inventory
-80,2024 Toyota Tundra CREWMAX SR,64580,https://www.rousseltoyota.com/en/new-inventory
-81,2025 Toyota GR Supra 3.0T MT,67645,https://www.rousseltoyota.com/en/new-inventory
-82,2024 Toyota VENZA HYBRID XLE,51075,https://www.rousseltoyota.com/en/new-inventory
-83,2025 Toyota CROWN PLATINUM,62565,https://www.rousseltoyota.com/en/new-inventory
-84,2024 Toyota Tacoma Hybrid,70279,https://www.rousseltoyota.com/en/new-inventory
-85,2024 Toyota TUNDRA HYBRID CREWMAX PLATINUM,89370,https://www.rousseltoyota.com/en/new-inventory
-86,2025 Toyota Tundra Limited TRD Off-Road,80855,https://www.rousseltoyota.com/en/new-inventory
+0,2025 Toyota GR Supra 3.0L Premium,72566,https://www.acadiatoyota.com/en/new-inventory
+1,2025 Toyota Tundra PLATINUM,85256,https://www.acadiatoyota.com/en/new-inventory
+2,2025 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,77861,https://www.acadiatoyota.com/en/new-inventory
+3,2025 Toyota Tundra LIMITED TRD OFF ROAD,78481,https://www.acadiatoyota.com/en/new-inventory
+4,2025 Toyota TUNDRA HYBRID CAPSTONE,96426,https://www.acadiatoyota.com/en/new-inventory
+5,2024 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,76301,https://www.acadiatoyota.com/en/new-inventory
+6,2024 Toyota Tacoma SR5,49901,https://www.acadiatoyota.com/en/new-inventory
+7,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
+8,2024 Toyota Tacoma TRD Sport Plus,57401,https://www.acadiatoyota.com/en/new-inventory
+9,2024 Toyota TACOMA HYBRID Limited,66596,https://www.acadiatoyota.com/en/new-inventory
+10,2024 Toyota Tacoma TRD Sport,53001,https://www.acadiatoyota.com/en/new-inventory
+11,2024 Toyota Corolla,23590,https://www.charlottetowntoyota.ca/en/new-catalog
+12,2025 Toyota Corolla,23770,https://www.charlottetowntoyota.ca/en/new-catalog
+13,2025 Toyota Corolla Hatchback,24175,https://www.charlottetowntoyota.ca/en/new-catalog
+14,2024 Toyota Corolla Hatchback,24190,https://www.charlottetowntoyota.ca/en/new-catalog
+15,2024 Toyota Corolla Hybrid,26890,https://www.charlottetowntoyota.ca/en/new-catalog
+16,2025 Toyota Corolla Hybrid,27090,https://www.charlottetowntoyota.ca/en/new-catalog
+17,2024 Toyota Corolla Cross,27750,https://www.charlottetowntoyota.ca/en/new-catalog
+18,2024 Toyota Camry,31090,https://www.charlottetowntoyota.ca/en/new-catalog
+19,2024 Toyota GR86,32450,https://www.charlottetowntoyota.ca/en/new-catalog
+20,2025 Toyota GR86,32455,https://www.charlottetowntoyota.ca/en/new-catalog
+21,2024 Toyota Prius Prime,39650,https://www.charlottetowntoyota.ca/en/new-catalog
+22,2024 Toyota Camry Hybrid,32790,https://www.charlottetowntoyota.ca/en/new-catalog
+23,2024 Toyota RAV4,33250,https://www.charlottetowntoyota.ca/en/new-catalog
+24,2025 Toyota RAV4,33655,https://www.charlottetowntoyota.ca/en/new-catalog
+25,2025 Toyota Camry Hybrid,34400,https://www.charlottetowntoyota.ca/en/new-catalog
+26,2024 Toyota Corolla Cross Hybrid,34690,https://www.charlottetowntoyota.ca/en/new-catalog
+27,2024 Toyota RAV4 Hybrid,36050,https://www.charlottetowntoyota.ca/en/new-catalog
+28,2024 Toyota BZ4X,50090,https://www.charlottetowntoyota.ca/en/new-catalog
+29,2024 Toyota Prius,37750,https://www.charlottetowntoyota.ca/en/new-catalog
+30,2025 Toyota RAV4 Hybrid,41545,https://www.charlottetowntoyota.ca/en/new-catalog
+31,2024 Toyota Venza,42650,https://www.charlottetowntoyota.ca/en/new-catalog
+32,2024 Toyota RAV4 Prime,51250,https://www.charlottetowntoyota.ca/en/new-catalog
+33,2024 Toyota Sienna Hybrid,45050,https://www.charlottetowntoyota.ca/en/new-catalog
+34,2024 Toyota Highlander,46890,https://www.charlottetowntoyota.ca/en/new-catalog
+35,2024 Toyota GR Corolla,46950,https://www.charlottetowntoyota.ca/en/new-catalog
+36,2024 Toyota Tacoma,47050,https://www.charlottetowntoyota.ca/en/new-catalog
+37,2025 Toyota Sienna Hybrid,47750,https://www.charlottetowntoyota.ca/en/new-catalog
+38,2025 Toyota GR Corolla,48015,https://www.charlottetowntoyota.ca/en/new-catalog
+39,2024 Toyota Highlander Hybrid,49890,https://www.charlottetowntoyota.ca/en/new-catalog
+40,2025 Toyota Highlander,50310,https://www.charlottetowntoyota.ca/en/new-catalog
+41,2024 Toyota Grand Highlander,50590,https://www.charlottetowntoyota.ca/en/new-catalog
+42,2025 Toyota Highlander Hybrid,50650,https://www.charlottetowntoyota.ca/en/new-catalog
+43,2024 Toyota Tundra,51550,https://www.charlottetowntoyota.ca/en/new-catalog
+44,2025 Toyota RAV4 Plug-In Hybrid,51815,https://www.charlottetowntoyota.ca/en/new-catalog
+45,2024 Toyota Crown,52090,https://www.charlottetowntoyota.ca/en/new-catalog
+46,2025 Toyota Tundra,53125,https://www.charlottetowntoyota.ca/en/new-catalog
+47,2024 Toyota 4Runner,53490,https://www.charlottetowntoyota.ca/en/new-catalog
+48,2024 Toyota Grand Highlander hybrid,53890,https://www.charlottetowntoyota.ca/en/new-catalog
+49,2025 Toyota Crown,54487,https://www.charlottetowntoyota.ca/en/new-catalog
+50,2024 Toyota GR Supra,56960,https://www.charlottetowntoyota.ca/en/new-catalog
+51,2025 Toyota Crown Signia,57550,https://www.charlottetowntoyota.ca/en/new-catalog
+52,2024 Toyota Tacoma Hybrid,63490,https://www.charlottetowntoyota.ca/en/new-catalog
+53,2024 Toyota Land Cruiser,69390,https://www.charlottetowntoyota.ca/en/new-catalog
+54,2025 Toyota Land Cruiser,69595,https://www.charlottetowntoyota.ca/en/new-catalog
+55,2025 Toyota GR Supra,69785,https://www.charlottetowntoyota.ca/en/new-catalog
+56,2024 Toyota Tundra Hybrid,73450,https://www.charlottetowntoyota.ca/en/new-catalog
+57,2025 Toyota Tundra Hybrid,74755,https://www.charlottetowntoyota.ca/en/new-catalog
+58,2024 Toyota Sequoia Hybrid,80560,https://www.charlottetowntoyota.ca/en/new-catalog
+59,2025 Toyota Sequoia Hybrid,83065,https://www.charlottetowntoyota.ca/en/new-catalog
+60,2025 Toyota Corolla,24369,https://www.westerntoyota.com/en/new-catalog
+61,2025 Toyota Corolla Hatchback,24774,https://www.westerntoyota.com/en/new-catalog
+62,2025 Toyota Corolla Hybrid,27689,https://www.westerntoyota.com/en/new-catalog
+63,2025 Toyota GR86,33054,https://www.westerntoyota.com/en/new-catalog
+64,2025 Toyota RAV4,34254,https://www.westerntoyota.com/en/new-catalog
+65,2025 Toyota Camry Hybrid,34999,https://www.westerntoyota.com/en/new-catalog
+66,2025 Toyota RAV4 Hybrid,42144,https://www.westerntoyota.com/en/new-catalog
+67,2025 Toyota Sienna Hybrid,48349,https://www.westerntoyota.com/en/new-catalog
+68,2025 Toyota GR Corolla,48614,https://www.westerntoyota.com/en/new-catalog
+69,2025 Toyota Highlander,50909,https://www.westerntoyota.com/en/new-catalog
+70,2025 Toyota Highlander Hybrid,51249,https://www.westerntoyota.com/en/new-catalog
+71,2025 Toyota RAV4 Plug-In Hybrid,52414,https://www.westerntoyota.com/en/new-catalog
+72,2025 Toyota Tundra,53724,https://www.westerntoyota.com/en/new-catalog
+73,2025 Toyota Crown,55086,https://www.westerntoyota.com/en/new-catalog
+74,2025 Toyota Crown Signia,58149,https://www.westerntoyota.com/en/new-catalog
+75,2025 Toyota Land Cruiser,70194,https://www.westerntoyota.com/en/new-catalog
+76,2025 Toyota GR Supra,70384,https://www.westerntoyota.com/en/new-catalog
+77,2025 Toyota Tundra Hybrid,75354,https://www.westerntoyota.com/en/new-catalog
+78,2025 Toyota Sequoia Hybrid,83664,https://www.westerntoyota.com/en/new-catalog
+79,2025 Toyota Corolla,24718,https://www.grandtoyota.ca/en/new-catalog
+80,2025 Toyota Corolla Hatchback,25123,https://www.grandtoyota.ca/en/new-catalog
+81,2025 Toyota Corolla Hybrid,28038,https://www.grandtoyota.ca/en/new-catalog
+82,2025 Toyota GR86,33403,https://www.grandtoyota.ca/en/new-catalog
+83,2025 Toyota RAV4,34603,https://www.grandtoyota.ca/en/new-catalog
+84,2025 Toyota Camry Hybrid,35348,https://www.grandtoyota.ca/en/new-catalog
+85,2025 Toyota RAV4 Hybrid,42493,https://www.grandtoyota.ca/en/new-catalog
+86,2025 Toyota Sienna Hybrid,48698,https://www.grandtoyota.ca/en/new-catalog
+87,2025 Toyota GR Corolla,48963,https://www.grandtoyota.ca/en/new-catalog
+88,2025 Toyota Highlander,51258,https://www.grandtoyota.ca/en/new-catalog
+89,2025 Toyota Highlander Hybrid,51598,https://www.grandtoyota.ca/en/new-catalog
+90,2025 Toyota RAV4 Plug-In Hybrid,52763,https://www.grandtoyota.ca/en/new-catalog
+91,2025 Toyota Tundra,54073,https://www.grandtoyota.ca/en/new-catalog
+92,2025 Toyota Crown,55435,https://www.grandtoyota.ca/en/new-catalog
+93,2025 Toyota Crown Signia,58498,https://www.grandtoyota.ca/en/new-catalog
+94,2025 Toyota Land Cruiser,70543,https://www.grandtoyota.ca/en/new-catalog
+95,2025 Toyota GR Supra,70733,https://www.grandtoyota.ca/en/new-catalog
+96,2025 Toyota Tundra Hybrid,75703,https://www.grandtoyota.ca/en/new-catalog
+97,2025 Toyota Sequoia Hybrid,84013,https://www.grandtoyota.ca/en/new-catalog
+98,2025 Toyota Land Cruiser Premium,0,https://www.rousseltoyota.com/en/new-inventory
+99,2024 Toyota COROLLA CROSS Hybrid SE,0,https://www.rousseltoyota.com/en/new-inventory
+100,2024 Toyota PRIUS PRIME SE,0,https://www.rousseltoyota.com/en/new-inventory
+101,2025 Toyota RAV4 Hybrid LE,0,https://www.rousseltoyota.com/en/new-inventory
+102,2025 Toyota RAV4 LE AWD,0,https://www.rousseltoyota.com/en/new-inventory
+103,2025 Toyota RAV4 Hybrid XSE AWD,0,https://www.rousseltoyota.com/en/new-inventory
+104,2025 Toyota RAV4 XLE Premium AWD,0,https://www.rousseltoyota.com/en/new-inventory
+105,2025 Toyota RAV4 Hybrid XLE AWD,0,https://www.rousseltoyota.com/en/new-inventory
+106,2025 Toyota RAV4 Hybrid SE,0,https://www.rousseltoyota.com/en/new-inventory
+107,2025 Toyota Highlander hybrid Limited,0,https://www.rousseltoyota.com/en/new-inventory
+108,2025 Toyota Corolla LE Upgrade,0,https://www.rousseltoyota.com/en/new-inventory
+109,2025 Toyota Highlander hybrid XLE AWD,0,https://www.rousseltoyota.com/en/new-inventory
+110,2025 Toyota Highlander hybrid Platinum,0,https://www.rousseltoyota.com/en/new-inventory
+111,2025 Toyota Tundra CREWMAX SR5 BM,0,https://www.rousseltoyota.com/en/new-inventory
+112,2025 Toyota Tundra Limited TRD Off-Road BM,0,https://www.rousseltoyota.com/en/new-inventory
