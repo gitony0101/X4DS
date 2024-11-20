@@ -1,11 +1,13 @@
 {
   "name": "scrapping_js",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "scrapeAll.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node scrapeAll.js",
+    "dev": "nodemon scrapeAll.js",
+    "scrape": "node scrapeAll.js",
+    "scrape:watch": "nodemon scrapeAll.js"
   },
   "keywords": [],
   "author": "",
