@@ -1,0 +1,152 @@
+[
+  {
+    "carModel": "2025ToyotaCorolla",
+    "carPrice": "26858",
+    "exteriorColor": "Midnight Black Metallic",
+    "trim": "TrimLE",
+    "stock": "",
+    "drivetrain": "Front-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2024ToyotaTacoma",
+    "carPrice": "46950",
+    "exteriorColor": "Black",
+    "trim": "",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "64236",
+    "exteriorColor": "Lunar Rock",
+    "trim": "TrimSR",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2024ToyotaTacoma",
+    "carPrice": "58405",
+    "exteriorColor": "Wind Chill Pearl (White)",
+    "trim": "",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2024ToyotaTacoma",
+    "carPrice": "63390",
+    "exteriorColor": "Black",
+    "trim": "",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Hybrid"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "75170",
+    "exteriorColor": "Lunar Rock",
+    "trim": "TrimLimited",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "62236",
+    "exteriorColor": "Blueprint",
+    "trim": "TrimSR",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "59881",
+    "exteriorColor": "Blueprint",
+    "trim": "TrimSR",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "71000",
+    "exteriorColor": "Midnight Black Metallic",
+    "trim": "TrimLimited",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2024ToyotaRAV4",
+    "carPrice": "39050",
+    "exteriorColor": "White",
+    "trim": "TrimHybrid XLE",
+    "stock": "",
+    "drivetrain": "All-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Hybrid"
+  },
+  {
+    "carModel": "2024ToyotaGR Supra",
+    "carPrice": "69600",
+    "exteriorColor": "Absolute Zero (White)",
+    "trim": "Trim3.0T",
+    "stock": "",
+    "drivetrain": "Rear-Wheel drive",
+    "transmission": "Manual",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2025ToyotaSienna",
+    "carPrice": "49490",
+    "exteriorColor": "Midnight Black Metallic",
+    "trim": "TrimLE",
+    "stock": "",
+    "drivetrain": "All-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Hybrid"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "93730",
+    "exteriorColor": "Wind Chill Pearl (White)",
+    "trim": "TrimCapstone Hybrid",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Hybrid"
+  },
+  {
+    "carModel": "2025ToyotaTundra",
+    "carPrice": "71000",
+    "exteriorColor": "Midnight Black Metallic",
+    "trim": "TrimLimited",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  },
+  {
+    "carModel": "2024ToyotaTundra",
+    "carPrice": "0",
+    "exteriorColor": "Magnetic Grey Metallic",
+    "trim": "TrimSR",
+    "stock": "",
+    "drivetrain": "4-Wheel drive",
+    "transmission": "Auto",
+    "fuelType": "Gas"
+  }
+]

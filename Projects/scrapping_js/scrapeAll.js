@@ -17,9 +17,14 @@ async function scrapeDealer(dealer, config) {
         const scraper = new BaseScraper(config);
         const data = await scraper.scrapeWebsite();
         
+        if (!data || data.length === 0) {
+            logger.warn(`No data found for dealer: ${dealer}`);
+            return [];
+        }
+        
         // 保存数据到CSV和JSON
         const filename = config.output || `${dealer}_inventory.csv`;
-        const headers = Object.keys(data[0] || {});
+        const headers = Object.keys(data[0]);
         await fileHandler.writeToCSV(filename, data, headers);
         await fileHandler.writeToJSON(`${dealer}_inventory.json`, data);
         
