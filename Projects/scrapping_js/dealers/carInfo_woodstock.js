@@ -7,8 +7,12 @@ async function scrapePage(page) {
   const $ = load(htmlData);
   const carInfo = [];
 
-  $('.listing-new-tile-wrapper').each((index, element) => {
-    // 车辆信息
+  $('div.listing-new-tile').each((index, element) => {
+    // 检查是否标记为 "Sold"
+    const isSold = $(element).find('.tile-tag:contains("Sold")').length > 0;
+    if (isSold) return;
+
+    // 提取车辆信息
     const carModel = $(element).find('.new-car-name').text().trim();
     const drivetrain = $(element).find('.new-car-motor p').eq(0).text().trim();
     const transmission = $(element)
@@ -20,20 +24,21 @@ async function scrapePage(page) {
     const stockNumber = $(element)
       .find('.listing-tile-specification-stock')
       .text()
+      .replace('Stock #', '')
       .trim();
     const color = $(element)
       .find('.listing-tile-package-description')
+      .eq(1)
       .text()
       .trim();
-    const vin = $(element).find('.listing-tile-vin p').text().trim();
-
-    // 价格信息
-    const price = $(element)
+    const vin = $(element).find('.listing-tile-vin p').text().replace('VIN ', '').trim();
+    let price = $(element)
       .find('.payment-row-price')
       .text()
-      .replace(/\s/g, '')
+      .replace(/[,$*]/g, '') // 去除符号和格式化
       .trim();
 
+    // 确保关键字段存在
     if (carModel && price) {
       carInfo.push({
         carModel,
