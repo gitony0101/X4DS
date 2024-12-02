@@ -1,12 +1,12 @@
 ,Vehicle Name,price,Source Website
-0,2025 Toyota Tundra LIMITED TRD OFF ROAD,78121,https://www.acadiatoyota.com/en/new-inventory
+0,2025 Toyota TUNDRA HYBRID CAPSTONE,96426,https://www.acadiatoyota.com/en/new-inventory
 1,2025 Toyota Tundra PLATINUM,85256,https://www.acadiatoyota.com/en/new-inventory
-2,2025 Toyota GR Supra 3.0L Premium,72566,https://www.acadiatoyota.com/en/new-inventory
-3,2025 Toyota TUNDRA HYBRID CAPSTONE,96426,https://www.acadiatoyota.com/en/new-inventory
-4,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
+2,2025 Toyota Tundra LIMITED TRD OFF ROAD,78121,https://www.acadiatoyota.com/en/new-inventory
+3,2025 Toyota GR Supra 3.0L Premium,72566,https://www.acadiatoyota.com/en/new-inventory
+4,2024 Toyota TACOMA HYBRID Limited,66596,https://www.acadiatoyota.com/en/new-inventory
 5,2024 Toyota TUNDRA HYBRID LIMITED NIGHTSHADE,76301,https://www.acadiatoyota.com/en/new-inventory
-6,2024 Toyota Tacoma SR5,49901,https://www.acadiatoyota.com/en/new-inventory
-7,2024 Toyota TACOMA HYBRID Limited,66596,https://www.acadiatoyota.com/en/new-inventory
+6,2024 Toyota Tundra SR5 L,63761,https://www.acadiatoyota.com/en/new-inventory
+7,2024 Toyota Tacoma SR5,49901,https://www.acadiatoyota.com/en/new-inventory
 8,2024 Toyota Corolla,23590,https://www.charlottetowntoyota.ca/en/new-catalog
 9,2025 Toyota Corolla,23770,https://www.charlottetowntoyota.ca/en/new-catalog
 10,2025 Toyota Corolla Hatchback,24175,https://www.charlottetowntoyota.ca/en/new-catalog
@@ -99,19 +99,18 @@
 97,2025 Toyota RAV4 XLE PREMIUM,41367,https://www.rousseltoyota.com/en/new-inventory
 98,2025 Toyota Highlander hybrid LE AWD,0,https://www.rousseltoyota.com/en/new-inventory
 99,2025 Toyota Highlander hybrid XLE AWD,0,https://www.rousseltoyota.com/en/new-inventory
-100,2025 Toyota Corolla LE Upgrade,0,https://www.rousseltoyota.com/en/new-inventory
-101,2025 Toyota Tundra CREWMAX SR,0,https://www.rousseltoyota.com/en/new-inventory
-102,2025 Toyota TUNDRA HYBRID CREWMAX LIMITED,80855,https://www.rousseltoyota.com/en/new-inventory
-103,2025 Toyota Tundra CREWMAX PLATINUM L,85536,https://www.rousseltoyota.com/en/new-inventory
-104,2025 Toyota TUNDRA HYBRID CREWMAX LIMITED L,76985,https://www.rousseltoyota.com/en/new-inventory
-105,2025 Toyota Tundra CREWMAX LIMITED,77200,https://www.rousseltoyota.com/en/new-inventory
-106,2025 Toyota Tundra CREWMAX PLATINUM,85176,https://www.rousseltoyota.com/en/new-inventory
-107,2025 Toyota GR Supra 3.0T MT,67645,https://www.rousseltoyota.com/en/new-inventory
-108,2024 Toyota VENZA HYBRID XLE,51075,https://www.rousseltoyota.com/en/new-inventory
-109,2024 Toyota TACOMA HYBRID DOUBLE CAB,70279,https://www.rousseltoyota.com/en/new-inventory
-110,2024 Toyota TUNDRA HYBRID CREWMAX PLATINUM,89370,https://www.rousseltoyota.com/en/new-inventory
-111,2025 Toyota Tundra SR5,63911,https://www.rousseltoyota.com/en/new-inventory
-112,2025 Toyota Tundra TRD OFF ROAD,67061,https://www.rousseltoyota.com/en/new-inventory
-113,2025 Toyota COROLLA CROSS LE AWD,0,https://www.rousseltoyota.com/en/new-inventory
-114,2025 Toyota TUNDRA HYBRID LIMITED TRD OFF ROAD,80900,https://www.rousseltoyota.com/en/new-inventory
-115,2025 Toyota Tundra TRD OFF ROAD SR5 CM,66266,https://www.rousseltoyota.com/en/new-inventory
+100,2025 Toyota Tundra CREWMAX SR,0,https://www.rousseltoyota.com/en/new-inventory
+101,2025 Toyota Tundra CREWMAX PLATINUM L,85536,https://www.rousseltoyota.com/en/new-inventory
+102,2025 Toyota Tundra CREWMAX LIMITED,77200,https://www.rousseltoyota.com/en/new-inventory
+103,2025 Toyota TUNDRA HYBRID CREWMAX LIMITED L,76985,https://www.rousseltoyota.com/en/new-inventory
+104,2025 Toyota Tundra CREWMAX PLATINUM,85176,https://www.rousseltoyota.com/en/new-inventory
+105,2025 Toyota GR Supra 3.0T MT,67645,https://www.rousseltoyota.com/en/new-inventory
+106,2024 Toyota VENZA HYBRID XLE,51075,https://www.rousseltoyota.com/en/new-inventory
+107,2024 Toyota TACOMA HYBRID DOUBLE CAB,70279,https://www.rousseltoyota.com/en/new-inventory
+108,2024 Toyota TUNDRA HYBRID CREWMAX PLATINUM,89370,https://www.rousseltoyota.com/en/new-inventory
+109,2024 Toyota COROLLA CROSS LE AWD,33120,https://www.rousseltoyota.com/en/new-inventory
+110,2025 Toyota Tundra SR5,63911,https://www.rousseltoyota.com/en/new-inventory
+111,2025 Toyota Tundra TRD OFF ROAD,67061,https://www.rousseltoyota.com/en/new-inventory
+112,2025 Toyota RAV4 Hybrid XLE,41675,https://www.rousseltoyota.com/en/new-inventory
+113,2025 Toyota TUNDRA HYBRID LIMITED TRD OFF ROAD,80900,https://www.rousseltoyota.com/en/new-inventory
+114,2025 Toyota Tundra TRD OFF ROAD SR5 CM,66266,https://www.rousseltoyota.com/en/new-inventory
